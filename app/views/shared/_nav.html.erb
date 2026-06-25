@@ -8,9 +8,11 @@
       <span class="text-[19px] font-black tracking-tight text-ink">ULTRA<span class="text-flame">INFO</span></span>
     <% end %>
     <nav class="hidden items-center gap-7 text-sm font-semibold text-stone sm:flex">
-      <%= link_to "Run it", runner_path, class: "no-underline hover:text-flame" %>
-      <%= link_to "Crew", crew_path, class: "no-underline hover:text-flame" %>
-      <%= link_to "Follow", follow_path, class: "no-underline hover:text-flame" %>
+      <% if featured_race %>
+        <%= link_to "Run it", runner_race_path(featured_race), class: "no-underline hover:text-flame" %>
+        <%= link_to "Crew", crew_race_path(featured_race), class: "no-underline hover:text-flame" %>
+        <%= link_to "Follow", follow_race_path(featured_race), class: "no-underline hover:text-flame" %>
+      <% end %>
       <a href="#about" class="no-underline hover:text-flame">About</a>
     </nav>
   </div>

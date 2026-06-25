@@ -1,0 +1,30 @@
+<%= render "races/race_header", race: @race %>
+<%= render "races/placeholder_banner" %>
+<%= render "races/role_nav", race: @race %>
+
+<section class="mx-auto max-w-[1240px] px-6 pb-16 sm:px-10">
+  <% if @race.about.present? %>
+    <p class="mb-8 max-w-2xl text-base leading-relaxed text-stone"><%= @race.about %></p>
+  <% end %>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <%= render "home/role_card", href: runner_race_path(@race), label: "Run it",
+          blurb: "Registration, course facts, cutoffs, and the aid-station rundown." %>
+    <%= render "home/role_card", href: crew_race_path(@race), label: "Crew or pace",
+          blurb: "The crew-access map, which stations allow crew, parking, and drop bags." %>
+    <%= render "home/role_card", href: follow_race_path(@race), label: "Follow along",
+          blurb: "Tracking, the best spots to watch from, and the finish." %>
+  </div>
+
+  <div class="mt-10 grid gap-6 lg:grid-cols-2">
+    <%= render "races/map", race: @race %>
+    <%= render "races/elevation_profile", race: @race %>
+  </div>
+
+  <% if @race.official_url.present? %>
+    <p class="mt-8">
+      <%= link_to "Official race site →", @race.official_url, target: "_blank", rel: "noopener",
+            class: "font-semibold text-ink underline-offset-2 hover:text-flame" %>
+    </p>
+  <% end %>
+</section>

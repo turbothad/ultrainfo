@@ -1,15 +1,6 @@
 class HomeController < ApplicationController
-  # Static role pages for now — each renders its template. Real event data
-  # arrives once the Event model is seeded (see TODO.md).
+  # Role-first landing. Features the one race we have today (Bighorn 100).
   def index
-  end
-
-  def runner
-  end
-
-  def crew
-  end
-
-  def follow
+    @race = featured_race
   end
 end

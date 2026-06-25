@@ -1,0 +1,28 @@
+<div class="overflow-x-auto rounded-2xl border border-ink/10 bg-card">
+  <table class="w-full border-collapse text-left text-sm">
+    <thead class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light">
+      <tr class="border-b border-ink/10">
+        <th class="px-4 py-3">Mile</th>
+        <th class="px-4 py-3">Aid station</th>
+        <th class="px-4 py-3">Cutoff</th>
+        <th class="px-4 py-3 text-center">Crew</th>
+        <th class="px-4 py-3 text-center">Drop bag</th>
+        <th class="px-4 py-3 text-center">Pacer</th>
+        <th class="px-4 py-3">Parking / notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stations.each do |s| %>
+        <tr class="border-b border-ink/5 last:border-0">
+          <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= s.mile %></td>
+          <td class="px-4 py-3 font-semibold text-ink"><%= s.name %></td>
+          <td class="whitespace-nowrap px-4 py-3 font-mono text-stone"><%= s.cutoff || "—" %></td>
+          <td class="px-4 py-3 text-center"><%= yes_no s.crew_accessible %></td>
+          <td class="px-4 py-3 text-center"><%= yes_no s.drop_bag %></td>
+          <td class="px-4 py-3 text-center"><%= yes_no s.pacer_access %></td>
+          <td class="px-4 py-3 text-stone"><%= s.parking_notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

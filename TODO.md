@@ -1,28 +1,37 @@
 # ultrainfo — TODO
 
-Deferred work, captured so it doesn't get lost. The current scaffold covers: brand,
-role-first landing + three role pages, design tokens, a functional test, and CI.
+Deferred work, captured so it doesn't get lost.
 
-## Next up (MVP — Western States 100)
-- [ ] `Event` + related models (aid stations, crew access, schedule, splits); hand-seed Western States 100
-- [ ] Runner / Crew / Follow pages: replace placeholder bullets with real, seeded content
-- [ ] Course map (Leaflet + OSM / CARTO) with the GPX track
-- [ ] **Crew-access overlay** on the map (which aid stations allow crew, parking, routes) — the core wedge
-- [ ] Elevation profile + aid-station splits
-- [ ] "Where to register" deep-link to the official / UltraSignup page
+## Done
+- Rails 8.1 + Ruby 4.0.5; Tailwind v4 design tokens; role-first landing
+- Lean schema: `Race` + `AidStation` (depth fields optional)
+- Bighorn 100 seeded as **PLACEHOLDER** data (`db/seeds.rb`)
+- Role views: Overview / Run it / Crew or pace / Follow, on real-shaped data
+- Leaflet crew-access map (crew vs non-crew, toggle, directions) + elevation profile
+- `map.json` endpoint; model + controller tests; RuboCop + Brakeman green
 
-## Later
-- [ ] Per-race scraper adapters (UltraSignup, RunSignup API, race sites / runner-manual PDFs) — one event at a time
-- [ ] Additional US events
-- [ ] Live tracking integration (per-race official feeds)
+## Next up (MVP — Bighorn 100)
+- [ ] **Replace placeholder data with sourced Bighorn data** (official guide + your firsthand notes), then delete `races/_placeholder_banner`
+- [ ] Real per-station cutoffs (currently nil → "—")
+- [ ] Real course GPX → add the `gpx` gem, parse to `simplified_track` + `elevation_series` + gain/loss
+- [ ] Verify aid-station coordinates (placeholder now — see open question)
+- [ ] Official live-tracking URL for the follow page
+
+## Later (roadmap)
+- [ ] No-account "save my crew plan" (shareable URL + `localStorage`) + crew ETA splits
+- [ ] Add a 2nd race end-to-end (stress-test the lean schema; refactor to Event/Edition only if year-2 / multi-distance forces it)
+- [ ] Per-race scraper adapters (run100s index; RunSignup API; UltraSignup [unconfirmed]) — breadth, one source at a time
+- [ ] Provenance / "last verified" (the plan's `Source` model) once aggregating from outside sources
 - [ ] Privacy-first analytics (Plausible / Umami or `ahoy`) — no accounts
-- [ ] "Save my race / crew plan" via shareable URL + localStorage (no login)
+- [ ] Schedule / race-weekend timeline (no model yet — add when sourcing real data)
 
 ## Ops / housekeeping
-- [ ] Kamal deploy config for Hetzner (domain ultrainfo.org, registry, secrets)
-- [ ] Shoe fund: set up GitHub Sponsors (or similar) and link it in the footer + README
-- [ ] Decide whether a single-event site keeps the season-calendar section from the wireframe
+- [ ] Kamal deploy to Hetzner (domain ultrainfo.org; SQLite on a persistent volume + Litestream backups)
+- [ ] Shoe fund: set up GitHub Sponsors and link in footer + README
+- [ ] Confirm CI is green on Ruby 4.0.5 (setup-ruby reads `.ruby-version`)
 
-## Open questions
-- [ ] Confirm: no auth for the MVP
-- [ ] Exact contributing / shoe-fund wording
+## Decisions captured
+- First race: **Bighorn 100** (was Western States) — you've run it, better firsthand data
+- Schema: **lean** (Race + AidStation), not the 7-model plan — provenance/adapters deferred
+- No auth in the MVP (confirmed direction)
+- Versions: Ruby 4.0.5 / Rails 8.1.3 (your call, done)

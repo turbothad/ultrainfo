@@ -1,0 +1,10 @@
+<nav class="mx-auto flex max-w-[1240px] flex-wrap gap-2 px-6 py-6 sm:px-10">
+  <% [["Overview", race_path(race)],
+      ["Run it", runner_race_path(race)],
+      ["Crew", crew_race_path(race)],
+      ["Follow", follow_race_path(race)]].each do |label, href| %>
+    <% active = request.path == href %>
+    <%= link_to label, href,
+          class: "rounded-full border px-4 py-2 text-sm font-semibold no-underline #{active ? 'border-ink bg-ink text-paper' : 'border-ink/20 text-ink hover:border-ink'}" %>
+  <% end %>
+</nav>

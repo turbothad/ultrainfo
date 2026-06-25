@@ -1,0 +1,21 @@
+<section class="mx-auto max-w-[1240px] px-6 pt-12 sm:px-10 sm:pt-16">
+  <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-flame">
+    <%= race.state %><%= " · #{race.start_date.strftime('%B %-d, %Y')}" if race.start_date %>
+  </p>
+  <h1 class="text-balance text-4xl font-black uppercase leading-[0.95] tracking-tight sm:text-6xl"><%= race.name %></h1>
+  <% if race.blurb.present? %>
+    <p class="mt-4 max-w-2xl text-lg font-medium leading-relaxed text-stone"><%= race.blurb %></p>
+  <% end %>
+
+  <div class="mt-7 flex flex-wrap gap-x-10 gap-y-4 border-t border-ink/10 pt-5 font-mono">
+    <% [["Distance", race.distance_mi && "#{race.distance_mi} mi"],
+        ["Vert", race.elevation_gain_ft && "#{number_with_delimiter race.elevation_gain_ft} ft"],
+        ["Cutoff", race.cutoff_hours && "#{race.cutoff_hours.to_i} h"],
+        ["Aid stations", race.aid_stations.size]].each do |label, value| %>
+      <div>
+        <div class="text-xl font-bold"><%= value.presence || "—" %></div>
+        <div class="text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
+      </div>
+    <% end %>
+  </div>
+</section>

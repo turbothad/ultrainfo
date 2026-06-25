@@ -1,0 +1,27 @@
+<% series = race.elevation_series %>
+<% if series.present? %>
+  <%
+    fts  = series.map { _1["elevation_ft"] }
+    lo, hi = fts.min, fts.max
+    span = [hi - lo, 1].max
+    last = series.size - 1
+    pts  = series.each_with_index.map { |e, i|
+      x = (i.to_f / last * 1000).round(1)
+      y = (200 - ((e["elevation_ft"] - lo).to_f / span) * 180).round(1)
+      "#{x},#{y}"
+    }.join(" ")
+  %>
+  <figure class="rounded-2xl border border-ink/10 bg-card p-5">
+    <figcaption class="mb-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.14em] text-stone">
+      <span>Elevation</span>
+      <span><%= number_with_delimiter lo %>–<%= number_with_delimiter hi %> ft</span>
+    </figcaption>
+    <svg viewBox="0 0 1000 210" width="100%" class="block" preserveAspectRatio="none" aria-label="Elevation profile">
+      <polygon points="0,210 <%= pts %> 1000,210" fill="#E4521F" fill-opacity="0.08" />
+      <polyline points="<%= pts %>" fill="none" stroke="#E4521F" stroke-width="3" stroke-linejoin="round" />
+    </svg>
+    <div class="mt-2 flex justify-between font-mono text-[10px] text-stone-light">
+      <span>0 mi</span><span><%= race.distance_mi&.to_i %> mi</span>
+    </div>
+  </figure>
+<% end %>

@@ -19,9 +19,13 @@
       <div>
         <div class="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">The event</div>
         <ul class="flex flex-col gap-3 text-sm">
-          <li><%= link_to "Run it", runner_path, class: "no-underline hover:text-flame" %></li>
-          <li><%= link_to "Crew & pace", crew_path, class: "no-underline hover:text-flame" %></li>
-          <li><%= link_to "Follow along", follow_path, class: "no-underline hover:text-flame" %></li>
+          <% if featured_race %>
+            <li><%= link_to "Run it", runner_race_path(featured_race), class: "no-underline hover:text-flame" %></li>
+            <li><%= link_to "Crew & pace", crew_race_path(featured_race), class: "no-underline hover:text-flame" %></li>
+            <li><%= link_to "Follow along", follow_race_path(featured_race), class: "no-underline hover:text-flame" %></li>
+          <% else %>
+            <li class="text-stone">No races loaded yet</li>
+          <% end %>
         </ul>
       </div>
 
