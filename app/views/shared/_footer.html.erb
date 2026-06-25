@@ -1,0 +1,43 @@
+<footer id="about" class="bg-ink text-stone-light">
+  <div class="mx-auto max-w-[1240px] px-6 py-14 sm:px-10">
+    <div class="grid gap-10 border-b border-paper/10 pb-10 md:grid-cols-[1.6fr_1fr_1fr]">
+      <div>
+        <div class="mb-4 flex items-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M1.5 20.5L9 6.5l3.6 6.4L15 8.5l7.5 12H1.5z" fill="#F4F1E8"/>
+            <path d="M12.6 12.9L15 8.5l7.5 12h-9.4l-2.3-4.2z" fill="#E4521F"/>
+          </svg>
+          <span class="text-[19px] font-black tracking-tight text-paper">ULTRA<span class="text-flame">INFO</span></span>
+        </div>
+        <p class="max-w-sm text-sm leading-relaxed">
+          A free, open-source project to make ultramarathon event info actually usable — the
+          schedule, the course, and the crew plan in one place instead of ten old race-site tabs.
+          Built by one runner.
+        </p>
+      </div>
+
+      <div>
+        <div class="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">The event</div>
+        <ul class="flex flex-col gap-3 text-sm">
+          <li><%= link_to "Run it", runner_path, class: "no-underline hover:text-flame" %></li>
+          <li><%= link_to "Crew & pace", crew_path, class: "no-underline hover:text-flame" %></li>
+          <li><%= link_to "Follow along", follow_path, class: "no-underline hover:text-flame" %></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">Open source</div>
+        <ul class="flex flex-col gap-3 text-sm">
+          <li><a href="https://github.com/turbothad/ultrainfo" class="no-underline hover:text-flame">GitHub repo</a></li>
+          <li><a href="https://github.com/turbothad/ultrainfo#contributing" class="no-underline hover:text-flame">Contributing</a></li>
+          <li><span class="text-stone">Shoe fund — coming soon</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3 pt-6 font-mono text-[11px] text-stone sm:flex-row sm:items-center sm:justify-between">
+      <span>© 2026 ultrainfo — all trails lead home. No ads, no accounts, no upsell.</span>
+      <span>Maps © OpenStreetMap contributors · © CARTO · Leaflet</span>
+    </div>
+  </div>
+</footer>

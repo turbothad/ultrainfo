@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* ULTRAINFO design tokens — lifted from the original wireframe.
+   Tailwind v4 turns these into utilities: bg-paper, text-ink, text-flame,
+   border-ink/10, font-display, font-mono, … */
+@theme {
+  --color-paper: #f4f1e8;       /* page background */
+  --color-card: #fcfbf7;        /* card surfaces */
+  --color-ink: #19170f;         /* primary text / dark sections */
+  --color-flame: #e4521f;       /* accent */
+  --color-flame-dark: #c7431a;  /* accent hover */
+  --color-pine: #1f5132;        /* available / go */
+  --color-gold: #c99a2e;        /* limited */
+  --color-rust: #b23a2e;        /* full / closed */
+  --color-stone: #6e6757;       /* muted labels */
+  --color-stone-light: #9a937f; /* faint labels */
+
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  ::selection { background-color: var(--color-flame); color: #fff; }
+}

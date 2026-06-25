@@ -1,0 +1,17 @@
+<header class="sticky top-0 z-50 border-b border-ink/10 bg-paper/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-[1240px] items-center justify-between gap-6 px-6 py-4 sm:px-10">
+    <%= link_to root_path, class: "flex items-center gap-2 no-underline" do %>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M1.5 20.5L9 6.5l3.6 6.4L15 8.5l7.5 12H1.5z" fill="#19170F"/>
+        <path d="M12.6 12.9L15 8.5l7.5 12h-9.4l-2.3-4.2z" fill="#E4521F"/>
+      </svg>
+      <span class="text-[19px] font-black tracking-tight text-ink">ULTRA<span class="text-flame">INFO</span></span>
+    <% end %>
+    <nav class="hidden items-center gap-7 text-sm font-semibold text-stone sm:flex">
+      <%= link_to "Run it", runner_path, class: "no-underline hover:text-flame" %>
+      <%= link_to "Crew", crew_path, class: "no-underline hover:text-flame" %>
+      <%= link_to "Follow", follow_path, class: "no-underline hover:text-flame" %>
+      <a href="#about" class="no-underline hover:text-flame">About</a>
+    </nav>
+  </div>
+</header>
