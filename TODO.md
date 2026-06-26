@@ -2,6 +2,13 @@
 
 Deferred work, captured so it doesn't get lost.
 
+## ▶ NOW — first item: Bighorn launch loop
+`/loop @docs/loops/event-onboarding-loop.md` — a self-paced loop that (A) fixes the design to
+match the wireframe (`docs/spec/ultra-100-wireframe.html`), then (B–D) imports the **real**
+Bighorn 100 data, its course **GPX**, and the **crew driving routes** onto the map. Phases B–D
+are the reusable per-event pipeline (built for the many events coming after Bighorn). The
+"Next up" items below are what that loop works through.
+
 ## Done
 - Rails 8.1 + Ruby 4.0.5; Tailwind v4 design tokens; role-first landing
 - Lean schema: `Race` + `AidStation` (depth fields optional)
