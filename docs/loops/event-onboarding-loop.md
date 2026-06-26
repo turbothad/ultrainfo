@@ -40,13 +40,13 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 - [x] JetBrains Mono "data-sheet" labels applied consistently (eyebrows, stat rows, table headers, captions, registration rows). *(audited — most already inherited mono; fixed the runner registration card. Screenshot-verified.)*
 - [x] Elevation profile SVG rebuilt to spec: gridlines + ft labels, gradient fill, on-profile crew markers, Jaws high-point callout, place-named x-axis, x mapped by mile, distortion removed. *(screenshot-verified.)*
 - [x] Section rhythm/spacing polished — added a "Choose your role" card section to fill the sparse landing middle; radii/borders/shadows already match; footer is the dark anchor (no calendar panel needed for one event). *(screenshot-verified.)*
-- [ ] Screenshot every page and confirm it reads like the spec, not stock Tailwind.
+- [x] All pages screenshot-verified (landing, overview, runner, crew, follow) — reads like the spec, not stock Tailwind. **Phase A complete.**
 
 ### Phase B — Bighorn 100 real data  (reusable pipeline; first target slug: `bighorn-100`)
 - [x] Real aid stations seeded — coords from the official GPX waypoints; miles, crew/pacer/drop-bag flags, cutoffs and spot elevations from the race site. *(exact date, entry fee, registration, total climb still `[UNVERIFIED]` — pull from the official PDFs.)*
-- [ ] Move the import into a parameterized rake task reading a per-event data file under `db/events/`. *(Partial: `Gpx::Import` + `db/events/<slug>.gpx` are reusable; aid data still lives in `db/seeds.rb`.)*
+- [~] (deferred til after Phase D) Move the import into a parameterized rake task reading a per-event data file under `db/events/`. *(Partial: `Gpx::Import` + `db/events/<slug>.gpx` already reusable; the full rake-task refactor is generalization work, lower priority than the crew-driving feature.)*
 - [x] Real cutoffs + start time on the runner/crew views (start 9:00 AM; overall cutoff 8:00 PM ≈ 35 h).
-- [ ] Once data is verified against the official PDFs, drop the banner. *(Softened to name only what's unconfirmed; not dropped.)*
+- [~] (blocked) Drop the banner once data is verified against the official PDFs. *(Needs the official PDFs; banner already softened to name only what's unconfirmed.)*
 
 ### Phase C — GPX on the map
 - [x] Course GPX obtained (`db/events/bighorn-100.gpx`). *(ponytail: parsed with Nokogiri, not the `gpx` gem. Track is lat/lng-only + named aid-station waypoints; no elevation.)*
