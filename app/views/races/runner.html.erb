@@ -7,7 +7,7 @@
     <div class="h-fit rounded-2xl border border-ink/10 bg-card p-6">
       <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone">Registration</div>
       <div class="mt-2 text-2xl font-extrabold"><%= @race.registration_status.humanize %></div>
-      <dl class="mt-4 flex flex-col gap-2 text-sm text-stone">
+      <dl class="mt-4 flex flex-col gap-2 font-mono text-sm text-stone">
         <div class="flex justify-between"><dt>Lottery</dt><dd class="font-semibold text-ink"><%= @race.lottery? ? "Yes" : "No" %></dd></div>
         <% if @race.start_time.present? %><div class="flex justify-between"><dt>Start</dt><dd class="font-semibold text-ink"><%= @race.start_time %></dd></div><% end %>
         <% if @race.cutoff_hours %><div class="flex justify-between"><dt>Overall cutoff</dt><dd class="font-semibold text-ink"><%= @race.cutoff_hours.to_i %> h</dd></div><% end %>
