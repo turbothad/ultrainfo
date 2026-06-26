@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# bin/shot <url> <out.png> [width] [height]
+# Headless screenshot via the Chrome for Testing binary installed under ~/.cache/puppeteer.
+# Used by the launch loop to verify pages against the wireframe.
+set -euo pipefail
+url="${1:?usage: bin/shot <url> <out.png> [width] [height]}"
+out="${2:?usage: bin/shot <url> <out.png> [width] [height]}"
+w="${3:-1280}"
+h="${4:-1800}"
+
+chrome="$(ls -d "$HOME"/.cache/puppeteer/chrome/*/chrome-mac-*/"Google Chrome for Testing.app"/Contents/MacOS/"Google Chrome for Testing" 2>/dev/null | sort -V | tail -1)"
+if [ -z "$chrome" ]; then
+  echo "bin/shot: no Chrome for Testing under ~/.cache/puppeteer — run: npx @puppeteer/browsers@1.9.1 install chrome@stable --path \"\$HOME/.cache/puppeteer\"" >&2
+  exit 1
+fi
+
+mkdir -p "$(dirname "$out")"
+"$chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 \
+  --window-size="${w},${h}" --virtual-time-budget=8000 \
+  --screenshot="$out" "$url" >/dev/null 2>&1
+echo "wrote $out ($(du -h "$out" | cut -f1))"

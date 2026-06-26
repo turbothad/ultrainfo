@@ -11,7 +11,7 @@ export default class extends Controller {
   disconnect() { this.map?.remove() }
 
   #init() {
-    this.map = L.map(this.canvasTarget, { scrollWheelZoom: false })
+    this.map = L.map(this.canvasTarget, { scrollWheelZoom: false }).setView([39.5, -98.5], 4)
     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
       maxZoom: 17, attribution: "&copy; OpenStreetMap &copy; CARTO"
     }).addTo(this.map)
@@ -31,6 +31,8 @@ export default class extends Controller {
       const layer = s.crew ? this.crewLayer : this.otherLayer
       L.circleMarker([s.lat, s.lng], this.#style(s)).bindPopup(this.#popup(s)).addTo(layer)
     }
+    // container is laid out by now → fix the size, then fit the view to the data
+    this.map.invalidateSize()
     const markers = [...this.crewLayer.getLayers(), ...this.otherLayer.getLayers()]
     if (markers.length) this.map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15))
     else if (pts.length) this.map.fitBounds(pts)
