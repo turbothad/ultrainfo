@@ -1,27 +1,54 @@
 <% series = race.elevation_series %>
 <% if series.present? %>
   <%
-    fts  = series.map { _1["elevation_ft"] }
+    bottom = 200.0
+    top    = 34.0
+    h      = bottom - top
+    total  = [series.map { |e| e["mile"].to_f }.max, 1].max
+    fts    = series.map { |e| e["elevation_ft"].to_i }
     lo, hi = fts.min, fts.max
-    span = [hi - lo, 1].max
-    last = series.size - 1
-    pts  = series.each_with_index.map { |e, i|
-      x = (i.to_f / last * 1000).round(1)
-      y = (200 - ((e["elevation_ft"] - lo).to_f / span) * 180).round(1)
-      "#{x},#{y}"
-    }.join(" ")
+    span   = [hi - lo, 1].max
+    px = ->(mi) { (mi.to_f / total * 1000).round(1) }
+    py = ->(ft) { (bottom - ((ft.to_i - lo).to_f / span) * h).round(1) }
+    line = series.map { |e| "#{px.call(e["mile"])},#{py.call(e["elevation_ft"])}" }.join(" ")
+    area = "#{px.call(series.first["mile"])},#{bottom} #{line} #{px.call(series.last["mile"])},#{bottom}"
+    grid = [lo, ((lo + hi) / 2.0).round, hi]
+    crew_aids = race.aid_stations.crew.select(&:elevation_ft)
+    high = race.aid_stations.select(&:elevation_ft).max_by { |a| a.elevation_ft }
   %>
   <figure class="rounded-2xl border border-ink/10 bg-card p-5">
     <figcaption class="mb-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.14em] text-stone">
-      <span>Elevation</span>
+      <span>Elevation — <%= race.name %></span>
       <span><%= number_with_delimiter lo %>–<%= number_with_delimiter hi %> ft</span>
     </figcaption>
-    <svg viewBox="0 0 1000 210" width="100%" class="block" preserveAspectRatio="none" aria-label="Elevation profile">
-      <polygon points="0,210 <%= pts %> 1000,210" fill="#E4521F" fill-opacity="0.08" />
-      <polyline points="<%= pts %>" fill="none" stroke="#E4521F" stroke-width="3" stroke-linejoin="round" />
+    <svg viewBox="0 0 1000 210" width="100%" class="block overflow-visible" role="img"
+         aria-label="Elevation profile of <%= race.name %>, <%= number_with_delimiter lo %> to <%= number_with_delimiter hi %> feet">
+      <defs>
+        <linearGradient id="elev-<%= race.id %>" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E4521F" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#E4521F" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <% grid.each do |gft| %>
+        <line x1="0" y1="<%= py.call(gft) %>" x2="1000" y2="<%= py.call(gft) %>" stroke="rgba(25,23,15,.08)" stroke-width="1"/>
+        <text x="6" y="<%= py.call(gft) - 4 %>" font-family="'JetBrains Mono',monospace" font-size="11" fill="#9a937f"><%= number_with_delimiter gft %>'</text>
+      <% end %>
+      <polygon points="<%= area %>" fill="url(#elev-<%= race.id %>)"/>
+      <polyline points="<%= line %>" fill="none" stroke="#E4521F" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <% crew_aids.each do |a| %>
+        <circle cx="<%= px.call(a.mile) %>" cy="<%= py.call(a.elevation_ft) %>" r="3.5" fill="#fff" stroke="#1F5132" stroke-width="2"/>
+      <% end %>
+      <% if high %>
+        <circle cx="<%= px.call(high.mile) %>" cy="<%= py.call(high.elevation_ft) %>" r="4.5" fill="#1F5132" stroke="#fff" stroke-width="2"/>
+        <text x="<%= px.call(high.mile) %>" y="<%= py.call(high.elevation_ft) - 10 %>" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="12" font-weight="700" fill="#1F5132"><%= high.name.split(" (").first %> <%= number_with_delimiter high.elevation_ft %>'</text>
+      <% end %>
+      <line x1="0" y1="200" x2="1000" y2="200" stroke="rgba(25,23,15,.18)" stroke-width="1.5"/>
     </svg>
     <div class="mt-2 flex justify-between font-mono text-[10px] text-stone-light">
-      <span>0 mi</span><span><%= race.distance_mi&.to_i %> mi</span>
+      <span>0 mi · <%= race.start_venue&.split(",")&.first || "Start" %></span>
+      <% if high %><span><%= high.mile.to_i %> mi · <%= high.name.split(" (").first %></span><% end %>
+      <span><%= total.to_i %> mi · <%= race.finish_venue&.split(",")&.first || "Finish" %></span>
     </div>
   </figure>
 <% end %>

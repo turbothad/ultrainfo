@@ -38,7 +38,7 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 - [x] Hero: port the wireframe's two-column hero. *(done — screenshot-verified vs the wireframe; also fixed a Leaflet init bug that was blanking every map)* Left = `clamp()` uppercase Archivo headline + a real Bighorn stat row (distance / vert / aid stations, mono labels) + the three role doors as the CTAs. Right = the framed Bighorn course map (reuse the `map` controller) with the floating glass info card (race name + dist/vert) and the bottom coordinate / aid-station readout bar.
 - [x] Re-style the role doors with the spec's density (mono eyebrow + footer stat rule + hover; real per-role stats). *(screenshot-verified. Race-LIST cards — date badge / difficulty meter — deferred: one event has no list; revisit when event #2 lands.)*
 - [x] JetBrains Mono "data-sheet" labels applied consistently (eyebrows, stat rows, table headers, captions, registration rows). *(audited — most already inherited mono; fixed the runner registration card. Screenshot-verified.)*
-- [ ] Rebuild the elevation profile SVG to match the spec: gridlines, gradient fill (`linearGradient`), on-profile aid-station markers, a high-point label, place-named x-axis. Remove `preserveAspectRatio="none"` (it distorts the chart).
+- [x] Elevation profile SVG rebuilt to spec: gridlines + ft labels, gradient fill, on-profile crew markers, Jaws high-point callout, place-named x-axis, x mapped by mile, distortion removed. *(screenshot-verified.)*
 - [ ] Match section rhythm, the dark panels, radii, borders, and shadows to the spec; tighten the airy spacing.
 - [ ] Screenshot every page and confirm it reads like the spec, not stock Tailwind.
 
