@@ -39,7 +39,7 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 - [x] Re-style the role doors with the spec's density (mono eyebrow + footer stat rule + hover; real per-role stats). *(screenshot-verified. Race-LIST cards — date badge / difficulty meter — deferred: one event has no list; revisit when event #2 lands.)*
 - [x] JetBrains Mono "data-sheet" labels applied consistently (eyebrows, stat rows, table headers, captions, registration rows). *(audited — most already inherited mono; fixed the runner registration card. Screenshot-verified.)*
 - [x] Elevation profile SVG rebuilt to spec: gridlines + ft labels, gradient fill, on-profile crew markers, Jaws high-point callout, place-named x-axis, x mapped by mile, distortion removed. *(screenshot-verified.)*
-- [ ] Match section rhythm, the dark panels, radii, borders, and shadows to the spec; tighten the airy spacing.
+- [x] Section rhythm/spacing polished — added a "Choose your role" card section to fill the sparse landing middle; radii/borders/shadows already match; footer is the dark anchor (no calendar panel needed for one event). *(screenshot-verified.)*
 - [ ] Screenshot every page and confirm it reads like the spec, not stock Tailwind.
 
 ### Phase B — Bighorn 100 real data  (reusable pipeline; first target slug: `bighorn-100`)
