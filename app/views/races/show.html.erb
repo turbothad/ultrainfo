@@ -8,12 +8,15 @@
   <% end %>
 
   <div class="grid gap-4 md:grid-cols-3">
-    <%= render "home/role_card", href: runner_race_path(@race), label: "Run it",
-          blurb: "Registration, course facts, cutoffs, and the aid-station rundown." %>
-    <%= render "home/role_card", href: crew_race_path(@race), label: "Crew or pace",
-          blurb: "The crew-access map, which stations allow crew, parking, and drop bags." %>
-    <%= render "home/role_card", href: follow_race_path(@race), label: "Follow along",
-          blurb: "Tracking, the best spots to watch from, and the finish." %>
+    <%= render "home/role_card", href: runner_race_path(@race), eyebrow: "For runners", label: "Run it",
+          blurb: "Registration, course facts, cutoffs, and the aid-station rundown.",
+          stat: (@race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h cutoff" : "course + cutoffs") %>
+    <%= render "home/role_card", href: crew_race_path(@race), eyebrow: "For crews & pacers", label: "Crew or pace",
+          blurb: "The crew-access map, which stations allow crew, parking, and drop bags.",
+          stat: "#{@race.aid_stations.crew.size} crew stops" %>
+    <%= render "home/role_card", href: follow_race_path(@race), eyebrow: "For spectators", label: "Follow along",
+          blurb: "Tracking, the best spots to watch from, and the finish.",
+          stat: "#{@race.aid_stations.crew.size} viewpoints" %>
   </div>
 
   <div class="mt-10 grid gap-6 lg:grid-cols-2">
