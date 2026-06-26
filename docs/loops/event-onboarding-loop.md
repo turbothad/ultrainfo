@@ -24,7 +24,7 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 
 **Each iteration:** read the checklist below, do the FIRST unchecked `[ ]` item only. Then:
 1. `mise exec -- bin/rails test` and `mise exec -- bin/rubocop` (and `bin/brakeman` if you touched controllers/models) — all green.
-2. Screenshot the affected page (Capybara + headless Chrome via `selenium-webdriver`, both installed) into `tmp/screens/` and compare it to the wireframe.
+2. Screenshot the affected page into `tmp/screens/` and compare it to the wireframe. PREREQUISITE: a headless browser must be installed — the `selenium-webdriver` gem is present but there is no Chrome/Chromium binary on this machine. Until one is installed, this step can't run; fall back to tests + markup review and say so.
 3. Commit with a conventional message.
 4. Tick the box in THIS file (edit it) and stop. If every box is checked, print `LOOP DONE` and stop.
 
@@ -35,7 +35,7 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 - **Generalize for many events:** every import / GPX / routing step must be parameterized by race (a rake task or service taking a slug or URL, reading a per-event data file). No Bighorn-hardcoded branches.
 
 ### Phase A — fix the design (one-time)
-- [ ] Hero: port the wireframe's two-column hero. Left = `clamp()` uppercase Archivo headline + a real Bighorn stat row (distance / vert / aid stations, mono labels) + the three role doors as the CTAs. Right = the framed Bighorn course map (reuse the `map` controller) with the floating glass info card (race name + dist/vert) and the bottom coordinate / aid-station readout bar.
+- [x] Hero: port the wireframe's two-column hero. *(built, tested, committed — NOT screenshot-verified yet; no browser installed)* Left = `clamp()` uppercase Archivo headline + a real Bighorn stat row (distance / vert / aid stations, mono labels) + the three role doors as the CTAs. Right = the framed Bighorn course map (reuse the `map` controller) with the floating glass info card (race name + dist/vert) and the bottom coordinate / aid-station readout bar.
 - [ ] Re-style the role doors and race cards with the spec's density (mono meta, bordered date badge, stat row, difficulty/▮ meter where relevant) — not generic boxes.
 - [ ] Apply the JetBrains Mono "data-sheet" label system consistently: eyebrows, stats, table headers, captions.
 - [ ] Rebuild the elevation profile SVG to match the spec: gridlines, gradient fill (`linearGradient`), on-profile aid-station markers, a high-point label, place-named x-axis. Remove `preserveAspectRatio="none"` (it distorts the chart).
