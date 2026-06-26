@@ -5,10 +5,15 @@
 <section class="mx-auto max-w-[1240px] px-6 pb-16 sm:px-10">
   <h2 class="mb-2 text-2xl font-black uppercase tracking-tight">The crew map</h2>
   <p class="mb-5 max-w-2xl text-sm text-stone">
-    Green points allow crew. Tap any point for parking, drop-bag and pacer info, and turn-by-turn
-    directions. Toggle off the rest to see only where you're allowed to be.
+    Green points allow crew; the dashed line is the crew's driving route between them. Tap any point
+    for parking, drop-bag and pacer info, and directions. Use the toggles below the map.
   </p>
-  <%= render "races/map", race: @race %>
+  <%= render "races/map", race: @race, drive: true %>
+  <% if @race.crew_route.present? %>
+    <p class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-stone">
+      Crew drive ≈ <%= @race.crew_route["distance_mi"] %> mi · <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h · Start → Dry Fork → Sally's → Jaws → Finish
+    </p>
+  <% end %>
 
   <h2 class="mb-4 mt-12 text-2xl font-black uppercase tracking-tight">Crew-accessible aid stations</h2>
   <%= render "races/aid_station_table", stations: @race.aid_stations.crew %>

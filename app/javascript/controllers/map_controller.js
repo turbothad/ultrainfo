@@ -1,10 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Draws the course + aid stations on a Leaflet map from a JSON endpoint.
-// Crew-accessible stations are emphasized; the rest can be toggled off —
-// "show me the map with crew info". Leaflet itself loads via a <script> in the page <head>.
+// Draws the course + aid stations from a JSON endpoint, plus (on the crew map only) the
+// crew driving route between drivable trailheads. Leaflet loads via a <script> in the page <head>.
 export default class extends Controller {
-  static values = { url: String }
+  static values = { url: String, drive: Boolean }
   static targets = ["canvas"]
 
   connect() { this.#withLeaflet(() => this.#init()) }
@@ -17,31 +16,45 @@ export default class extends Controller {
     }).addTo(this.map)
     this.crewLayer = L.layerGroup().addTo(this.map)
     this.otherLayer = L.layerGroup().addTo(this.map)
+    this.driveLayer = L.layerGroup().addTo(this.map)
     fetch(this.urlValue).then((r) => r.json()).then((d) => this.#draw(d))
   }
 
   #draw(d) {
+    const bounds = []
+
     const pts = (d.course || []).map((p) => [p[0], p[1]])
     if (pts.length) {
       L.polyline(pts, { color: "#ffffff", weight: 7, opacity: 0.9 }).addTo(this.map)
       L.polyline(pts, { color: "#E4521F", weight: 3.5 }).addTo(this.map)
+      bounds.push(...pts)
     }
+
+    // Crew driving route (dashed) — only when this is the crew map.
+    const drive = d.crew_route?.geometry || []
+    if (this.driveValue && drive.length) {
+      L.polyline(drive, { color: "#ffffff", weight: 6, opacity: 0.6 }).addTo(this.driveLayer)
+      L.polyline(drive, { color: "#19170F", weight: 3, opacity: 0.9, dashArray: "10 9", lineCap: "round" }).addTo(this.driveLayer)
+      bounds.push(...drive)
+    }
+
     for (const s of d.stations || []) {
       if (s.lat == null || s.lng == null) continue
       const layer = s.crew ? this.crewLayer : this.otherLayer
       L.circleMarker([s.lat, s.lng], this.#style(s)).bindPopup(this.#popup(s)).addTo(layer)
+      bounds.push([s.lat, s.lng])
     }
-    // container is laid out by now → fix the size, then fit the view to the data
+
     this.map.invalidateSize()
-    const markers = [...this.crewLayer.getLayers(), ...this.otherLayer.getLayers()]
-    if (markers.length) this.map.fitBounds(L.featureGroup(markers).getBounds().pad(0.15))
-    else if (pts.length) this.map.fitBounds(pts)
+    if (bounds.length) this.map.fitBounds(bounds, { padding: [30, 30] })
   }
 
-  // Checkbox in the view toggles the non-crew stations.
-  toggleOther(e) {
-    if (e.target.checked) this.otherLayer.addTo(this.map)
-    else this.map.removeLayer(this.otherLayer)
+  toggleOther(e) { this.#toggle(this.otherLayer, e.target.checked) }
+  toggleDrive(e) { this.#toggle(this.driveLayer, e.target.checked) }
+
+  #toggle(layer, on) {
+    if (on) layer.addTo(this.map)
+    else this.map.removeLayer(layer)
   }
 
   #style(s) {

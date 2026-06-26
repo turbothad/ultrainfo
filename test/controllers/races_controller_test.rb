@@ -36,13 +36,15 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "map endpoint returns course + stations as JSON" do
+  test "map endpoint returns course, stations, and crew route as JSON" do
+    @race.update!(crew_route: { "geometry" => [ [ 44.8, -107.3 ], [ 44.7, -107.4 ] ], "distance_mi" => 12.3, "duration_min" => 25 })
     get map_race_path(@race, format: :json)
     assert_response :success
     data = JSON.parse(@response.body)
     assert_equal 2, data["course"].length
     assert_equal 2, data["stations"].length
     assert data["stations"].find { |s| s["name"] == "Dry Fork" }["crew"]
+    assert_equal 12.3, data["crew_route"]["distance_mi"]
   end
 
   test "unknown slug returns 404" do

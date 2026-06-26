@@ -11,6 +11,7 @@ class RacesController < ApplicationController
   def map
     render json: {
       course: @race.simplified_track,
+      crew_route: @race.crew_route,
       start: { lat: @race.start_lat, lng: @race.start_lng, name: @race.start_venue },
       stations: @race.aid_stations.map do |s|
         {

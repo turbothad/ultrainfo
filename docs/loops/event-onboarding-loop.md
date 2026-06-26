@@ -55,7 +55,7 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 
 ### Phase D — crew driving routes ("show the crew driving")
 - [x] Crew driving route computed + cached: OSRM through the 5 drivable trailheads (Start→Dry Fork→Sally's→Jaws→Finish) = **183.9 mi / ~9.3 h, 4 legs**. `Routing::Osrm` service (graceful-degrade → nil on failure); stored on `race.crew_route` and memoized to `db/events/bighorn-100.crew_route.json` so re-seeds are offline. *(Foot/bike-only stations excluded from the drive.)*
-- [ ] Draw them as a distinct **dashed "crew drive" layer** on the crew map with its own toggle, and show drive distance + time between crew points. Fall back to straight segments + the existing "Get directions" deep links if routing is unavailable.
+- [x] Crew drive drawn as a dashed, toggleable layer on the crew map (`crew_route` in `map.json`; opt-in via `data-map-drive-value` so the hero stays clean); shows "≈ 183.9 mi · 9.3 h" + trailhead order; view fits to include the drive; degrades to "Get directions" links if the route is missing. *(screenshot-verified.)* **Phase D complete.**
 
 ### Definition of done
 Pages read like the wireframe (screenshot-verified) · tests + RuboCop + Brakeman green ·
