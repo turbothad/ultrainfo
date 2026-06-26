@@ -43,15 +43,15 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 - [ ] Screenshot every page and confirm it reads like the spec, not stock Tailwind.
 
 ### Phase B — Bighorn 100 real data  (reusable pipeline; first target slug: `bighorn-100`)
-- [ ] Replace the placeholder seed with the REAL aid-station table in "SOURCED DATA" below (source: the official page). Fill the rest — exact date, entry fee, registration platform/URL + status, total elevation gain — from the site and its two official PDFs (Course description, Aid Station Chart); mark anything still unknown `[UNVERIFIED]`.
-- [ ] Move the import into a parameterized rake task (e.g. `mise exec -- bin/rails "ultrainfo:import[bighorn-100]"`) that reads a per-event data file under `db/events/` — so future events reuse it with no new code.
-- [ ] Put real cutoffs + start time on the runner and crew views (start 9:00 AM; overall cutoff 8:00 PM ≈ 35 h).
-- [ ] Once data is verified against the PDFs, drop the placeholder banner for this race.
+- [x] Real aid stations seeded — coords from the official GPX waypoints; miles, crew/pacer/drop-bag flags, cutoffs and spot elevations from the race site. *(exact date, entry fee, registration, total climb still `[UNVERIFIED]` — pull from the official PDFs.)*
+- [ ] Move the import into a parameterized rake task reading a per-event data file under `db/events/`. *(Partial: `Gpx::Import` + `db/events/<slug>.gpx` are reusable; aid data still lives in `db/seeds.rb`.)*
+- [x] Real cutoffs + start time on the runner/crew views (start 9:00 AM; overall cutoff 8:00 PM ≈ 35 h).
+- [ ] Once data is verified against the official PDFs, drop the banner. *(Softened to name only what's unconfirmed; not dropped.)*
 
 ### Phase C — GPX on the map
-- [ ] Obtain the Bighorn 100 course GPX: check the site's PDFs/resources and CalTopo/Strava; or use a `.gpx` the user drops in `~/Downloads`. Add the `gpx` gem.
-- [ ] Parse GPX → decimated `simplified_track` + `elevation_series` + gain/loss, stored on the race (a reusable `Gpx::Import` service, race-parameterized). If no GPX yet, keep a clearly-marked placeholder track and flag it `[UNVERIFIED]`.
-- [ ] Render the real course line + real aid-station coordinates on the map and the elevation profile.
+- [x] Course GPX obtained (`db/events/bighorn-100.gpx`). *(ponytail: parsed with Nokogiri, not the `gpx` gem. Track is lat/lng-only + named aid-station waypoints; no elevation.)*
+- [x] Parse GPX → decimated `simplified_track` (600 pts) + aid-station coords, via `Gpx::Import`. *(Elevation profile from official aid-station spot elevations since the track has no ele; total gain/loss `[UNVERIFIED]`.)*
+- [x] Real course line + real aid-station coordinates render on the map + elevation profile — screenshot-verified (hero + crew).
 
 ### Phase D — crew driving routes ("show the crew driving")
 - [ ] Compute road driving routes between consecutive **distinct crew-accessible trailheads** in race order (Start → Dry Fork Ridge → Sally's Footbridge → Jaws → back to Sally's → Dry Fork → Finish) using a free routing service (default: OpenRouteService free key, or OSRM). Cache the returned polylines on the DB — one fetch per event, never block page render.
