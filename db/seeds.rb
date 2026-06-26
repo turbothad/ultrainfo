@@ -76,5 +76,20 @@ aid.each_with_index do |s, i|
   )
 end
 
-puts "Seeded #{race.name}: #{race.aid_stations.count} aid stations, " \
-     "#{race.simplified_track.size} track pts (course + coords REAL from GPX)."
+# Crew driving route between the drivable trailheads (foot/bike-only stations excluded).
+# Cached to a committed file so re-seeds stay offline after the first OSRM fetch.
+route_file = Rails.root.join("db/events/bighorn-100.crew_route.json")
+route =
+  if File.exist?(route_file)
+    JSON.parse(File.read(route_file))
+  else
+    drive_order = [ "Start of BH", "Dry Fork Ridge", "Sally's Footbridge", "Jaws Trail Head", "End of BH" ]
+    waypoints = drive_order.filter_map { |m| w = gpx.waypoint(m); [ w[:lat], w[:lng] ] if w }
+    r = Routing::Osrm.route(waypoints)
+    File.write(route_file, JSON.pretty_generate(r)) if r
+    r
+  end
+race.update!(crew_route: route) if route
+
+puts "Seeded #{race.name}: #{race.aid_stations.count} aid stations, #{race.simplified_track.size} track pts" \
+     "#{route ? ", crew drive #{route["distance_mi"]} mi / #{route["duration_min"]} min" : " (crew route unavailable)"}."

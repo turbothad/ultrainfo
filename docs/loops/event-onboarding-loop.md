@@ -54,7 +54,7 @@ visual craft, safety-relevant data, or accessibility. Run Ruby/Rails via `mise e
 - [x] Real course line + real aid-station coordinates render on the map + elevation profile — screenshot-verified (hero + crew).
 
 ### Phase D — crew driving routes ("show the crew driving")
-- [ ] Compute road driving routes between consecutive **distinct crew-accessible trailheads** in race order (Start → Dry Fork Ridge → Sally's Footbridge → Jaws → back to Sally's → Dry Fork → Finish) using a free routing service (default: OpenRouteService free key, or OSRM). Cache the returned polylines on the DB — one fetch per event, never block page render.
+- [x] Crew driving route computed + cached: OSRM through the 5 drivable trailheads (Start→Dry Fork→Sally's→Jaws→Finish) = **183.9 mi / ~9.3 h, 4 legs**. `Routing::Osrm` service (graceful-degrade → nil on failure); stored on `race.crew_route` and memoized to `db/events/bighorn-100.crew_route.json` so re-seeds are offline. *(Foot/bike-only stations excluded from the drive.)*
 - [ ] Draw them as a distinct **dashed "crew drive" layer** on the crew map with its own toggle, and show drive distance + time between crew points. Fall back to straight segments + the existing "Get directions" deep links if routing is unavailable.
 
 ### Definition of done

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_25_171915) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_26_165430) do
   create_table "aid_stations", force: :cascade do |t|
     t.text "access_notes"
     t.datetime "created_at", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_25_171915) do
     t.text "about"
     t.string "blurb"
     t.datetime "created_at", null: false
+    t.json "crew_route"
     t.decimal "cutoff_hours", precision: 5, scale: 2
     t.decimal "distance_mi", precision: 6, scale: 2
     t.integer "elevation_gain_ft"
