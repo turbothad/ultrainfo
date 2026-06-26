@@ -1,0 +1,28 @@
+<% content_for :head do %>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<% end %>
+<div class="relative overflow-hidden rounded-[20px] border border-ink/15 bg-white shadow-[0_36px_70px_-34px_rgba(25,23,15,0.42)]">
+  <div data-controller="map" data-map-url-value="<%= map_race_path(race, format: :json) %>">
+    <div data-map-target="canvas" class="h-[420px] w-full sm:h-[478px]"></div>
+  </div>
+
+  <%# floating glass info card %>
+  <div class="pointer-events-none absolute left-3.5 top-3.5 z-[450] rounded-[13px] border border-ink/10 bg-white/90 p-3.5 shadow-[0_10px_24px_-12px_rgba(25,23,15,0.3)] backdrop-blur">
+    <div class="mb-2 flex items-center gap-[7px]">
+      <span class="h-[7px] w-[7px] rounded-full bg-flame"></span>
+      <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-stone">GPX · Live course</span>
+    </div>
+    <div class="text-[16px] font-extrabold leading-none"><%= race.name %></div>
+    <div class="mt-[9px] flex gap-3.5 font-mono">
+      <div><div class="text-[14px] font-bold"><%= race.distance_mi || "—" %></div><div class="text-[9px] uppercase tracking-[0.1em] text-stone">miles</div></div>
+      <div><div class="text-[14px] font-bold"><%= race.elevation_gain_ft ? number_with_delimiter(race.elevation_gain_ft) : "—" %></div><div class="text-[9px] uppercase tracking-[0.1em] text-stone">ft vert</div></div>
+    </div>
+  </div>
+
+  <%# bottom readout bar %>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 z-[450] flex items-center justify-between bg-gradient-to-t from-white/95 to-transparent px-3.5 py-2.5 font-mono text-[10px] tracking-[0.05em] text-stone">
+    <span><%= race.start_lat && race.start_lng ? "#{race.start_lat.to_f.round(4)}, #{race.start_lng.to_f.round(4)}" : "—" %></span>
+    <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-pine"></span><%= race.aid_stations.crew.size %> crew stops</span>
+  </div>
+</div>
