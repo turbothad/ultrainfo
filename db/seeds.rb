@@ -1,10 +1,10 @@
 # Bighorn 100 seed.
 # REAL: the course track + every aid-station coordinate come from the official GPX
 #   (db/events/bighorn-100.gpx, imported via Gpx::Import).
-# SOURCED: aid-station miles, crew/pacer/drop-bag flags, cutoffs and spot elevations from
-#   https://bighorntrailrun.com/100-mile (fetched 2026-06-26).
-# STILL [UNVERIFIED] (kept behind the placeholder banner): exact date, entry fee,
-#   registration platform/status, and TOTAL elevation gain — confirm against the official PDFs.
+# VERIFIED 2026-07-02 against the official Course Description + Aid Station Chart PDFs
+#   (linked from https://bighorntrailrun.com/100-mile) and bhtr.itsyourrace.com:
+#   miles, crew/pacer/drop flags, cutoffs, spot elevations, total gain/loss, 2026 date,
+#   registration platform. Entry fee isn't published there — and we don't display fees.
 
 Race.where(slug: "bighorn-100").destroy_all # idempotent reseed
 
@@ -25,20 +25,20 @@ race = Race.create!(
   year: 2026,
   state: "WY",
   distance_mi: 100,
-  elevation_gain_ft: nil, # [UNVERIFIED] — not on the page; GPX track has no elevation
-  elevation_loss_ft: nil,
-  start_date: nil,        # [UNVERIFIED]
+  elevation_gain_ft: 20_500, # official course description PDF ("The Big Picture")
+  elevation_loss_ft: 20_750,
+  start_date: Date.new(2026, 6, 19),
   start_time: "9:00 AM",
   cutoff_hours: 35,       # 9:00 AM start → 8:00 PM next-day cutoff
   official_url: "https://bighorntrailrun.com/100-mile",
-  registration_url: "https://ultrasignup.com", # [UNVERIFIED platform/link]
-  registration_status: :not_open,
+  registration_url: "https://bhtr.itsyourrace.com/event.aspx?id=384", # ITS YOUR RACE — official platform
+  registration_status: :closed, # 2026 filled from the wait list; race ran June 19–20
   lottery: false,
   blurb: "100 miles out-and-back through Wyoming's Bighorn Mountains, Dayton up to the Jaws turnaround.",
   about: "The Bighorn Trail Run 100-miler runs from the Tongue River Canyon near Dayton, WY out to " \
-         "the Jaws turnaround (mile 48, ~8,800 ft) and back. Start 9:00 AM; overall cutoff 8:00 PM the " \
-         "next day. Course and aid-station coordinates are from the official GPX; logistics from the race " \
-         "site. Total climb, date and entry still to be confirmed against the official guide.",
+         "the Jaws turnaround (mile 48, 8,800 ft) and back — 20,500 ft of climbing across 76 miles of " \
+         "technical single-track, 16 miles of jeep trail and 8 miles of gravel road. Start 9:00 AM; " \
+         "35-hour overall cutoff (8:00 PM the next day).",
   start_venue: "Tongue Canyon Road, Dayton, WY",
   finish_venue: "Scott Park, Dayton, WY",
   start_lat: ends[:start][0], start_lng: ends[:start][1],
@@ -51,7 +51,7 @@ race = Race.create!(
 # `match` = GPX waypoint name substring. mile = outbound mile (the out-and-back revisits some).
 aid = [
   { match: "Start of BH",             name: "Start — Tongue Canyon Rd", mile: 0.0,   elev: 4275, crew: true,  pacer: true,  drop: false, food: true,  med: true,  cutoff: nil,                          park: "Trailhead lot fills early — arrive well before the 9:00 AM start." },
-  { match: "Tongue River Trail Head", name: "Tongue River Trailhead",   mile: 1.25,  elev: 4240, crew: true,  pacer: false, drop: false, food: false, med: false, cutoff: "6:45 PM (mi 94.8 return)",    park: "Foot/bike crew access only (no vehicles); also mile 94.8 on the return." },
+  { match: "Tongue River Trail Head", name: "Tongue River Trailhead",   mile: 1.25,  elev: 4240, crew: true,  pacer: false, drop: false, food: false, med: false, cutoff: "6:45 PM (mi 94.8 return)",    park: "No outbound crew (mi 1.25) — crew on foot/bike only on the return (mi 94.8); no vehicles." },
   { match: "Lower Sheep Creek",       name: "Lower Sheep Creek",        mile: 3.5,   elev: 5025, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: nil,                          park: "No crew access." },
   { match: "Upper Sheep Creek",       name: "Upper Sheep Creek",        mile: 8.5,   elev: 7450, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: "4:30 PM (mi 87.5 return)",    park: "No crew access." },
   { match: "Dry Fork Ridge",          name: "Dry Fork Ridge",           mile: 13.5,  elev: 7480, crew: true,  pacer: true,  drop: true,  food: true,  med: true,  cutoff: "3:00 PM",                    park: "Major crew hub — large meadow parking. Crew at mile 13.5 and 82.5." },

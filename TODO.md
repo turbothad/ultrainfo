@@ -12,16 +12,15 @@ are the reusable per-event pipeline (built for the many events coming after Bigh
 ## Done
 - Rails 8.1 + Ruby 4.0.5; Tailwind v4 design tokens; role-first landing
 - Lean schema: `Race` + `AidStation` (depth fields optional)
-- Bighorn 100 seeded as **PLACEHOLDER** data (`db/seeds.rb`)
 - Role views: Overview / Run it / Crew or pace / Follow, on real-shaped data
 - Leaflet crew-access map (crew vs non-crew, toggle, directions) + elevation profile
 - `map.json` endpoint; model + controller tests; RuboCop + Brakeman green
+- Bighorn 100 fully sourced + **verified against the official PDFs** (2026-07-02): GPX course
+  + aid coords, cutoffs, crew flags, gain 20,500 / loss 20,750 ft, date, registration
+  (ITS YOUR RACE) — placeholder banner deleted
+- De-slop pass (2026-07-02): dead PWA/mailer/hello scaffold + unused jbuilder removed
 
 ## Next up (MVP — Bighorn 100)
-- [ ] **Replace placeholder data with sourced Bighorn data** (official guide + your firsthand notes), then delete `races/_placeholder_banner`
-- [ ] Real per-station cutoffs (currently nil → "—")
-- [ ] Real course GPX → add the `gpx` gem, parse to `simplified_track` + `elevation_series` + gain/loss
-- [ ] Verify aid-station coordinates (placeholder now — see open question)
 - [ ] Official live-tracking URL for the follow page
 
 ## Later (roadmap)
