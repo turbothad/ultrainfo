@@ -1,0 +1,80 @@
+# Bighorn 100 — event data (imported by Events::Import via db/seeds.rb).
+# REAL: course track + aid-station coords come from bighorn-100.gpx (official).
+# VERIFIED 2026-07-02 against the official Course Description + Aid Station Chart PDFs
+#   (linked from https://bighorntrailrun.com/100-mile) and bhtr.itsyourrace.com:
+#   miles, crew/pacer/drop flags, cutoffs, spot elevations, total gain/loss, 2026 date,
+#   registration platform. Entry fee isn't published there — and we don't display fees.
+
+race:
+  name: Bighorn 100
+  slug: bighorn-100
+  year: 2026
+  state: WY
+  distance_mi: 100
+  elevation_gain_ft: 20500 # official course description PDF ("The Big Picture")
+  elevation_loss_ft: 20750
+  start_date: 2026-06-19
+  start_time: 9:00 AM
+  cutoff_hours: 35 # 9:00 AM start → 8:00 PM next-day cutoff
+  official_url: https://bighorntrailrun.com/100-mile
+  registration_url: https://bhtr.itsyourrace.com/event.aspx?id=384 # ITS YOUR RACE — official platform
+  registration_status: closed # 2026 filled from the wait list; race ran June 19–20
+  lottery: false
+  blurb: 100 miles out-and-back through Wyoming's Bighorn Mountains, Dayton up to the Jaws turnaround.
+  about: >-
+    The Bighorn Trail Run 100-miler runs from the Tongue River Canyon near Dayton, WY out to
+    the Jaws turnaround (mile 48, 8,800 ft) and back — 20,500 ft of climbing across 76 miles of
+    technical single-track, 16 miles of jeep trail and 8 miles of gravel road. Start 9:00 AM;
+    35-hour overall cutoff (8:00 PM the next day).
+  start_venue: Tongue Canyon Road, Dayton, WY
+  finish_venue: Scott Park, Dayton, WY
+
+# Profile from the official aid-station spot elevations (the GPX track carries no ele).
+elevation_series:
+  - [0, 4275]
+  - [1.25, 4240]
+  - [3.5, 5025]
+  - [8.5, 7450]
+  - [13.5, 7480]
+  - [19.5, 6600]
+  - [26.5, 6800]
+  - [30, 4590]
+  - [33.5, 5080]
+  - [40, 6920]
+  - [48, 8800]
+  - [56, 6920]
+  - [62.5, 5080]
+  - [66, 4590]
+  - [69.5, 6800]
+  - [76.5, 6600]
+  - [82.5, 7480]
+  - [87.5, 7450]
+  - [92.5, 5025]
+  - [94.8, 4240]
+  - [98, 4040]
+  - [100, 3970]
+
+# Aid stations: coords from the GPX waypoints (`match` = waypoint-name substring; real).
+# Miles/flags/cutoffs from the official chart. mile = outbound mile (the out-and-back revisits some).
+aid_stations:
+  - { match: "Start of BH",             name: "Start — Tongue Canyon Rd", mile: 0.0,   elev: 4275, crew: true,  pacer: true,  drop: false, food: true,  med: true,  cutoff: null,                           park: "Trailhead lot fills early — arrive well before the 9:00 AM start." }
+  - { match: "Tongue River Trail Head", name: "Tongue River Trailhead",   mile: 1.25,  elev: 4240, crew: true,  pacer: false, drop: false, food: false, med: false, cutoff: "6:45 PM (mi 94.8 return)",     park: "No outbound crew (mi 1.25) — crew on foot/bike only on the return (mi 94.8); no vehicles." }
+  - { match: "Lower Sheep Creek",       name: "Lower Sheep Creek",        mile: 3.5,   elev: 5025, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: null,                           park: "No crew access." }
+  - { match: "Upper Sheep Creek",       name: "Upper Sheep Creek",        mile: 8.5,   elev: 7450, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: "4:30 PM (mi 87.5 return)",     park: "No crew access." }
+  - { match: "Dry Fork Ridge",          name: "Dry Fork Ridge",           mile: 13.5,  elev: 7480, crew: true,  pacer: true,  drop: true,  food: true,  med: true,  cutoff: "3:00 PM",                      park: "Major crew hub — large meadow parking. Crew at mile 13.5 and 82.5." }
+  - { match: "Kearns Cow Camp",         name: "Kern's Cow Camp",          mile: 19.5,  elev: 6600, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: null,                           park: "\"Bacon Station\" — runners only, no crew." }
+  - { match: "Bear Camp",               name: "Bear Camp",                mile: 26.5,  elev: 6800, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: null,                           park: "No crew access." }
+  - { match: "Sally's Footbridge",      name: "Sally's Footbridge",       mile: 30.0,  elev: 4590, crew: true,  pacer: true,  drop: true,  food: true,  med: true,  cutoff: "8:30 PM out · 10:00 AM back",  park: "Crew + pacer access at mile 30 and 66." }
+  - { match: "Cathedral Rock",          name: "Cathedral Rock",           mile: 33.5,  elev: 5080, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: null,                           park: "No crew access." }
+  - { match: "Spring Marsh",            name: "Spring Marsh",             mile: 40.0,  elev: 6920, crew: false, pacer: false, drop: false, food: true,  med: false, cutoff: null,                           park: "No crew access." }
+  - { match: "Jaws Trail Head",         name: "Jaws (Turnaround)",        mile: 48.0,  elev: 8800, crew: true,  pacer: true,  drop: true,  food: true,  med: true,  cutoff: "4:00 AM",                      park: "Turnaround and high point — drop bags, crew, and pacer pickup." }
+  - { match: "Home Stretch",            name: "Home Stretch",             mile: 98.0,  elev: 4040, crew: true,  pacer: false, drop: false, food: true,  med: false, cutoff: null,                           park: "Foot/bike access only." }
+  - { match: "End of BH",               name: "Finish — Scott Park",      mile: 100.0, elev: 3970, crew: true,  pacer: true,  drop: false, food: true,  med: true,  cutoff: "8:00 PM",                      park: "Finish line in Dayton — public parking nearby." }
+
+# Crew driving route between the drivable trailheads (foot/bike-only stations excluded).
+crew_drive_order:
+  - "Start of BH"
+  - "Dry Fork Ridge"
+  - "Sally's Footbridge"
+  - "Jaws Trail Head"
+  - "End of BH"

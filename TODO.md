@@ -21,7 +21,11 @@ are the reusable per-event pipeline (built for the many events coming after Bigh
 - De-slop pass (2026-07-02): dead PWA/mailer/hello scaffold + unused jbuilder removed
 
 ## Next up (MVP — Bighorn 100)
-- [ ] Official live-tracking URL for the follow page
+- [ ] Live-tracking URL: none exists to link (2026-07-02 — TrackLeaders hosted 2024
+  only, no 2025/26 pages; follow page already degrades honestly). Set `tracking_url`
+  when the next edition announces its tracker; don't guess.
+- [ ] Post-race helpful link: official results (bhtr.itsyourrace.com/Results.aspx?id=384)
+  on the follow page — needs a `results_url` column (or a links model) when justified
 
 ## Later (roadmap)
 - [ ] No-account "save my crew plan" (shareable URL + `localStorage`) + crew ETA splits
