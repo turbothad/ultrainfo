@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_26_165430) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_07_120001) do
   create_table "aid_stations", force: :cascade do |t|
     t.text "access_notes"
+    t.text "aid_notes"
+    t.text "bathroom_notes"
     t.datetime "created_at", null: false
+    t.text "crew_access_notes"
     t.boolean "crew_accessible", default: false, null: false
     t.string "cutoff"
+    t.string "cutoff_clock"
+    t.integer "cutoff_elapsed_minutes"
+    t.string "direction"
+    t.text "directions_notes"
     t.boolean "drop_bag", default: false, null: false
     t.integer "elevation_ft"
     t.boolean "has_food", default: false, null: false
@@ -26,9 +33,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_26_165430) do
     t.decimal "mile", precision: 6, scale: 2
     t.string "name", null: false
     t.boolean "pacer_access", default: false, null: false
+    t.text "pacer_notes"
     t.text "parking_notes"
     t.integer "race_id", null: false
+    t.text "road_notes"
     t.integer "sequence"
+    t.json "source_metadata", default: {}, null: false
     t.datetime "updated_at", null: false
     t.index ["race_id", "sequence"], name: "index_aid_stations_on_race_id_and_sequence"
     t.index ["race_id"], name: "index_aid_stations_on_race_id"
@@ -55,12 +65,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_26_165430) do
     t.string "registration_url"
     t.json "simplified_track", default: []
     t.string "slug", null: false
+    t.json "source_metadata", default: {}, null: false
     t.date "start_date"
     t.decimal "start_lat", precision: 10, scale: 6
     t.decimal "start_lng", precision: 10, scale: 6
     t.string "start_time"
     t.string "start_venue"
     t.string "state"
+    t.json "terrain_artifacts", default: {}, null: false
     t.string "tracking_provider"
     t.string "tracking_url"
     t.datetime "updated_at", null: false

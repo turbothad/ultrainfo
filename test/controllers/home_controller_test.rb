@@ -9,8 +9,8 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
     assert_select "h1", /Bighorn 100/i
-    assert_select "a[href=?]", runner_race_path(@race)
-    assert_select "a[href=?]", crew_race_path(@race)
-    assert_select "a[href=?]", follow_race_path(@race)
+    assert_select "a[href=?]", race_path(@race, anchor: "runner")
+    assert_select "a[href=?]", race_path(@race, anchor: "crew")
+    assert_select "a[href=?]", race_path(@race, anchor: "follower")
   end
 end

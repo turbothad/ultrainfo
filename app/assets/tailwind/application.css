@@ -7,9 +7,12 @@
   --color-paper: #f4f1e8;       /* page background */
   --color-card: #fcfbf7;        /* card surfaces */
   --color-ink: #19170f;         /* primary text / dark sections */
-  --color-flame: #e4521f;       /* accent */
-  --color-flame-dark: #c7431a;  /* accent hover */
-  --color-pine: #1f5132;        /* available / go */
+  --color-flame: #2f6b4f;       /* legacy accent alias */
+  --color-flame-dark: #1f5132;  /* legacy accent hover alias */
+  --color-pine: #1f5132;        /* primary action / verified */
+  --color-pine-dark: #123826;   /* dark pine sections */
+  --color-moss: #7a8f55;        /* terrain secondary */
+  --color-river: #377f91;       /* route secondary */
   --color-gold: #c99a2e;        /* limited */
   --color-rust: #b23a2e;        /* full / closed */
   --color-stone: #6e6757;       /* muted labels */
@@ -22,4 +25,22 @@
 @layer base {
   html { scroll-behavior: smooth; }
   ::selection { background-color: var(--color-flame); color: #fff; }
+}
+
+@layer components {
+  .race-tabs {
+    @apply sticky top-[64px] z-40 flex w-full gap-1 overflow-x-auto border-b border-ink/10 bg-paper/90 py-3 backdrop-blur;
+  }
+
+  .race-tab {
+    @apply rounded-md px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-stone transition;
+  }
+
+  .race-tab:hover {
+    @apply bg-pine/10 text-ink;
+  }
+
+  .race-tab[aria-selected="true"] {
+    @apply bg-pine text-paper;
+  }
 }

@@ -33,4 +33,31 @@ class RaceTest < ActiveSupport::TestCase
     race.aid_stations.create!(name: "First", sequence: 1)
     assert_equal %w[First Second], race.aid_stations.map(&:name)
   end
+
+  test "station location counts distinguish locations from race passes" do
+    race = Race.create!(name: "A", slug: "a-100", year: 2026)
+    race.aid_stations.create!(name: "Dry Fork", sequence: 1, crew_accessible: true)
+    race.aid_stations.create!(name: "Sally's", sequence: 2, crew_accessible: true)
+    race.aid_stations.create!(name: "Dry Fork", sequence: 3, crew_accessible: true)
+    race.aid_stations.create!(name: "Bear Camp", sequence: 4, crew_accessible: false)
+
+    assert_equal 3, race.aid_station_location_count
+    assert_equal 2, race.crew_location_count
+  end
+
+  test "race date label handles single day and multi-day ranges" do
+    helper = Class.new { include ApplicationHelper }.new
+
+    assert_equal "Date TBD", helper.race_date_label(Race.new)
+    assert_equal "June 19, 2026", helper.race_date_label(Race.new(start_date: Date.new(2026, 6, 19)))
+    assert_equal "June 19 - 20, 2026", helper.race_date_label(
+      Race.new(start_date: Date.new(2026, 6, 19), end_date: Date.new(2026, 6, 20))
+    )
+    assert_equal "June 30 - July 1, 2026", helper.race_date_label(
+      Race.new(start_date: Date.new(2026, 6, 30), end_date: Date.new(2026, 7, 1))
+    )
+    assert_equal "December 31, 2026 - January 1, 2027", helper.race_date_label(
+      Race.new(start_date: Date.new(2026, 12, 31), end_date: Date.new(2027, 1, 1))
+    )
+  end
 end

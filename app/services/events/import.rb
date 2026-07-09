@@ -5,7 +5,7 @@ module Events
   class Import
     def initialize(yml_path)
       @dir = File.dirname(yml_path)
-      @data = YAML.load_file(yml_path, permitted_classes: [ Date ])
+      @data = YAML.load_file(yml_path, permitted_classes: [ Date ], aliases: true)
       @slug = @data.fetch("race").fetch("slug")
     end
 
@@ -28,7 +28,13 @@ module Events
           name: s["name"], sequence: i + 1, mile: s["mile"], elevation_ft: s["elev"], cutoff: s["cutoff"],
           crew_accessible: s["crew"], pacer_access: s["pacer"], drop_bag: s["drop"],
           has_water: true, has_food: s["food"], has_medical: s["med"],
-          parking_notes: s["park"], lat: wpt&.dig(:lat), lng: wpt&.dig(:lng)
+          parking_notes: s["park"], lat: wpt&.dig(:lat), lng: wpt&.dig(:lng),
+          source_metadata: s["source_metadata"] || {},
+          direction: s["direction"], aid_notes: s["aid"],
+          bathroom_notes: s["bathroom"], crew_access_notes: s["crew_notes"],
+          pacer_notes: s["pacer_notes"], directions_notes: s["directions"],
+          road_notes: s["road"], cutoff_clock: s["cutoff_clock"],
+          cutoff_elapsed_minutes: s["cutoff_elapsed_minutes"], access_notes: s["access"]
         )
       end
 

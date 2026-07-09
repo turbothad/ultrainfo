@@ -20,9 +20,9 @@
         <div class="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">The event</div>
         <ul class="flex flex-col gap-3 text-sm">
           <% if featured_race %>
-            <li><%= link_to "Run it", runner_race_path(featured_race), class: "no-underline hover:text-flame" %></li>
-            <li><%= link_to "Crew & pace", crew_race_path(featured_race), class: "no-underline hover:text-flame" %></li>
-            <li><%= link_to "Follow along", follow_race_path(featured_race), class: "no-underline hover:text-flame" %></li>
+            <li><%= link_to "Run it", race_path(featured_race, anchor: "runner"), class: "no-underline hover:text-flame" %></li>
+            <li><%= link_to "Crew & pace", race_path(featured_race, anchor: "crew"), class: "no-underline hover:text-flame" %></li>
+            <li><%= link_to "Follow along", race_path(featured_race, anchor: "follower"), class: "no-underline hover:text-flame" %></li>
           <% else %>
             <li class="text-stone">No races loaded yet</li>
           <% end %>
@@ -40,8 +40,8 @@
     </div>
 
     <div class="flex flex-col gap-3 pt-6 font-mono text-[11px] text-stone sm:flex-row sm:items-center sm:justify-between">
-      <span>© 2026 ultrainfo — all trails lead home. No ads, no accounts, no upsell.</span>
-      <span>Maps © OpenStreetMap contributors · © CARTO · Leaflet</span>
+      <span>Copyright 2026 ultrainfo — all trails lead home. No ads, no accounts, no upsell.</span>
+      <span>Terrain Tiles by Mapzen / Tilezen via AWS Open Data · Three.js</span>
     </div>
   </div>
 </footer>

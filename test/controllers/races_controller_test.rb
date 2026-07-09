@@ -7,7 +7,7 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
       distance_mi: 100.4, start_lat: 44.87, start_lng: -107.26,
       simplified_track: [ [ 44.87, -107.26 ], [ 44.66, -107.50 ] ]
     )
-    @crew = @race.aid_stations.create!(name: "Dry Fork", sequence: 1, mile: 13.4, crew_accessible: true, lat: 44.8, lng: -107.3)
+    @crew = @race.aid_stations.create!(name: "Dry Fork", sequence: 1, mile: 13.4, crew_accessible: true, lat: 44.8, lng: -107.3, cutoff_elapsed_minutes: 360)
     @nocrew = @race.aid_stations.create!(name: "Cow Camp", sequence: 2, mile: 19.6, crew_accessible: false)
   end
 
@@ -18,17 +18,21 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "runner page lists every aid station" do
+    @race.update!(registration_url: "https://example.test/register")
+
     get runner_race_path(@race)
+
     assert_response :success
+    assert_select "a[href='https://example.test/register']", "Open official registration"
     assert_select "td", /Dry Fork/
     assert_select "td", /Cow Camp/
   end
 
-  test "crew page shows only crew-accessible stations" do
+  test "crew page shows all stations with access status" do
     get crew_race_path(@race)
     assert_response :success
     assert_select "td", /Dry Fork/
-    assert_select "td", { text: /Cow Camp/, count: 0 }
+    assert_select "td", /Cow Camp/
   end
 
   test "follow page renders" do
@@ -37,14 +41,19 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "map endpoint returns course, stations, and crew route as JSON" do
-    @race.update!(crew_route: { "geometry" => [ [ 44.8, -107.3 ], [ 44.7, -107.4 ] ], "distance_mi" => 12.3, "duration_min" => 25 })
+    @race.update!(
+      crew_route: { "geometry" => [ [ 44.8, -107.3 ], [ 44.7, -107.4 ] ], "distance_mi" => 12.3, "duration_min" => 25 },
+      terrain_artifacts: { "path" => "/terrain/missing-test.json", "generated_on" => "2026-07-08" }
+    )
     get map_race_path(@race, format: :json)
     assert_response :success
     data = JSON.parse(@response.body)
     assert_equal 2, data["course"].length
     assert_equal 2, data["stations"].length
     assert data["stations"].find { |s| s["name"] == "Dry Fork" }["crew"]
+    assert_equal "6h", data["stations"].find { |s| s["name"] == "Dry Fork" }["cutoff_elapsed_label"]
     assert_equal 12.3, data["crew_route"]["distance_mi"]
+    assert_equal "/terrain/missing-test.json?v=2026-07-08", data["terrain_artifacts"]["path"]
   end
 
   test "unknown slug returns 404" do

@@ -1,0 +1,22 @@
+<div class="mb-10">
+  <div class="race-tabs" role="tablist" aria-label="<%= race.name %> planning views">
+    <% [
+      [ "overview", "Overview" ],
+      [ "runner", "Runner" ],
+      [ "crew", "Crew" ],
+      [ "follower", "Follower" ],
+      [ "map", "Map" ]
+    ].each do |key, label| %>
+      <button type="button"
+              class="race-tab"
+              role="tab"
+              aria-controls="tab-<%= key %>"
+              aria-selected="<%= active_tab == key %>"
+              data-race-tabs-target="tab"
+              data-tab="<%= key %>"
+              data-action="race-tabs#select">
+        <%= label %>
+      </button>
+    <% end %>
+  </div>
+</div>

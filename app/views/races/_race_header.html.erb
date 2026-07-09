@@ -11,7 +11,7 @@
     <% [["Distance", race.distance_mi && "#{race.distance_mi} mi"],
         ["Vert", race.elevation_gain_ft && "#{number_with_delimiter race.elevation_gain_ft} ft"],
         ["Cutoff", race.cutoff_hours && "#{race.cutoff_hours.to_i} h"],
-        ["Aid stations", race.aid_stations.size]].each do |label, value| %>
+        ["Aid stations", race.aid_station_location_count]].each do |label, value| %>
       <div>
         <div class="text-xl font-bold"><%= value.presence || "—" %></div>
         <div class="text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>

@@ -16,7 +16,7 @@ module Gpx
       decimate(pts, max)
     end
 
-    # Named waypoints (Bighorn's are the aid stations, with real coords).
+    # Named waypoints, used by event data to match aid station coordinates.
     def waypoints
       @doc.xpath("//wpt").map do |w|
         ele = w.at_xpath("ele")&.text

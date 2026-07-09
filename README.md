@@ -22,7 +22,7 @@ Every page leads with *who you are*, because that decides what you need:
 - Ruby on Rails 8 — SQLite, Solid Queue / Cache / Cable
 - Tailwind CSS v4 via `tailwindcss-rails` — global styles & design tokens live in `app/assets/tailwind/application.css`
 - Hotwire (Turbo + Stimulus) with import maps — no Node build step
-- Leaflet + OpenStreetMap + CARTO tiles for maps — no API keys, no cost
+- Three.js terrain maps with preprocessed public Terrain Tiles DEM artifacts — no API keys, no cost
 - Minitest for tests; RuboCop (omakase) + Brakeman for lint / security
 - Deploys with Kamal (Hetzner)
 
@@ -53,4 +53,4 @@ lot of trail shoes). Link coming soon.
 
 [MIT](LICENSE).
 
-Maps © OpenStreetMap contributors · © CARTO · rendered with Leaflet.
+Terrain tiles by Mapzen / Tilezen via AWS Open Data · rendered with Three.js.

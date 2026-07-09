@@ -67,7 +67,7 @@ export default class extends Controller {
     const dir = s.lat != null
       ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}" target="_blank" rel="noopener">Get directions</a>`
       : ""
-    const tags = [s.crew ? "✅ Crew access" : "🚫 No crew", s.drop_bag ? "drop bag" : null, s.pacer ? "pacer" : null]
+    const tags = [s.crew ? "Crew access" : "No crew", s.drop_bag ? "drop bag" : null, s.pacer ? "pacer" : null]
       .filter(Boolean).join(" · ")
     return `<strong>${s.name}</strong><br>Mile ${s.mile ?? "—"}${s.cutoff ? " · cutoff " + s.cutoff : ""}` +
       `<br>${tags}${s.parking ? "<br><em>" + s.parking + "</em>" : ""}${dir ? "<br>" + dir : ""}`

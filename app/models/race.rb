@@ -10,4 +10,12 @@ class Race < ApplicationRecord
 
   # Pretty URLs: /races/bighorn-100
   def to_param = slug
+
+  def aid_station_location_count
+    aid_stations.map(&:name).uniq.size
+  end
+
+  def crew_location_count
+    aid_stations.select(&:crew_accessible?).map(&:name).uniq.size
+  end
 end

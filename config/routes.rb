@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :runner
       get :crew
       get :follow
-      get :map   # JSON payload for the Leaflet crew map (RacesController#map)
+      get :map   # HTML map tab or JSON payload for the race terrain map
     end
   end
 end
