@@ -20,7 +20,6 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "main section", 6
     section_ids = css_select("main section[id]").map { |section| section["id"] }
     assert_equal %w[facts course aid-stations crew follow sources], section_ids
-    assert_select "#facts", /first race in the USA ultra source-of-truth database/
     assert_select "nav[aria-label='On this race page']" do
       %w[facts course aid-stations crew follow sources].each do |section_id|
         assert_select "a[href='##{section_id}']", 1
@@ -30,6 +29,33 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "#aid-stations table", 1
     assert_select "#aid-stations tbody tr", @race.aid_stations.count
     assert_select "[role='tablist']", 0
+  end
+
+  test "race facts stay lean and connect registration and trust to official sources" do
+    @race.update!(
+      registration_status: :closed,
+      registration_url: "https://registration.example.test/bighorn",
+      source_metadata: {
+        "verified_on" => "2026-07-01",
+        "sources" => [
+          { "label" => "Course guide", "verified_on" => "2026-07-03" },
+          { "label" => "Registration", "verified_on" => "2026-07-02" }
+        ]
+      }
+    )
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#facts" do
+      assert_select "a[href='https://registration.example.test/bighorn']", text: "Official registration", count: 1
+      assert_select "p", text: /All facts from official race materials · verified July 3, 2026 · Sources/
+      assert_select "a[href='#sources']", text: "Sources", count: 1
+      assert_select "h2", count: 0
+    end
+    assert_includes @response.body, "Closed"
+    assert_not_includes @response.body, "Race facts without the scavenger hunt."
+    assert_not_includes @response.body, "Launch scope"
   end
 
   test "legacy role and HTML map routes permanently redirect to canonical sections" do

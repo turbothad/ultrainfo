@@ -30,6 +30,28 @@ module ApplicationHelper
     end
   end
 
+  def latest_verified_on_label(metadata)
+    verified_on_values = [ metadata&.dig("verified_on") ]
+    verified_on_values.concat(Array(metadata&.dig("sources")).pluck("verified_on"))
+
+    dates = verified_on_values.compact_blank.filter_map do |value|
+      Date.iso8601(value.to_s)
+    rescue Date::Error
+      nil
+    end
+
+    dates.max&.strftime("%B %-d, %Y")
+  end
+
+  def registration_display(race)
+    status = race.registration_status.humanize
+    return status if race.registration_url.blank?
+
+    link = link_to "Official registration", race.registration_url,
+                   target: "_blank", rel: "noopener", class: "font-semibold text-pine no-underline hover:text-ink"
+    safe_join [ status, link ], " · "
+  end
+
   def cutoff_display(station)
     normalized = [ station.cutoff_clock, station.cutoff_elapsed_label ].compact_blank
     return normalized.join(" / ") if normalized.any?
