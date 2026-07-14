@@ -4,7 +4,7 @@
 
 ### Issue tracker
 
-Issues live in Linear — team Tradia ("ultra"), project ultrainfo — via the
+Issues live in Linear — team Turbothad ("TUR"), project ultrainfo — via the
 Linear MCP server. PRs are not a triage surface. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels

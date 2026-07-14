@@ -1,7 +1,7 @@
 # Issue tracker: Linear
 
-Issues and PRDs for this repo live in Linear — team **Tradia** (referred to as
-"ultra"), project **ultrainfo**.
+Issues and PRDs for this repo live in Linear — team **Turbothad** (key
+**TUR**), project **ultrainfo**.
 
 ## Access
 
@@ -13,7 +13,7 @@ files.
 
 ## Conventions
 
-- **Team**: Tradia. **Project**: ultrainfo. File every issue for this repo
+- **Team**: Turbothad. **Project**: ultrainfo. File every issue for this repo
   there.
 - **Create an issue**: Linear create-issue tool, with team, project, and any
   triage labels from `triage-labels.md`. Put the full body in the description
@@ -30,7 +30,7 @@ Linear issues only.
 
 ## When a skill says "publish to the issue tracker"
 
-Create a Linear issue in team Tradia, project ultrainfo.
+Create a Linear issue in team Turbothad, project ultrainfo.
 
 ## When a skill says "fetch the relevant ticket"
 
