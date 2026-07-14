@@ -11,33 +11,36 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     @nocrew = @race.aid_stations.create!(name: "Cow Camp", sequence: 2, mile: 19.6, crew_accessible: false)
   end
 
-  test "overview renders the race" do
+  test "race page renders one scrolling surface organized by information type" do
     get race_path(@race)
+
     assert_response :success
     assert_select "h1", /Bighorn 100/i
+    section_ids = css_select("main section[id]").map { |section| section["id"] }
+    assert_equal %w[facts course aid-stations crew follow sources], section_ids
+    assert_select "nav[aria-label='On this race page']" do
+      %w[facts course aid-stations crew follow sources].each do |section_id|
+        assert_select "a[href='##{section_id}']", 1
+      end
+    end
+    assert_select "[data-controller='terrain-map']", 1
+    assert_select "#aid-stations table", 1
+    assert_select "#aid-stations tbody tr", @race.aid_stations.count
+    assert_select "[role='tablist']", 0
   end
 
-  test "runner page lists every aid station" do
-    @race.update!(registration_url: "https://example.test/register")
+  test "legacy role and HTML map routes permanently redirect to canonical sections" do
+    {
+      runner_race_path(@race) => "aid-stations",
+      crew_race_path(@race) => "crew",
+      follow_race_path(@race) => "follow",
+      map_race_path(@race) => "course"
+    }.each do |legacy_path, section_id|
+      get legacy_path
 
-    get runner_race_path(@race)
-
-    assert_response :success
-    assert_select "a[href='https://example.test/register']", "Open official registration"
-    assert_select "td", /Dry Fork/
-    assert_select "td", /Cow Camp/
-  end
-
-  test "crew page shows all stations with access status" do
-    get crew_race_path(@race)
-    assert_response :success
-    assert_select "td", /Dry Fork/
-    assert_select "td", /Cow Camp/
-  end
-
-  test "follow page renders" do
-    get follow_race_path(@race)
-    assert_response :success
+      assert_response :moved_permanently
+      assert_equal race_url(@race, anchor: section_id), @response.location
+    end
   end
 
   test "map endpoint returns course, stations, and crew route as JSON" do

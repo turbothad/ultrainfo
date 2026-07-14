@@ -19,8 +19,8 @@
           Crew the race
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <% end %>
-        <%= link_to "Run it", race_path(@race, anchor: "runner"), class: "rounded-full border border-ink/25 px-[26px] py-[15px] text-[15px] font-bold text-ink no-underline transition hover:border-ink hover:bg-ink/5" %>
-        <%= link_to "Follow", race_path(@race, anchor: "follower"), class: "rounded-full border border-ink/25 px-[26px] py-[15px] text-[15px] font-bold text-ink no-underline transition hover:border-ink hover:bg-ink/5" %>
+        <%= link_to "Run it", race_path(@race, anchor: "aid-stations"), class: "rounded-full border border-ink/25 px-[26px] py-[15px] text-[15px] font-bold text-ink no-underline transition hover:border-ink hover:bg-ink/5" %>
+        <%= link_to "Follow", race_path(@race, anchor: "follow"), class: "rounded-full border border-ink/25 px-[26px] py-[15px] text-[15px] font-bold text-ink no-underline transition hover:border-ink hover:bg-ink/5" %>
       </div>
 
       <dl class="flex flex-wrap gap-x-[38px] gap-y-4 border-t border-ink/10 pt-6 font-mono">
@@ -50,13 +50,13 @@
   <section class="mx-auto max-w-[1240px] px-6 pb-4 pt-14 sm:px-10">
     <h2 class="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-stone">Choose your role</h2>
     <div class="grid gap-4 md:grid-cols-3">
-      <%= render "home/role_card", href: race_path(@race, anchor: "runner"), eyebrow: "For runners", label: "Run it",
+      <%= render "home/role_card", href: race_path(@race, anchor: "aid-stations"), eyebrow: "For runners", label: "Run it",
             blurb: "Schedule, cutoffs, the registration link, the course, and what to expect.",
             stat: (@race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h cutoff" : "course + cutoffs") %>
       <%= render "home/role_card", href: race_path(@race, anchor: "crew"), eyebrow: "For crews & pacers", label: "Crew or pace",
             blurb: "The crew-access map, which stations allow crew, parking & drop bags.",
             stat: "#{@race.crew_location_count} crew stops" %>
-      <%= render "home/role_card", href: race_path(@race, anchor: "follower"), eyebrow: "For spectators", label: "Follow along",
+      <%= render "home/role_card", href: race_path(@race, anchor: "follow"), eyebrow: "For spectators", label: "Follow along",
             blurb: "Live tracking, the best spots to watch from, and the finish.",
             stat: "#{@race.crew_location_count} viewpoints" %>
     </div>

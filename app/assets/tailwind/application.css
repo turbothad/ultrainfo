@@ -26,21 +26,3 @@
   html { scroll-behavior: smooth; }
   ::selection { background-color: var(--color-flame); color: #fff; }
 }
-
-@layer components {
-  .race-tabs {
-    @apply sticky top-[64px] z-40 flex w-full gap-1 overflow-x-auto border-b border-ink/10 bg-paper/90 py-3 backdrop-blur;
-  }
-
-  .race-tab {
-    @apply rounded-md px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-stone transition;
-  }
-
-  .race-tab:hover {
-    @apply bg-pine/10 text-ink;
-  }
-
-  .race-tab[aria-selected="true"] {
-    @apply bg-pine text-paper;
-  }
-}

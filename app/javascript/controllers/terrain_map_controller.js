@@ -14,15 +14,7 @@ export default class extends Controller {
     this.stationMeshes = []
     this.raycaster = new THREE.Raycaster()
     this.pointer = new THREE.Vector2()
-    this.activate = () => {
-      if (!this.#isHidden()) this.#initialize()
-    }
-
-    if (this.#isHidden()) {
-      document.addEventListener("race-tabs:shown", this.activate)
-    } else {
-      this.#initialize()
-    }
+    this.#initialize()
   }
 
   async #initialize() {
@@ -49,7 +41,6 @@ export default class extends Controller {
   }
 
   disconnect() {
-    document.removeEventListener("race-tabs:shown", this.activate)
     cancelAnimationFrame(this.frame)
     this.resizeObserver?.disconnect()
     this.renderer?.domElement.removeEventListener("pointerdown", this.onPointerDown)
@@ -108,10 +99,6 @@ export default class extends Controller {
 
     this.resizeObserver = new ResizeObserver(() => this.#resize())
     this.resizeObserver.observe(this.canvasTarget)
-  }
-
-  #isHidden() {
-    return !!this.element.closest("[hidden]")
   }
 
   #buildTerrain(terrain) {

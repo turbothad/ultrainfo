@@ -1,31 +1,25 @@
 class RacesController < ApplicationController
   before_action :set_race
 
-  def show
-    @active_tab = tab_param || "overview"
-  end
+  def show; end
 
   def runner
-    @active_tab = "runner"
-    render :show
+    redirect_to race_path(@race, anchor: "aid-stations"), status: :moved_permanently
   end
 
   def crew
-    @active_tab = "crew"
-    render :show
+    redirect_to race_path(@race, anchor: "crew"), status: :moved_permanently
   end
 
   def follow
-    @active_tab = "follower"
-    render :show
+    redirect_to race_path(@race, anchor: "follow"), status: :moved_permanently
   end
 
   # Terrain-ready payload for the race map.
   # Tested directly (races_controller_test) so the map is verified through its data.
   def map
     unless request.format.json?
-      @active_tab = "map"
-      return render :show
+      return redirect_to race_path(@race, anchor: "course"), status: :moved_permanently
     end
 
     render json: {
@@ -61,10 +55,6 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find_by!(slug: params[:slug])
-  end
-
-  def tab_param
-    params[:tab].presence_in(%w[overview runner crew follower map])
   end
 
   def terrain_artifacts_payload

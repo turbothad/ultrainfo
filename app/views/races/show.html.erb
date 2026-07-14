@@ -1,73 +1,29 @@
 <%= render "races/race_header", race: @race %>
+<%= render "races/jump_nav" %>
 
-<section class="mx-auto max-w-[1240px] px-6 pb-20 sm:px-10"
-         data-controller="race-tabs"
-         data-race-tabs-active-value="<%= @active_tab %>">
-  <%= render "races/role_tabs", race: @race, active_tab: @active_tab %>
-
-  <div data-race-tabs-target="panel" data-tab-panel="overview" <%= "hidden" unless @active_tab == "overview" %>>
-    <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+<div class="mx-auto max-w-[1240px] px-6 pb-20 sm:px-10">
+  <section id="facts" aria-labelledby="facts-heading" class="scroll-mt-32 py-14 sm:py-16">
+    <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">What this page answers</div>
-        <h2 class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Race facts without the scavenger hunt.</h2>
+        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Race facts</div>
+        <h2 id="facts-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Race facts without the scavenger hunt.</h2>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-stone">
           <%= @race.name %> planning details for runners, crews and pacers, and people following from home. All race facts are pulled from official race materials and kept separate from personal advice.
         </p>
-
-        <div class="mt-8 grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 sm:grid-cols-2">
-          <% [
-            [ "Date", race_date_label(@race) ],
-            [ "Start", [ @race.start_time, @race.start_venue ].compact.join(" at ") ],
-            [ "Finish", @race.finish_venue ],
-            [ "Overall cutoff", overall_cutoff_display(@race) ]
-          ].each do |label, value| %>
-            <div class="bg-card p-4">
-              <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
-              <div class="mt-1 font-semibold text-ink"><%= value.presence || "Not listed" %></div>
-            </div>
-          <% end %>
-        </div>
       </div>
 
-      <div class="space-y-4">
-        <%= render "races/source_drawer", race: @race %>
-        <div class="rounded-lg border border-ink/10 bg-card p-5">
-          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Launch scope</div>
-          <p class="mt-2 text-sm leading-relaxed text-stone">
-            <%= @race.name %> is the first race in the USA ultra source-of-truth database. More races are coming after this model is proven.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-10 grid gap-6 lg:grid-cols-2">
-      <%= render "races/map", race: @race, wide: false %>
-      <%= render "races/elevation_profile", race: @race %>
-    </div>
-  </div>
-
-  <div data-race-tabs-target="panel" data-tab-panel="runner" <%= "hidden" unless @active_tab == "runner" %>>
-    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Runner plan</div>
-        <h2 class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Start, cutoffs, aid, and required stops.</h2>
-        <p class="mt-4 text-base leading-relaxed text-stone">
-          Use this tab for official planning facts: registration state, start logistics, drop bags, medical checks, pacer pickup points, aid, and every listed cutoff.
-        </p>
-      </div>
-
-      <div class="grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 sm:grid-cols-3">
+      <div class="grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 sm:grid-cols-2">
         <% [
+          [ "Date", race_date_label(@race) ],
+          [ "Start", [ @race.start_time, @race.start_venue ].compact.join(" at ") ],
+          [ "Finish", @race.finish_venue ],
+          [ "Overall cutoff", overall_cutoff_display(@race) ],
           [ "Registration", @race.registration_status.humanize ],
-          [ "Lottery", @race.lottery? ? "Yes" : "No" ],
-          [ "Cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} hours" : "Not listed" ],
-          [ "Drop bags", "#{@race.aid_stations.where(drop_bag: true).count} station passes" ],
-          [ "Medical", "#{@race.aid_stations.where(has_medical: true).count} station passes" ],
-          [ "Pacer points", "#{@race.aid_stations.where(pacer_access: true).count} station passes" ]
+          [ "Lottery", @race.lottery? ? "Yes" : "No" ]
         ].each do |label, value| %>
           <div class="bg-card p-4">
             <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
-            <div class="mt-1 font-semibold text-ink"><%= value %></div>
+            <div class="mt-1 font-semibold text-ink"><%= value.presence || "Not listed" %></div>
           </div>
         <% end %>
       </div>
@@ -83,53 +39,91 @@
               class: "mt-4 inline-flex rounded-md bg-pine px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-paper no-underline hover:bg-pine-dark" %>
       </div>
     <% end %>
+  </section>
 
-    <div class="mt-10">
-      <h3 class="mb-4 text-xl font-black uppercase tracking-tight">Aid stations and cutoffs</h3>
-      <%= render "races/aid_station_table", stations: @race.aid_stations %>
+  <section id="course" aria-labelledby="course-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
+    <div class="mb-8 max-w-3xl">
+      <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Course</div>
+      <h2 id="course-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Course, terrain, and crew drive.</h2>
+      <p class="mt-4 text-base leading-relaxed text-stone">
+        The terrain explorer combines the GPX course, aid station markers, and a separate crew driving layer. The elevation profile follows the same official course data.
+      </p>
     </div>
-  </div>
+    <%= render "races/map", race: @race, drive: true %>
+    <div class="mt-8">
+      <%= render "races/elevation_profile", race: @race %>
+    </div>
+  </section>
 
-  <div data-race-tabs-target="panel" data-tab-panel="crew" <%= "hidden" unless @active_tab == "crew" %>>
-    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+  <section id="aid-stations" aria-labelledby="aid-stations-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
+    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Crew and pacers</div>
-        <h2 class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Where crew can go, and where they cannot.</h2>
+        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Aid stations</div>
+        <h2 id="aid-stations-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Every station pass and cutoff.</h2>
         <p class="mt-4 text-base leading-relaxed text-stone">
-          This view includes every station pass, not just crew stops, so road restrictions and no-crew sections are visible before race weekend.
+          One complete course-order table covers aid, cutoffs, drop bags, medical checks, crew access, and pacer pickup points.
         </p>
       </div>
 
-      <div class="rounded-lg border border-ink/10 bg-card p-5">
-        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Pacer rule summary</div>
-        <p class="mt-2 text-sm leading-relaxed text-stone">
-          <%= @race.source_metadata["pacer_rule_summary"].presence || "Pacer rules are not listed in the current source data." %>
-        </p>
+      <div class="grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 sm:grid-cols-3">
+        <% [
+          [ "Station passes", @race.aid_stations.count ],
+          [ "Drop bags", @race.aid_stations.where(drop_bag: true).count ],
+          [ "Medical", @race.aid_stations.where(has_medical: true).count ],
+          [ "Crew access", @race.aid_stations.where(crew_accessible: true).count ],
+          [ "Pacer points", @race.aid_stations.where(pacer_access: true).count ],
+          [ "Overall cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} hours" : "Not listed" ]
+        ].each do |label, value| %>
+          <div class="bg-card p-4">
+            <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
+            <div class="mt-1 font-semibold text-ink"><%= value %></div>
+          </div>
+        <% end %>
       </div>
     </div>
 
     <div class="mt-10">
-      <%= render "races/map", race: @race, drive: true %>
-      <% if @race.crew_route.present? %>
-        <p class="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-stone">
-          Crew drive approx <%= @race.crew_route["distance_mi"] %> mi / <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h<%= ". Route: #{@race.source_metadata["crew_drive_label"]}" if @race.source_metadata["crew_drive_label"].present? %>.
-        </p>
-      <% end %>
-    </div>
-
-    <div class="mt-10">
-      <h3 class="mb-4 text-xl font-black uppercase tracking-tight">All station passes</h3>
       <%= render "races/aid_station_table", stations: @race.aid_stations %>
     </div>
-  </div>
+  </section>
 
-  <div data-race-tabs-target="panel" data-tab-panel="follower" <%= "hidden" unless @active_tab == "follower" %>>
-    <div class="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+  <section id="crew" aria-labelledby="crew-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
+    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Follow from home</div>
-        <h2 class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Track the race without learning the whole course.</h2>
+        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Crew &amp; pacers</div>
+        <h2 id="crew-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Access rules in course context.</h2>
         <p class="mt-4 text-base leading-relaxed text-stone">
-          The follower view is for family and friends watching remotely: start time, major cutoffs, official tracking, and finish context.
+          The master aid-station table shows both crew-allowed and no-crew passes, with parking, road, drop-bag, and pacer details. The Course map keeps the crew driving route available as a separate layer.
+        </p>
+        <%= link_to "Review all station access", "#aid-stations", class: "mt-5 inline-block font-semibold text-pine underline-offset-4 hover:text-ink" %>
+      </div>
+
+      <div class="space-y-4">
+        <div class="rounded-lg border border-ink/10 bg-card p-5">
+          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Pacer rule summary</div>
+          <p class="mt-2 text-sm leading-relaxed text-stone">
+            <%= @race.source_metadata["pacer_rule_summary"].presence || "Pacer rules are not listed in the current source data." %>
+          </p>
+        </div>
+        <% if @race.crew_route.present? %>
+          <div class="rounded-lg border border-ink/10 bg-card p-5">
+            <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Crew drive</div>
+            <p class="mt-2 text-sm leading-relaxed text-stone">
+              Approx. <%= @race.crew_route["distance_mi"] %> mi / <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h<%= ". Route: #{@race.source_metadata["crew_drive_label"]}" if @race.source_metadata["crew_drive_label"].present? %>.
+            </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <section id="follow" aria-labelledby="follow-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
+    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Follow</div>
+        <h2 id="follow-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Follow the race from home.</h2>
+        <p class="mt-4 text-base leading-relaxed text-stone">
+          Official tracking and finish context for family and friends watching remotely. Course timing and station cutoffs stay in the sections above.
         </p>
       </div>
 
@@ -141,23 +135,24 @@
         <% else %>
           <p class="mt-2 text-sm leading-relaxed text-stone">The official live tracking link is not published in the current source data.</p>
         <% end %>
+        <div class="mt-5 border-t border-ink/10 pt-5">
+          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Finish</div>
+          <p class="mt-2 text-sm leading-relaxed text-stone"><%= @race.finish_venue.presence || "Finish-line details are not listed in the current source data." %></p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="mt-10">
-      <h3 class="mb-4 text-xl font-black uppercase tracking-tight">Key clock times</h3>
-      <%= render "races/aid_station_table", stations: @race.aid_stations.select { |station| station.cutoff_clock.present? || station.mile.to_f.in?([0.0, 100.0]) } %>
+  <section id="sources" aria-labelledby="sources-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
+    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Sources</div>
+        <h2 id="sources-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Official-source record.</h2>
+        <p class="mt-4 text-base leading-relaxed text-stone">
+          Verification dates, source links, and any warnings behind the planning facts on this page.
+        </p>
+      </div>
+      <%= render "races/source_drawer", race: @race %>
     </div>
-  </div>
-
-  <div data-race-tabs-target="panel" data-tab-panel="map" <%= "hidden" unless @active_tab == "map" %>>
-    <div class="mb-6 max-w-3xl">
-      <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Course explorer</div>
-      <h2 class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Course, aid stations, and crew drive in one place.</h2>
-      <p class="mt-4 text-base leading-relaxed text-stone">
-        The terrain map renders preprocessed <%= @race.name %> course data with the GPX route, aid station detail, and a separate crew driving layer.
-      </p>
-    </div>
-    <%= render "races/map", race: @race, drive: true %>
-  </div>
-</section>
+  </section>
+</div>

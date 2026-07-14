@@ -9,9 +9,8 @@
     <% end %>
     <nav class="hidden items-center gap-7 text-sm font-semibold text-stone sm:flex">
       <% if featured_race %>
-        <%= link_to "Run it", race_path(featured_race, anchor: "runner"), class: "no-underline hover:text-flame" %>
-        <%= link_to "Crew", race_path(featured_race, anchor: "crew"), class: "no-underline hover:text-flame" %>
-        <%= link_to "Follow", race_path(featured_race, anchor: "follower"), class: "no-underline hover:text-flame" %>
+        <%= link_to featured_race.name, race_path(featured_race), class: "no-underline hover:text-flame" %>
+        <%= link_to "Course", race_path(featured_race, anchor: "course"), class: "no-underline hover:text-flame" %>
       <% end %>
       <a href="#about" class="no-underline hover:text-flame">About</a>
     </nav>
