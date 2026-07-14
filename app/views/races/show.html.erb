@@ -12,33 +12,34 @@
         </p>
       </div>
 
-      <div class="grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 sm:grid-cols-2">
-        <% [
+      <%= render "races/stat_grid", stats: [
           [ "Date", race_date_label(@race) ],
           [ "Start", [ @race.start_time, @race.start_venue ].compact.join(" at ") ],
           [ "Finish", @race.finish_venue ],
           [ "Overall cutoff", overall_cutoff_display(@race) ],
           [ "Registration", @race.registration_status.humanize ],
           [ "Lottery", @race.lottery? ? "Yes" : "No" ]
-        ].each do |label, value| %>
-          <div class="bg-card p-4">
-            <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
-            <div class="mt-1 font-semibold text-ink"><%= value.presence || "Not listed" %></div>
-          </div>
-        <% end %>
-      </div>
+        ] %>
     </div>
 
-    <% if @race.registration_url.present? %>
-      <div class="mt-8 rounded-lg border border-ink/10 bg-card p-5">
-        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Official registration</div>
+    <div class="mt-8 grid gap-4 lg:grid-cols-2">
+      <% if @race.registration_url.present? %>
+        <div class="rounded-lg border border-ink/10 bg-card p-5">
+          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Official registration</div>
+          <p class="mt-2 text-sm leading-relaxed text-stone">
+            Registration status is shown here for planning; entries and wait-list details stay on the official platform.
+          </p>
+          <%= link_to "Open official registration", @race.registration_url, target: "_blank", rel: "noopener",
+                class: "mt-4 inline-flex rounded-md bg-pine px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-paper no-underline hover:bg-pine-dark" %>
+        </div>
+      <% end %>
+      <div class="rounded-lg border border-ink/10 bg-card p-5">
+        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Launch scope</div>
         <p class="mt-2 text-sm leading-relaxed text-stone">
-          Registration status is shown here for planning; entries and wait-list details stay on the official platform.
+          <%= @race.name %> is the first race in the USA ultra source-of-truth database. More races are coming after this model is proven.
         </p>
-        <%= link_to "Open official registration", @race.registration_url, target: "_blank", rel: "noopener",
-              class: "mt-4 inline-flex rounded-md bg-pine px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-paper no-underline hover:bg-pine-dark" %>
       </div>
-    <% end %>
+    </div>
   </section>
 
   <section id="course" aria-labelledby="course-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
@@ -65,21 +66,7 @@
         </p>
       </div>
 
-      <div class="grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 sm:grid-cols-3">
-        <% [
-          [ "Station passes", @race.aid_stations.count ],
-          [ "Drop bags", @race.aid_stations.where(drop_bag: true).count ],
-          [ "Medical", @race.aid_stations.where(has_medical: true).count ],
-          [ "Crew access", @race.aid_stations.where(crew_accessible: true).count ],
-          [ "Pacer points", @race.aid_stations.where(pacer_access: true).count ],
-          [ "Overall cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} hours" : "Not listed" ]
-        ].each do |label, value| %>
-          <div class="bg-card p-4">
-            <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
-            <div class="mt-1 font-semibold text-ink"><%= value %></div>
-          </div>
-        <% end %>
-      </div>
+      <%= render "races/stat_grid", stats: aid_station_summary_stats(@race) %>
     </div>
 
     <div class="mt-10">
@@ -105,11 +92,11 @@
             <%= @race.source_metadata["pacer_rule_summary"].presence || "Pacer rules are not listed in the current source data." %>
           </p>
         </div>
-        <% if @race.crew_route.present? %>
+        <% if (crew_drive = crew_drive_summary(@race)) %>
           <div class="rounded-lg border border-ink/10 bg-card p-5">
             <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Crew drive</div>
             <p class="mt-2 text-sm leading-relaxed text-stone">
-              Approx. <%= @race.crew_route["distance_mi"] %> mi / <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h<%= ". Route: #{@race.source_metadata["crew_drive_label"]}" if @race.source_metadata["crew_drive_label"].present? %>.
+              <%= crew_drive %>.
             </p>
           </div>
         <% end %>

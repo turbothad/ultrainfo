@@ -16,8 +16,11 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "h1", /Bighorn 100/i
+    assert_select "main > header", 1
+    assert_select "main section", 6
     section_ids = css_select("main section[id]").map { |section| section["id"] }
     assert_equal %w[facts course aid-stations crew follow sources], section_ids
+    assert_select "#facts", /first race in the USA ultra source-of-truth database/
     assert_select "nav[aria-label='On this race page']" do
       %w[facts course aid-stations crew follow sources].each do |section_id|
         assert_select "a[href='##{section_id}']", 1

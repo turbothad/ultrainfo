@@ -11,11 +11,12 @@ Live at **[ultrainfo.org](https://ultrainfo.org)** · starting with the **Wester
 
 ## Who it's for
 
-Every page leads with *who you are*, because that decides what you need:
+Each race is one scrolling source of truth, organized by information type so the same course or
+station data never forks across role pages:
 
-- **Runners** — schedule, cutoffs, lottery & registration, GPX course, what to expect.
-- **Crews & pacers** — which aid stations allow crew, the crew-access map, parking, drop bags, ETA splits.
-- **Followers** — live tracking, the best spots to watch, race-day schedule.
+- **Runners** — race facts, registration, the GPX course, aid stations, and cutoffs.
+- **Crews & pacers** — the same master station list, crew-access map layer, parking, drop bags, and pacer rules.
+- **Followers** — official live tracking and finish context without a separate role view.
 
 ## Stack
 

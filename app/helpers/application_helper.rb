@@ -50,4 +50,26 @@ module ApplicationHelper
 
     "#{format('%.6f', station.lat.to_f)},#{format('%.6f', station.lng.to_f)}"
   end
+
+  def aid_station_summary_stats(race)
+    stations = race.aid_stations.to_a
+    [
+      [ "Station passes", stations.size ],
+      [ "Drop bags", stations.count(&:drop_bag?) ],
+      [ "Medical", stations.count(&:has_medical?) ],
+      [ "Crew access", stations.count(&:crew_accessible?) ],
+      [ "Pacer points", stations.count(&:pacer_access?) ],
+      [ "Overall cutoff", race.cutoff_hours ? "#{race.cutoff_hours.to_i} hours" : nil ]
+    ]
+  end
+
+  def crew_drive_summary(race)
+    route = race.crew_route
+    return if route.blank?
+
+    summary = "Approx. #{route['distance_mi']} mi / #{(route['duration_min'] / 60.0).round(1)} h"
+    return summary if race.source_metadata["crew_drive_label"].blank?
+
+    "#{summary}. Route: #{race.source_metadata['crew_drive_label']}"
+  end
 end
