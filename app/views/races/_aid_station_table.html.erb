@@ -1,20 +1,42 @@
-<div class="overflow-x-auto rounded-lg border border-ink/10 bg-card">
-  <table class="w-full border-collapse text-left text-sm">
-    <thead class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light">
-      <tr class="border-b border-ink/10">
-        <th class="px-4 py-3">Mile</th>
-        <th class="px-4 py-3">Pass</th>
-        <th class="px-4 py-3">Aid station</th>
-        <th class="px-4 py-3">Cutoff</th>
-        <th class="px-4 py-3 text-center">Crew</th>
-        <th class="px-4 py-3 text-center">Drop bag</th>
-        <th class="px-4 py-3 text-center">Pacer</th>
-        <th class="px-4 py-3">Access notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% stations.each do |s| %>
-        <tr class="border-b border-ink/5 last:border-0">
+<div data-controller="station-filter">
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <div role="group" aria-label="Filter station passes" class="flex flex-wrap gap-2">
+      <% [ [ "All", "all" ], [ "Crew access", "crew" ], [ "Drop bags", "drop" ], [ "Pacer points", "pacer" ] ].each do |label, filter| %>
+        <button type="button"
+                data-station-filter-target="button"
+                data-station-filter-name="<%= filter %>"
+                data-action="station-filter#select"
+                aria-pressed="<%= filter == "all" %>"
+                class="rounded-full border border-ink/15 bg-card px-3.5 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-stone transition hover:border-pine hover:text-pine aria-pressed:border-pine aria-pressed:bg-pine aria-pressed:text-white">
+          <%= label %>
+        </button>
+      <% end %>
+    </div>
+    <p data-station-filter-target="status" aria-live="polite" class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light">
+      Showing <%= stations.size %> station passes
+    </p>
+  </div>
+
+  <div class="overflow-x-auto rounded-lg border border-ink/10 bg-card">
+    <table class="w-full border-collapse text-left text-sm">
+      <thead class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light">
+        <tr class="border-b border-ink/10">
+          <th class="px-4 py-3">Mile</th>
+          <th class="px-4 py-3">Pass</th>
+          <th class="px-4 py-3">Aid station</th>
+          <th class="px-4 py-3">Cutoff</th>
+          <th class="px-4 py-3 text-center">Medical</th>
+          <th class="px-4 py-3 text-center">Crew</th>
+          <th class="px-4 py-3 text-center">Drop bag</th>
+          <th class="px-4 py-3 text-center">Pacer</th>
+          <th class="px-4 py-3">Access notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% stations.each do |s| %>
+          <tr data-station-filter-target="row"
+              data-filter-tags="<%= [ ("crew" if s.crew_accessible?), ("drop" if s.drop_bag?), ("pacer" if s.pacer_access?) ].compact.join(" ") %>"
+              class="border-b border-ink/5 last:border-0">
           <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= s.mile %></td>
           <td class="whitespace-nowrap px-4 py-3 font-mono text-[11px] uppercase tracking-[0.08em] text-stone"><%= s.direction.presence || "—" %></td>
           <td class="min-w-64 px-4 py-3">
@@ -22,16 +44,19 @@
               <summary class="cursor-pointer font-semibold text-ink"><%= s.name %></summary>
               <div class="mt-3 space-y-2 text-sm leading-relaxed text-stone">
                 <% [
-                  [ "Elevation", s.elevation_ft && "#{number_with_delimiter s.elevation_ft} ft" ],
-                  [ "Aid", s.aid_notes ],
-                  [ "Medical", s.has_medical? ? "Medical check listed" : nil ],
-                  [ "Bathrooms", s.bathroom_notes ],
-                  [ "Crew", s.crew_access_notes ],
-                  [ "Pacer", s.pacer_notes ],
-                  [ "Road", s.road_notes ],
-                  [ "Source", source_status_label(s.source_metadata) ]
+                  [ "Elevation", s.elevation_ft ? "#{number_with_delimiter s.elevation_ft} ft" : "Not listed" ],
+                  [ "Cutoff", cutoff_display(s) ],
+                  [ "Aid", s.aid_notes.presence || "Not listed" ],
+                  [ "Medical", s.has_medical? ? "Yes" : "No" ],
+                  [ "Bathrooms", s.bathroom_notes.presence || "Not listed" ],
+                  [ "Drop bag", s.drop_bag? ? "Yes" : "No" ],
+                  [ "Crew", s.crew_access_notes.presence || (s.crew_accessible? ? "Yes" : "No") ],
+                  [ "Pacer", s.pacer_notes.presence || (s.pacer_access? ? "Yes" : "No") ],
+                  [ "Parking", s.parking_notes.presence || "Not listed" ],
+                  [ "Road", s.road_notes.presence || "Not listed" ],
+                  [ "Directions", s.directions_notes.presence || "Not listed" ],
+                  [ "Verification", source_status_label(s.source_metadata) ]
                 ].each do |label, value| %>
-                  <% next if value.blank? %>
                   <div><span class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light"><%= label %>:</span> <%= value %></div>
                 <% end %>
                 <% if (destination = directions_destination(s)) %>
@@ -41,12 +66,14 @@
             </details>
           </td>
           <td class="whitespace-nowrap px-4 py-3 font-mono text-stone"><%= cutoff_display(s) %></td>
+          <td class="px-4 py-3 text-center"><%= yes_no s.has_medical %></td>
           <td class="px-4 py-3 text-center"><%= yes_no s.crew_accessible %></td>
           <td class="px-4 py-3 text-center"><%= yes_no s.drop_bag %></td>
           <td class="px-4 py-3 text-center"><%= yes_no s.pacer_access %></td>
           <td class="min-w-72 px-4 py-3 text-stone"><%= s.parking_notes.presence || s.crew_access_notes.presence || "—" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

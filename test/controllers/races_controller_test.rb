@@ -58,6 +58,53 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_not_includes @response.body, "Launch scope"
   end
 
+  test "station table renders progressive filter controls with every pass visible by default" do
+    @crew.update!(drop_bag: true, pacer_access: true)
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#aid-stations [data-controller='station-filter']" do
+      assert_select "button", text: "All", count: 1
+      assert_select "button", text: "Crew access", count: 1
+      assert_select "button", text: "Drop bags", count: 1
+      assert_select "button", text: "Pacer points", count: 1
+      assert_select "tbody tr[data-station-filter-target='row']", count: 2
+      assert_select "tbody tr[data-filter-tags~='crew'][data-filter-tags~='drop'][data-filter-tags~='pacer']", count: 1
+      assert_select "tbody tr[hidden]", count: 0
+    end
+  end
+
+  test "station table keeps medical, cutoffs, and complete sourced details in one canonical row" do
+    @crew.update!(
+      cutoff_clock: "3:00 PM", cutoff_elapsed_minutes: 360, elevation_ft: 7_480,
+      has_medical: true, aid_notes: "Full aid", bathroom_notes: "Restrooms available",
+      crew_access_notes: "Crew allowed", pacer_notes: "No pacers",
+      parking_notes: "Park one-quarter mile away", road_notes: "Use Highway 14",
+      directions_notes: "Follow signed access road",
+      source_metadata: { "verification_status" => "verified" }
+    )
+    @nocrew.update!(cutoff: "Wave-dependent cutoff")
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#aid-stations th", text: "Medical", count: 1
+    assert_select "#aid-stations tbody span[title='Yes']", text: "Yes", minimum: 1
+    assert_select "#aid-stations tbody span[title='No']", text: "No", minimum: 1
+    assert_includes @response.body, "3:00 PM / 6h"
+    assert_includes @response.body, "Wave-dependent cutoff"
+
+    details = css_select("#aid-stations details").find { |node| node.at_css("summary")&.text&.strip == "Dry Fork" }
+    assert details, "expected expandable details for Dry Fork"
+    detail_text = details.text.squish
+    [
+      "Elevation: 7,480 ft", "Aid: Full aid", "Medical: Yes", "Bathrooms: Restrooms available",
+      "Crew: Crew allowed", "Pacer: No pacers", "Parking: Park one-quarter mile away",
+      "Road: Use Highway 14", "Directions: Follow signed access road", "Verification: Verified source"
+    ].each { |content| assert_includes detail_text, content }
+  end
+
   test "legacy role and HTML map routes permanently redirect to canonical sections" do
     {
       runner_race_path(@race) => "aid-stations",
