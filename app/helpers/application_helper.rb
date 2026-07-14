@@ -73,6 +73,40 @@ module ApplicationHelper
     "#{format('%.6f', station.lat.to_f)},#{format('%.6f', station.lng.to_f)}"
   end
 
+  def aid_station_detail_rows(station)
+    metadata = station.source_metadata || {}
+    source = metadata["source_label"].presence || metadata["source_url"].presence || "Not listed"
+    if metadata["source_url"].present?
+      source = link_to source, metadata["source_url"], target: "_blank", rel: "noopener",
+                       class: "font-semibold text-pine underline-offset-4 hover:text-ink"
+    end
+
+    directions = [ station.directions_notes.presence ].compact
+    if (destination = directions_destination(station))
+      label = directions.any? ? "Open map" : "Open directions"
+      directions << link_to(label, "https://www.google.com/maps/dir/?api=1&destination=#{destination}", target: "_blank", rel: "noopener",
+                            class: "font-semibold text-pine underline-offset-4 hover:text-ink")
+    end
+
+    rows = [
+      [ "Elevation", station.elevation_ft ? "#{number_with_delimiter station.elevation_ft} ft" : "Not listed" ],
+      [ "Cutoff", cutoff_display(station) ],
+      [ "Aid", station.aid_notes.presence || "Not listed" ],
+      [ "Medical", station.has_medical? ? "Yes" : "No" ],
+      [ "Bathrooms", station.bathroom_notes.presence || "Not listed" ],
+      [ "Drop bag", station.drop_bag? ? "Yes" : "No" ],
+      [ "Crew", station.crew_access_notes.presence || (station.crew_accessible? ? "Yes" : "No") ],
+      [ "Pacer", station.pacer_notes.presence || (station.pacer_access? ? "Yes" : "No") ],
+      [ "Parking", station.parking_notes.presence || "Not listed" ],
+      [ "Road", station.road_notes.presence || "Not listed" ],
+      [ "Directions", directions.any? ? safe_join(directions, " · ") : "Not listed" ],
+      [ "Verification", source_status_label(metadata) ],
+      [ "Source", source ]
+    ]
+    rows << [ "Source notes", metadata["source_notes"] ] if metadata["source_notes"].present?
+    rows
+  end
+
   def aid_station_summary_stats(race)
     stations = race.aid_stations.to_a
     [

@@ -82,9 +82,15 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
       crew_access_notes: "Crew allowed", pacer_notes: "No pacers",
       parking_notes: "Park one-quarter mile away", road_notes: "Use Highway 14",
       directions_notes: "Follow signed access road",
-      source_metadata: { "verification_status" => "verified" }
+      source_metadata: {
+        "verification_status" => "warning", "source_label" => "Official course guide",
+        "source_url" => "https://example.test/course-guide", "source_notes" => "Access note needs confirmation"
+      }
     )
-    @nocrew.update!(cutoff: "Wave-dependent cutoff")
+    @nocrew.update!(
+      cutoff: "Wave-dependent cutoff", lat: 44.7, lng: -107.4,
+      source_metadata: { "verification_status" => "unverified", "source_url" => "https://example.test/aid-chart" }
+    )
 
     get race_path(@race)
 
@@ -101,8 +107,15 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     [
       "Elevation: 7,480 ft", "Aid: Full aid", "Medical: Yes", "Bathrooms: Restrooms available",
       "Crew: Crew allowed", "Pacer: No pacers", "Parking: Park one-quarter mile away",
-      "Road: Use Highway 14", "Directions: Follow signed access road", "Verification: Verified source"
+      "Road: Use Highway 14", "Directions: Follow signed access road", "Verification: Source warning",
+      "Source: Official course guide", "Source notes: Access note needs confirmation"
     ].each { |content| assert_includes detail_text, content }
+    assert details.at_css("a[href='https://example.test/course-guide']"), "expected linked source identity"
+
+    irregular_details = css_select("#aid-stations details").find { |node| node.at_css("summary")&.text&.strip == "Cow Camp" }
+    assert_not_includes irregular_details.text.squish, "Directions: Not listed"
+    assert irregular_details.at_css("a[href*='destination=44.700000,-107.400000']"), "expected coordinate directions link"
+    assert_includes irregular_details.text.squish, "Source: https://example.test/aid-chart"
   end
 
   test "legacy role and HTML map routes permanently redirect to canonical sections" do

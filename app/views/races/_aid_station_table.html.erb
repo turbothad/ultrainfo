@@ -37,40 +37,24 @@
           <tr data-station-filter-target="row"
               data-filter-tags="<%= [ ("crew" if s.crew_accessible?), ("drop" if s.drop_bag?), ("pacer" if s.pacer_access?) ].compact.join(" ") %>"
               class="border-b border-ink/5 last:border-0">
-          <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= s.mile %></td>
-          <td class="whitespace-nowrap px-4 py-3 font-mono text-[11px] uppercase tracking-[0.08em] text-stone"><%= s.direction.presence || "—" %></td>
-          <td class="min-w-64 px-4 py-3">
-            <details>
-              <summary class="cursor-pointer font-semibold text-ink"><%= s.name %></summary>
-              <div class="mt-3 space-y-2 text-sm leading-relaxed text-stone">
-                <% [
-                  [ "Elevation", s.elevation_ft ? "#{number_with_delimiter s.elevation_ft} ft" : "Not listed" ],
-                  [ "Cutoff", cutoff_display(s) ],
-                  [ "Aid", s.aid_notes.presence || "Not listed" ],
-                  [ "Medical", s.has_medical? ? "Yes" : "No" ],
-                  [ "Bathrooms", s.bathroom_notes.presence || "Not listed" ],
-                  [ "Drop bag", s.drop_bag? ? "Yes" : "No" ],
-                  [ "Crew", s.crew_access_notes.presence || (s.crew_accessible? ? "Yes" : "No") ],
-                  [ "Pacer", s.pacer_notes.presence || (s.pacer_access? ? "Yes" : "No") ],
-                  [ "Parking", s.parking_notes.presence || "Not listed" ],
-                  [ "Road", s.road_notes.presence || "Not listed" ],
-                  [ "Directions", s.directions_notes.presence || "Not listed" ],
-                  [ "Verification", source_status_label(s.source_metadata) ]
-                ].each do |label, value| %>
-                  <div><span class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light"><%= label %>:</span> <%= value %></div>
-                <% end %>
-                <% if (destination = directions_destination(s)) %>
-                  <%= link_to "Directions", "https://www.google.com/maps/dir/?api=1&destination=#{destination}", target: "_blank", rel: "noopener", class: "font-semibold text-pine hover:text-ink" %>
-                <% end %>
-              </div>
-            </details>
-          </td>
-          <td class="whitespace-nowrap px-4 py-3 font-mono text-stone"><%= cutoff_display(s) %></td>
-          <td class="px-4 py-3 text-center"><%= yes_no s.has_medical %></td>
-          <td class="px-4 py-3 text-center"><%= yes_no s.crew_accessible %></td>
-          <td class="px-4 py-3 text-center"><%= yes_no s.drop_bag %></td>
-          <td class="px-4 py-3 text-center"><%= yes_no s.pacer_access %></td>
-          <td class="min-w-72 px-4 py-3 text-stone"><%= s.parking_notes.presence || s.crew_access_notes.presence || "—" %></td>
+            <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= s.mile %></td>
+            <td class="whitespace-nowrap px-4 py-3 font-mono text-[11px] uppercase tracking-[0.08em] text-stone"><%= s.direction.presence || "—" %></td>
+            <td class="min-w-64 px-4 py-3">
+              <details>
+                <summary class="cursor-pointer font-semibold text-ink"><%= s.name %></summary>
+                <div class="mt-3 space-y-2 text-sm leading-relaxed text-stone">
+                  <% aid_station_detail_rows(s).each do |label, value| %>
+                    <div><span class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light"><%= label %>:</span> <%= value %></div>
+                  <% end %>
+                </div>
+              </details>
+            </td>
+            <td class="whitespace-nowrap px-4 py-3 font-mono text-stone"><%= cutoff_display(s) %></td>
+            <td class="px-4 py-3 text-center"><%= yes_no s.has_medical %></td>
+            <td class="px-4 py-3 text-center"><%= yes_no s.crew_accessible %></td>
+            <td class="px-4 py-3 text-center"><%= yes_no s.drop_bag %></td>
+            <td class="px-4 py-3 text-center"><%= yes_no s.pacer_access %></td>
+            <td class="min-w-72 px-4 py-3 text-stone"><%= s.parking_notes.presence || s.crew_access_notes.presence || "—" %></td>
           </tr>
         <% end %>
       </tbody>
