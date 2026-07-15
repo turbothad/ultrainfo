@@ -118,6 +118,40 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_includes irregular_details.text.squish, "Source: https://example.test/aid-chart"
   end
 
+  test "follow section shows key local clock times, tracking availability, and official results" do
+    @race.update!(
+      start_date: Date.new(2026, 6, 19), start_time: "9:00 AM", cutoff_hours: 35,
+      time_zone: "America/Denver", results_url: "https://results.example.test/bighorn",
+      finish_venue: "Scott Park"
+    )
+    @race.aid_stations.create!(
+      name: "Jaws Trailhead", sequence: 3, mile: 48, direction: "Turnaround",
+      cutoff_clock: "4:00 AM"
+    )
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#follow [aria-label='Key race times']" do
+      assert_select "div", text: /Start\s+Fri · 9:00 AM MDT/
+      assert_select "div", text: /Turnaround cutoff\s+Sat · 4:00 AM MDT/
+      assert_select "div", text: /Final cutoff\s+Sat · 8:00 PM MDT/
+    end
+    assert_select "#follow", text: /official live tracking is not announced in the current source data/i
+    assert_select "#follow a[href='https://results.example.test/bighorn']", text: "Official results", count: 1
+    assert_select "#follow [aria-label='Finish']", text: /Scott Park/
+  end
+
+  test "follow section links official tracking when announced" do
+    @race.update!(tracking_url: "https://tracking.example.test/bighorn")
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#follow a[href='https://tracking.example.test/bighorn']", text: "Open official tracking", count: 1
+    assert_select "#follow [aria-label='Live tracking']", text: /has not been announced/i, count: 0
+  end
+
   test "legacy role and HTML map routes permanently redirect to canonical sections" do
     {
       runner_race_path(@race) => "aid-stations",

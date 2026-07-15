@@ -16,9 +16,11 @@ race:
   start_date: 2026-06-19
   end_date: 2026-06-20
   start_time: 9:00 AM
+  time_zone: America/Denver
   cutoff_hours: 35 # 9:00 AM start → 8:00 PM next-day cutoff
   official_url: https://bighorntrailrun.com/100-mile
   registration_url: https://bhtr.itsyourrace.com/event.aspx?id=384 # ITS YOUR RACE — official platform
+  results_url: https://bhtr.itsyourrace.com/Results.aspx?id=384
   registration_status: closed # 2026 filled from the wait list; race ran June 19–20
   lottery: false
   source_metadata:
@@ -37,6 +39,9 @@ race:
       - label: "ITS YOUR RACE registration page"
         url: "https://bhtr.itsyourrace.com/event.aspx?id=384"
         verified_on: "2026-07-02"
+      - label: "Official 2026 results"
+        url: "https://bhtr.itsyourrace.com/Results.aspx?id=384"
+        verified_on: "2026-07-15"
     notes: "Race facts, aid station miles, cutoffs, access flags, and course totals are sourced from official race materials represented in this file."
     overall_cutoff_label: "8:00 PM June 20, 2026"
     crew_drive_label: "Start to Dry Fork to Sally's to Jaws to Finish"

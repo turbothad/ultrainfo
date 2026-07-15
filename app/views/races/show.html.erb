@@ -82,27 +82,47 @@
   </section>
 
   <section id="follow" aria-labelledby="follow-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
-    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-      <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Follow</div>
-        <h2 id="follow-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Follow the race from home.</h2>
-        <p class="mt-4 text-base leading-relaxed text-stone">
-          Official tracking and finish context for family and friends watching remotely. Course timing and station cutoffs stay in the sections above.
-        </p>
-      </div>
+    <div class="max-w-3xl">
+      <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Follow</div>
+      <h2 id="follow-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Follow the race from home.</h2>
+      <p class="mt-4 text-base leading-relaxed text-stone">
+        Official timing and results for family and friends watching remotely. All clock times use the race's local timezone.
+      </p>
+    </div>
 
-      <div class="rounded-lg border border-ink/10 bg-card p-5">
+    <div aria-label="Key race times" class="mt-8 grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:grid-cols-3">
+      <% key_race_times(@race).each do |label, value| %>
+        <div class="bg-card p-5">
+          <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
+          <div class="mt-1 font-semibold text-ink"><%= value %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <div aria-label="Live tracking" class="rounded-lg border border-ink/10 bg-card p-5">
         <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Live tracking</div>
         <% if @race.tracking_url.present? %>
           <%= link_to "Open official tracking", @race.tracking_url, target: "_blank", rel: "noopener",
                 class: "mt-2 inline-block font-semibold text-pine no-underline hover:text-ink" %>
         <% else %>
-          <p class="mt-2 text-sm leading-relaxed text-stone">The official live tracking link is not published in the current source data.</p>
+          <p class="mt-2 text-sm leading-relaxed text-stone">Official live tracking is not announced in the current source data.</p>
         <% end %>
-        <div class="mt-5 border-t border-ink/10 pt-5">
-          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Finish</div>
-          <p class="mt-2 text-sm leading-relaxed text-stone"><%= @race.finish_venue.presence || "Finish-line details are not listed in the current source data." %></p>
-        </div>
+      </div>
+
+      <div aria-label="Official results" class="rounded-lg border border-ink/10 bg-card p-5">
+        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Results</div>
+        <% if @race.results_url.present? %>
+          <%= link_to "Official results", @race.results_url, target: "_blank", rel: "noopener",
+                class: "mt-2 inline-block font-semibold text-pine no-underline hover:text-ink" %>
+        <% else %>
+          <p class="mt-2 text-sm leading-relaxed text-stone">Official results are not listed in the current source data.</p>
+        <% end %>
+      </div>
+
+      <div aria-label="Finish" class="rounded-lg border border-ink/10 bg-card p-5">
+        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Finish</div>
+        <p class="mt-2 text-sm leading-relaxed text-stone"><%= @race.finish_venue.presence || "Finish-line details are not listed in the current source data." %></p>
       </div>
     </div>
   </section>

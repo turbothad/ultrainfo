@@ -67,6 +67,14 @@ module ApplicationHelper
     parts.presence&.join(" / ") || "Not listed"
   end
 
+  def key_race_times(race)
+    [
+      [ "Start", local_race_time(race.starts_at) ],
+      [ "Turnaround cutoff", local_race_time(race.turnaround_cutoff_at) ],
+      [ "Final cutoff", local_race_time(race.final_cutoff_at) ]
+    ]
+  end
+
   def directions_destination(station)
     return unless station.coordinates?
 
@@ -127,5 +135,11 @@ module ApplicationHelper
     return summary if race.source_metadata["crew_drive_label"].blank?
 
     "#{summary}. Route: #{race.source_metadata['crew_drive_label']}"
+  end
+
+  private
+
+  def local_race_time(time)
+    time&.strftime("%a · %-l:%M %p %Z") || "Not listed"
   end
 end

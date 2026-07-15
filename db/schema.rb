@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_07_120001) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_15_120000) do
   create_table "aid_stations", force: :cascade do |t|
     t.text "access_notes"
     t.text "aid_notes"
@@ -63,6 +63,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_07_120001) do
     t.string "official_url"
     t.integer "registration_status", default: 0, null: false
     t.string "registration_url"
+    t.string "results_url"
     t.json "simplified_track", default: []
     t.string "slug", null: false
     t.json "source_metadata", default: {}, null: false
@@ -73,6 +74,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_07_120001) do
     t.string "start_venue"
     t.string "state"
     t.json "terrain_artifacts", default: {}, null: false
+    t.string "time_zone"
     t.string "tracking_provider"
     t.string "tracking_url"
     t.datetime "updated_at", null: false
