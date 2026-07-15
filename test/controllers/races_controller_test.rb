@@ -31,6 +31,14 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[role='tablist']", 0
   end
 
+  test "terrain fallback survives replacement of the renderer host" do
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "[data-terrain-map-target='canvas'] [data-terrain-map-target='fallback']", count: 0
+    assert_select "[data-terrain-map-target='canvas'] + [data-terrain-map-target='fallback']", count: 1
+  end
+
   test "race facts stay lean and connect registration and trust to official sources" do
     @race.update!(
       registration_status: :closed,

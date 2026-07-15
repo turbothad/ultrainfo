@@ -57,6 +57,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     page.execute_script <<~JAVASCRIPT
       const element = document.querySelector("[data-controller~='terrain-map']")
       const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "terrain-map")
+      // Canvas markers have no DOM node to click, so project the marker center into viewport coordinates.
       const marker = controller.stationMeshes.find((candidate) => candidate.userData.station.id === #{station.id})
       const point = marker.position.clone().project(controller.camera)
       const rect = controller.renderer.domElement.getBoundingClientRect()

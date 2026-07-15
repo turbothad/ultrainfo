@@ -5,13 +5,12 @@
      class="overflow-hidden rounded-lg border border-ink/10 bg-pine-dark text-paper">
   <div>
     <div class="relative min-h-[540px]">
-      <div data-terrain-map-target="canvas" class="h-[540px] w-full bg-pine-dark">
-        <div data-terrain-map-target="fallback" hidden class="flex h-full items-center justify-center px-6 text-center">
-          <div class="max-w-sm">
-            <div class="font-semibold text-paper">Terrain preview unavailable</div>
-            <p class="mt-2 text-sm leading-relaxed text-paper/78">The elevation profile and station table remain available below.</p>
-            <a href="#aid-stations" class="mt-4 inline-block font-semibold text-[#f2d77b] hover:text-paper">Browse station passes</a>
-          </div>
+      <div data-terrain-map-target="canvas" class="h-[540px] w-full bg-pine-dark"></div>
+      <div data-terrain-map-target="fallback" hidden class="absolute inset-0 flex items-center justify-center bg-pine-dark px-6 text-center">
+        <div class="max-w-sm">
+          <div class="font-semibold text-paper">Terrain preview unavailable</div>
+          <p class="mt-2 text-sm leading-relaxed text-paper/78">The elevation profile and station table remain available below.</p>
+          <a href="#aid-stations" class="mt-4 inline-block font-semibold text-[#f2d77b] hover:text-paper">Browse station passes</a>
         </div>
       </div>
       <div class="absolute left-4 top-4 flex flex-wrap gap-2 rounded-md border border-paper/10 bg-pine-dark/80 p-2 font-mono text-[10px] uppercase tracking-[0.12em] backdrop-blur">
