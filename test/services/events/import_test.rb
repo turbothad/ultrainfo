@@ -13,6 +13,11 @@ module Events
       assert_equal "America/Denver", race.time_zone
       assert_equal "https://bhtr.itsyourrace.com/Results.aspx?id=384", race.results_url
       assert_equal "verified", race.source_metadata["verification_status"]
+      sources = race.source_metadata.fetch("sources").index_by { |source| source.fetch("label") }
+      assert_equal "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/Bighorn100_Course_Description-0cce83e.pdf",
+                   sources.fetch("Official Course Description PDF").fetch("url")
+      assert_equal "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/downloads/30d8acf5-26bd-40cf-b6a4-a5ffefb537e2/Bighorn%20100%20Aid%20Station%20Chart.pdf?ver=1782760210683",
+                   sources.fetch("Official Aid Station Chart PDF").fetch("url")
       assert_equal 600, race.simplified_track.size
       assert_equal 22, race.aid_stations.count
       assert race.aid_stations.all?(&:coordinates?), "every station gets coords from the GPX waypoints"
