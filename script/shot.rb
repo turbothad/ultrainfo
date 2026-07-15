@@ -1,14 +1,14 @@
-# Screenshot a URL with a real headless-Chrome event loop (so JS/fetch/Leaflet actually render).
-# Usage: bundle exec ruby script/shot.rb <url> <out.png> [wait_seconds]
+# Screenshot a URL with a real headless-Chrome event loop (so JS/fetch/terrain render).
+# Usage: bundle exec ruby script/shot.rb <url> <out.png> [wait_seconds] [full]
 require "selenium-webdriver"
+require_relative "../lib/chrome_for_testing"
 
-url  = ARGV[0] or abort "usage: ruby script/shot.rb <url> <out.png> [wait]"
+url  = ARGV[0] or abort "usage: ruby script/shot.rb <url> <out.png> [wait_seconds] [full]"
 out  = ARGV[1] || "tmp/screens/out.png"
 wait = (ARGV[2] || "4").to_f
+full_page = ARGV[3] == "full"
 
-chrome = Dir.glob(File.expand_path(
-  "~/.cache/puppeteer/chrome/*/chrome-mac-*/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
-)).sort.last or abort "no Chrome for Testing under ~/.cache/puppeteer"
+chrome = ChromeForTesting.binary or abort "no Chrome for Testing under ~/.cache/puppeteer"
 
 opts = Selenium::WebDriver::Chrome::Options.new
 opts.binary = chrome
@@ -21,6 +21,17 @@ driver = Selenium::WebDriver.for(:chrome, options: opts)
 begin
   driver.navigate.to(url)
   sleep wait # let fetch + Leaflet tiles/vectors paint
+  if full_page
+    height = driver.execute_script(<<~JAVASCRIPT)
+      return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      )
+    JAVASCRIPT
+    driver.manage.window.resize_to(1280, height)
+  end
   require "fileutils"
   FileUtils.mkdir_p(File.dirname(out))
   driver.save_screenshot(out)

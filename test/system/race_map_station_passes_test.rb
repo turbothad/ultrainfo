@@ -51,6 +51,37 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     end
   end
 
+  test "terrain canvas contains varied rendered pixels" do
+    visit race_path(@race)
+    assert_selector "[data-terrain-map-target='status']", text: /DEM/
+
+    pixel_stats = page.evaluate_script <<~JAVASCRIPT
+      (() => {
+        const element = document.querySelector("[data-controller~='terrain-map']")
+        const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "terrain-map")
+        controller.renderer.render(controller.scene, controller.camera)
+        const gl = controller.renderer.getContext()
+        const width = gl.drawingBufferWidth
+        const height = gl.drawingBufferHeight
+        const pixels = new Uint8Array(width * height * 4)
+        gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, pixels)
+
+        const colors = new Set()
+        // Quantized sampling ignores antialiasing noise while still distinguishing terrain from a flat clear color.
+        const stride = Math.max(1, Math.floor(width * height / 2_000))
+        for (let pixel = 0; pixel < width * height; pixel += stride) {
+          const offset = pixel * 4
+          colors.add(`${pixels[offset] >> 4},${pixels[offset + 1] >> 4},${pixels[offset + 2] >> 4}`)
+        }
+        return { width, height, sampledColors: colors.size }
+      })()
+    JAVASCRIPT
+
+    assert_operator pixel_stats.fetch("width"), :>, 0
+    assert_operator pixel_stats.fetch("height"), :>, 0
+    assert_operator pixel_stats.fetch("sampledColors"), :>, 8
+  end
+
   test "crew route action enables the crew layer on the canonical map" do
     @race.update!(
       crew_route: {
@@ -65,6 +96,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
 
     uncheck "Crew drive"
     assert_no_checked_field "Crew drive"
+    assert_equal false, terrain_layer_visible("drive")
 
     within "#crew" do
       click_link "Show drive route on map"
@@ -72,6 +104,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
 
     assert_equal "#course", page.evaluate_script("window.location.hash")
     assert_checked_field "Crew drive"
+    assert_equal true, terrain_layer_visible("drive")
   end
 
   test "crew passes action filters the canonical station table" do
@@ -90,7 +123,39 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     end
   end
 
+  test "jump navigation stacks against the site header and leaves section headings visible" do
+    visit race_path(@race)
+    page.execute_script("document.documentElement.style.scrollBehavior = 'auto'")
+
+    within "nav[aria-label='On this race page']" do
+      click_link "Aid stations"
+    end
+    page.execute_script("document.querySelector('#aid-stations').scrollIntoView()")
+
+    geometry = page.evaluate_script <<~JAVASCRIPT
+      (() => {
+        const siteHeader = document.querySelector("body > header").getBoundingClientRect()
+        const jumpNav = document.querySelector("nav[aria-label='On this race page']").getBoundingClientRect()
+        const section = document.querySelector("#aid-stations").getBoundingClientRect()
+        return { siteHeaderBottom: siteHeader.bottom, jumpNavTop: jumpNav.top,
+                 jumpNavBottom: jumpNav.bottom, sectionTop: section.top }
+      })()
+    JAVASCRIPT
+
+    assert_in_delta geometry.fetch("siteHeaderBottom"), geometry.fetch("jumpNavTop"), 1
+    assert_operator geometry.fetch("sectionTop"), :>=, geometry.fetch("jumpNavBottom")
+  end
+
   private
+
+  def terrain_layer_visible(layer)
+    page.evaluate_script <<~JAVASCRIPT
+      (() => {
+        const element = document.querySelector("[data-controller~='terrain-map']")
+        return window.Stimulus.getControllerForElementAndIdentifier(element, "terrain-map").layers["#{layer}"].visible
+      })()
+    JAVASCRIPT
+  end
 
   def click_station_marker(station)
     page.execute_script <<~JAVASCRIPT

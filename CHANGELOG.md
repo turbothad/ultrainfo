@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Polish race-page section rhythm, sticky jump navigation, and station-table density; add full-page screenshot proof support.
 - Add sourced crew and pacer guidance with links that activate the crew map layer and crew-access station filter.
 - Link terrain-map marker quick facts to the exact expandable station-pass row, with a useful terrain-failure fallback.
 - Replace the race source drawer with a complete end-of-page citation list.
