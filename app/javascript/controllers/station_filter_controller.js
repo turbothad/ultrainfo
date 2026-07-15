@@ -13,6 +13,11 @@ export default class extends Controller {
     this.update()
   }
 
+  showCrew() {
+    this.filter = "crew"
+    this.update()
+  }
+
   update() {
     let visibleCount = 0
 

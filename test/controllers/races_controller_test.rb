@@ -28,6 +28,7 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-controller='terrain-map']", 1
     assert_select "#aid-stations table", 1
     assert_select "#aid-stations tbody tr", @race.aid_stations.count
+    assert_select "#crew", text: /Pacer rules are not listed in the current source data\./
     assert_select "[role='tablist']", 0
   end
 
@@ -116,6 +117,32 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
       assert_select "tbody tr[data-filter-tags~='crew'][data-filter-tags~='drop'][data-filter-tags~='pacer']", count: 1
       assert_select "tbody tr[hidden]", count: 0
     end
+  end
+
+  test "crew section connects sourced pacer rules and route facts to the canonical map and station table" do
+    @race.update!(
+      crew_route: { "geometry" => [ [ 44.8, -107.3 ], [ 44.7, -107.4 ] ], "distance_mi" => 126.4, "duration_min" => 213 },
+      source_metadata: {
+        "crew_drive_label" => "Start to Dry Fork to Jaws to Finish",
+        "pacer_rule_summary" => "Pacers must check in and wear the official pacer bib."
+      }
+    )
+
+    get race_path(@race)
+
+    assert_response :success
+    crew_text = css_select("#crew").first.text.squish
+    assert_includes crew_text, "Pacers must check in and wear the official pacer bib."
+    assert_includes crew_text, "Start to Dry Fork to Jaws to Finish"
+    assert_includes crew_text, "126.4 mi"
+    assert_includes crew_text, "3.6 h"
+    assert_select "#crew" do
+      assert_select "a[href='#course']", text: "Show drive route on map", count: 1
+      assert_select "a[href='#aid-stations']", text: "Crew-accessible passes", count: 1
+      assert_select "table, canvas, [data-terrain-map-target='canvas']", count: 0
+    end
+    assert_select "[data-terrain-map-target='canvas']", count: 1
+    assert_select "#aid-stations table", count: 1
   end
 
   test "station table keeps medical, cutoffs, and complete sourced details in one canonical row" do

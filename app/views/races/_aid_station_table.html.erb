@@ -1,4 +1,4 @@
-<div data-controller="station-filter">
+<div data-controller="station-filter" data-action="race:show-crew-passes@window->station-filter#showCrew">
   <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
     <div role="group" aria-label="Filter station passes" class="flex flex-wrap gap-2">
       <% [ [ "All", "all" ], [ "Crew access", "crew" ], [ "Drop bags", "drop" ], [ "Pacer points", "pacer" ] ].each do |label, filter| %>

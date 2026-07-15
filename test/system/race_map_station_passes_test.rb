@@ -51,6 +51,45 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     end
   end
 
+  test "crew route action enables the crew layer on the canonical map" do
+    @race.update!(
+      crew_route: {
+        "geometry" => [ [ 44.8, -107.3 ], [ 44.75, -107.35 ] ],
+        "distance_mi" => 12.3,
+        "duration_min" => 25
+      }
+    )
+
+    visit race_path(@race)
+    assert_selector "[data-terrain-map-target='status']", text: /DEM/
+
+    uncheck "Crew drive"
+    assert_no_checked_field "Crew drive"
+
+    within "#crew" do
+      click_link "Show drive route on map"
+    end
+
+    assert_equal "#course", page.evaluate_script("window.location.hash")
+    assert_checked_field "Crew drive"
+  end
+
+  test "crew passes action filters the canonical station table" do
+    visit race_path(@race)
+
+    within "#crew" do
+      click_link "Crew-accessible passes"
+    end
+
+    assert_equal "#aid-stations", page.evaluate_script("window.location.hash")
+    within "#aid-stations" do
+      assert_selector "button[aria-pressed='true']", text: /Crew access/i
+      assert_text /Showing 1 station pass/i
+      assert_selector "#station_pass_aid_station_#{@outbound.id}:not([hidden])"
+      assert_selector "#station_pass_aid_station_#{@inbound.id}[hidden]", visible: :all
+    end
+  end
+
   private
 
   def click_station_marker(station)

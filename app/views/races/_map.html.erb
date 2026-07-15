@@ -1,5 +1,6 @@
 <% drive = local_assigns.fetch(:drive, false) && race.crew_route.present? %>
 <div data-controller="terrain-map"
+     data-action="race:show-drive@window->terrain-map#showDrive"
      data-terrain-map-url-value="<%= map_race_path(race, format: :json) %>"
      data-terrain-map-drive-value="<%= drive %>"
      class="overflow-hidden rounded-lg border border-ink/10 bg-pine-dark text-paper">
@@ -24,7 +25,7 @@
         </label>
         <% if drive %>
           <label class="flex cursor-pointer items-center gap-2 px-2 py-1">
-            <input type="checkbox" checked data-action="terrain-map#toggleDrive" class="accent-pine">
+            <input type="checkbox" checked data-terrain-map-target="driveToggle" data-action="terrain-map#toggleDrive" class="accent-pine">
             Crew drive
           </label>
         <% end %>

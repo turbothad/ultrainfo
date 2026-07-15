@@ -7,7 +7,7 @@ const MARKER_RADIUS = 0.34
 
 export default class extends Controller {
   static values = { url: String, drive: Boolean }
-  static targets = ["canvas", "status", "detail", "fallback"]
+  static targets = ["canvas", "status", "detail", "fallback", "driveToggle"]
 
   connect() {
     this.layers = {}
@@ -56,6 +56,12 @@ export default class extends Controller {
 
   toggleDrive(event) {
     if (this.layers.drive) this.layers.drive.visible = event.target.checked
+  }
+
+  showDrive() {
+    this.driveValue = true
+    if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
+    if (this.layers.drive) this.layers.drive.visible = true
   }
 
   toggleStations(event) {

@@ -54,7 +54,7 @@
     </div>
   </section>
 
-  <section id="crew" aria-labelledby="crew-heading" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
+  <section id="crew" aria-labelledby="crew-heading" data-controller="race-actions" class="scroll-mt-32 border-t border-ink/10 py-14 sm:py-16">
     <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
         <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Crew &amp; pacers</div>
@@ -62,7 +62,9 @@
         <p class="mt-4 text-base leading-relaxed text-stone">
           The master aid-station table shows both crew-allowed and no-crew passes, with parking, road, drop-bag, and pacer details. The Course map keeps the crew driving route available as a separate layer.
         </p>
-        <%= link_to "Review all station access", "#aid-stations", class: "mt-5 inline-block font-semibold text-pine underline-offset-4 hover:text-ink" %>
+        <%= link_to "Crew-accessible passes", "#aid-stations",
+              data: { action: "race-actions#showCrewPasses" },
+              class: "mt-5 inline-block font-semibold text-pine underline-offset-4 hover:text-ink" %>
       </div>
 
       <div class="space-y-4">
@@ -78,6 +80,9 @@
             <p class="mt-2 text-sm leading-relaxed text-stone">
               <%= crew_drive %>.
             </p>
+            <%= link_to "Show drive route on map", "#course",
+                  data: { action: "race-actions#showDrive" },
+                  class: "mt-3 inline-block font-semibold text-pine underline-offset-4 hover:text-ink" %>
           </div>
         <% end %>
       </div>
