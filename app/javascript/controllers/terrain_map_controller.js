@@ -7,7 +7,7 @@ const MARKER_RADIUS = 0.34
 
 export default class extends Controller {
   static values = { url: String, drive: Boolean }
-  static targets = ["canvas", "status", "detail"]
+  static targets = ["canvas", "status", "detail", "fallback"]
 
   connect() {
     this.layers = {}
@@ -35,8 +35,9 @@ export default class extends Controller {
       this.#buildStations(data.stations || [])
       this.#setStatus(`${terrain.grid.size}x${terrain.grid.size} DEM / ${terrain.grid.min_ft}-${terrain.grid.max_ft} ft / ${terrain.source.label}`)
       this.#animate()
-    } catch (error) {
-      this.#setStatus(`Terrain unavailable: ${error.message}`)
+    } catch {
+      this.fallbackTarget.removeAttribute("hidden")
+      this.#setStatus("Terrain unavailable")
     }
   }
 
@@ -59,6 +60,17 @@ export default class extends Controller {
 
   toggleStations(event) {
     if (this.layers.stations) this.layers.stations.visible = event.target.checked
+  }
+
+  openDetails(event) {
+    const row = document.getElementById(event.currentTarget.hash.slice(1))
+    if (!row) return
+
+    event.preventDefault()
+    row.hidden = false
+    row.querySelector("details").open = true
+    row.scrollIntoView({ behavior: "smooth", block: "start" })
+    history.replaceState(null, "", `#${row.id}`)
   }
 
   #buildScene() {
@@ -260,33 +272,21 @@ export default class extends Controller {
   }
 
   #showStation(station) {
-    const directions = station.lat != null && station.lng != null
-      ? `<a class="font-semibold text-[#f2d77b] hover:text-paper" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}">Directions</a>`
-      : ""
-    const source = station.source_metadata?.verification_status || "pending"
-
+    this.detailTarget.removeAttribute("hidden")
     this.detailTarget.innerHTML = `
       <div class="font-semibold text-paper">${this.#escape(station.name)}</div>
-      <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Mile ${this.#escape(station.mile)} / ${this.#escape(station.direction || "Pass")}</div>
-      <dl class="mt-4 grid grid-cols-2 gap-3 text-sm">
-        ${this.#detail("Cutoff", this.#cutoffLabel(station))}
-        ${this.#detail("Crew", station.crew ? "Allowed" : "No")}
-        ${this.#detail("Pacer", station.pacer ? "Allowed" : "No")}
-        ${this.#detail("Drop bag", station.drop_bag ? "Yes" : "No")}
-        ${this.#detail("Medical", station.medical ? "Yes" : "No")}
-        ${this.#detail("Elevation", station.elevation_ft ? `${station.elevation_ft} ft` : "Not listed")}
+      <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Mile ${this.#escape(station.mile)}</div>
+      <dl class="mt-3 grid grid-cols-2 gap-3">
+        ${this.#quickFact("Cutoff", this.#cutoffLabel(station))}
+        ${this.#quickFact("Crew", station.crew ? "Yes" : "No")}
       </dl>
-      ${station.aid ? `<p class="mt-4 text-paper/78">${this.#escape(station.aid)}</p>` : ""}
-      ${station.parking ? `<p class="mt-3 text-paper/62">${this.#escape(station.parking)}</p>` : ""}
-      ${station.road_notes ? `<p class="mt-3 text-paper/62">${this.#escape(station.road_notes)}</p>` : ""}
-      <div class="mt-4 flex items-center justify-between gap-3 border-t border-paper/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-paper/50">
-        <span>Source ${this.#escape(source)}</span>
-        ${directions}
-      </div>
+      <a href="#${this.#escape(station.details_id)}"
+         data-action="terrain-map#openDetails"
+         class="mt-4 inline-block font-semibold text-[#f2d77b] hover:text-paper">Full details</a>
     `
   }
 
-  #detail(label, value) {
+  #quickFact(label, value) {
     return `<div><dt class="font-mono text-[10px] uppercase tracking-[0.12em] text-paper/45">${this.#escape(label)}</dt><dd class="mt-1 font-semibold text-paper">${this.#escape(value)}</dd></div>`
   }
 

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Link terrain-map marker quick facts to the exact expandable station-pass row, with a useful terrain-failure fallback.
 - Replace the race source drawer with a complete end-of-page citation list.
 - Add race-local follow times, honest tracking availability, and official results links.
 - Add client-side station-pass filters, medical visibility, and complete expandable station details.

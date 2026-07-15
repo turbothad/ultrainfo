@@ -217,6 +217,29 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "/terrain/missing-test.json?v=2026-07-08", data["terrain_artifacts"]["path"]
   end
 
+  test "map stations identify the exact canonical station pass row" do
+    return_pass = @race.aid_stations.create!(
+      name: "Dry Fork", sequence: 3, mile: 82.5, direction: "Inbound",
+      lat: @crew.lat, lng: @crew.lng
+    )
+
+    get map_race_path(@race, format: :json)
+
+    assert_response :success
+    stations = JSON.parse(@response.body).fetch("stations")
+    outbound = stations.find { |station| station["id"] == @crew.id }
+    inbound = stations.find { |station| station["id"] == return_pass.id }
+    assert_equal "station_pass_aid_station_#{@crew.id}", outbound["details_id"]
+    assert_equal "station_pass_aid_station_#{return_pass.id}", inbound["details_id"]
+    assert_not_equal outbound["details_id"], inbound["details_id"]
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#station_pass_aid_station_#{@crew.id} details", count: 1
+    assert_select "#station_pass_aid_station_#{return_pass.id} details", count: 1
+  end
+
   test "unknown slug returns 404" do
     get race_path("nope")
     assert_response :not_found

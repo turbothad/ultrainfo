@@ -35,6 +35,7 @@ class RacesController < ApplicationController
       start: { lat: @race.start_lat, lng: @race.start_lng, name: @race.start_venue },
       stations: @race.aid_stations.map do |s|
         {
+          id: s.id, details_id: ActionView::RecordIdentifier.dom_id(s, :station_pass),
           name: s.name, mile: s.mile, sequence: s.sequence, direction: s.direction,
           elevation_ft: s.elevation_ft,
           crew: s.crew_accessible, pacer: s.pacer_access, drop_bag: s.drop_bag,

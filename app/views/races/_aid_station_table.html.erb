@@ -34,7 +34,8 @@
       </thead>
       <tbody>
         <% stations.each do |s| %>
-          <tr data-station-filter-target="row"
+          <tr id="<%= dom_id(s, :station_pass) %>"
+              data-station-filter-target="row"
               data-filter-tags="<%= [ ("crew" if s.crew_accessible?), ("drop" if s.drop_bag?), ("pacer" if s.pacer_access?) ].compact.join(" ") %>"
               class="border-b border-ink/5 last:border-0">
             <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= s.mile %></td>
