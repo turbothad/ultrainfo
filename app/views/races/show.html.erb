@@ -14,6 +14,9 @@
 
     <p class="mt-4 font-mono text-[11px] text-stone-light">
       All facts from official race materials ·
+      <% if @race.source_metadata["verification_status"].in?(%w[warning unverified]) %>
+        <span class="font-bold text-rust"><%= source_status_label(@race.source_metadata) %></span> ·
+      <% end %>
       <%= (verified_on = latest_verified_on_label(@race.source_metadata)) ? "verified #{verified_on}" : "verification pending" %>
       · <%= link_to "Sources", "#sources", class: "font-semibold text-pine underline-offset-4 hover:text-ink" %>
     </p>
@@ -136,7 +139,36 @@
           Verification dates, source links, and any warnings behind the planning facts on this page.
         </p>
       </div>
-      <%= render "races/source_drawer", race: @race %>
+      <div>
+        <ol aria-label="Official source documents" class="space-y-3">
+          <% Array(@race.source_metadata["sources"]).each do |source| %>
+            <li class="rounded-lg border border-ink/10 bg-card p-5">
+              <% if source["url"].present? %>
+                <%= link_to source["label"], source["url"], target: "_blank", rel: "noopener",
+                      class: "font-semibold text-pine underline-offset-4 hover:text-ink" %>
+              <% else %>
+                <div class="font-semibold text-ink"><%= source["label"] %></div>
+              <% end %>
+
+              <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.08em] text-stone-light">
+                <% if (verified_on = latest_verified_on_label(source)) %>
+                  <time datetime="<%= source["verified_on"] %>">Verified <%= verified_on %></time>
+                <% else %>
+                  Verification date not listed
+                <% end %>
+              </div>
+
+              <% if source["notes"].present? %>
+                <p class="mt-3 text-sm leading-relaxed text-stone"><%= source["notes"] %></p>
+              <% end %>
+            </li>
+          <% end %>
+        </ol>
+
+        <% if @race.source_metadata["notes"].present? %>
+          <p class="mt-4 text-sm leading-relaxed text-stone"><%= @race.source_metadata["notes"] %></p>
+        <% end %>
+      </div>
     </div>
   </section>
 </div>

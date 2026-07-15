@@ -58,6 +58,41 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_not_includes @response.body, "Launch scope"
   end
 
+  test "sources section lists every race source as a citation without a drawer" do
+    @race.update!(
+      source_metadata: {
+        "verification_status" => "warning",
+        "sources" => [
+          {
+            "label" => "Official race page", "url" => "https://example.test/race",
+            "verified_on" => "2026-07-02", "notes" => "Race facts and schedule."
+          },
+          {
+            "label" => "Official aid chart", "url" => "https://example.test/aid-chart",
+            "verified_on" => "2026-07-03", "notes" => "Station passes and cutoffs."
+          }
+        ],
+        "notes" => "Official materials represented in the race record."
+      }
+    )
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#facts", text: /Source warning/
+    assert_select "#sources" do
+      assert_select "ol[aria-label='Official source documents'] > li", count: 2
+      assert_select "a[href='https://example.test/race']", text: "Official race page", count: 1
+      assert_select "a[href='https://example.test/aid-chart']", text: "Official aid chart", count: 1
+      assert_select "time[datetime='2026-07-02']", text: "Verified July 2, 2026", count: 1
+      assert_select "time[datetime='2026-07-03']", text: "Verified July 3, 2026", count: 1
+      assert_select "li", text: /Race facts and schedule\./, count: 1
+      assert_select "li", text: /Station passes and cutoffs\./, count: 1
+      assert_select "p", text: "Official materials represented in the race record.", count: 1
+      assert_select "details, summary", count: 0
+    end
+  end
+
   test "station table renders progressive filter controls with every pass visible by default" do
     @crew.update!(drop_bag: true, pacer_access: true)
 
