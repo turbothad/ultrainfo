@@ -1,0 +1,3 @@
+# Treat event bundles as canonical production state
+
+ultrainfo treats an explicit active event catalog and its version-controlled event bundles, including owned generated artifacts, as canonical. Each bundle declares required and optional material; publication validates the complete catalog, required files, and digests before database writes, performs no network work, and reconciles the catalog in one transaction. Production SQLite is a rebuildable projection published atomically, so recovery is proved by rebuilding onto an empty Hetzner volume and verifying the application; continuous Litestream backups are deferred until production owns non-rebuildable runtime data. This favors deterministic recovery over operating backups for replaceable data.
