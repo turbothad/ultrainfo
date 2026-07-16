@@ -62,13 +62,12 @@ pilot, but the implementation must remain event-generic.
 
 - User product decisions from this planning thread.
 - Existing project README.
-- Existing onboarding loop: `docs/loops/event-onboarding-loop.md`.
 - Existing wireframe: `docs/spec/ultra-100-wireframe.html`.
 - Existing race data: `db/events/bighorn-100.yml`.
 - Existing GPX: `db/events/bighorn-100.gpx`.
 - Existing crew route cache: `db/events/bighorn-100.crew_route.json`.
 - Official Bighorn 100 page and linked official PDFs, already represented in
-  the event YAML and loop notes.
+  the event YAML and source metadata.
 - ITS YOUR RACE registration platform URL from existing event data.
 - `kaolti/monolith-terrain` GitHub repo, checked 2026-07-07: MIT license,
   Three.js/Vite, real-world DEM terrain tiles, no API keys required.
