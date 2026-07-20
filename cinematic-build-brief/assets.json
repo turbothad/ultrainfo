@@ -1,0 +1,56 @@
+{
+  "project": "ultrainfo — UTMB landing page",
+  "note": "This project replaces the kit's layered-image stack with a Three.js 3D scene. Roles are therefore data/render assets, not depth-sorted PNGs. See PROJECT_BRIEF.md 'Core mechanic adaptation'.",
+  "assets": [
+    {
+      "id": "course-gpx",
+      "role": "course geometry source (offline preprocessing input only — never shipped to the browser)",
+      "path": "cinematic-build-brief/assets/utmb-course.gpx",
+      "format": "GPX 1.1",
+      "points": 15305,
+      "bounds": {
+        "lat": [45.6956, 46.0585],
+        "lon": [6.7067, 7.1284],
+        "ele_m": [801, 2581]
+      },
+      "provenance": "Runner trace of UTMB 2015, VisuGPX https://www.visugpx.com/7rMGyMCjkT (172.4 km). Swap for the official current-edition GPX before launch.",
+      "status": "present"
+    },
+    {
+      "id": "course-line-artifact",
+      "role": "simplified course polyline for rendering (~2000-3000 pts, projected to scene coordinates)",
+      "path": "TBD — generate via preprocessing step, commit per terrain-artifact conventions",
+      "status": "to-generate"
+    },
+    {
+      "id": "camera-path-artifact",
+      "role": "smoothed camera spline (~300 control points) with per-point look-target and distance-along-course",
+      "path": "TBD — generate via preprocessing step",
+      "status": "to-generate"
+    },
+    {
+      "id": "terrain-dem",
+      "role": "Mont Blanc massif elevation grid covering course bounds plus margin",
+      "path": "TBD — generate with the existing Terrain Tiles DEM pipeline; desktop + smaller mobile variant",
+      "status": "to-generate"
+    },
+    {
+      "id": "hero-still",
+      "role": "prerendered static hero of the massif with full course line — instant first paint, reduced-motion hero, and no-WebGL fallback",
+      "path": "TBD — render from the finished scene; AVIF/WebP with responsive candidates",
+      "status": "to-generate"
+    },
+    {
+      "id": "elevation-profile",
+      "role": "static SVG elevation profile of the course for the reduced-motion / no-WebGL flow",
+      "path": "TBD — generate from the GPX in the preprocessing step",
+      "status": "to-generate"
+    },
+    {
+      "id": "checkpoint-data",
+      "role": "checkpoint config: name, km, altitude, cutoff, crew access — drives markers and the final card rail",
+      "path": "TBD — from the ultrainfo event bundle when it exists; hardcoded data-driven config until then",
+      "status": "placeholder-allowed"
+    }
+  ]
+}
