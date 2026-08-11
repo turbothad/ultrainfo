@@ -21,19 +21,27 @@ bin/release prepare v0.1.0
 This creates and pushes an annotated tag and opens a draft GitHub Release. It
 does not deploy production.
 
-Resolve `KAMAL_REGISTRY_PASSWORD` and `RAILS_MASTER_KEY` from their named
-1Password fields into the process environment, then deploy:
+Copy the local secrets template once, then select the 1Password field that
+contains a GHCR token with package write access:
 
 ```bash
-op run --env-file=.env.production -- bin/release deploy v0.1.0
+cp .kamal/secrets.example .kamal/secrets
+export OP_VAULT="your-vault"
+export OP_GHCR_ITEM="your-ghcr-item"
+export OP_GHCR_FIELD="token"
 ```
 
-For the pre-cutover deployment only, route Kamal Proxy through the staging DNS
-record:
+As in Tradia, an explicit `KAMAL_REGISTRY_PASSWORD` or `GITHUB_TOKEN` takes
+precedence over 1Password. The ignored `.kamal/secrets` file also reads the
+existing ignored `config/master.key`, so no second Rails secret-export step is
+needed. The server already has Docker and the non-root deployment user, so
+deploy directly through Kamal rather than running its server bootstrap again.
+
+For the first deployment, route Kamal Proxy through the staging DNS record:
 
 ```bash
 ULTRAINFO_HOST=origin.ultrainfo.org \
-  op run --env-file=.env.production -- bin/release deploy v0.1.0
+  bin/release deploy v0.1.0
 ```
 
 After the public smoke check passes, publish the draft GitHub Release. The

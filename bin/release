@@ -123,11 +123,6 @@ prepare_release() {
 deploy_release() {
   assert_release_tag
 
-  [[ -n "${KAMAL_REGISTRY_PASSWORD:-}" ]] \
-    || fail "KAMAL_REGISTRY_PASSWORD is not set"
-  [[ -n "${RAILS_MASTER_KEY:-}" ]] \
-    || fail "RAILS_MASTER_KEY is not set"
-
   export KAMAL_REGISTRY_USERNAME="${KAMAL_REGISTRY_USERNAME:-turbothad}"
   export ULTRAINFO_VERSION="${release_version}"
   export ULTRAINFO_REVISION="${release_commit}"
