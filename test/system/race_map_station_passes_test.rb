@@ -54,6 +54,8 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       assert_text "The elevation profile and station table remain available below."
       assert_link "Browse station passes", href: "#aid-stations"
     end
+    assert_no_selector "[data-course-grade-legend]", visible: true
+    assert_no_match(/grade/i, find("[data-terrain-map-target='canvas']")["aria-label"])
   end
 
   test "terrain canvas contains varied rendered pixels" do
@@ -85,6 +87,36 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     assert_operator pixel_stats.fetch("width"), :>, 0
     assert_operator pixel_stats.fetch("height"), :>, 0
     assert_operator pixel_stats.fetch("sampledColors"), :>, 8
+  end
+
+  test "course grade bands use color and line thickness cues" do
+    visit race_path(@race)
+    assert_selector "[data-terrain-map-target='status']", text: /DEM/
+
+    within "[data-course-grade-legend]" do
+      assert_text "¼ MI AVG"
+      assert_text /FLAT <5% · THIN LINE/i
+      assert_text /MODERATE 5–10% · MEDIUM LINE/i
+      assert_text /STEEP >10% · THICK LINE/i
+    end
+    assert_match(/color and line thickness indicate grade/i, find("[data-terrain-map-target='canvas']")["aria-label"])
+
+    styles = page.evaluate_script <<~JAVASCRIPT
+      (() => {
+        const element = document.querySelector("[data-controller~='terrain-map']")
+        const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "terrain-map")
+        return controller.layers.course.children.map((run) => ({
+          steepness: run.userData.steepness,
+          color: `#${run.material.color.getHexString()}`,
+          radius: run.geometry.parameters.radius
+        }))
+      })()
+    JAVASCRIPT
+
+    styles_by_grade = styles.index_by { |style| style.fetch("steepness") }
+    assert_equal({ "color" => "#6fcf86", "radius" => 0.14 }, styles_by_grade.fetch("flat").slice("color", "radius"))
+    assert_equal({ "color" => "#f2c14e", "radius" => 0.2 }, styles_by_grade.fetch("moderate").slice("color", "radius"))
+    assert_equal({ "color" => "#ef6351", "radius" => 0.26 }, styles_by_grade.fetch("steep").slice("color", "radius"))
   end
 
   test "crew route action enables the crew layer on the canonical map" do
