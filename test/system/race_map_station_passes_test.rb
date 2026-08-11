@@ -103,6 +103,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     assert_no_checked_field "Crew drive"
     assert_equal false, terrain_layer_visible("drive")
 
+    page.execute_script("document.documentElement.style.scrollBehavior = 'auto'")
     within "#crew" do
       click_link "Show crew drive on map"
     end
@@ -115,6 +116,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
   test "crew passes action filters the canonical station table" do
     visit race_path(@race)
 
+    page.execute_script("document.documentElement.style.scrollBehavior = 'auto'")
     within "#crew" do
       click_link "Crew-accessible passes"
     end
