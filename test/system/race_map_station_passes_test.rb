@@ -29,8 +29,13 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       assert_text /Mile 82.5/i
       assert_text "10:00 PM"
       assert_text /Crew\s+No/i
-      assert_no_text /Pacer|Drop bag|Medical|Elevation|Source|Directions/i
-      click_link "Full details"
+      assert_text /Pacer\s+No/i
+      assert_text /Drop bag\s+No/i
+      assert_text /Medical\s+No/i
+      assert_text /Elevation\s+Not listed/i
+      assert_text /Source unverified/i
+      assert_link "Directions"
+      click_link "Full station pass"
     end
 
     assert_equal "#station_pass_aid_station_#{@inbound.id}", page.evaluate_script("window.location.hash")
@@ -99,7 +104,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     assert_equal false, terrain_layer_visible("drive")
 
     within "#crew" do
-      click_link "Show drive route on map"
+      click_link "Show crew drive on map"
     end
 
     assert_equal "#course", page.evaluate_script("window.location.hash")
@@ -128,7 +133,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     page.execute_script("document.documentElement.style.scrollBehavior = 'auto'")
 
     within "nav[aria-label='On this race page']" do
-      click_link "Aid stations"
+      click_link "Aid & cutoffs"
     end
     page.execute_script("document.querySelector('#aid-stations').scrollIntoView()")
 

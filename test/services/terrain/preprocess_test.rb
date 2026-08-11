@@ -25,6 +25,8 @@ module Terrain
       assert_equal "bighorn-100", artifact.dig("race", "slug")
       assert_equal 4, artifact.dig("grid", "size")
       assert_equal 16, artifact.dig("grid", "elevations_ft").size
+      assert_equal 1, artifact.dig("course_grade_profile", "segments").size
+      assert_includes %w[flat moderate steep], artifact.dig("course_grade_profile", "segments", 0, "steepness")
       assert_equal "linear-lat-lng-bounds", artifact.dig("projection", "type")
       assert_match "Terrain Tiles", artifact.dig("source", "label")
     ensure

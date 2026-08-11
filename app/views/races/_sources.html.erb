@@ -1,0 +1,31 @@
+<div class="overflow-hidden border-y border-ink/10 bg-card">
+  <div class="flex flex-wrap items-end justify-between gap-3 border-b border-ink/10 p-4">
+    <div>
+      <p class="data-label text-pine"><%= source_status_label(race.source_metadata) %></p>
+      <h3 class="mt-1 text-xl font-bold uppercase tracking-tight text-ink">Race record</h3>
+    </div>
+    <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light"><%= pluralize(Array(race.source_metadata["sources"]).count, "citation") %></p>
+  </div>
+
+  <ol class="divide-y divide-ink/10">
+    <% Array(race.source_metadata["sources"]).each_with_index do |source, index| %>
+      <li class="grid gap-2 p-4 sm:grid-cols-[2rem_1fr_auto] sm:items-start">
+        <span class="font-mono text-[10px] text-stone-light"><%= format("%02d", index + 1) %></span>
+        <div>
+          <% if source["url"].present? %>
+            <%= link_to source["label"], source["url"], target: "_blank", rel: "noopener", class: "font-bold text-ink hover:text-pine" %>
+          <% else %>
+            <span class="font-bold text-ink"><%= source["label"] %></span>
+          <% end %>
+        </div>
+        <span class="font-mono text-[10px] uppercase tracking-[0.08em] text-stone-light">
+          <%= [ source["verified_on"] && "verified #{source["verified_on"]}", source["fetched_on"] && "fetched #{source["fetched_on"]}" ].compact.join(" / ").presence || "date not listed" %>
+        </span>
+      </li>
+    <% end %>
+  </ol>
+
+  <% if race.source_metadata["notes"].present? %>
+    <p class="border-t border-ink/10 p-4 text-sm leading-relaxed text-stone"><%= race.source_metadata["notes"] %></p>
+  <% end %>
+</div>

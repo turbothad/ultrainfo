@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+readonly action="${1:-}"
+readonly release_version="${2:-}"
+readonly repository="turbothad/ultrainfo"
+readonly repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+fail() {
+  echo "release: $*" >&2
+  exit 1
+}
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  bin/release prepare vMAJOR.MINOR.PATCH
+  bin/release check   vMAJOR.MINOR.PATCH
+  bin/release deploy  vMAJOR.MINOR.PATCH
+
+prepare creates an annotated Git tag, pushes it, and opens a draft GitHub
+release. deploy builds and deploys the exact tagged commit by full Git SHA.
+USAGE
+}
+
+valid_semver() {
+  local candidate="$1"
+  local without_build
+  local prerelease
+  local identifier
+
+  [[ "${candidate}" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$ ]] \
+    || return 1
+
+  without_build="${candidate%%+*}"
+  [[ "${without_build}" == *-* ]] || return 0
+  prerelease="${without_build#*-}"
+
+  while IFS= read -r identifier; do
+    if [[ "${identifier}" =~ ^[0-9]+$ && "${identifier}" != 0 && "${identifier}" == 0* ]]; then
+      return 1
+    fi
+  done < <(tr '.' '\n' <<< "${prerelease}")
+}
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || fail "required command is unavailable: $1"
+}
+
+successful_ci_run_exists() {
+  local commit_sha="$1"
+  local result
+
+  result="$(gh run list \
+    --repo "${repository}" \
+    --workflow ci.yml \
+    --commit "${commit_sha}" \
+    --status success \
+    --limit 1 \
+    --json conclusion,headSha \
+    --jq 'length == 1 and .[0].conclusion == "success"')"
+  [[ "${result}" == true ]]
+}
+
+assert_release_source() {
+  require_command git
+  require_command gh
+
+  cd "${repository_root}"
+  git fetch --quiet origin main --tags
+
+  [[ "$(git branch --show-current)" == main ]] || fail "check out main before releasing"
+  [[ -z "$(git status --porcelain)" ]] || fail "the working tree must be clean"
+
+  release_commit="$(git rev-parse HEAD)"
+  readonly release_commit
+  [[ "${release_commit}" == "$(git rev-parse origin/main)" ]] \
+    || fail "local main must exactly match origin/main"
+  successful_ci_run_exists "${release_commit}" \
+    || fail "CI has not succeeded for ${release_commit}"
+}
+
+assert_release_tag() {
+  local tag_type
+  local tag_commit
+  local local_tag_object
+  local remote_tag_object
+
+  tag_type="$(git cat-file -t "refs/tags/${release_version}" 2>/dev/null || true)"
+  [[ "${tag_type}" == tag ]] || fail "${release_version} must be an annotated tag"
+
+  tag_commit="$(git rev-list -n 1 "refs/tags/${release_version}")"
+  [[ "${tag_commit}" == "${release_commit}" ]] \
+    || fail "${release_version} does not identify ${release_commit}"
+
+  local_tag_object="$(git rev-parse "refs/tags/${release_version}")"
+  remote_tag_object="$(git ls-remote origin "refs/tags/${release_version}" | awk 'NR == 1 { print $1 }')"
+  [[ -n "${remote_tag_object}" && "${remote_tag_object}" == "${local_tag_object}" ]] \
+    || fail "origin/${release_version} does not match the local annotated tag"
+}
+
+prepare_release() {
+  if git show-ref --verify --quiet "refs/tags/${release_version}"; then
+    assert_release_tag
+  else
+    git tag --annotate "${release_version}" --message "Ultrainfo ${release_version}"
+    git push origin "refs/tags/${release_version}"
+  fi
+
+  if gh release view "${release_version}" --repo "${repository}" >/dev/null 2>&1; then
+    echo "Draft release already exists for ${release_version}."
+  else
+    gh release create "${release_version}" \
+      --repo "${repository}" \
+      --draft \
+      --generate-notes \
+      --title "${release_version}" \
+      --verify-tag
+  fi
+}
+
+deploy_release() {
+  assert_release_tag
+
+  [[ -n "${KAMAL_REGISTRY_PASSWORD:-}" ]] \
+    || fail "KAMAL_REGISTRY_PASSWORD is not set"
+  [[ -n "${RAILS_MASTER_KEY:-}" ]] \
+    || fail "RAILS_MASTER_KEY is not set"
+
+  export KAMAL_REGISTRY_USERNAME="${KAMAL_REGISTRY_USERNAME:-turbothad}"
+  export ULTRAINFO_VERSION="${release_version}"
+  export ULTRAINFO_REVISION="${release_commit}"
+
+  exec bin/kamal deploy --version="${release_commit}"
+}
+
+if [[ -z "${action}" || -z "${release_version}" ]]; then
+  usage
+  exit 64
+fi
+valid_semver "${release_version}" || fail "invalid SemVer tag: ${release_version}"
+
+case "${action}" in
+  prepare)
+    assert_release_source
+    prepare_release
+    ;;
+  check)
+    assert_release_source
+    assert_release_tag
+    echo "${release_version} maps to deploy image ${release_commit}."
+    ;;
+  deploy)
+    assert_release_source
+    deploy_release
+    ;;
+  *)
+    usage
+    exit 64
+    ;;
+esac

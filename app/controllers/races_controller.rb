@@ -1,7 +1,9 @@
 class RacesController < ApplicationController
   before_action :set_race
 
-  def show; end
+  def show
+    @race.aid_stations.load
+  end
 
   def runner
     redirect_to race_path(@race, anchor: "aid-stations"), status: :moved_permanently

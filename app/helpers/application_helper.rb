@@ -26,7 +26,7 @@ module ApplicationHelper
     when "verified" then "Verified source"
     when "warning" then "Source warning"
     when "unverified" then "Unverified"
-    else "Source pending"
+    else "Unverified"
     end
   end
 
@@ -103,8 +103,8 @@ module ApplicationHelper
       [ "Medical", station.has_medical? ? "Yes" : "No" ],
       [ "Bathrooms", station.bathroom_notes.presence || "Not listed" ],
       [ "Drop bag", station.drop_bag? ? "Yes" : "No" ],
-      [ "Crew", station.crew_access_notes.presence || (station.crew_accessible? ? "Yes" : "No") ],
-      [ "Pacer", station.pacer_notes.presence || (station.pacer_access? ? "Yes" : "No") ],
+      [ station.crew_access_notes.present? ? "Crew" : "Crew allowed", station.crew_access_notes.presence || (station.crew_accessible? ? "Yes" : "No") ],
+      [ station.pacer_notes.present? ? "Pacer" : "Pacer allowed", station.pacer_notes.presence || (station.pacer_access? ? "Yes" : "No") ],
       [ "Parking", station.parking_notes.presence || "Not listed" ],
       [ "Road", station.road_notes.presence || "Not listed" ],
       [ "Directions", directions.any? ? safe_join(directions, " · ") : "Not listed" ],

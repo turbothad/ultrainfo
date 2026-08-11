@@ -11,6 +11,10 @@ class Race < ApplicationRecord
   # Pretty URLs: /races/bighorn-100
   def to_param = slug
 
+  # The registration enum also has a `lottery` value, so give the event-level
+  # boolean an explicit domain name instead of relying on `self[:lottery]`.
+  def lottery_required? = self[:lottery]
+
   def aid_station_location_count
     aid_stations.map(&:name).uniq.size
   end

@@ -9,6 +9,8 @@ class AidStation < ApplicationRecord
   # Has a plottable point on the course map.
   def coordinates? = lat.present? && lng.present?
 
+  def turnaround? = direction == "Turnaround"
+
   def cutoff_elapsed_label
     return if cutoff_elapsed_minutes.blank?
 

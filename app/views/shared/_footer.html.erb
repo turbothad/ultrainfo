@@ -1,47 +1,18 @@
-<footer id="about" class="bg-ink text-stone-light">
-  <div class="mx-auto max-w-[1240px] px-6 py-14 sm:px-10">
-    <div class="grid gap-10 border-b border-paper/10 pb-10 md:grid-cols-[1.6fr_1fr_1fr]">
-      <div>
-        <div class="mb-4 flex items-center gap-2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M1.5 20.5L9 6.5l3.6 6.4L15 8.5l7.5 12H1.5z" fill="#F4F1E8"/>
-            <path d="M12.6 12.9L15 8.5l7.5 12h-9.4l-2.3-4.2z" fill="#E4521F"/>
-          </svg>
-          <span class="text-[19px] font-black tracking-tight text-paper">ULTRA<span class="text-flame">INFO</span></span>
-        </div>
-        <p class="max-w-sm text-sm leading-relaxed">
-          A free, open-source project to make ultramarathon event info actually usable — the
-          schedule, the course, and the crew plan in one place instead of ten old race-site tabs.
-          Built by one runner.
-        </p>
+<footer id="about" class="border-t border-paper/10 bg-ink text-paper/70">
+  <div class="mx-auto max-w-[1320px] px-5 py-8 sm:px-8">
+    <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex items-center gap-4">
+        <span class="font-display text-xl font-bold uppercase tracking-[-0.02em] text-paper">Ultrainfo</span>
+        <span class="font-mono text-[10px] uppercase tracking-[0.1em] text-paper/45">Free · Open source · MIT</span>
       </div>
-
-      <div>
-        <div class="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">The event</div>
-        <ul class="flex flex-col gap-3 text-sm">
-          <% if featured_race %>
-            <li><%= link_to "Race facts", race_path(featured_race, anchor: "facts"), class: "no-underline hover:text-flame" %></li>
-            <li><%= link_to "Course", race_path(featured_race, anchor: "course"), class: "no-underline hover:text-flame" %></li>
-            <li><%= link_to "Aid stations", race_path(featured_race, anchor: "aid-stations"), class: "no-underline hover:text-flame" %></li>
-          <% else %>
-            <li class="text-stone">No races loaded yet</li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div>
-        <div class="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">Open source</div>
-        <ul class="flex flex-col gap-3 text-sm">
-          <li><a href="https://github.com/turbothad/ultrainfo" class="no-underline hover:text-flame">GitHub repo</a></li>
-          <li><a href="https://github.com/turbothad/ultrainfo#contributing" class="no-underline hover:text-flame">Contributing</a></li>
-          <li><span class="text-stone">Shoe fund — coming soon</span></li>
-        </ul>
-      </div>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] uppercase tracking-[0.1em]">
+        <% if featured_race %>
+          <%= link_to "Bighorn 100", race_path(featured_race), class: "hover:text-white" %>
+        <% end %>
+        <a href="https://github.com/turbothad/ultrainfo/issues/new/choose" class="hover:text-white">Report a correction</a>
+        <a href="https://github.com/turbothad/ultrainfo" class="hover:text-white">GitHub</a>
+      </nav>
     </div>
-
-    <div class="flex flex-col gap-3 pt-6 font-mono text-[11px] text-stone sm:flex-row sm:items-center sm:justify-between">
-      <span>Copyright 2026 ultrainfo — all trails lead home. No ads, no accounts, no upsell.</span>
-      <span>Terrain Tiles by Mapzen / Tilezen via AWS Open Data · Three.js</span>
-    </div>
+    <p class="mt-5 border-t border-paper/10 pt-4 font-mono text-[9px] uppercase tracking-[0.08em] text-paper/35">Terrain: Mapzen / Tilezen via AWS Open Data · Three.js</p>
   </div>
 </footer>

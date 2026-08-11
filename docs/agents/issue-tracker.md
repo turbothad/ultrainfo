@@ -1,55 +1,41 @@
-# Issue tracker: Linear
+# Work tracking
 
-Issues and PRDs for this repo live in Linear — team **Turbothad** (key
-**TUR**), project **ultrainfo**.
+Ultrainfo has separate internal and public contribution lanes. Do not mirror an
+issue between them unless the user explicitly asks.
 
-## Access
+## Internal work: Linear
 
-Use the Linear MCP server (`https://mcp.linear.app/mcp`, configured in this
-project's Claude Code config). Load its tools with ToolSearch (query "linear").
-If the tools aren't available, the user hasn't authenticated yet — ask them to
-run `/mcp` and log in to Linear. Do not fall back to GitHub Issues or local
-files.
+Roadmap, Wayfinder, and agent-created implementation issues live in Linear —
+personal workspace, team **Turbothad** (`TUR`), project **ultrainfo**.
 
-## Conventions
+Use the Linear MCP server. If it is unavailable, report the missing access; do
+not silently create a local issue file or public GitHub issue.
 
-- **Team**: Turbothad. **Project**: ultrainfo. File every issue for this repo
-  there.
-- **Create an issue**: Linear create-issue tool, with team, project, and any
-  triage labels from `triage-labels.md`. Put the full body in the description
-  (markdown supported).
-- **Read / list / comment / label**: the corresponding Linear MCP tools.
-- **Close**: move the issue to the **Done** status. For wontfix, move it to
-  **Canceled** (and apply the `wontfix` label so triage state stays legible).
-- Reference issues by their Linear identifier (e.g. `TRA-123`), not by URL.
+- Create internal work in team Turbothad and project ultrainfo.
+- Apply the triage labels documented in `triage-labels.md`.
+- Reference internal work by its Linear identifier, such as `TUR-123`.
+- Mark completed work Done; mark rejected work Canceled and apply `wontfix`.
 
-## Pull requests as a triage surface
+Wayfinder maps are parent issues with `wayfinder:map`; decision tickets are
+sub-issues with the appropriate `wayfinder:<type>` label and native blocking
+relations.
 
-Not applicable — PRs are not a request surface for this repo. Triage reads
-Linear issues only.
+`TUR-29` is the current production-readiness roadmap. It preserves the open
+runtime, deployment, publication, and explicitly deferred post-MVP work that
+previously lived in root TODO files.
 
-## When a skill says "publish to the issue tracker"
+## Public contributions: GitHub
 
-Create a Linear issue in team Turbothad, project ultrainfo.
+Community race corrections, bug reports, and feature requests use the issue
+templates under `.github/ISSUE_TEMPLATE/`. Pull requests are the public delivery
+and review surface.
 
-## When a skill says "fetch the relevant ticket"
+- Race-data issues must include the race year and traceable sources.
+- Every pull request must link a public issue with `Closes #...`.
+- Do not use pull requests as issue descriptions or roadmap placeholders.
+- Do not copy private Linear discussion into a public issue or pull request.
+- Do not publish a security-reporting link until GitHub Private Vulnerability
+  Reporting or another monitored private channel is enabled.
 
-Fetch the Linear issue (including its comments) by identifier via the MCP
-tools.
-
-## Wayfinding operations
-
-Used by `/wayfinder`. The **map** is a parent issue; tickets are its
-sub-issues.
-
-- **Map**: a Linear issue labelled `wayfinder:map`, holding the Notes /
-  Decisions-so-far / Fog body.
-- **Child ticket**: a Linear sub-issue of the map, labelled `wayfinder:<type>`
-  (`research`/`prototype`/`grilling`/`task`). Once claimed, assign it to the
-  driving dev.
-- **Blocking**: Linear's native "blocked by" relation. A ticket is unblocked
-  when every blocker is Done or Canceled.
-- **Frontier query**: the map's open sub-issues with no open blocker and no
-  assignee; first in map order wins.
-- **Claim**: assign the issue to yourself. **Resolve**: comment the answer,
-  mark Done, and append a context pointer to the map's Decisions-so-far.
+Agents should work on a public GitHub issue only when the user places that issue
+in scope. New internal planning remains in Linear by default.

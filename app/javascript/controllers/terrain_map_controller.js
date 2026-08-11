@@ -4,16 +4,28 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 const TERRAIN_SIZE = 60
 const MARKER_RADIUS = 0.34
+const DEFAULT_CAMERA = new THREE.Vector3(-29, 24, 32)
+const COURSE_GRADE_COLORS = {
+  flat: "#6fcf86",
+  moderate: "#f2c14e",
+  steep: "#ef6351"
+}
 
 export default class extends Controller {
-  static values = { url: String, drive: Boolean }
-  static targets = ["canvas", "status", "detail", "fallback", "driveToggle"]
+  static values = { url: String, drive: Boolean, preview: Boolean }
+  static targets = ["canvas", "status", "detail", "fallback", "driveToggle", "stationPassButton"]
 
   connect() {
     this.layers = {}
-    this.stationMeshes = []
+    this.stationPassMeshes = []
+    this.stationMeshes = this.stationPassMeshes
     this.raycaster = new THREE.Raycaster()
     this.pointer = new THREE.Vector2()
+    this.showDrive = () => {
+      if (this.layers.drive) this.layers.drive.visible = true
+      if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
+    }
+    document.addEventListener("terrain-map:show-drive", this.showDrive)
     this.#initialize()
   }
 
@@ -30,21 +42,23 @@ export default class extends Controller {
       this.terrainPayload = terrain
       this.#buildScene()
       this.#buildTerrain(terrain)
-      this.#buildCourse(data.course || [])
+      this.#buildCourse(data.course || [], terrain.course_grade_profile)
       this.#buildDrive(data.crew_route?.geometry || [])
-      this.#buildStations(data.stations || [])
+      this.#buildStationPasses(data.stations || [])
       this.#setStatus(`${terrain.grid.size}x${terrain.grid.size} DEM / ${terrain.grid.min_ft}-${terrain.grid.max_ft} ft / ${terrain.source.label}`)
       this.#animate()
-    } catch {
-      this.fallbackTarget.removeAttribute("hidden")
-      this.#setStatus("Terrain unavailable")
+    } catch (error) {
+      if (this.hasFallbackTarget) this.fallbackTarget.removeAttribute("hidden")
+      this.#setStatus(`Terrain unavailable: ${error.message}`)
     }
   }
 
   disconnect() {
     cancelAnimationFrame(this.frame)
+    document.removeEventListener("terrain-map:show-drive", this.showDrive)
     this.resizeObserver?.disconnect()
     this.renderer?.domElement.removeEventListener("pointerdown", this.onPointerDown)
+    this.controls?.removeEventListener("start", this.stopAutoRotate)
     this.controls?.dispose()
     this.renderer?.dispose()
     this.canvasTarget.replaceChildren()
@@ -58,25 +72,43 @@ export default class extends Controller {
     if (this.layers.drive) this.layers.drive.visible = event.target.checked
   }
 
-  showDrive() {
-    this.driveValue = true
-    if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
-    if (this.layers.drive) this.layers.drive.visible = true
-  }
-
-  toggleStations(event) {
+  toggleStationPasses(event) {
     if (this.layers.stations) this.layers.stations.visible = event.target.checked
   }
 
-  openDetails(event) {
-    const row = document.getElementById(event.currentTarget.hash.slice(1))
-    if (!row) return
+  resetView() {
+    if (!this.camera || !this.controls) return
+    this.camera.position.copy(DEFAULT_CAMERA)
+    this.controls.target.set(0, 1.5, 0)
+    this.controls.update()
+  }
 
+  topView() {
+    if (!this.camera || !this.controls) return
+    this.camera.position.set(0, 72, 0.01)
+    this.controls.target.set(0, 0, 0)
+    this.controls.update()
+  }
+
+  selectStationPassBySequence(event) {
+    const sequence = Number(event.params.sequence)
+    const marker = this.stationPassMeshes.find((candidate) => Number(candidate.userData.station.sequence) === sequence)
+    if (marker) this.#activateStationPass(marker, true)
+  }
+
+  openStationPass(event) {
     event.preventDefault()
-    row.hidden = false
-    row.querySelector("details").open = true
-    row.scrollIntoView({ behavior: "smooth", block: "start" })
-    history.replaceState(null, "", `#${row.id}`)
+    const selector = event.currentTarget.getAttribute("href")
+    const stationPassRow = selector && document.querySelector(selector)
+    const stationPass = stationPassRow?.matches("details") ? stationPassRow : stationPassRow?.querySelector("details")
+    if (!stationPassRow || !stationPass) return
+
+    document.dispatchEvent(new CustomEvent("station-filter:show-all"))
+    stationPassRow.hidden = false
+    stationPass.open = true
+    window.history.replaceState(null, "", selector)
+    stationPassRow.scrollIntoView({ block: "start", behavior: this.#motionBehavior() })
+    stationPass.querySelector("summary")?.focus({ preventScroll: true })
   }
 
   #buildScene() {
@@ -84,11 +116,11 @@ export default class extends Controller {
     const height = this.canvasTarget.clientHeight || 540
 
     this.scene = new THREE.Scene()
-    this.scene.background = new THREE.Color("#123826")
-    this.scene.fog = new THREE.Fog("#123826", 58, 96)
+    this.scene.background = new THREE.Color("#0e2a20")
+    this.scene.fog = new THREE.Fog("#0e2a20", 58, 96)
 
     this.camera = new THREE.PerspectiveCamera(43, width / height, 0.1, 160)
-    this.camera.position.set(-29, 24, 32)
+    this.camera.position.copy(DEFAULT_CAMERA)
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -103,6 +135,15 @@ export default class extends Controller {
     this.controls.minDistance = 12
     this.controls.maxDistance = 88
     this.controls.maxPolarAngle = Math.PI * 0.48
+    if (this.previewValue && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      this.controls.autoRotate = true
+      this.controls.autoRotateSpeed = 0.35
+      this.stopAutoRotate = () => {
+        this.controls.autoRotate = false
+        this.controls.removeEventListener("start", this.stopAutoRotate)
+      }
+      this.controls.addEventListener("start", this.stopAutoRotate)
+    }
     this.controls.update()
 
     const ambient = new THREE.HemisphereLight("#dcead6", "#173223", 2.1)
@@ -112,7 +153,7 @@ export default class extends Controller {
     sun.position.set(-18, 30, 26)
     this.scene.add(sun)
 
-    this.onPointerDown = (event) => this.#selectStation(event)
+    this.onPointerDown = (event) => this.#selectStationPass(event)
     this.renderer.domElement.addEventListener("pointerdown", this.onPointerDown)
 
     this.resizeObserver = new ResizeObserver(() => this.#resize())
@@ -174,24 +215,65 @@ export default class extends Controller {
     this.scene.add(contour)
   }
 
-  #buildCourse(points) {
-    const projected = points.map((point) => this.#pointFromLatLng(point[0], point[1], 0.32))
-    const geometry = new THREE.BufferGeometry().setFromPoints(projected)
-    const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "#f2d77b", linewidth: 2 }))
-    this.scene.add(line)
-    this.layers.course = line
+  #buildCourse(points, profile) {
+    const segments = profile?.segments || []
+    if (!segments.length) {
+      const projected = points.map((point) => this.#pointFromLatLng(point[0], point[1], 0.32))
+      this.layers.course = this.#buildRoute(projected, "#f06a3a", 0.14)
+      return
+    }
+
+    const group = new THREE.Group()
+    let currentSteepness = null
+    let runPoints = []
+    const addRun = () => {
+      if (runPoints.length < 2) return
+      const color = COURSE_GRADE_COLORS[currentSteepness] || "#f06a3a"
+      group.add(this.#routeMesh(runPoints, color, 0.2))
+    }
+
+    for (const segment of segments) {
+      const from = this.#pointFromLatLng(segment.from[0], segment.from[1], 0.42)
+      const to = this.#pointFromLatLng(segment.to[0], segment.to[1], 0.42)
+      if (segment.steepness !== currentSteepness) {
+        addRun()
+        currentSteepness = segment.steepness
+        runPoints = [from, to]
+      } else {
+        runPoints.push(to)
+      }
+    }
+    addRun()
+
+    this.scene.add(group)
+    this.layers.course = group
   }
 
   #buildDrive(points) {
     const projected = points.map((point) => this.#pointFromLatLng(point[0], point[1], 0.48))
-    const geometry = new THREE.BufferGeometry().setFromPoints(projected)
-    const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "#6cc0d5", linewidth: 2 }))
-    line.visible = this.driveValue
-    this.scene.add(line)
-    this.layers.drive = line
+    this.layers.drive = this.#buildRoute(projected, "#6cc0d5", 0.09)
+    this.layers.drive.visible = this.driveValue
   }
 
-  #buildStations(stations) {
+  #buildRoute(points, color, radius) {
+    if (points.length < 2) {
+      const empty = new THREE.Group()
+      this.scene.add(empty)
+      return empty
+    }
+
+    const route = this.#routeMesh(points, color, radius)
+    this.scene.add(route)
+    return route
+  }
+
+  #routeMesh(points, color, radius) {
+    const curve = new THREE.CatmullRomCurve3(points, false, "centripetal")
+    const geometry = new THREE.TubeGeometry(curve, Math.max(points.length * 2, 32), radius, 6, false)
+    return new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color }))
+  }
+
+  #buildStationPasses(stations) {
     const group = new THREE.Group()
     const seen = new Map()
 
@@ -207,14 +289,17 @@ export default class extends Controller {
         point.z += Math.sin(count * 1.7) * 0.52
       }
 
+      const isLandmark = station.sequence === 1 || /start|finish|turnaround/i.test(station.name)
       const marker = new THREE.Mesh(
-        new THREE.SphereGeometry(MARKER_RADIUS, 18, 12),
-        new THREE.MeshStandardMaterial({ color: station.crew ? "#f2d77b" : "#dfe8d6", emissive: station.crew ? "#3d2d05" : "#122015", roughness: 0.35 })
+        isLandmark ? new THREE.OctahedronGeometry(MARKER_RADIUS * 1.45, 0) : new THREE.SphereGeometry(MARKER_RADIUS, 18, 12),
+        new THREE.MeshStandardMaterial({ color: station.crew ? "#f4b860" : "#dfe8e2", emissive: station.crew ? "#4d3005" : "#122015", roughness: 0.35 })
       )
       marker.position.copy(point)
       marker.userData.station = station
+      marker.userData.defaultColor = marker.material.color.getHex()
+      marker.userData.defaultEmissive = marker.material.emissive.getHex()
       group.add(marker)
-      this.stationMeshes.push(marker)
+      this.stationPassMeshes.push(marker)
 
       const stemGeometry = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(point.x, point.y - 0.85, point.z),
@@ -258,41 +343,86 @@ export default class extends Controller {
   }
 
   #terrainColor(t) {
-    const low = new THREE.Color("#172d22")
-    const mid = new THREE.Color("#6f805a")
-    const high = new THREE.Color("#d9d5c4")
+    const low = new THREE.Color("#153126")
+    const mid = new THREE.Color("#687b6d")
+    const high = new THREE.Color("#d5ddd6")
     if (t < 0.58) return low.clone().lerp(mid, t / 0.58)
     return mid.clone().lerp(high, (t - 0.58) / 0.42)
   }
 
-  #selectStation(event) {
-    if (!this.stationMeshes.length) return
+  #selectStationPass(event) {
+    if (this.previewValue || !this.stationPassMeshes.length) return
 
     const rect = this.renderer.domElement.getBoundingClientRect()
     this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
     this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
     this.raycaster.setFromCamera(this.pointer, this.camera)
 
-    const hit = this.raycaster.intersectObjects(this.stationMeshes, false)[0]
-    if (hit) this.#showStation(hit.object.userData.station)
+    const hit = this.raycaster.intersectObjects(this.stationPassMeshes, false)[0]
+    if (hit) this.#activateStationPass(hit.object, false)
   }
 
-  #showStation(station) {
-    this.detailTarget.removeAttribute("hidden")
+  #activateStationPass(marker, focusCamera) {
+    for (const candidate of this.stationPassMeshes) {
+      const selected = candidate === marker
+      candidate.scale.setScalar(selected ? 1.75 : 1)
+      candidate.material.color.setHex(selected ? 0xffffff : candidate.userData.defaultColor)
+      candidate.material.emissive.setHex(selected ? 0x806112 : candidate.userData.defaultEmissive)
+    }
+
+    const sequence = String(marker.userData.station.sequence)
+    for (const button of this.stationPassButtonTargets) {
+      const selected = button.dataset.terrainMapSequenceParam === sequence
+      button.setAttribute("aria-pressed", String(selected))
+      button.classList.toggle("border-paper/50", selected)
+      button.classList.toggle("bg-paper/15", selected)
+      if (selected) button.scrollIntoView({ block: "nearest", inline: "center", behavior: this.#motionBehavior() })
+    }
+
+    if (focusCamera) this.#focusMarker(marker)
+    this.#showStationPass(marker.userData.station)
+  }
+
+  #focusMarker(marker) {
+    const direction = this.camera.position.clone().sub(this.controls.target).normalize()
+    const target = marker.position.clone()
+    this.controls.target.copy(target)
+    this.camera.position.copy(target.clone().add(direction.multiplyScalar(19)))
+    this.camera.position.y = Math.max(this.camera.position.y, target.y + 7)
+    this.controls.update()
+  }
+
+  #showStationPass(station) {
+    const directions = station.lat != null && station.lng != null
+      ? `<a class="font-semibold text-[#f4b860] hover:text-paper" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}">Directions</a>`
+      : ""
+    const source = station.source_metadata?.verification_status || "unverified"
+
     this.detailTarget.innerHTML = `
       <div class="font-semibold text-paper">${this.#escape(station.name)}</div>
-      <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Mile ${this.#escape(station.mile)}</div>
-      <dl class="mt-3 grid grid-cols-2 gap-3">
-        ${this.#quickFact("Cutoff", this.#cutoffLabel(station))}
-        ${this.#quickFact("Crew", station.crew ? "Yes" : "No")}
+      <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Mile ${this.#escape(station.mile)} / ${this.#escape(station.direction || "Pass")}</div>
+      <dl class="mt-4 grid grid-cols-2 gap-3 text-sm">
+        ${this.#detail("Cutoff", this.#cutoffLabel(station))}
+        ${this.#detail("Crew", station.crew ? "Allowed" : "No")}
+        ${this.#detail("Pacer", station.pacer ? "Allowed" : "No")}
+        ${this.#detail("Drop bag", station.drop_bag ? "Yes" : "No")}
+        ${this.#detail("Medical", station.medical ? "Yes" : "No")}
+        ${this.#detail("Elevation", station.elevation_ft ? `${station.elevation_ft} ft` : "Not listed")}
       </dl>
-      <a href="#${this.#escape(station.details_id)}"
-         data-action="terrain-map#openDetails"
-         class="mt-4 inline-block font-semibold text-[#f2d77b] hover:text-paper">Full details</a>
+      ${station.aid ? `<p class="mt-4 text-paper/78">${this.#escape(station.aid)}</p>` : ""}
+      ${station.parking ? `<p class="mt-3 text-paper/62">${this.#escape(station.parking)}</p>` : ""}
+      ${station.road_notes ? `<p class="mt-3 text-paper/62">${this.#escape(station.road_notes)}</p>` : ""}
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-paper/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-paper/50">
+        <span>Source ${this.#escape(source)}</span>
+        <span class="flex items-center gap-3">
+          <a class="font-semibold text-[#f4b860] hover:text-paper" data-turbo="false" data-action="terrain-map#openStationPass" href="#${this.#escape(station.details_id || `station-pass-${station.sequence}`)}">Full station pass</a>
+          ${directions}
+        </span>
+      </div>
     `
   }
 
-  #quickFact(label, value) {
+  #detail(label, value) {
     return `<div><dt class="font-mono text-[10px] uppercase tracking-[0.12em] text-paper/45">${this.#escape(label)}</dt><dd class="mt-1 font-semibold text-paper">${this.#escape(value)}</dd></div>`
   }
 
@@ -328,5 +458,9 @@ export default class extends Controller {
     const div = document.createElement("div")
     div.textContent = value == null ? "" : String(value)
     return div.innerHTML
+  }
+
+  #motionBehavior() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
   }
 }

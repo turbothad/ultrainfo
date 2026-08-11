@@ -26,7 +26,7 @@ export default class extends Controller {
     const pts = (d.course || []).map((p) => [p[0], p[1]])
     if (pts.length) {
       L.polyline(pts, { color: "#ffffff", weight: 7, opacity: 0.9 }).addTo(this.map)
-      L.polyline(pts, { color: "#E4521F", weight: 3.5 }).addTo(this.map)
+      L.polyline(pts, { color: "#E86137", weight: 3.5 }).addTo(this.map)
       bounds.push(...pts)
     }
 
@@ -34,7 +34,7 @@ export default class extends Controller {
     const drive = d.crew_route?.geometry || []
     if (this.driveValue && drive.length) {
       L.polyline(drive, { color: "#ffffff", weight: 6, opacity: 0.6 }).addTo(this.driveLayer)
-      L.polyline(drive, { color: "#19170F", weight: 3, opacity: 0.9, dashArray: "10 9", lineCap: "round" }).addTo(this.driveLayer)
+      L.polyline(drive, { color: "#121815", weight: 3, opacity: 0.9, dashArray: "10 9", lineCap: "round" }).addTo(this.driveLayer)
       bounds.push(...drive)
     }
 
@@ -59,8 +59,8 @@ export default class extends Controller {
 
   #style(s) {
     return s.crew
-      ? { radius: 7, color: "#fff", weight: 2, fillColor: "#1F5132", fillOpacity: 1 }
-      : { radius: 5, color: "#fff", weight: 1.5, fillColor: "#9a937f", fillOpacity: 0.85 }
+      ? { radius: 7, color: "#fff", weight: 2, fillColor: "#1D543C", fillOpacity: 1 }
+      : { radius: 5, color: "#fff", weight: 1.5, fillColor: "#89918C", fillOpacity: 0.85 }
   }
 
   #popup(s) {

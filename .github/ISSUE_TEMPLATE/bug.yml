@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible problem with the website or development setup.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Do not include credentials, private race communications, or personal information.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How can we reproduce it?
+      description: List the shortest sequence of steps that consistently shows the problem.
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Page or command
+      description: Include the affected URL or local command when applicable.
+      placeholder: http://localhost:3000/races/bighorn-100
+    validations:
+      required: false
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser and device, or Ruby and operating-system versions for development issues.
+      placeholder: Brave 1.x on macOS 15
+    validations:
+      required: false
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Additional evidence
+      description: Add screenshots or logs with secrets and personal information removed.
+    validations:
+      required: false

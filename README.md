@@ -1,57 +1,64 @@
-# ultrainfo
+# Ultrainfo
 
-**Ultramarathon event info, made usable.**
+[![CI](https://github.com/turbothad/ultrainfo/actions/workflows/ci.yml/badge.svg)](https://github.com/turbothad/ultrainfo/actions/workflows/ci.yml)
 
-The schedule, the course, the crew plan, and where to follow along — for races longer than a
-marathon — pulled out of a dozen clunky race-website links and laid out plainly on one site.
+Free, contributor-maintained race information for North American 100-mile ultras.
 
-Free, open source, no ads, no accounts, no upsell. Built by a single developer.
+Ultrainfo brings the course, cutoffs, station passes, crew access, tracking,
+results, and supporting sources into one public race record. The first complete
+record is the Bighorn 100.
 
-Live at **[ultrainfo.org](https://ultrainfo.org)** · starting with the **Western States 100**.
+No ads. No accounts. No paywall.
 
-## Who it's for
+## Getting started
 
-Each race is one scrolling source of truth, organized by information type so the same course or
-station data never forks across role pages:
-
-- **Runners** — race facts, registration, the GPX course, aid stations, and cutoffs.
-- **Crews & pacers** — the same master station list, crew-access map layer, parking, drop bags, and pacer rules.
-- **Followers** — official live tracking and finish context without a separate role view.
-
-## Stack
-
-- Ruby on Rails 8 — SQLite, Solid Queue / Cache / Cable
-- Tailwind CSS v4 via `tailwindcss-rails` — global styles & design tokens live in `app/assets/tailwind/application.css`
-- Hotwire (Turbo + Stimulus) with import maps — no Node build step
-- Three.js terrain maps with preprocessed public Terrain Tiles DEM artifacts — no API keys, no cost
-- Minitest for tests; RuboCop (omakase) + Brakeman for lint / security
-- Deploys with Kamal (Hetzner)
-
-## Local development
+The repository includes both `.ruby-version` and `mise.toml`. If you use
+[mise](https://mise.jdx.dev/), run `mise install` before setup. Full development
+requirements are listed in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ```bash
-bin/setup    # install deps and prepare the database
-bin/dev      # start the app + Tailwind watcher → http://localhost:3000
+git clone https://github.com/turbothad/ultrainfo.git
+cd ultrainfo
+bin/setup --skip-server
+bin/dev
 ```
 
-Useful commands:
+Open [http://localhost:3000](http://localhost:3000).
 
-```bash
-bin/rails test   # run the test suite
-bin/rubocop      # lint
-bin/brakeman     # security scan
-```
+This is a Rails application with import maps, so local development does not
+require Node or a JavaScript build step.
+
+## Race data
+
+Race records live in `db/events/`. Each fact should be backed by traceable
+source metadata. Organizer material can be evidence, but no single source is
+automatically authoritative.
+
+The importer reads a race YAML file, its GPX track, and an optional cached crew
+route. Keep race-specific facts in those files instead of hard-coding them in
+controllers or views.
 
 ## Contributing
 
-This is an open project and contributions are very welcome — open an issue or a PR.
+Public contributions use GitHub:
 
-**No money, ever.** ultrainfo will never charge, run ads, or sell anything. If it saved you a
-headache and you want to say thanks, there's a **shoe fund** (a single developer goes through a
-lot of trail shoes). Link coming soon.
+- [Report a race-data correction or addition](https://github.com/turbothad/ultrainfo/issues/new?template=correction.yml)
+- [Report a bug](https://github.com/turbothad/ultrainfo/issues/new?template=bug.yml)
+- [Request a feature](https://github.com/turbothad/ultrainfo/issues/new?template=feature.yml)
+
+Please open an issue before every pull request. Race-data changes must include
+a source that another contributor can verify. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
+
+## Technology
+
+- Ruby on Rails 8.1 with SQLite
+- Hotwire and Stimulus
+- Tailwind CSS 4
+- Three.js terrain maps using public Terrain Tiles data
+- Minitest, RuboCop, Brakeman, and import-map auditing
 
 ## License
 
-[MIT](LICENSE).
-
-Terrain tiles by Mapzen / Tilezen via AWS Open Data · rendered with Three.js.
+Ultrainfo is available under the [MIT License](LICENSE). Third-party
+attributions are recorded in [NOTICE.md](NOTICE.md).

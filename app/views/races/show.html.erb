@@ -1,179 +1,141 @@
 <%= render "races/race_header", race: @race %>
-<%= render "races/jump_nav" %>
+<%= render "races/jump_nav", race: @race %>
 
-<div class="mx-auto max-w-[1240px] px-6 pb-20 sm:px-10">
-  <section id="facts" aria-label="Race facts" class="scroll-mt-32 py-12 sm:py-14">
-    <%= render "races/stat_grid", stats: [
+<div class="mx-auto max-w-[1320px] px-5 pb-20 sm:px-8" data-controller="race-page">
+  <section id="facts" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="section-heading">Race facts</h2>
+      <p class="font-mono text-[9px] uppercase tracking-[0.1em] text-stone-light">
+        <%= source_status_label(@race.source_metadata) %><% if @race.source_metadata["verified_on"].present? %> · <%= @race.source_metadata["verified_on"] %><% end %> ·
+        <%= link_to "#{Array(@race.source_metadata["sources"]).count} sources", "#sources", class: "font-semibold text-pine hover:text-ink" %>
+      </p>
+    </div>
+
+    <dl class="mt-7 grid border-y border-ink/10 sm:grid-cols-2 lg:grid-cols-4">
+      <% [
         [ "Date", race_date_label(@race) ],
-        [ "Start", [ @race.start_time, @race.start_venue ].compact.join(" at ") ],
+        [ "Start", [ @race.start_time, @race.start_venue ].compact.join(" · ") ],
         [ "Finish", @race.finish_venue ],
-        [ "Overall cutoff", overall_cutoff_display(@race) ],
-        [ "Registration", registration_display(@race) ],
-        [ "Lottery", @race.lottery? ? "Yes" : "No" ]
-      ] %>
-
-    <p class="mt-4 font-mono text-[11px] text-stone-light">
-      All facts from official race materials ·
-      <% if @race.source_metadata["verification_status"].in?(%w[warning unverified]) %>
-        <span class="font-bold text-rust"><%= source_status_label(@race.source_metadata) %></span> ·
+        [ "Final cutoff", overall_cutoff_display(@race) ]
+      ].each do |label, value| %>
+        <div class="border-b border-ink/10 py-4 sm:px-5 sm:even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0 lg:first:pl-0">
+          <dt class="data-label"><%= label %></dt>
+          <dd class="data-value"><%= value.presence || "Not listed" %></dd>
+        </div>
       <% end %>
-      <%= (verified_on = latest_verified_on_label(@race.source_metadata)) ? "verified #{verified_on}" : "verification pending" %>
-      · <%= link_to "Sources", "#sources", class: "font-semibold text-pine underline-offset-4 hover:text-ink" %>
-    </p>
+    </dl>
+
+    <% if @race.registration_url.present? %>
+      <div class="mt-5 flex flex-col gap-4 border border-ink/10 bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex gap-8">
+          <div><span class="data-label block">Registration</span><span class="data-value block"><%= @race.registration_status.humanize %></span></div>
+          <div><span class="data-label block">Lottery</span><span class="data-value block"><%= @race.lottery_required? ? "Yes" : "No" %></span></div>
+        </div>
+        <%= link_to "Open registration ↗", @race.registration_url, target: "_blank", rel: "noopener", class: "inline-flex self-start rounded-md bg-ink px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-white no-underline hover:bg-pine sm:self-auto" %>
+      </div>
+    <% end %>
   </section>
 
-  <section id="course" aria-labelledby="course-heading" class="scroll-mt-32 border-t border-ink/10 py-12 sm:py-14">
-    <div class="mb-7 max-w-3xl">
-      <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Course</div>
-      <h2 id="course-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Course, terrain, and crew drive.</h2>
-      <p class="mt-4 text-base leading-relaxed text-stone">
-        The terrain explorer combines the GPX course, aid station markers, and a separate crew driving layer. The elevation profile follows the same official course data.
-      </p>
+  <section id="course" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
+    <div class="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="section-heading">Course</h2>
+      <p class="max-w-md text-sm leading-relaxed text-stone">Select a station pass for cutoffs, access, aid, and directions.</p>
     </div>
     <%= render "races/map", race: @race, drive: true %>
-    <div class="mt-6">
-      <%= render "races/elevation_profile", race: @race %>
-    </div>
+    <div class="mt-5"><%= render "races/elevation_profile", race: @race %></div>
   </section>
 
-  <section id="aid-stations" aria-labelledby="aid-stations-heading" class="scroll-mt-32 border-t border-ink/10 py-12 sm:py-14">
-    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-      <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Aid stations</div>
-        <h2 id="aid-stations-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Every station pass and cutoff.</h2>
-        <p class="mt-4 text-base leading-relaxed text-stone">
-          One complete course-order table covers aid, cutoffs, drop bags, medical checks, crew access, and pacer pickup points.
-        </p>
-      </div>
-
-      <%= render "races/stat_grid", stats: aid_station_summary_stats(@race) %>
+  <section id="aid-stations" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="section-heading">Station passes</h2>
+      <p class="text-sm text-stone"><%= @race.aid_stations.size %> passes at <%= @race.aid_station_location_count %> aid stations.</p>
     </div>
 
-    <div class="mt-8">
-      <%= render "races/aid_station_table", stations: @race.aid_stations %>
-    </div>
-  </section>
-
-  <section id="crew" aria-labelledby="crew-heading" data-controller="race-actions" class="scroll-mt-32 border-t border-ink/10 py-12 sm:py-14">
-    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-      <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Crew &amp; pacers</div>
-        <h2 id="crew-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Access rules in course context.</h2>
-        <p class="mt-4 text-base leading-relaxed text-stone">
-          The master aid-station table shows both crew-allowed and no-crew passes, with parking, road, drop-bag, and pacer details. The Course map keeps the crew driving route available as a separate layer.
-        </p>
-        <%= link_to "Crew-accessible passes", "#aid-stations",
-              data: { action: "race-actions#showCrewPasses" },
-              class: "mt-5 inline-block font-semibold text-pine underline-offset-4 hover:text-ink" %>
-      </div>
-
-      <div class="space-y-4">
-        <div class="rounded-lg border border-ink/10 bg-card p-5">
-          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Pacer rule summary</div>
-          <p class="mt-2 text-sm leading-relaxed text-stone">
-            <%= @race.source_metadata["pacer_rule_summary"].presence || "Pacer rules are not listed in the current source data." %>
-          </p>
-        </div>
-        <% if (crew_drive = crew_drive_summary(@race)) %>
-          <div class="rounded-lg border border-ink/10 bg-card p-5">
-            <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Crew drive</div>
-            <p class="mt-2 text-sm leading-relaxed text-stone">
-              <%= crew_drive %>.
-            </p>
-            <%= link_to "Show drive route on map", "#course",
-                  data: { action: "race-actions#showDrive" },
-                  class: "mt-3 inline-block font-semibold text-pine underline-offset-4 hover:text-ink" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </section>
-
-  <section id="follow" aria-labelledby="follow-heading" class="scroll-mt-32 border-t border-ink/10 py-12 sm:py-14">
-    <div class="max-w-3xl">
-      <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Follow</div>
-      <h2 id="follow-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Follow the race from home.</h2>
-      <p class="mt-4 text-base leading-relaxed text-stone">
-        Official timing and results for family and friends watching remotely. All clock times use the race's local timezone.
-      </p>
-    </div>
-
-    <div aria-label="Key race times" class="mt-8 grid gap-px overflow-hidden rounded-lg border border-ink/10 bg-ink/10 md:grid-cols-3">
-      <% key_race_times(@race).each do |label, value| %>
-        <div class="bg-card p-5">
-          <div class="font-mono text-[10px] uppercase tracking-[0.14em] text-stone-light"><%= label %></div>
-          <div class="mt-1 font-semibold text-ink"><%= value %></div>
+    <dl class="mt-7 grid grid-cols-2 border-y border-ink/10 sm:grid-cols-3 lg:grid-cols-6">
+      <% [
+        [ "Passes", @race.aid_stations.size ],
+        [ "Crew", @race.aid_stations.count(&:crew_accessible?) ],
+        [ "Drop bags", @race.aid_stations.count(&:drop_bag?) ],
+        [ "Medical", @race.aid_stations.count(&:has_medical?) ],
+        [ "Pacer", @race.aid_stations.count(&:pacer_access?) ],
+        [ "Cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h" : "—" ]
+      ].each do |label, value| %>
+        <div class="border-b border-ink/10 py-3 even:border-l even:pl-4 sm:border-l sm:px-4 sm:first:border-l-0 sm:first:pl-0 lg:border-b-0">
+          <dt class="data-label"><%= label %></dt>
+          <dd class="mt-1 font-mono text-sm font-semibold text-ink"><%= value %></dd>
         </div>
       <% end %>
+    </dl>
+
+    <div class="mt-7"><%= render "races/aid_station_table", stations: @race.aid_stations, initial_filter: params[:stations] %></div>
+  </section>
+
+  <section id="crew" data-controller="race-actions" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="section-heading">Crew & pacers</h2>
+      <%= link_to "Crew-accessible passes ↑", "#aid-stations", data: { action: "race-actions#showCrewPasses" }, class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
     </div>
 
-    <div class="mt-4 grid gap-4 md:grid-cols-3">
-      <div aria-label="Live tracking" class="rounded-lg border border-ink/10 bg-card p-5">
-        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Live tracking</div>
-        <% if @race.tracking_url.present? %>
-          <%= link_to "Open official tracking", @race.tracking_url, target: "_blank", rel: "noopener",
-                class: "mt-2 inline-block font-semibold text-pine no-underline hover:text-ink" %>
-        <% else %>
-          <p class="mt-2 text-sm leading-relaxed text-stone">Official live tracking is not announced in the current source data.</p>
-        <% end %>
+    <div class="mt-7 grid border-y border-ink/10 lg:grid-cols-2">
+      <div class="border-b border-ink/10 py-5 lg:border-b-0 lg:border-r lg:pr-8">
+        <h3 class="data-label">Pacer rules</h3>
+        <p class="mt-3 text-sm leading-relaxed text-stone"><%= @race.source_metadata["pacer_rule_summary"].presence || "No pacer rules published." %></p>
       </div>
-
-      <div aria-label="Official results" class="rounded-lg border border-ink/10 bg-card p-5">
-        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Results</div>
-        <% if @race.results_url.present? %>
-          <%= link_to "Official results", @race.results_url, target: "_blank", rel: "noopener",
-                class: "mt-2 inline-block font-semibold text-pine no-underline hover:text-ink" %>
+      <div class="py-5 lg:pl-8">
+        <h3 class="data-label">Crew drive</h3>
+        <% if @race.crew_route.present? %>
+          <p class="mt-3 font-mono text-sm font-semibold text-ink"><%= @race.crew_route["distance_mi"] %> mi · <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h</p>
+          <% if @race.source_metadata["crew_drive_label"].present? %><p class="mt-2 text-sm text-stone"><%= @race.source_metadata["crew_drive_label"] %></p><% end %>
+          <%= link_to "Show crew drive on map ↑", "#course", data: { action: "race-page#showCrewDrive", turbo: false }, class: "mt-4 inline-flex font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
         <% else %>
-          <p class="mt-2 text-sm leading-relaxed text-stone">Official results are not listed in the current source data.</p>
+          <p class="mt-3 text-sm text-stone">No crew route published.</p>
         <% end %>
-      </div>
-
-      <div aria-label="Finish" class="rounded-lg border border-ink/10 bg-card p-5">
-        <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-stone-light">Finish</div>
-        <p class="mt-2 text-sm leading-relaxed text-stone"><%= @race.finish_venue.presence || "Finish-line details are not listed in the current source data." %></p>
       </div>
     </div>
   </section>
 
-  <section id="sources" aria-labelledby="sources-heading" class="scroll-mt-32 border-t border-ink/10 py-12 sm:py-14">
-    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-      <div>
-        <div class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light">Sources</div>
-        <h2 id="sources-heading" class="mt-3 text-3xl font-black uppercase leading-none tracking-tight text-ink sm:text-4xl">Official-source record.</h2>
-        <p class="mt-4 text-base leading-relaxed text-stone">
-          Verification dates, source links, and any warnings behind the planning facts on this page.
-        </p>
+  <section id="follow" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
+    <% turnaround_pass = @race.aid_stations.find(&:turnaround?) %>
+    <h2 class="section-heading">Follow</h2>
+
+    <dl class="mt-7 grid border-y border-ink/10 sm:grid-cols-3">
+      <% [
+        [ "Start", [ @race.start_time, race_date_label(@race) ].compact_blank.join(" · ") ],
+        [ "Turnaround cutoff", turnaround_pass ? cutoff_display(turnaround_pass) : "Not listed" ],
+        [ "Final cutoff", overall_cutoff_display(@race) ]
+      ].each do |label, value| %>
+        <div class="border-b border-ink/10 py-4 sm:border-b-0 sm:border-l sm:px-5 sm:first:border-l-0 sm:first:pl-0">
+          <dt class="data-label"><%= label %></dt>
+          <dd class="data-value"><%= value %></dd>
+        </div>
+      <% end %>
+    </dl>
+
+    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+      <div class="border border-ink/10 bg-card p-4">
+        <span class="data-label block">Live tracking</span>
+        <% if @race.tracking_url.present? %>
+          <%= link_to "Open tracking ↗", @race.tracking_url, target: "_blank", rel: "noopener", class: "mt-2 inline-block text-sm font-semibold text-pine hover:text-ink" %>
+        <% else %>
+          <p class="mt-2 text-sm text-stone">No tracking link published.</p>
+        <% end %>
       </div>
-      <div>
-        <ol aria-label="Official source documents" class="space-y-3">
-          <% Array(@race.source_metadata["sources"]).each do |source| %>
-            <li class="rounded-lg border border-ink/10 bg-card p-5">
-              <% if source["url"].present? %>
-                <%= link_to source["label"], source["url"], target: "_blank", rel: "noopener",
-                      class: "font-semibold text-pine underline-offset-4 hover:text-ink" %>
-              <% else %>
-                <div class="font-semibold text-ink"><%= source["label"] %></div>
-              <% end %>
-
-              <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.08em] text-stone-light">
-                <% if (verified_on = latest_verified_on_label(source)) %>
-                  <time datetime="<%= source["verified_on"] %>">Verified <%= verified_on %></time>
-                <% else %>
-                  Verification date not listed
-                <% end %>
-              </div>
-
-              <% if source["notes"].present? %>
-                <p class="mt-3 text-sm leading-relaxed text-stone"><%= source["notes"] %></p>
-              <% end %>
-            </li>
-          <% end %>
-        </ol>
-
-        <% if @race.source_metadata["notes"].present? %>
-          <p class="mt-4 text-sm leading-relaxed text-stone"><%= @race.source_metadata["notes"] %></p>
+      <div class="border border-ink/10 bg-card p-4">
+        <span class="data-label block">Results</span>
+        <% if @race.results_url.present? %>
+          <%= link_to "Open results ↗", @race.results_url, target: "_blank", rel: "noopener", class: "mt-2 inline-block text-sm font-semibold text-pine hover:text-ink" %>
+        <% else %>
+          <p class="mt-2 text-sm text-stone">No results link published.</p>
         <% end %>
       </div>
     </div>
+  </section>
+
+  <section id="sources" class="scroll-mt-28 py-10 sm:py-14">
+    <div class="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="section-heading">Sources</h2>
+      <%= link_to "Report wrong or missing information ↗", "https://github.com/turbothad/ultrainfo/issues/new/choose", target: "_blank", rel: "noopener", class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
+    </div>
+    <%= render "races/sources", race: @race %>
   </section>
 </div>

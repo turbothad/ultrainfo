@@ -27,6 +27,11 @@ class RaceTest < ActiveSupport::TestCase
     assert Race.new.not_open?
   end
 
+  test "lottery_required? reads the event-level lottery flag" do
+    assert Race.new(lottery: true).lottery_required?
+    assert_not Race.new(lottery: false).lottery_required?
+  end
+
   test "aid_stations are ordered by sequence" do
     race = Race.create!(name: "A", slug: "a-100", year: 2026)
     race.aid_stations.create!(name: "Second", sequence: 2)

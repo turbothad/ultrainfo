@@ -1,14 +1,14 @@
-<nav aria-label="On this race page" class="sticky top-[62px] z-40 mt-8 border-y border-ink/10 bg-paper/95 backdrop-blur-md">
-  <div class="mx-auto flex max-w-[1240px] gap-1 overflow-x-auto px-6 py-1.5 sm:px-10">
+<nav aria-label="On this race page" class="sticky top-14 z-30 border-y border-ink/10 bg-paper/95 backdrop-blur">
+  <div class="mx-auto flex max-w-[1320px] overflow-x-auto px-5 sm:px-8">
     <% [
-      [ "facts", "Facts" ],
-      [ "course", "Course" ],
-      [ "aid-stations", "Aid stations" ],
-      [ "crew", "Crew" ],
-      [ "follow", "Follow" ],
-      [ "sources", "Sources" ]
-    ].each do |section_id, label| %>
-      <%= link_to label, "##{section_id}", class: "shrink-0 rounded-md px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.1em] text-stone no-underline transition hover:bg-pine/10 hover:text-ink sm:text-[11px]" %>
+      [ "Race facts", "facts" ],
+      [ "Course map", "course" ],
+      [ "Aid & cutoffs", "aid-stations" ],
+      [ "Crew & pacers", "crew" ],
+      [ "Follow", "follow" ],
+      [ "Sources", "sources" ]
+    ].each do |label, anchor| %>
+      <%= link_to label, "##{anchor}", class: "whitespace-nowrap border-r border-ink/10 px-4 py-3 font-mono text-[9px] font-medium uppercase tracking-[0.1em] text-stone no-underline transition first:pl-0 last:border-r-0 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-pine" %>
     <% end %>
   </div>
 </nav>

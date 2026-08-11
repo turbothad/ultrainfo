@@ -33,5 +33,10 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Keep deployment secrets local. Commit only the reference-only example.
+/.kamal/secrets
+/.kamal/secrets.*
+!/.kamal/secrets.example
+
 /app/assets/builds/*
 !/app/assets/builds/.keep

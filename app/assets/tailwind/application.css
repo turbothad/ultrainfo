@@ -1,28 +1,49 @@
 @import "tailwindcss";
 
-/* ULTRAINFO design tokens — lifted from the original wireframe.
-   Tailwind v4 turns these into utilities: bg-paper, text-ink, text-flame,
-   border-ink/10, font-display, font-mono, … */
 @theme {
-  --color-paper: #f4f1e8;       /* page background */
-  --color-card: #fcfbf7;        /* card surfaces */
-  --color-ink: #19170f;         /* primary text / dark sections */
-  --color-flame: #2f6b4f;       /* legacy accent alias */
-  --color-flame-dark: #1f5132;  /* legacy accent hover alias */
-  --color-pine: #1f5132;        /* primary action / verified */
-  --color-pine-dark: #123826;   /* dark pine sections */
-  --color-moss: #7a8f55;        /* terrain secondary */
-  --color-river: #377f91;       /* route secondary */
-  --color-gold: #c99a2e;        /* limited */
-  --color-rust: #b23a2e;        /* full / closed */
-  --color-stone: #6e6757;       /* muted labels */
-  --color-stone-light: #9a937f; /* faint labels */
+  --color-paper: #f3f5f2;
+  --color-card: #ffffff;
+  --color-ink: #121815;
+  --color-flame: #e86137;
+  --color-flame-dark: #c84b26;
+  --color-pine: #1d543c;
+  --color-pine-dark: #0e2a20;
+  --color-moss: #7d8d78;
+  --color-river: #4f8995;
+  --color-gold: #d6b45c;
+  --color-rust: #b64a3b;
+  --color-stone: #5e6861;
+  --color-stone-light: #89918c;
 
-  --font-display: "Archivo", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Barlow Condensed", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
   html { scroll-behavior: smooth; }
   ::selection { background-color: var(--color-flame); color: #fff; }
+  h1, h2, h3 { font-family: var(--font-display); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply font-display text-4xl font-bold uppercase leading-none tracking-[-0.025em] text-ink sm:text-5xl;
+  }
+
+  .data-label {
+    @apply font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-stone-light;
+  }
+
+  .data-value {
+    @apply mt-1 font-mono text-sm font-semibold text-ink;
+  }
+
+  .station-filter[aria-pressed="true"] {
+    @apply border-pine bg-pine text-paper;
+  }
 }

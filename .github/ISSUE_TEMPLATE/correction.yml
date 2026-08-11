@@ -1,0 +1,55 @@
+name: Race correction or addition
+description: Propose a sourced correction or missing fact for a race record.
+title: "[Race data]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve ultrainfo. Race records are public and contributor-maintained, so please include a source that another contributor can check.
+  - type: input
+    id: race
+    attributes:
+      label: Race
+      description: Which race record does this concern?
+      placeholder: Bighorn 100
+    validations:
+      required: true
+  - type: input
+    id: year
+    attributes:
+      label: Race year
+      description: Which Race year does this concern?
+      placeholder: "2026"
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What is wrong or missing?
+      description: Describe the current information and the correction or addition you propose.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Sources
+      description: Link every page, document, result, map, or other piece of evidence supporting this change.
+      placeholder: |
+        https://example.org/race-guide
+        https://example.org/results
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add dates, screenshots, or race-year details that will help verify the change.
+    validations:
+      required: false
+  - type: checkboxes
+    id: public
+    attributes:
+      label: Public contribution
+      options:
+        - label: I understand this issue and its attachments will be public.
+          required: true

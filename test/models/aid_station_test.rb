@@ -21,6 +21,11 @@ class AidStationTest < ActiveSupport::TestCase
     assert AidStation.new(race: @race, name: "X", lat: 1, lng: 2).coordinates?
   end
 
+  test "turnaround? identifies the turnaround pass" do
+    assert AidStation.new(direction: "Turnaround").turnaround?
+    assert_not AidStation.new(direction: "Outbound").turnaround?
+  end
+
   test "cutoff elapsed label formats hours and minutes" do
     assert_equal "6h", AidStation.new(cutoff_elapsed_minutes: 360).cutoff_elapsed_label
     assert_equal "33h 45m", AidStation.new(cutoff_elapsed_minutes: 2025).cutoff_elapsed_label

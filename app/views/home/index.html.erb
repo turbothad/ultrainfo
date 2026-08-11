@@ -1,74 +1,51 @@
 <% if @race %>
-  <!-- ===================== HERO ===================== -->
-  <section class="mx-auto grid max-w-[1240px] items-center gap-10 px-6 pb-14 pt-14 sm:px-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-[54px] lg:pb-[70px] lg:pt-[58px]">
-    <div>
-      <p class="mb-[22px] font-mono text-xs font-medium uppercase tracking-[0.2em] text-flame">
-        The 100-mile info project<%= " · #{@race.name}" if @race.name %>
+  <section class="mx-auto max-w-[1320px] px-5 py-16 sm:px-8 sm:py-24 lg:py-28">
+    <p class="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-pine">Open-source 100-mile race records</p>
+    <h1 class="mt-5 max-w-[1120px] break-words font-display text-[clamp(3.5rem,17vw,8.8rem)] font-extrabold uppercase leading-[0.78] tracking-[-0.045em] text-ink">
+      Ultra race information. <span class="text-pine">One place.</span>
+    </h1>
+    <div class="mt-9 flex min-w-0 max-w-4xl flex-col gap-6 border-t border-ink/10 pt-6 sm:flex-row sm:items-end sm:justify-between">
+      <p class="min-w-0 max-w-2xl text-base font-medium leading-relaxed text-stone sm:text-lg">
+        Schedules, maps, cutoffs, crew access, tracking, and results—organized into one public race record.
       </p>
-      <%# [PLACEHOLDER copy — refine headline wording] %>
-      <h1 class="mb-[22px] text-[clamp(2.6rem,5.6vw,5.1rem)] font-black uppercase leading-[0.92] tracking-[-0.03em]">
-        <%= @race.name %>,<br>start to finish,<br>in one place.
-      </h1>
-      <p class="mb-[30px] max-w-[480px] text-lg font-medium leading-[1.55] text-[#534d40]">
-        The schedule, the course, every aid station, and exactly where your crew can go —
-        pulled out of a dozen old race-site links. Free and open source.
-      </p>
+      <div class="flex shrink-0 flex-wrap items-center gap-4">
+        <%= link_to "View #{@race.name}", race_path(@race), class: "inline-flex items-center rounded-md bg-ink px-5 py-3 text-sm font-bold text-white no-underline transition hover:bg-pine focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine" %>
+        <%= link_to "GitHub ↗", "https://github.com/turbothad/ultrainfo", class: "font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-stone hover:text-ink" %>
+      </div>
+    </div>
+    <p class="mt-6 font-mono text-[9px] uppercase tracking-[0.1em] text-stone-light">Free · No account · Open source · MIT</p>
+  </section>
 
-      <div class="mb-[42px] flex flex-wrap gap-3">
-        <%= link_to race_path(@race, anchor: "crew"), class: "inline-flex items-center gap-2 rounded-full bg-flame px-[26px] py-[15px] text-[15px] font-bold text-white no-underline transition hover:bg-flame-dark" do %>
-          Crew the race
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <% end %>
-        <%= link_to "Run it", race_path(@race, anchor: "aid-stations"), class: "rounded-full border border-ink/25 px-[26px] py-[15px] text-[15px] font-bold text-ink no-underline transition hover:border-ink hover:bg-ink/5" %>
-        <%= link_to "Follow", race_path(@race, anchor: "follow"), class: "rounded-full border border-ink/25 px-[26px] py-[15px] text-[15px] font-bold text-ink no-underline transition hover:border-ink hover:bg-ink/5" %>
+  <section class="border-y border-paper/10 bg-ink text-paper">
+    <div class="mx-auto grid max-w-[1320px] gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-center lg:gap-12 lg:py-12">
+      <div class="min-w-0 py-4 lg:py-0">
+        <p class="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-paper/45">First complete record · <%= @race.year %></p>
+        <h2 class="mt-4 break-words font-display text-[clamp(3rem,15vw,6.8rem)] font-extrabold uppercase leading-[0.8] tracking-[-0.04em] text-paper"><%= @race.name %></h2>
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-paper/60">
+          <%= @race.blurb %>
+        </p>
+
+        <dl class="mt-8 grid grid-cols-2 border-y border-paper/10">
+          <% [
+            [ "Distance", @race.distance_mi && "#{@race.distance_mi.to_f.round(1)} mi" ],
+            [ "Vert", @race.elevation_gain_ft && "#{number_with_delimiter @race.elevation_gain_ft} ft" ],
+            [ "Cutoff", @race.cutoff_hours && "#{@race.cutoff_hours.to_i} h" ],
+            [ "Station passes", @race.aid_stations.size ]
+          ].each do |label, value| %>
+            <div class="border-b border-paper/10 py-4 odd:pr-4 even:border-l even:border-paper/10 even:pl-4 nth-[n+3]:border-b-0">
+              <dt class="font-mono text-[9px] uppercase tracking-[0.1em] text-paper/35"><%= label %></dt>
+              <dd class="mt-1 font-mono text-sm font-semibold text-paper"><%= value.presence || "—" %></dd>
+            </div>
+          <% end %>
+        </dl>
+
+        <%= link_to "Explore the full race record →", race_path(@race), class: "mt-7 inline-flex font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-[#f4b860] hover:text-paper" %>
       </div>
 
-      <dl class="flex flex-wrap gap-x-[38px] gap-y-4 border-t border-ink/10 pt-6 font-mono">
-        <% [["Miles", @race.distance_mi&.to_i],
-            ["Ft of vert", @race.elevation_gain_ft && number_with_delimiter(@race.elevation_gain_ft)],
-            ["Aid stations", @race.aid_station_location_count]].each do |label, value| %>
-          <div>
-            <dd class="text-[30px] font-bold leading-none tracking-[-0.02em]"><%= value.presence || "—" %></dd>
-            <dt class="mt-[3px] text-[11px] uppercase tracking-[0.14em] text-stone"><%= label %></dt>
-          </div>
-        <% end %>
-      </dl>
-    </div>
-
-    <%= render "races/hero_map", race: @race %>
-  </section>
-
-  <!-- trust strip -->
-  <div class="mx-auto hidden max-w-[1240px] flex-wrap items-center gap-x-[34px] gap-y-3 border-t border-ink/10 px-6 pt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-stone-light sm:flex sm:px-10">
-    <span class="text-stone">Plotting the course with</span>
-    <span class="font-bold text-[#534d40]">Three.js</span>
-    <span class="font-bold text-[#534d40]">Terrain Tiles</span>
-    <span class="font-bold text-[#534d40]">GPX / JSON</span>
-  </div>
-
-  <!-- choose your role -->
-  <section class="mx-auto max-w-[1240px] px-6 pb-4 pt-14 sm:px-10">
-    <h2 class="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-stone">Choose your role</h2>
-    <div class="grid gap-4 md:grid-cols-3">
-      <%= render "home/role_card", href: race_path(@race, anchor: "aid-stations"), eyebrow: "For runners", label: "Run it",
-            blurb: "Schedule, cutoffs, the registration link, the course, and what to expect.",
-            stat: (@race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h cutoff" : "course + cutoffs") %>
-      <%= render "home/role_card", href: race_path(@race, anchor: "crew"), eyebrow: "For crews & pacers", label: "Crew or pace",
-            blurb: "The crew-access map, which stations allow crew, parking & drop bags.",
-            stat: "#{@race.crew_location_count} crew stops" %>
-      <%= render "home/role_card", href: race_path(@race, anchor: "follow"), eyebrow: "For spectators", label: "Follow along",
-            blurb: "Live tracking, the best spots to watch from, and the finish.",
-            stat: "#{@race.crew_location_count} viewpoints" %>
+      <%= render "races/terrain_preview", race: @race %>
     </div>
   </section>
 
-  <section class="mx-auto max-w-[1240px] px-6 pb-20 pt-12 sm:px-10">
-    <p class="text-sm text-stone">
-      Built by one runner. No ads, no accounts, no upsell — just the info.
-      <%= link_to "Open the #{@race.name} overview →", race_path(@race), class: "font-semibold text-ink underline-offset-2 hover:text-flame" %>
-      · <a href="#about" class="font-semibold text-ink underline-offset-2 hover:text-flame">why this exists</a>
-    </p>
-  </section>
 <% else %>
-  <section class="mx-auto max-w-[1240px] px-6 py-24 text-stone sm:px-10">No races loaded yet.</section>
+  <section class="mx-auto max-w-[1320px] px-5 py-24 text-stone sm:px-8">No races loaded.</section>
 <% end %>

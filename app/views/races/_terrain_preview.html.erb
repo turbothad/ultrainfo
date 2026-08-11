@@ -1,0 +1,24 @@
+<div data-controller="terrain-map"
+     data-terrain-map-url-value="<%= map_race_path(race, format: :json) %>"
+     data-terrain-map-preview-value="true"
+     class="relative overflow-hidden rounded-xl border border-paper/10 bg-pine-dark shadow-[0_30px_80px_-40px_rgba(0,0,0,0.75)]">
+  <div data-terrain-map-target="canvas"
+       role="img"
+       aria-label="Interactive three-dimensional terrain preview of the <%= race.name %> course, colored by grade"
+       class="h-[420px] w-full bg-pine-dark sm:h-[520px]"></div>
+
+  <div class="pointer-events-none absolute left-3 top-3 rounded-md border border-paper/10 bg-pine-dark/85 px-2.5 py-2 font-mono text-[8px] uppercase tracking-[0.08em] text-paper/60 backdrop-blur sm:px-3 sm:text-[9px] sm:tracking-[0.1em]">
+    <span class="hidden sm:inline">Interactive course · </span>Drag to rotate
+  </div>
+
+  <%= render "races/course_grade_legend" %>
+
+  <div class="absolute right-3 top-3 flex gap-1 font-mono text-[8px] font-medium uppercase tracking-[0.06em] sm:gap-1.5 sm:text-[9px] sm:tracking-[0.08em]">
+    <button type="button" data-action="terrain-map#topView" class="rounded-md border border-paper/15 bg-pine-dark/85 px-2.5 py-2 text-paper backdrop-blur transition hover:bg-paper hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper sm:px-3">Top view</button>
+    <button type="button" data-action="terrain-map#resetView" class="rounded-md border border-paper/15 bg-pine-dark/85 px-2.5 py-2 text-paper backdrop-blur transition hover:bg-paper hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper sm:px-3">Reset</button>
+  </div>
+
+  <div data-terrain-map-target="status" aria-live="polite" class="absolute bottom-3 left-3 right-3 truncate rounded-md border border-paper/10 bg-pine-dark/85 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.08em] text-paper/50 backdrop-blur">
+    Loading terrain
+  </div>
+</div>

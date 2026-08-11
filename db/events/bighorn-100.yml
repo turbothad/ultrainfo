@@ -20,7 +20,7 @@ race:
   cutoff_hours: 35 # 9:00 AM start → 8:00 PM next-day cutoff
   official_url: https://bighorntrailrun.com/100-mile
   registration_url: https://bhtr.itsyourrace.com/event.aspx?id=384 # ITS YOUR RACE — official platform
-  results_url: https://bhtr.itsyourrace.com/Results.aspx?id=384
+  results_url: https://bighorntrailrun.com/results-%26-timing-1
   registration_status: closed # 2026 filled from the wait list; race ran June 19–20
   lottery: false
   source_metadata:
@@ -30,24 +30,18 @@ race:
       - label: "Official Bighorn 100 page"
         url: "https://bighorntrailrun.com/100-mile"
         fetched_on: "2026-06-26"
-        verified_on: "2026-07-02"
-        notes: "Race overview, schedule, registration links, and official course documents."
       - label: "Official Course Description PDF"
-        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/Bighorn100_Course_Description-0cce83e.pdf"
+        url: "https://bighorntrailrun.com/100-mile"
         verified_on: "2026-07-02"
-        notes: "Course distance, elevation totals, terrain, and race logistics."
       - label: "Official Aid Station Chart PDF"
-        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/downloads/30d8acf5-26bd-40cf-b6a4-a5ffefb537e2/Bighorn%20100%20Aid%20Station%20Chart.pdf?ver=1782760210683"
+        url: "https://bighorntrailrun.com/100-mile"
         verified_on: "2026-07-02"
-        notes: "Aid station passes, miles, cutoffs, crew access, drop bags, and pacer points."
       - label: "ITS YOUR RACE registration page"
         url: "https://bhtr.itsyourrace.com/event.aspx?id=384"
         verified_on: "2026-07-02"
-        notes: "Official registration status and event entry page."
-      - label: "Official 2026 results"
-        url: "https://bhtr.itsyourrace.com/Results.aspx?id=384"
-        verified_on: "2026-07-15"
-        notes: "Official published race results."
+      - label: "Bighorn results and timing"
+        url: "https://bighorntrailrun.com/results-%26-timing-1"
+        verified_on: "2026-08-11"
     notes: "Race facts, aid station miles, cutoffs, access flags, and course totals are sourced from official race materials represented in this file."
     overall_cutoff_label: "8:00 PM June 20, 2026"
     crew_drive_label: "Start to Dry Fork to Sally's to Jaws to Finish"
@@ -55,7 +49,7 @@ race:
   terrain_artifacts:
     status: generated
     path: "/terrain/bighorn-100.json"
-    generated_on: "2026-07-07"
+    generated_on: "2026-08-11"
     source_label: "AWS Terrain Tiles (Mapzen/Tilezen Terrarium DEM)"
     source_url: "https://registry.opendata.aws/terrain-tiles/"
     attribution: "Terrain tiles by Mapzen / Tilezen, from the AWS Open Data Terrain Tiles dataset."

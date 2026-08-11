@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose a focused improvement to Ultrainfo.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem should this solve?
+      description: Describe the runner, crew, pacer, follower, or contributor need.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What would a useful outcome look like?
+      description: Describe the behavior or information you need, without prescribing an implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Examples or supporting context
+      description: Add links, screenshots, or race-weekend examples that clarify the request.
+    validations:
+      required: false
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This request supports free, no-account race information.
+          required: true

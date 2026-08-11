@@ -2,10 +2,12 @@
 
 ## Agent skills
 
-### Issue tracker
+### Work tracking
 
-Issues live in Linear — team Turbothad ("TUR"), project ultrainfo — via the
-Linear MCP server. PRs are not a triage surface. See `docs/agents/issue-tracker.md`.
+Internal roadmap and agent-created work lives in Linear — personal workspace,
+team Turbothad (`TUR`), project ultrainfo. Public corrections, bugs, and feature
+requests use GitHub Issues; public implementations use pull requests. See
+`docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

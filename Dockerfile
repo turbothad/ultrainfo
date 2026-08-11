@@ -55,6 +55,17 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 # Final stage for app image
 FROM base
 
+ARG ULTRAINFO_VERSION=0.0.0-dev
+ARG ULTRAINFO_REVISION=unknown
+
+LABEL org.opencontainers.image.source="https://github.com/turbothad/ultrainfo" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.version="${ULTRAINFO_VERSION}" \
+      org.opencontainers.image.revision="${ULTRAINFO_REVISION}"
+
+ENV ULTRAINFO_VERSION="${ULTRAINFO_VERSION}" \
+    ULTRAINFO_REVISION="${ULTRAINFO_REVISION}"
+
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails

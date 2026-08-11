@@ -23,6 +23,10 @@ module Terrain
       bounds = padded_bounds
       elevations = grid(bounds)
       min_ft, max_ft = elevations.minmax
+      course_grade_profile = CourseGradeProfile.new(
+        @race.simplified_track,
+        elevation_at: method(:sample_elevation_ft)
+      ).call
 
       artifact = {
         "race" => { "slug" => @race.slug, "name" => @race.name, "year" => @race.year },
@@ -41,6 +45,7 @@ module Terrain
           "max_ft" => max_ft,
           "elevations_ft" => elevations
         },
+        "course_grade_profile" => course_grade_profile,
         "projection" => {
           "type" => "linear-lat-lng-bounds",
           "note" => "Course, crew route, and station coordinates are projected into this bounded terrain plane in the browser."
