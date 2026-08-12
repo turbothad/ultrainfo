@@ -14,7 +14,7 @@
       <% end %>
     </div>
     <p data-station-filter-target="status" aria-live="polite" class="font-mono text-[9px] uppercase tracking-[0.08em] text-stone-light">
-      Showing <%= stations.size %> station passes
+      Showing <%= station_passes.size %> station passes
     </p>
   </div>
 
@@ -26,40 +26,42 @@
           <th scope="col" class="px-4 py-3">Pass</th>
           <th scope="col" class="px-4 py-3">Aid station</th>
           <th scope="col" class="px-4 py-3">Cutoff</th>
-          <th scope="col" class="px-4 py-3 text-center">Crew</th>
-          <th scope="col" class="px-4 py-3 text-center">Drop bag</th>
-          <th scope="col" class="px-4 py-3 text-center">Pacer</th>
-          <th scope="col" class="px-4 py-3 text-center">Medical</th>
+          <% Array(station_passes.first&.fetch(:features)).each do |feature| %>
+            <th scope="col" class="px-4 py-3 text-center"><%= feature[:label] %></th>
+          <% end %>
           <th scope="col" class="px-4 py-3">Access notes</th>
         </tr>
       </thead>
       <tbody>
-        <% stations.sort_by { |station| station.sequence || 0 }.each do |s| %>
-          <tr id="<%= dom_id(s, :station_pass) %>"
+        <% station_passes.each do |station_pass| %>
+          <% features = station_pass[:features].index_by { |feature| feature[:key] } %>
+          <tr id="<%= station_pass[:details_id] %>"
               class="scroll-mt-24 border-b border-ink/5 last:border-0"
               data-station-filter-target="row"
-              data-filter-tags="<%= [ ("crew" if s.crew_accessible?), ("drop" if s.drop_bag?), ("pacer" if s.pacer_access?) ].compact.join(" ") %>"
-              data-crew="<%= s.crew_accessible? %>"
-              data-drop="<%= s.drop_bag? %>"
-              data-pacer="<%= s.pacer_access? %>">
-            <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= s.mile %></td>
-            <td class="whitespace-nowrap px-4 py-3 font-mono text-[11px] uppercase tracking-[0.08em] text-stone"><%= s.direction.presence || "—" %></td>
+              data-filter-tags="<%= station_pass[:filter_tags].join(" ") %>"
+              data-crew="<%= features.fetch("crew")[:available] %>"
+              data-drop="<%= features.fetch("drop_bag")[:available] %>"
+              data-pacer="<%= features.fetch("pacer")[:available] %>">
+            <td class="whitespace-nowrap px-4 py-3 font-mono font-semibold"><%= station_pass[:mile] %></td>
+            <td class="whitespace-nowrap px-4 py-3 font-mono text-[11px] uppercase tracking-[0.08em] text-stone"><%= station_pass[:direction_label] %></td>
             <td class="min-w-64 px-4 py-3">
-              <details id="station-pass-<%= s.sequence %>" class="scroll-mt-24">
-                <summary class="cursor-pointer font-semibold text-ink"><%= s.name %></summary>
+              <details id="station-pass-<%= station_pass[:sequence] %>" class="scroll-mt-24">
+                <summary class="cursor-pointer font-semibold text-ink"><%= station_pass[:name] %></summary>
                 <div class="mt-3 space-y-2 text-sm leading-relaxed text-stone">
-                  <% aid_station_detail_rows(s).each do |label, value| %>
-                    <div><span class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light"><%= label %>:</span> <%= value %></div>
+                  <% station_pass[:details].each do |detail| %>
+                    <div>
+                      <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-stone-light"><%= detail[:label] %>:</span>
+                      <%= detail[:value] %><% if detail[:link] %><%= " · " if detail[:value].present? %><%= link_to detail[:link][:label], detail[:link][:url], target: "_blank", rel: "noopener", class: "font-semibold text-pine underline-offset-4 hover:text-ink" %><% end %>
+                    </div>
                   <% end %>
                 </div>
               </details>
             </td>
-            <td class="whitespace-nowrap px-4 py-3 font-mono text-stone"><%= cutoff_display(s) %></td>
-            <td class="px-4 py-3 text-center"><%= yes_no s.crew_accessible %></td>
-            <td class="px-4 py-3 text-center"><%= yes_no s.drop_bag %></td>
-            <td class="px-4 py-3 text-center"><%= yes_no s.pacer_access %></td>
-            <td class="px-4 py-3 text-center"><%= yes_no s.has_medical %></td>
-            <td class="min-w-72 px-4 py-3 text-stone"><%= s.parking_notes.presence || s.crew_access_notes.presence || "—" %></td>
+            <td class="whitespace-nowrap px-4 py-3 font-mono text-stone"><%= station_pass[:cutoff_label] %></td>
+            <% station_pass[:features].each do |feature| %>
+              <td class="px-4 py-3 text-center"><%= yes_no feature[:available] %></td>
+            <% end %>
+            <td class="min-w-72 px-4 py-3 text-stone"><%= station_pass[:access_notes] %></td>
           </tr>
         <% end %>
       </tbody>

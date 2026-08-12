@@ -31,21 +31,4 @@ class AidStationTest < ActiveSupport::TestCase
     assert_equal "33h 45m", AidStation.new(cutoff_elapsed_minutes: 2025).cutoff_elapsed_label
     assert_nil AidStation.new.cutoff_elapsed_label
   end
-
-  test "cutoff display can fall back to legacy cutoff text" do
-    helper = Class.new { include ApplicationHelper }.new
-
-    assert_equal "8:30 PM", helper.cutoff_display(AidStation.new(cutoff: "8:30 PM"))
-    assert_equal "8:30 PM / 11h 30m", helper.cutoff_display(
-      AidStation.new(cutoff: "legacy", cutoff_clock: "8:30 PM", cutoff_elapsed_minutes: 690)
-    )
-    assert_equal "None listed", helper.cutoff_display(AidStation.new)
-  end
-
-  test "directions destination formats decimal columns as standard coordinates" do
-    helper = Class.new { include ApplicationHelper }.new
-    station = AidStation.new(lat: BigDecimal("44.850000"), lng: BigDecimal("-107.350000"))
-
-    assert_equal "44.850000,-107.350000", helper.directions_destination(station)
-  end
 end

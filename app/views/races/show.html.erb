@@ -41,7 +41,7 @@
       <h2 class="section-heading">Course</h2>
       <p class="max-w-md text-sm leading-relaxed text-stone">Select a station pass for cutoffs, access, aid, and directions.</p>
     </div>
-    <%= render "races/map", race: @race, drive: true %>
+    <%= render "races/map", race: @race, station_passes: @station_passes, drive: true %>
     <div class="mt-5"><%= render "races/elevation_profile", race: @race %></div>
   </section>
 
@@ -67,7 +67,7 @@
       <% end %>
     </dl>
 
-    <div class="mt-7"><%= render "races/aid_station_table", stations: @race.aid_stations, initial_filter: params[:stations] %></div>
+    <div class="mt-7"><%= render "races/aid_station_table", station_passes: @station_passes, initial_filter: params[:stations] %></div>
   </section>
 
   <section id="crew" data-controller="race-actions" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
@@ -95,13 +95,13 @@
   </section>
 
   <section id="follow" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
-    <% turnaround_pass = @race.aid_stations.find(&:turnaround?) %>
+    <% turnaround_pass = @station_passes.find { |station_pass| station_pass[:direction] == "Turnaround" } %>
     <h2 class="section-heading">Follow</h2>
 
     <dl class="mt-7 grid border-y border-ink/10 sm:grid-cols-3">
       <% [
         [ "Start", [ @race.start_time, race_date_label(@race) ].compact_blank.join(" · ") ],
-        [ "Turnaround cutoff", turnaround_pass ? cutoff_display(turnaround_pass) : "Not listed" ],
+        [ "Turnaround cutoff", turnaround_pass ? turnaround_pass[:cutoff_label] : "Not listed" ],
         [ "Final cutoff", overall_cutoff_display(@race) ]
       ].each do |label, value| %>
         <div class="border-b border-ink/10 py-4 sm:border-b-0 sm:border-l sm:px-5 sm:first:border-l-0 sm:first:pl-0">
