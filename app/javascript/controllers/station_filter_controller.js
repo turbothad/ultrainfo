@@ -5,17 +5,15 @@ export default class extends Controller {
   static targets = ["button", "row", "status"]
 
   connect() {
-    this.showAll = () => this.#apply("all")
-    document.addEventListener("station-filter:show-all", this.showAll)
     this.#apply(this.initialValue || "all")
-  }
-
-  disconnect() {
-    document.removeEventListener("station-filter:show-all", this.showAll)
   }
 
   filter(event) {
     this.#apply(event.params.filter)
+  }
+
+  showAll() {
+    this.#apply("all")
   }
 
   showCrew() {

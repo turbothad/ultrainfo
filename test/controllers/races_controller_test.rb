@@ -8,7 +8,13 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
       start_time: "9:00 AM", cutoff_hours: 35,
       simplified_track: [ [ 44.87, -107.26 ], [ 44.66, -107.50 ] ]
     )
-    @crew = @race.aid_stations.create!(name: "Dry Fork", sequence: 1, direction: "Turnaround", mile: 13.4, crew_accessible: true, lat: 44.8, lng: -107.3, cutoff_clock: "4:00 AM", cutoff_elapsed_minutes: 360)
+    @crew = @race.aid_stations.create!(
+      name: "Dry Fork", sequence: 1, direction: "Turnaround", mile: 13.4,
+      crew_accessible: true, lat: 44.8, lng: -107.3,
+      cutoff_clock: "4:00 AM", cutoff_elapsed_minutes: 360,
+      directions_notes: "Approach from the east.", road_notes: "Use Highway 14 only.",
+      source_metadata: { "verification_status" => "verified", "source_label" => "Aid Station Chart" }
+    )
     @nocrew = @race.aid_stations.create!(name: "Cow Camp", sequence: 2, mile: 19.6, crew_accessible: false)
   end
 
@@ -88,8 +94,21 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(@response.body)
     assert_equal 2, data["course"].length
     assert_equal 2, data["stations"].length
-    assert data["stations"].find { |s| s["name"] == "Dry Fork" }["crew"]
-    assert_equal "6h", data["stations"].find { |s| s["name"] == "Dry Fork" }["cutoff_elapsed_label"]
+    station = data["stations"].find { |candidate| candidate["name"] == "Dry Fork" }
+    assert_nil station["cutoff"]
+    assert_equal "4:00 AM", station["cutoff_clock"]
+    assert_equal 360, station["cutoff_elapsed_minutes"]
+    assert_equal "6h", station["cutoff_elapsed_label"]
+    assert_equal "4:00 AM / 6h", station["cutoff_label"]
+    assert_equal "Use Highway 14 only.", station["road"]
+    assert_equal "Use Highway 14 only.", station["road_notes"]
+    assert station["crew"]
+    assert_not station["drop_bag"]
+    assert_equal @crew.source_metadata, station["source_metadata"]
+    assert station["landmark"]
+    assert_equal "Approach from the east.", station.dig("directions", "notes")
+    assert_equal "Verified source", station.dig("verification", "label")
+    assert station["features"].find { |feature| feature["key"] == "crew" }["available"]
     assert_equal 12.3, data["crew_route"]["distance_mi"]
     assert_equal "/terrain/missing-test.json?v=#{sha256}", data["terrain_artifacts"]["path"]
   end

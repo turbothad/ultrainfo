@@ -1,7 +1,10 @@
 <%= render "races/race_header", race: @race %>
 <%= render "races/jump_nav", race: @race %>
 
-<div class="mx-auto max-w-[1320px] px-5 pb-20 sm:px-8" data-controller="race-page">
+<div class="mx-auto max-w-[1320px] px-5 pb-20 sm:px-8"
+     data-controller="race-page"
+     data-race-page-terrain-map-outlet="#race-terrain-map"
+     data-race-page-station-filter-outlet="#station-pass-table">
   <section id="facts" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Race facts</h2>
@@ -41,7 +44,7 @@
       <h2 class="section-heading">Course</h2>
       <p class="max-w-md text-sm leading-relaxed text-stone">Select a station pass for cutoffs, access, aid, and directions.</p>
     </div>
-    <%= render "races/map", race: @race, drive: true %>
+    <%= render "races/map", race: @race, station_passes: @station_passes, drive: true %>
     <div class="mt-5"><%= render "races/elevation_profile", race: @race %></div>
   </section>
 
@@ -67,13 +70,13 @@
       <% end %>
     </dl>
 
-    <div class="mt-7"><%= render "races/aid_station_table", stations: @race.aid_stations, initial_filter: params[:stations] %></div>
+    <div class="mt-7"><%= render "races/aid_station_table", station_passes: @station_passes, initial_filter: params[:stations] %></div>
   </section>
 
-  <section id="crew" data-controller="race-actions" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
+  <section id="crew" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Crew & pacers</h2>
-      <%= link_to "Crew-accessible passes ↑", "#aid-stations", data: { action: "race-actions#showCrewPasses" }, class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
+      <%= link_to "Crew-accessible passes ↑", "#aid-stations", data: { action: "race-page#showCrewPasses" }, class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
     </div>
 
     <div class="mt-7 grid border-y border-ink/10 lg:grid-cols-2">
@@ -95,13 +98,13 @@
   </section>
 
   <section id="follow" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
-    <% turnaround_pass = @race.aid_stations.find(&:turnaround?) %>
+    <% turnaround_pass = @station_passes.find { |station_pass| station_pass[:direction] == "Turnaround" } %>
     <h2 class="section-heading">Follow</h2>
 
     <dl class="mt-7 grid border-y border-ink/10 sm:grid-cols-3">
       <% [
         [ "Start", [ @race.start_time, race_date_label(@race) ].compact_blank.join(" · ") ],
-        [ "Turnaround cutoff", turnaround_pass ? cutoff_display(turnaround_pass) : "Not listed" ],
+        [ "Turnaround cutoff", turnaround_pass ? turnaround_pass[:cutoff_label] : "Not listed" ],
         [ "Final cutoff", overall_cutoff_display(@race) ]
       ].each do |label, value| %>
         <div class="border-b border-ink/10 py-4 sm:border-b-0 sm:border-l sm:px-5 sm:first:border-l-0 sm:first:pl-0">

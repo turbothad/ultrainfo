@@ -19,14 +19,8 @@ export default class extends Controller {
   connect() {
     this.layers = {}
     this.stationPassMeshes = []
-    this.stationMeshes = this.stationPassMeshes
     this.raycaster = new THREE.Raycaster()
     this.pointer = new THREE.Vector2()
-    this.showDrive = () => {
-      if (this.layers.drive) this.layers.drive.visible = true
-      if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
-    }
-    document.addEventListener("terrain-map:show-drive", this.showDrive)
     this.#initialize()
   }
 
@@ -56,7 +50,6 @@ export default class extends Controller {
 
   disconnect() {
     cancelAnimationFrame(this.frame)
-    document.removeEventListener("terrain-map:show-drive", this.showDrive)
     this.resizeObserver?.disconnect()
     this.renderer?.domElement.removeEventListener("pointerdown", this.onPointerDown)
     this.controls?.removeEventListener("start", this.stopAutoRotate)
@@ -71,6 +64,11 @@ export default class extends Controller {
 
   toggleDrive(event) {
     if (this.layers.drive) this.layers.drive.visible = event.target.checked
+  }
+
+  showDrive() {
+    if (this.layers.drive) this.layers.drive.visible = true
+    if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
   }
 
   toggleStationPasses(event) {
@@ -95,21 +93,6 @@ export default class extends Controller {
     const sequence = Number(event.params.sequence)
     const marker = this.stationPassMeshes.find((candidate) => Number(candidate.userData.station.sequence) === sequence)
     if (marker) this.#activateStationPass(marker, true)
-  }
-
-  openStationPass(event) {
-    event.preventDefault()
-    const selector = event.currentTarget.getAttribute("href")
-    const stationPassRow = selector && document.querySelector(selector)
-    const stationPass = stationPassRow?.matches("details") ? stationPassRow : stationPassRow?.querySelector("details")
-    if (!stationPassRow || !stationPass) return
-
-    document.dispatchEvent(new CustomEvent("station-filter:show-all"))
-    stationPassRow.hidden = false
-    stationPass.open = true
-    window.history.replaceState(null, "", selector)
-    stationPassRow.scrollIntoView({ block: "start", behavior: this.#motionBehavior() })
-    stationPass.querySelector("summary")?.focus({ preventScroll: true })
   }
 
   #buildScene() {
@@ -290,10 +273,10 @@ export default class extends Controller {
         point.z += Math.sin(count * 1.7) * 0.52
       }
 
-      const isLandmark = station.sequence === 1 || /start|finish|turnaround/i.test(station.name)
+      const crew = station.features.find((feature) => feature.key === "crew")?.available
       const marker = new THREE.Mesh(
-        isLandmark ? new THREE.OctahedronGeometry(MARKER_RADIUS * 1.45, 0) : new THREE.SphereGeometry(MARKER_RADIUS, 18, 12),
-        new THREE.MeshStandardMaterial({ color: station.crew ? "#f4b860" : "#dfe8e2", emissive: station.crew ? "#4d3005" : "#122015", roughness: 0.35 })
+        station.landmark ? new THREE.OctahedronGeometry(MARKER_RADIUS * 1.45, 0) : new THREE.SphereGeometry(MARKER_RADIUS, 18, 12),
+        new THREE.MeshStandardMaterial({ color: crew ? "#f4b860" : "#dfe8e2", emissive: crew ? "#4d3005" : "#122015", roughness: 0.35 })
       )
       marker.position.copy(point)
       marker.userData.station = station
@@ -394,29 +377,27 @@ export default class extends Controller {
   }
 
   #showStationPass(station) {
-    const directions = station.lat != null && station.lng != null
-      ? `<a class="font-semibold text-[#f4b860] hover:text-paper" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}">Directions</a>`
+    const directions = station.directions.url
+      ? `<a class="font-semibold text-[#f4b860] hover:text-paper" target="_blank" rel="noopener" href="${this.#escape(station.directions.url)}">${this.#escape(station.directions.link_label)}</a>`
       : ""
-    const source = station.source_metadata?.verification_status || "unverified"
+    const features = station.features.map((feature) => this.#detail(feature.label, feature.value)).join("")
 
     this.detailTarget.innerHTML = `
       <div class="font-semibold text-paper">${this.#escape(station.name)}</div>
-      <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Mile ${this.#escape(station.mile)} / ${this.#escape(station.direction || "Pass")}</div>
+      <div class="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Mile ${this.#escape(station.mile)} / ${this.#escape(station.direction_label)}</div>
       <dl class="mt-4 grid grid-cols-2 gap-3 text-sm">
-        ${this.#detail("Cutoff", this.#cutoffLabel(station))}
-        ${this.#detail("Crew", station.crew ? "Allowed" : "No")}
-        ${this.#detail("Pacer", station.pacer ? "Allowed" : "No")}
-        ${this.#detail("Drop bag", station.drop_bag ? "Yes" : "No")}
-        ${this.#detail("Medical", station.medical ? "Yes" : "No")}
-        ${this.#detail("Elevation", station.elevation_ft ? `${station.elevation_ft} ft` : "Not listed")}
+        ${this.#detail("Cutoff", station.cutoff_label)}
+        ${features}
+        ${this.#detail("Elevation", station.elevation)}
       </dl>
       ${station.aid ? `<p class="mt-4 text-paper/78">${this.#escape(station.aid)}</p>` : ""}
       ${station.parking ? `<p class="mt-3 text-paper/62">${this.#escape(station.parking)}</p>` : ""}
-      ${station.road_notes ? `<p class="mt-3 text-paper/62">${this.#escape(station.road_notes)}</p>` : ""}
+      ${station.road ? `<p class="mt-3 text-paper/62">${this.#escape(station.road)}</p>` : ""}
+      ${station.directions.notes ? `<p class="mt-3 text-paper/62">${this.#escape(station.directions.notes)}</p>` : ""}
       <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-paper/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-paper/50">
-        <span>Source ${this.#escape(source)}</span>
+        <span>Verification ${this.#escape(station.verification.label)}</span>
         <span class="flex items-center gap-3">
-          <a class="font-semibold text-[#f4b860] hover:text-paper" data-turbo="false" data-action="terrain-map#openStationPass" href="#${this.#escape(station.details_id || `station-pass-${station.sequence}`)}">Full station pass</a>
+          <a class="font-semibold text-[#f4b860] hover:text-paper" data-turbo="false" data-action="race-page#openStationPass" href="#${this.#escape(station.details_id || `station-pass-${station.sequence}`)}">Full station pass</a>
           ${directions}
         </span>
       </div>
@@ -425,11 +406,6 @@ export default class extends Controller {
 
   #detail(label, value) {
     return `<div><dt class="font-mono text-[10px] uppercase tracking-[0.12em] text-paper/45">${this.#escape(label)}</dt><dd class="mt-1 font-semibold text-paper">${this.#escape(value)}</dd></div>`
-  }
-
-  #cutoffLabel(station) {
-    const normalized = [station.cutoff_clock, station.cutoff_elapsed_label].filter(Boolean).join(" / ")
-    return normalized || station.cutoff || "None listed"
   }
 
   #setStatus(message) {

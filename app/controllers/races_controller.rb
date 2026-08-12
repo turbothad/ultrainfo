@@ -3,6 +3,7 @@ class RacesController < ApplicationController
 
   def show
     @race.aid_stations.load
+    @station_passes = @race.aid_stations.sort_by { |station| station.sequence || 0 }.map { |station| StationPassPresentation.call(station) }
   end
 
   def runner
@@ -35,22 +36,7 @@ class RacesController < ApplicationController
       crew_route: @race.crew_route,
       terrain_artifacts: terrain_artifacts_payload,
       start: { lat: @race.start_lat, lng: @race.start_lng, name: @race.start_venue },
-      stations: @race.aid_stations.map do |s|
-        {
-          id: s.id, details_id: ActionView::RecordIdentifier.dom_id(s, :station_pass),
-          name: s.name, mile: s.mile, sequence: s.sequence, direction: s.direction,
-          elevation_ft: s.elevation_ft,
-          crew: s.crew_accessible, pacer: s.pacer_access, drop_bag: s.drop_bag,
-          water: s.has_water, food: s.has_food, medical: s.has_medical,
-          cutoff: s.cutoff, cutoff_clock: s.cutoff_clock,
-          cutoff_elapsed_minutes: s.cutoff_elapsed_minutes,
-          cutoff_elapsed_label: s.cutoff_elapsed_label,
-          parking: s.parking_notes, aid: s.aid_notes, bathroom: s.bathroom_notes,
-          crew_notes: s.crew_access_notes, pacer_notes: s.pacer_notes,
-          directions_notes: s.directions_notes, road_notes: s.road_notes,
-          lat: s.lat, lng: s.lng, source_metadata: s.source_metadata
-        }
-      end
+      stations: @race.aid_stations.map { |station| StationPassPresentation.call(station) }
     }
   end
 

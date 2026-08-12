@@ -1,5 +1,6 @@
 <% drive = local_assigns.fetch(:drive, false) && race.crew_route.present? %>
-<div data-controller="terrain-map"
+<div id="race-terrain-map"
+     data-controller="terrain-map"
      data-terrain-map-url-value="<%= map_race_path(race, format: :json) %>"
      data-terrain-map-drive-value="<%= drive %>"
      class="overflow-hidden rounded-xl border border-ink/10 bg-pine-dark text-paper shadow-[0_28px_60px_-40px_rgba(18,24,21,0.65)]">
@@ -74,16 +75,16 @@
       <p class="hidden font-mono text-[9px] uppercase tracking-[0.08em] text-paper/35 sm:block">Drag · zoom · select</p>
     </div>
     <ol class="flex gap-2 overflow-x-auto pb-2">
-      <% race.aid_stations.each do |station| %>
+      <% station_passes.each do |station_pass| %>
         <li>
           <button type="button"
                   data-terrain-map-target="stationPassButton"
-                  data-terrain-map-sequence-param="<%= station.sequence %>"
+                  data-terrain-map-sequence-param="<%= station_pass[:sequence] %>"
                   data-action="terrain-map#selectStationPassBySequence"
                   aria-pressed="false"
                   class="group min-w-32 rounded-md border border-paper/10 bg-paper/5 px-3 py-2.5 text-left transition hover:border-paper/30 hover:bg-paper/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper">
-            <span class="block font-mono text-[8px] uppercase tracking-[0.08em] text-paper/40">Mile <%= station.mile %> · <%= station.direction.presence || "Pass" %></span>
-            <span class="mt-1 block text-xs font-bold text-paper"><%= station.name %></span>
+            <span class="block font-mono text-[8px] uppercase tracking-[0.08em] text-paper/40">Mile <%= station_pass[:mile] %> · <%= station_pass[:direction_label] %></span>
+            <span class="mt-1 block text-xs font-bold text-paper"><%= station_pass[:name] %></span>
           </button>
         </li>
       <% end %>
