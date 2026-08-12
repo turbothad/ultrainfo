@@ -113,7 +113,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
   test "blank Terrain metadata fails safely before rendering" do
     invalid_path = Rails.root.join("public/terrain/blank-metadata-test.json")
     invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
-    invalid_artifact.fetch("race")["name"] = "   "
+    invalid_artifact.fetch("race")["name"] = "\u00A0"
     File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
     @race.update!(
       terrain_artifacts: @terrain_reference.merge(

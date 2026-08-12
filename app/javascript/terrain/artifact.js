@@ -5,7 +5,7 @@ const PROJECTION = {
   z_axis: "latitude-north-to-south",
   elevation_unit: "feet"
 }
-const ISO8601 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/
+const ISO8601 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:[0-5]\d(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/
 
 export async function loadTerrainArtifact(reference, { raceSlug }) {
   validateReference(reference)

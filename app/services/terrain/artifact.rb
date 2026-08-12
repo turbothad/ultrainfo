@@ -12,7 +12,8 @@ module Terrain
       "z_axis" => "latitude-north-to-south",
       "elevation_unit" => "feet"
     }.freeze
-    ISO8601 = /\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})\z/
+    ISO8601 = /\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:[0-5]\d(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})\z/
+    ECMASCRIPT_WHITESPACE = /\A[\u0009-\u000D\u0020\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF]*\z/
 
     attr_reader :data, :sha256
 
@@ -156,7 +157,7 @@ module Terrain
     end
 
     def blank_string?(value)
-      !value.is_a?(String) || value.strip.empty?
+      !value.is_a?(String) || value.match?(ECMASCRIPT_WHITESPACE)
     end
 
     def invalid!(message)

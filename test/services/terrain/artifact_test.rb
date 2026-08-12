@@ -60,6 +60,24 @@ module Terrain
       assert_match(/source label/i, source_error.message)
     end
 
+    test "rejects browser-blank descriptive metadata" do
+      payload = valid_payload
+      payload.fetch("race")["name"] = "\u00A0"
+
+      error = assert_raises(Artifact::Invalid) { Artifact.write(payload, to: @output) }
+
+      assert_match(/race name/i, error.message)
+    end
+
+    test "rejects a generated timestamp with leap seconds" do
+      payload = valid_payload
+      payload["generated_at"] = "2026-08-12T12:00:60Z"
+
+      error = assert_raises(Artifact::Invalid) { Artifact.write(payload, to: @output) }
+
+      assert_match(/generated at/i, error.message)
+    end
+
     test "rejects a course grade segment without renderer coordinates" do
       payload = valid_payload
       payload.fetch("course_grade_profile").fetch("segments").first.delete("from")
