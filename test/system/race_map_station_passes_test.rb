@@ -14,7 +14,15 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     )
     @inbound = @race.aid_stations.create!(
       name: "Dry Fork", sequence: 2, mile: 82.5, direction: "Inbound",
-      cutoff_clock: "10:00 PM", crew_accessible: false, lat: 44.8, lng: -107.3
+      cutoff_clock: "10:00 PM", cutoff_elapsed_minutes: 2_220,
+      crew_accessible: false, drop_bag: true, lat: 44.8, lng: -107.3,
+      directions_notes: "Approach from Red Grade Road.",
+      road_notes: "High-clearance vehicles recommended.",
+      source_metadata: {
+        "verification_status" => "verified",
+        "source_label" => "Aid Station Chart",
+        "source_url" => "https://example.test/chart"
+      }
     )
   end
 
@@ -27,20 +35,29 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     within "[data-terrain-map-target='detail']" do
       assert_text "Dry Fork"
       assert_text /Mile 82.5/i
-      assert_text "10:00 PM"
+      assert_text "10:00 PM / 37h"
       assert_text /Crew\s+No/i
       assert_text /Pacer\s+No/i
-      assert_text /Drop bag\s+No/i
+      assert_text /Drop bag\s+Yes/i
       assert_text /Medical\s+No/i
       assert_text /Elevation\s+Not listed/i
-      assert_text /Source unverified/i
-      assert_link "Directions"
+      assert_text "Approach from Red Grade Road."
+      assert_text "High-clearance vehicles recommended."
+      assert_text /Verification\s+Verified source/i
+      assert_link "Open map"
       click_link "Full station pass"
     end
 
     assert_equal "#station_pass_aid_station_#{@inbound.id}", page.evaluate_script("window.location.hash")
     assert_selector "#station_pass_aid_station_#{@inbound.id} details[open]"
     assert_no_selector "#station_pass_aid_station_#{@outbound.id} details[open]"
+    within "#station_pass_aid_station_#{@inbound.id}" do
+      assert_text "10:00 PM / 37h"
+      assert_text "Approach from Red Grade Road."
+      assert_text "High-clearance vehicles recommended."
+      assert_text /Verification:\s+Verified source/i
+      assert_link "Open map"
+    end
   end
 
   test "terrain failure leaves useful course navigation in the map" do
