@@ -1,6 +1,6 @@
 <% initial_filter = local_assigns.fetch(:initial_filter, "all").presence_in(%w[all crew drop pacer]) || "all" %>
-<div data-controller="station-filter"
-     data-action="race:show-crew-passes@window->station-filter#showCrew"
+<div id="station-pass-table"
+     data-controller="station-filter"
      data-station-filter-initial-value="<%= initial_filter %>">
   <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
     <div class="flex flex-wrap gap-2" role="group" aria-label="Filter station passes">

@@ -1,5 +1,6 @@
 <% drive = local_assigns.fetch(:drive, false) && race.crew_route.present? %>
-<div data-controller="terrain-map"
+<div id="race-terrain-map"
+     data-controller="terrain-map"
      data-terrain-map-url-value="<%= map_race_path(race, format: :json) %>"
      data-terrain-map-drive-value="<%= drive %>"
      class="overflow-hidden rounded-xl border border-ink/10 bg-pine-dark text-paper shadow-[0_28px_60px_-40px_rgba(18,24,21,0.65)]">
