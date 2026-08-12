@@ -2,10 +2,8 @@ require "test_helper"
 
 module Terrain
   class PreprocessTest < ActiveSupport::TestCase
-    class FakePreprocess < Preprocess
-      private
-
-      def sample_elevation_ft(lat, lng)
+    class FakeTileSource
+      def elevation_ft(lat:, lng:, zoom:)
         4_000 + ((lat + lng) * 10)
       end
     end
@@ -19,16 +17,23 @@ module Terrain
       race.aid_stations.create!(name: "Dry Fork", sequence: 1, lat: 44.85, lng: -107.35)
       output = Rails.root.join("tmp/terrain-test/bighorn-100.json")
 
-      artifact = FakePreprocess.new(race, output_path: output, grid_size: 4).call
+      artifact = Preprocess.new(
+        race,
+        output_path: output,
+        grid_size: 4,
+        tile_source: FakeTileSource.new
+      ).call
 
       assert File.exist?(output)
-      assert_equal "bighorn-100", artifact.dig("race", "slug")
-      assert_equal 4, artifact.dig("grid", "size")
-      assert_equal 16, artifact.dig("grid", "elevations_ft").size
-      assert_equal 1, artifact.dig("course_grade_profile", "segments").size
-      assert_includes %w[flat moderate steep], artifact.dig("course_grade_profile", "segments", 0, "steepness")
-      assert_equal "linear-lat-lng-bounds", artifact.dig("projection", "type")
-      assert_match "Terrain Tiles", artifact.dig("source", "label")
+      assert_instance_of Artifact, artifact
+      assert_equal "bighorn-100", artifact.data.dig("race", "slug")
+      assert_equal 4, artifact.data.dig("grid", "size")
+      assert_equal 16, artifact.data.dig("grid", "elevations_ft").size
+      assert_equal 1, artifact.data.dig("course_grade_profile", "segments").size
+      assert_includes %w[flat moderate steep], artifact.data.dig("course_grade_profile", "segments", 0, "steepness")
+      assert_equal Artifact::PROJECTION, artifact.data.fetch("projection")
+      assert_match "Terrain Tiles", artifact.data.dig("source", "label")
+      assert_equal Digest::SHA256.file(output).hexdigest, artifact.sha256
     ensure
       FileUtils.rm_f(output) if output
     end

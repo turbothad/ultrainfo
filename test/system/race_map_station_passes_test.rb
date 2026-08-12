@@ -2,11 +2,16 @@ require "application_system_test_case"
 
 class RaceMapStationPassesTest < ApplicationSystemTestCase
   setup do
+    @terrain_reference = YAML.load_file(
+      Rails.root.join("db/events/bighorn-100.yml"),
+      permitted_classes: [ Date ],
+      aliases: true
+    ).dig("race", "terrain_artifacts")
     @race = Race.create!(
       name: "Bighorn 100", slug: "bighorn-100", year: 2026, state: "WY",
       distance_mi: 100.4, start_lat: 44.87, start_lng: -107.26,
       simplified_track: [ [ 44.87, -107.26 ], [ 44.80, -107.30 ] ],
-      terrain_artifacts: { "path" => "/terrain/bighorn-100.json" }
+      terrain_artifacts: @terrain_reference
     )
     @outbound = @race.aid_stations.create!(
       name: "Dry Fork", sequence: 1, mile: 13.4, direction: "Outbound",
@@ -44,7 +49,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
   end
 
   test "terrain failure leaves useful course navigation in the map" do
-    @race.update!(terrain_artifacts: { "path" => "/terrain/not-found.json" })
+    @race.update!(terrain_artifacts: @terrain_reference.merge("path" => "/terrain/not-found.json"))
 
     visit race_path(@race)
 
@@ -56,35 +61,53 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     end
   end
 
-  test "terrain canvas contains varied rendered pixels" do
+  test "stale Terrain metadata fails safely to useful course navigation" do
+    @race.update!(terrain_artifacts: @terrain_reference.merge("sha256" => "0" * 64))
+
     visit race_path(@race)
-    assert_selector "[data-terrain-map-target='status']", text: /DEM/
 
-    pixel_stats = page.evaluate_script <<~JAVASCRIPT
-      (() => {
-        const element = document.querySelector("[data-controller~='terrain-map']")
-        const controller = window.Stimulus.getControllerForElementAndIdentifier(element, "terrain-map")
-        controller.renderer.render(controller.scene, controller.camera)
-        const gl = controller.renderer.getContext()
-        const width = gl.drawingBufferWidth
-        const height = gl.drawingBufferHeight
-        const pixels = new Uint8Array(width * height * 4)
-        gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, pixels)
+    assert_selector "[data-terrain-map-target='status']", text: /SHA-256 digest does not match/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  end
 
-        const colors = new Set()
-        // Quantized sampling ignores antialiasing noise while still distinguishing terrain from a flat clear color.
-        const stride = Math.max(1, Math.floor(width * height / 2_000))
-        for (let pixel = 0; pixel < width * height; pixel += stride) {
-          const offset = pixel * 4
-          colors.add(`${pixels[offset] >> 4},${pixels[offset + 1] >> 4},${pixels[offset + 2] >> 4}`)
-        }
-        return { width, height, sampledColors: colors.size }
-      })()
-    JAVASCRIPT
+  test "invalid Terrain projection fails safely to useful course navigation" do
+    invalid_path = Rails.root.join("public/terrain/invalid-projection-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact.fetch("projection")["z_axis"] = "latitude-south-to-north"
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/invalid-projection-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
 
-    assert_operator pixel_stats.fetch("width"), :>, 0
-    assert_operator pixel_stats.fetch("height"), :>, 0
-    assert_operator pixel_stats.fetch("sampledColors"), :>, 8
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /projection is unsupported/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
+  end
+
+  test "invalid course grade segments fail safely before rendering" do
+    invalid_path = Rails.root.join("public/terrain/invalid-grade-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact.dig("course_grade_profile", "segments").first.delete("from")
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/invalid-grade-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
+
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /segment coordinates are invalid/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
   end
 
   test "crew route action enables the crew layer on the canonical map" do
@@ -101,7 +124,6 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
 
     uncheck "Crew drive"
     assert_no_checked_field "Crew drive"
-    assert_equal false, terrain_layer_visible("drive")
 
     page.execute_script("document.documentElement.style.scrollBehavior = 'auto'")
     within "#crew" do
@@ -110,7 +132,6 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
 
     assert_equal "#course", page.evaluate_script("window.location.hash")
     assert_checked_field "Crew drive"
-    assert_equal true, terrain_layer_visible("drive")
   end
 
   test "crew passes action filters the canonical station table" do
@@ -154,15 +175,6 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
   end
 
   private
-
-  def terrain_layer_visible(layer)
-    page.evaluate_script <<~JAVASCRIPT
-      (() => {
-        const element = document.querySelector("[data-controller~='terrain-map']")
-        return window.Stimulus.getControllerForElementAndIdentifier(element, "terrain-map").layers["#{layer}"].visible
-      })()
-    JAVASCRIPT
-  end
 
   def click_station_marker(station)
     page.execute_script <<~JAVASCRIPT

@@ -19,6 +19,13 @@ module Events
       assert race.aid_stations.all?(&:coordinates?), "every Station pass gets coordinates from a course waypoint"
       assert_equal "30h", race.aid_stations.find_by!(mile: 82.5).cutoff_elapsed_label
       assert_equal 4, race.crew_route["legs"].size
+      assert_equal Terrain::Artifact::SCHEMA_VERSION, race.terrain_artifacts.fetch("schema_version")
+      assert_match(/\A[0-9a-f]{64}\z/, race.terrain_artifacts.fetch("sha256"))
+      assert_equal race.slug, Terrain::Artifact.read(
+        race.terrain_artifacts,
+        from: Rails.root.join("public/terrain/bighorn-100.json"),
+        race_slug: race.slug
+      ).data.dig("race", "slug")
     end
 
     test "publishes every Race in the explicit Active event catalog" do
@@ -62,6 +69,25 @@ module Events
         error = assert_raises(Import::InvalidBundle) { Import.new(catalog_path).call }
 
         assert_match "changed-hundred.json SHA-256 does not match", error.message
+        assert_equal [ existing.id ], Race.pluck(:id)
+      end
+    end
+
+    test "rejects a stale Terrain artifact reference before replacing the published Races" do
+      existing = Race.create!(name: "Already Published", slug: "already-published", year: 2025)
+
+      with_event_catalog do |catalog_path, directory|
+        write_bundle(directory, slug: "stale-hundred", name: "Stale Hundred")
+        write_catalog(catalog_path, %w[stale-hundred.bundle.yml])
+        race_path = File.join(directory, "stale-hundred.yml")
+        data = YAML.load_file(race_path, permitted_classes: [ Date ], aliases: true)
+        data.fetch("race").fetch("terrain_artifacts")["sha256"] = "0" * 64
+        File.write(race_path, data.to_yaml)
+        refresh_digest(directory, "stale-hundred", "race")
+
+        error = assert_raises(Terrain::Artifact::Invalid) { Import.new(catalog_path).call }
+
+        assert_match(/SHA-256/i, error.message)
         assert_equal [ existing.id ], Race.pluck(:id)
       end
     end
@@ -265,16 +291,16 @@ module Events
         "terrain" => "terrain/#{slug}.json"
       }
 
-      FileUtils.mkdir_p(File.dirname(File.join(directory, files.fetch("terrain"))))
+      terrain = Terrain::Artifact.write(
+        terrain_payload(slug: slug, name: name),
+        to: File.join(directory, files.fetch("terrain"))
+      )
       File.write(File.join(directory, files.fetch("race")), {
         "race" => {
           "name" => name,
           "slug" => slug,
           "year" => 2026,
-          "terrain_artifacts" => {
-            "status" => "generated",
-            "path" => "/terrain/#{slug}.json"
-          }
+          "terrain_artifacts" => terrain.reference(path: "/terrain/#{slug}.json")
         },
         "elevation_series" => [],
         "crew_drive_order" => [ "Start" ],
@@ -300,7 +326,6 @@ module Events
         </gpx>
       GPX
       File.write(File.join(directory, files.fetch("crew_route")), JSON.generate("legs" => []))
-      File.write(File.join(directory, files.fetch("terrain")), JSON.generate("version" => 1))
 
       manifest = {
         "version" => 1,
@@ -311,6 +336,27 @@ module Events
         end
       }
       File.write(File.join(directory, "#{slug}.bundle.yml"), manifest.to_yaml)
+    end
+
+    def terrain_payload(slug:, name:)
+      {
+        "race" => { "slug" => slug, "name" => name, "year" => 2026 },
+        "generated_at" => "2026-08-12T12:00:00Z",
+        "source" => {
+          "label" => "Terrain source",
+          "url" => "https://example.test/terrain",
+          "attribution" => "Example terrain data"
+        },
+        "grid" => {
+          "size" => 2,
+          "zoom" => 11,
+          "bounds" => { "min_lat" => 44.0, "max_lat" => 45.0, "min_lng" => -108.0, "max_lng" => -107.0 },
+          "min_ft" => 4_000,
+          "max_ft" => 4_300,
+          "elevations_ft" => [ 4_000, 4_100, 4_200, 4_300 ]
+        },
+        "course_grade_profile" => { "segments" => [] }
+      }
     end
 
     def refresh_digest(directory, slug, role)

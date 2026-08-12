@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "race": {
     "slug": "bighorn-100",
     "name": "Bighorn 100",
@@ -16440,6 +16441,8 @@
   },
   "projection": {
     "type": "linear-lat-lng-bounds",
-    "note": "Course, crew route, and station coordinates are projected into this bounded terrain plane in the browser."
+    "x_axis": "longitude-west-to-east",
+    "z_axis": "latitude-north-to-south",
+    "elevation_unit": "feet"
   }
 }
