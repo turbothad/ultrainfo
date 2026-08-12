@@ -86,6 +86,17 @@ module Terrain
       end
     end
 
+    test "uses the proleptic Gregorian calendar for generation timestamps" do
+      valid_payload = self.valid_payload.merge("generated_at" => "1582-10-10T12:00:00Z")
+
+      assert_instance_of Artifact, Artifact.write(valid_payload, to: @output)
+
+      invalid_payload = self.valid_payload.merge("generated_at" => "1500-02-29T12:00:00Z")
+      error = assert_raises(Artifact::Invalid) { Artifact.write(invalid_payload, to: @output) }
+
+      assert_match(/generated at/i, error.message)
+    end
+
     test "rejects a course grade segment without renderer coordinates" do
       payload = valid_payload
       payload.fetch("course_grade_profile").fetch("segments").first.delete("from")

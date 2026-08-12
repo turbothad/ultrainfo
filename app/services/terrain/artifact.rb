@@ -147,7 +147,7 @@ module Terrain
     def validate_generated_at!
       generated_at = data["generated_at"]
       match = generated_at.match(GENERATED_AT) if generated_at.is_a?(String)
-      valid_date = match && Date.valid_date?(*match.values_at(:year, :month, :day).map(&:to_i))
+      valid_date = match && Date.valid_date?(*match.values_at(:year, :month, :day).map(&:to_i), Date::GREGORIAN)
       invalid!("generated at metadata is invalid") unless valid_date
     end
 
