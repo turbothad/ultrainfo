@@ -1,5 +1,5 @@
 require "digest"
-require "time"
+require "date"
 
 module Terrain
   class Artifact
@@ -12,7 +12,7 @@ module Terrain
       "z_axis" => "latitude-north-to-south",
       "elevation_unit" => "feet"
     }.freeze
-    ISO8601 = /\A\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:[0-5]\d(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})\z/
+    GENERATED_AT = /\A(?<year>\d{4})-(?<month>0[1-9]|1[0-2])-(?<day>0[1-9]|[12]\d|3[01])T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\dZ\z/
     ECMASCRIPT_WHITESPACE = /\A[\u0009-\u000D\u0020\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF]*\z/
 
     attr_reader :data, :sha256
@@ -146,10 +146,9 @@ module Terrain
 
     def validate_generated_at!
       generated_at = data["generated_at"]
-      invalid!("generated at metadata is missing") unless generated_at.is_a?(String) && generated_at.match?(ISO8601)
-      Time.iso8601(generated_at)
-    rescue ArgumentError
-      invalid!("generated at metadata is invalid")
+      match = generated_at.match(GENERATED_AT) if generated_at.is_a?(String)
+      valid_date = match && Date.valid_date?(*match.values_at(:year, :month, :day).map(&:to_i))
+      invalid!("generated at metadata is invalid") unless valid_date
     end
 
     def finite_number?(value)

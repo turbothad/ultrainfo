@@ -5,7 +5,7 @@ const PROJECTION = {
   z_axis: "latitude-north-to-south",
   elevation_unit: "feet"
 }
-const ISO8601 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:[0-5]\d(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/
+const GENERATED_AT = /^(?<year>\d{4})-(?<month>0[1-9]|1[0-2])-(?<day>0[1-9]|[12]\d|3[01])T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\dZ$/
 
 export async function loadTerrainArtifact(reference, { raceSlug }) {
   validateReference(reference)
@@ -42,7 +42,7 @@ function validateArtifact(artifact, { raceSlug }) {
   if (artifact.race?.slug !== raceSlug) invalid("Race slug does not match")
   if (blank(artifact.race?.name)) invalid("Race name is missing")
   if (!Number.isInteger(artifact.race?.year)) invalid("Race year is missing")
-  if (typeof artifact.generated_at !== "string" || !ISO8601.test(artifact.generated_at) || Number.isNaN(Date.parse(artifact.generated_at))) invalid("generated at metadata is invalid")
+  if (!validGeneratedAt(artifact.generated_at)) invalid("generated at metadata is invalid")
   if ([artifact.source?.label, artifact.source?.url, artifact.source?.attribution].some(blank)) invalid("source metadata is incomplete")
 
   const grid = artifact.grid
@@ -70,6 +70,21 @@ function coordinatePair(value) {
 
 function blank(value) {
   return typeof value !== "string" || value.trim().length === 0
+}
+
+function validGeneratedAt(value) {
+  const match = typeof value === "string" && value.match(GENERATED_AT)
+  if (!match) return false
+
+  const year = Number(match.groups.year)
+  const month = Number(match.groups.month)
+  const day = Number(match.groups.day)
+  const daysInMonth = [31, leapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  return day <= daysInMonth[month - 1]
+}
+
+function leapYear(year) {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
 }
 
 function sameProjection(projection) {

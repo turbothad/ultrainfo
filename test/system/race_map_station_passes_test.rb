@@ -130,6 +130,26 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     FileUtils.rm_f(invalid_path) if invalid_path
   end
 
+  test "noncanonical Terrain timestamp fails safely before rendering" do
+    invalid_path = Rails.root.join("public/terrain/invalid-timestamp-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact["generated_at"] = "2026-08-12T00:00:00+14:60"
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/invalid-timestamp-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
+
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /generated at metadata is invalid/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
+  end
+
   test "crew route action enables the crew layer on the canonical map" do
     @race.update!(
       crew_route: {

@@ -69,13 +69,21 @@ module Terrain
       assert_match(/race name/i, error.message)
     end
 
-    test "rejects a generated timestamp with leap seconds" do
-      payload = valid_payload
-      payload["generated_at"] = "2026-08-12T12:00:60Z"
+    test "requires a real canonical UTC generation timestamp" do
+      invalid_timestamps = [
+        "2026-02-29T12:00:00Z",
+        "2026-08-12T12:00:60Z",
+        "2026-08-12T00:00:00+14:60",
+        "2026-08-12T24:00:00.001Z"
+      ]
 
-      error = assert_raises(Artifact::Invalid) { Artifact.write(payload, to: @output) }
+      invalid_timestamps.each do |timestamp|
+        payload = valid_payload.merge("generated_at" => timestamp)
 
-      assert_match(/generated at/i, error.message)
+        error = assert_raises(Artifact::Invalid) { Artifact.write(payload, to: @output) }
+
+        assert_match(/generated at/i, error.message)
+      end
     end
 
     test "rejects a course grade segment without renderer coordinates" do
