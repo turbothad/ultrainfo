@@ -33,7 +33,9 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-controller='terrain-map']", count: 1
     assert_select "button[data-action='terrain-map#resetView']", /reset view/i
     assert_select "button[data-action='terrain-map#topView']", /top view/i
-    assert_select "[data-course-grade-legend]", /Flat.*Moderate.*Steep/im
+    assert_select "[data-course-grade-legend][data-terrain-map-target='gradeLegend'][hidden]"
+    assert_select "[data-terrain-map-target='gradeBand']", count: 3
+    assert_select "[data-terrain-map-target='gradeWindow']", count: 1
     assert_select "button[data-terrain-map-target='stationPassButton']", count: 2
     assert_select "[data-terrain-map-target='detail']", /Select a station pass/i
     assert_select "button[data-action='station-filter#filter']", count: 4

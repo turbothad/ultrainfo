@@ -1,13 +1,18 @@
-<div data-course-grade-legend
-     aria-label="Course grade colors use a quarter-mile average"
+<div hidden
+     data-course-grade-legend
+     data-terrain-map-target="gradeLegend"
+     aria-label="Course grade legend"
      class="pointer-events-none absolute left-3 <%= local_assigns[:stacked] ? 'top-28 sm:top-14' : 'top-14' %> rounded-md border border-paper/10 bg-pine-dark/85 px-3 py-2.5 text-paper backdrop-blur">
   <div class="flex items-baseline justify-between gap-4 font-mono uppercase">
     <span class="text-[9px] font-semibold tracking-[0.08em]">Course grade</span>
-    <span class="text-[8px] tracking-[0.06em] text-paper/45">¼ mi avg</span>
+    <span data-terrain-map-target="gradeWindow" class="text-[8px] tracking-[0.06em] text-paper/45"></span>
   </div>
   <ul class="mt-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[8px] uppercase tracking-[0.06em] text-paper/70">
-    <li class="flex items-center gap-1.5"><span class="rounded-full" style="width: 0.75rem; height: 0.375rem; background-color: #6fcf86"></span>Flat &lt;5%</li>
-    <li class="flex items-center gap-1.5"><span class="rounded-full" style="width: 0.75rem; height: 0.375rem; background-color: #f2c14e"></span>Moderate 5–10%</li>
-    <li class="flex items-center gap-1.5"><span class="rounded-full" style="width: 0.75rem; height: 0.375rem; background-color: #ef6351"></span>Steep &gt;10%</li>
+    <% %w[flat moderate steep].each do |steepness| %>
+      <li data-terrain-map-target="gradeBand" data-steepness="<%= steepness %>" class="flex items-center gap-1.5">
+        <span data-course-grade-swatch class="w-3 rounded-full"></span>
+        <span data-course-grade-label><%= steepness.titleize %></span>
+      </li>
+    <% end %>
   </ul>
 </div>

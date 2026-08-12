@@ -12,41 +12,35 @@ module Terrain
     end
 
     def call
-      return empty_profile if @points.size < 2
+      return profile_with([]) if @points.size < 2
 
       samples = @points.map do |lat, lng|
         { coordinates: [ lat, lng ], elevation_ft: @elevation_at.call(lat, lng).to_f }
       end
       cumulative_distances = cumulative_distances_for(samples)
 
-      {
-        "smoothing_window_ft" => @window_ft.round,
-        "thresholds_pct" => {
-          "flat_max" => FLAT_MAX_PCT,
-          "moderate_max" => MODERATE_MAX_PCT
-        },
-        "segments" => samples.each_cons(2).with_index.map do |(from, to), index|
-          grade = smoothed_grade(index, samples, cumulative_distances)
-          {
-            "from" => from[:coordinates],
-            "to" => to[:coordinates],
-            "grade_pct" => grade.round(1),
-            "steepness" => steepness(grade)
-          }
-        end
-      }
+      segments = samples.each_cons(2).with_index.map do |(from, to), index|
+        grade = smoothed_grade(index, samples, cumulative_distances)
+        {
+          "from" => from[:coordinates],
+          "to" => to[:coordinates],
+          "grade_pct" => grade.round(1),
+          "steepness" => steepness(grade)
+        }
+      end
+      profile_with(segments)
     end
 
     private
 
-    def empty_profile
+    def profile_with(segments)
       {
         "smoothing_window_ft" => @window_ft.round,
         "thresholds_pct" => {
           "flat_max" => FLAT_MAX_PCT,
           "moderate_max" => MODERATE_MAX_PCT
         },
-        "segments" => []
+        "segments" => segments
       }
     end
 

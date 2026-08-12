@@ -5,15 +5,16 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 const TERRAIN_SIZE = 60
 const MARKER_RADIUS = 0.34
 const DEFAULT_CAMERA = new THREE.Vector3(-29, 24, 32)
-const COURSE_GRADE_COLORS = {
-  flat: "#6fcf86",
-  moderate: "#f2c14e",
-  steep: "#ef6351"
+const COURSE_GRADE_STYLES = {
+  flat: { color: "#6fcf86", radius: 0.14, cue: "thin line" },
+  moderate: { color: "#f2c14e", radius: 0.2, cue: "medium line" },
+  steep: { color: "#ef6351", radius: 0.26, cue: "thick line" }
 }
+const DEFAULT_COURSE_STYLE = { color: "#f06a3a", radius: 0.14 }
 
 export default class extends Controller {
   static values = { url: String, drive: Boolean, preview: Boolean }
-  static targets = ["canvas", "status", "detail", "fallback", "driveToggle", "stationPassButton"]
+  static targets = ["canvas", "status", "detail", "fallback", "driveToggle", "stationPassButton", "gradeLegend", "gradeWindow", "gradeBand"]
 
   connect() {
     this.layers = {}
@@ -42,6 +43,7 @@ export default class extends Controller {
       this.terrainPayload = terrain
       this.#buildScene()
       this.#buildTerrain(terrain)
+      this.#presentCourseGrade(terrain.course_grade_profile)
       this.#buildCourse(data.course || [], terrain.course_grade_profile)
       this.#buildDrive(data.crew_route?.geometry || [])
       this.#buildStationPasses(data.stations || [])
@@ -219,7 +221,7 @@ export default class extends Controller {
     const segments = profile?.segments || []
     if (!segments.length) {
       const projected = points.map((point) => this.#pointFromLatLng(point[0], point[1], 0.32))
-      this.layers.course = this.#buildRoute(projected, "#f06a3a", 0.14)
+      this.layers.course = this.#buildRoute(projected, DEFAULT_COURSE_STYLE.color, DEFAULT_COURSE_STYLE.radius)
       return
     }
 
@@ -228,8 +230,10 @@ export default class extends Controller {
     let runPoints = []
     const addRun = () => {
       if (runPoints.length < 2) return
-      const color = COURSE_GRADE_COLORS[currentSteepness] || "#f06a3a"
-      group.add(this.#routeMesh(runPoints, color, 0.2))
+      const style = COURSE_GRADE_STYLES[currentSteepness] || DEFAULT_COURSE_STYLE
+      const route = this.#routeMesh(runPoints, style.color, style.radius)
+      route.userData.steepness = currentSteepness
+      group.add(route)
     }
 
     for (const segment of segments) {
@@ -247,6 +251,59 @@ export default class extends Controller {
 
     this.scene.add(group)
     this.layers.course = group
+  }
+
+  #presentCourseGrade(profile) {
+    const hasGradeProfile = Array.isArray(profile?.segments) && profile.segments.length > 0
+    const label = hasGradeProfile ? this.canvasTarget.dataset.gradeLabel : this.canvasTarget.dataset.baseLabel
+    if (label) this.canvasTarget.setAttribute("aria-label", label)
+    if (!this.hasGradeLegendTarget) return
+
+    this.gradeLegendTarget.hidden = !hasGradeProfile
+    if (!hasGradeProfile) return
+
+    const windowLabel = this.#distanceLabel(profile.smoothing_window_ft)
+    if (this.hasGradeWindowTarget) this.gradeWindowTarget.textContent = `${windowLabel} avg`
+    this.gradeLegendTarget.setAttribute(
+      "aria-label",
+      `Course grade uses a ${windowLabel} average; color and line thickness indicate grade`
+    )
+
+    const flatMax = Number(profile.thresholds_pct?.flat_max)
+    const moderateMax = Number(profile.thresholds_pct?.moderate_max)
+    const ranges = {
+      flat: Number.isFinite(flatMax) ? `<${flatMax}%` : "",
+      moderate: Number.isFinite(flatMax) && Number.isFinite(moderateMax) ? `${flatMax}–${moderateMax}%` : "",
+      steep: Number.isFinite(moderateMax) ? `>${moderateMax}%` : ""
+    }
+
+    for (const band of this.gradeBandTargets) {
+      const steepness = band.dataset.steepness
+      const style = COURSE_GRADE_STYLES[steepness]
+      if (!style) continue
+
+      const swatch = band.querySelector("[data-course-grade-swatch]")
+      if (swatch) {
+        swatch.style.backgroundColor = style.color
+        swatch.style.height = `${style.radius * 2}rem`
+      }
+      const text = band.querySelector("[data-course-grade-label]")
+      if (text) text.textContent = `${this.#titleize(steepness)} ${ranges[steepness]} · ${style.cue}`
+    }
+  }
+
+  #distanceLabel(feet) {
+    const miles = Number(feet) / 5_280
+    const quarterMiles = Math.round(miles * 4)
+    const fractions = { 1: "¼", 2: "½", 3: "¾" }
+    if (Math.abs(miles * 4 - quarterMiles) < 0.001 && fractions[quarterMiles]) return `${fractions[quarterMiles]} mi`
+    if (miles >= 1) return `${Number(miles.toFixed(2))} mi`
+
+    return `${Math.round(Number(feet))} ft`
+  }
+
+  #titleize(value) {
+    return `${value.charAt(0).toUpperCase()}${value.slice(1)}`
   }
 
   #buildDrive(points) {
