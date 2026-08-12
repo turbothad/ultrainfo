@@ -40,10 +40,10 @@ function validateArtifact(artifact, { raceSlug }) {
   if (!artifact || artifact.schema_version !== SCHEMA_VERSION) invalid("schema version is unsupported")
   if (!sameProjection(artifact.projection)) invalid("projection is unsupported")
   if (artifact.race?.slug !== raceSlug) invalid("Race slug does not match")
-  if (typeof artifact.race?.name !== "string" || !artifact.race.name) invalid("Race name is missing")
+  if (blank(artifact.race?.name)) invalid("Race name is missing")
   if (!Number.isInteger(artifact.race?.year)) invalid("Race year is missing")
   if (typeof artifact.generated_at !== "string" || !ISO8601.test(artifact.generated_at) || Number.isNaN(Date.parse(artifact.generated_at))) invalid("generated at metadata is invalid")
-  if (!artifact.source?.label || !artifact.source?.url || !artifact.source?.attribution) invalid("source metadata is incomplete")
+  if ([artifact.source?.label, artifact.source?.url, artifact.source?.attribution].some(blank)) invalid("source metadata is incomplete")
 
   const grid = artifact.grid
   if (!grid || !Number.isInteger(grid.size) || grid.size < 2) invalid("grid size is invalid")
@@ -66,6 +66,10 @@ function validateArtifact(artifact, { raceSlug }) {
 
 function coordinatePair(value) {
   return Array.isArray(value) && value.length === 2 && value.every(Number.isFinite)
+}
+
+function blank(value) {
+  return typeof value !== "string" || value.trim().length === 0
 }
 
 function sameProjection(projection) {
