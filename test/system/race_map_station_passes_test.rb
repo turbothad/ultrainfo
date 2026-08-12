@@ -27,8 +27,12 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
   end
 
   test "station pass controls open the matching station pass row" do
-    visit race_path(@race)
+    visit race_path(@race, stations: "crew")
     assert_selector "[data-terrain-map-target='status']", text: /DEM/
+    within "#aid-stations" do
+      assert_selector "button[aria-pressed='true']", text: /Crew access/i
+      assert_selector "#station_pass_aid_station_#{@inbound.id}[hidden]", visible: :all
+    end
 
     within "#course" do
       find("button", text: /Mile 82.5.*Inbound.*Dry Fork/im).click
@@ -49,11 +53,6 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       assert_text /Verification\s+Verified source/i
       assert_link "Open map"
     end
-
-    within "#aid-stations" do
-      click_button "Crew access"
-    end
-    assert_selector "#station_pass_aid_station_#{@inbound.id}[hidden]", visible: :all
 
     prefer_reduced_motion
     within "[data-terrain-map-target='detail']" do
