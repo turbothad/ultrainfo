@@ -50,8 +50,8 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       assert_link "Open map"
     end
 
-    within "#crew" do
-      click_link "Crew-accessible passes"
+    within "#aid-stations" do
+      click_button "Crew access"
     end
     assert_selector "#station_pass_aid_station_#{@inbound.id}[hidden]", visible: :all
 
