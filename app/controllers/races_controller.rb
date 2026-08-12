@@ -47,15 +47,8 @@ class RacesController < ApplicationController
   end
 
   def terrain_artifacts_payload
-    artifacts = @race.terrain_artifacts.deep_dup
-    path = artifacts["path"]
-    return artifacts if path.blank?
+    return {} if @race.terrain_artifacts.blank?
 
-    public_path = Rails.root.join("public", path.delete_prefix("/").split("?").first)
-    version = public_path.exist? ? public_path.mtime.to_i : artifacts["generated_on"].presence
-    return artifacts if version.blank?
-
-    separator = path.include?("?") ? "&" : "?"
-    artifacts.merge("path" => "#{path}#{separator}v=#{version}")
+    Terrain::Artifact.runtime_reference(@race.terrain_artifacts)
   end
 end

@@ -58,6 +58,7 @@ module Events
         raise InvalidBundle, "manifest slug #{manifest_slug} does not match Race slug #{race_slug}"
       end
       validate_artifact_declarations!(data, files)
+      validate_terrain_artifact!(data, files, race_slug)
       gpx = Gpx::Import.new(files.fetch("course"))
       endpoints = gpx.endpoints
 
@@ -81,6 +82,13 @@ module Events
       end
 
       Projection.new(race:, aid_stations:)
+    end
+
+    def validate_terrain_artifact!(data, files, race_slug)
+      reference = data.fetch("race").fetch("terrain_artifacts", {})
+      return if reference.blank?
+
+      Terrain::Artifact.read(reference, from: files.fetch("terrain"), race_slug: race_slug)
     end
 
     def validate_artifact_declarations!(data, files)

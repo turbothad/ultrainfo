@@ -2,11 +2,16 @@ require "application_system_test_case"
 
 class RaceMapStationPassesTest < ApplicationSystemTestCase
   setup do
+    @terrain_reference = YAML.load_file(
+      Rails.root.join("db/events/bighorn-100.yml"),
+      permitted_classes: [ Date ],
+      aliases: true
+    ).dig("race", "terrain_artifacts")
     @race = Race.create!(
       name: "Bighorn 100", slug: "bighorn-100", year: 2026, state: "WY",
       distance_mi: 100.4, start_lat: 44.87, start_lng: -107.26,
       simplified_track: [ [ 44.87, -107.26 ], [ 44.80, -107.30 ] ],
-      terrain_artifacts: { "path" => "/terrain/bighorn-100.json" }
+      terrain_artifacts: @terrain_reference
     )
     @outbound = @race.aid_stations.create!(
       name: "Dry Fork", sequence: 1, mile: 13.4, direction: "Outbound",
@@ -80,7 +85,7 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
   end
 
   test "terrain failure leaves useful course navigation in the map" do
-    @race.update!(terrain_artifacts: { "path" => "/terrain/not-found.json" })
+    @race.update!(terrain_artifacts: @terrain_reference.merge("path" => "/terrain/not-found.json"))
 
     visit race_path(@race)
 
@@ -90,6 +95,94 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       assert_text "The elevation profile and station table remain available below."
       assert_link "Browse station passes", href: "#aid-stations"
     end
+  end
+
+  test "stale Terrain metadata fails safely to useful course navigation" do
+    @race.update!(terrain_artifacts: @terrain_reference.merge("sha256" => "0" * 64))
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /SHA-256 digest does not match/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  end
+
+  test "invalid Terrain projection fails safely to useful course navigation" do
+    invalid_path = Rails.root.join("public/terrain/invalid-projection-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact.fetch("projection")["z_axis"] = "latitude-south-to-north"
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/invalid-projection-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
+
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /projection is unsupported/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
+  end
+
+  test "invalid course grade segments fail safely before rendering" do
+    invalid_path = Rails.root.join("public/terrain/invalid-grade-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact.dig("course_grade_profile", "segments").first.delete("from")
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/invalid-grade-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
+
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /segment coordinates are invalid/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
+  end
+
+  test "blank Terrain metadata fails safely before rendering" do
+    invalid_path = Rails.root.join("public/terrain/blank-metadata-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact.fetch("race")["name"] = "\u00A0"
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/blank-metadata-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
+
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /Race name is missing/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
+  end
+
+  test "noncanonical Terrain timestamp fails safely before rendering" do
+    invalid_path = Rails.root.join("public/terrain/invalid-timestamp-test.json")
+    invalid_artifact = JSON.parse(File.read(Rails.root.join("public/terrain/bighorn-100.json")))
+    invalid_artifact["generated_at"] = "2026-08-12T00:00:00+14:60"
+    File.write(invalid_path, "#{JSON.pretty_generate(invalid_artifact)}\n")
+    @race.update!(
+      terrain_artifacts: @terrain_reference.merge(
+        "path" => "/terrain/invalid-timestamp-test.json",
+        "sha256" => Digest::SHA256.file(invalid_path).hexdigest
+      )
+    )
+
+    visit race_path(@race)
+
+    assert_selector "[data-terrain-map-target='status']", text: /generated at metadata is invalid/i
+    assert_selector "[data-terrain-map-target='fallback']:not([hidden])"
+  ensure
+    FileUtils.rm_f(invalid_path) if invalid_path
   end
 
   test "terrain success exposes interactive controls" do

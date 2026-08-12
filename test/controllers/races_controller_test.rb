@@ -78,9 +78,16 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "map endpoint returns course, stations, and crew route as JSON" do
+    sha256 = "a" * 64
     @race.update!(
       crew_route: { "geometry" => [ [ 44.8, -107.3 ], [ 44.7, -107.4 ] ], "distance_mi" => 12.3, "duration_min" => 25 },
-      terrain_artifacts: { "path" => "/terrain/missing-test.json", "generated_on" => "2026-07-08" }
+      terrain_artifacts: {
+        "status" => "generated",
+        "path" => "/terrain/missing-test.json",
+        "schema_version" => Terrain::Artifact::SCHEMA_VERSION,
+        "sha256" => sha256,
+        "projection" => Terrain::Artifact::PROJECTION.fetch("type")
+      }
     )
     get map_race_path(@race, format: :json)
     assert_response :success
@@ -103,7 +110,16 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Verified source", station.dig("verification", "label")
     assert station["features"].find { |feature| feature["key"] == "crew" }["available"]
     assert_equal 12.3, data["crew_route"]["distance_mi"]
-    assert_equal "/terrain/missing-test.json?v=2026-07-08", data["terrain_artifacts"]["path"]
+    assert_equal "/terrain/missing-test.json?v=#{sha256}", data["terrain_artifacts"]["path"]
+  end
+
+
+  test "Terrain accessibility label names the Race" do
+    @race.update!(name: "Cloud Peak 100")
+
+    get race_path(@race)
+
+    assert_select "[data-terrain-map-target='canvas'][aria-label*='Cloud Peak 100']"
   end
 
   test "unknown slug returns 404" do

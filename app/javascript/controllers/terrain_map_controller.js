@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+import { loadTerrainArtifact } from "terrain/artifact"
 
 const TERRAIN_SIZE = 60
 const MARKER_RADIUS = 0.34
@@ -27,11 +28,11 @@ export default class extends Controller {
     if (this.initialized) return
     this.initialized = true
     try {
-      const data = await fetch(this.urlValue).then((response) => response.json())
-      const terrainPath = data.terrain_artifacts?.path
-      if (!terrainPath) throw new Error("Terrain artifact path is missing")
+      const response = await fetch(this.urlValue)
+      if (!response.ok) throw new Error(`Terrain map request failed: HTTP ${response.status}`)
 
-      const terrain = await fetch(terrainPath).then((response) => response.json())
+      const data = await response.json()
+      const terrain = await loadTerrainArtifact(data.terrain_artifacts, { raceSlug: data.race?.slug })
       this.dataPayload = data
       this.terrainPayload = terrain
       this.#buildScene()
