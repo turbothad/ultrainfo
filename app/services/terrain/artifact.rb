@@ -100,15 +100,15 @@ module Terrain
 
       race = data["race"]
       invalid!("race metadata is missing") unless race.is_a?(Hash)
-      invalid!("race slug is missing") if race["slug"].blank?
-      invalid!("race name is missing") if race["name"].blank?
+      invalid!("race slug is missing") if blank_string?(race["slug"])
+      invalid!("race name is missing") if blank_string?(race["name"])
       invalid!("race year is missing") unless race["year"].is_a?(Integer)
       validate_generated_at!
 
       source = data["source"]
       invalid!("source metadata is missing") unless source.is_a?(Hash)
       %w[label url attribution].each do |field|
-        invalid!("source #{field} is missing") if source[field].blank?
+        invalid!("source #{field} is missing") if blank_string?(source[field])
       end
 
       grid = data["grid"]
@@ -153,6 +153,10 @@ module Terrain
 
     def finite_number?(value)
       value.is_a?(Numeric) && value.finite?
+    end
+
+    def blank_string?(value)
+      !value.is_a?(String) || value.strip.empty?
     end
 
     def invalid!(message)

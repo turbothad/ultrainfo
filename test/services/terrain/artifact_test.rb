@@ -44,6 +44,22 @@ module Terrain
       assert_match(/generated at/i, error.message)
     end
 
+    test "rejects non-string descriptive metadata" do
+      payload = valid_payload
+      payload.fetch("race")["name"] = 100
+
+      race_error = assert_raises(Artifact::Invalid) { Artifact.write(payload, to: @output) }
+
+      assert_match(/race name/i, race_error.message)
+
+      payload = valid_payload
+      payload.fetch("source")["label"] = 100
+
+      source_error = assert_raises(Artifact::Invalid) { Artifact.write(payload, to: @output) }
+
+      assert_match(/source label/i, source_error.message)
+    end
+
     test "rejects a course grade segment without renderer coordinates" do
       payload = valid_payload
       payload.fetch("course_grade_profile").fetch("segments").first.delete("from")
