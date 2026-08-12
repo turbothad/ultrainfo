@@ -18,14 +18,8 @@ export default class extends Controller {
   connect() {
     this.layers = {}
     this.stationPassMeshes = []
-    this.stationMeshes = this.stationPassMeshes
     this.raycaster = new THREE.Raycaster()
     this.pointer = new THREE.Vector2()
-    this.showDrive = () => {
-      if (this.layers.drive) this.layers.drive.visible = true
-      if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
-    }
-    document.addEventListener("terrain-map:show-drive", this.showDrive)
     this.#initialize()
   }
 
@@ -55,7 +49,6 @@ export default class extends Controller {
 
   disconnect() {
     cancelAnimationFrame(this.frame)
-    document.removeEventListener("terrain-map:show-drive", this.showDrive)
     this.resizeObserver?.disconnect()
     this.renderer?.domElement.removeEventListener("pointerdown", this.onPointerDown)
     this.controls?.removeEventListener("start", this.stopAutoRotate)
@@ -70,6 +63,11 @@ export default class extends Controller {
 
   toggleDrive(event) {
     if (this.layers.drive) this.layers.drive.visible = event.target.checked
+  }
+
+  showDrive() {
+    if (this.layers.drive) this.layers.drive.visible = true
+    if (this.hasDriveToggleTarget) this.driveToggleTarget.checked = true
   }
 
   toggleStationPasses(event) {
@@ -94,21 +92,6 @@ export default class extends Controller {
     const sequence = Number(event.params.sequence)
     const marker = this.stationPassMeshes.find((candidate) => Number(candidate.userData.station.sequence) === sequence)
     if (marker) this.#activateStationPass(marker, true)
-  }
-
-  openStationPass(event) {
-    event.preventDefault()
-    const selector = event.currentTarget.getAttribute("href")
-    const stationPassRow = selector && document.querySelector(selector)
-    const stationPass = stationPassRow?.matches("details") ? stationPassRow : stationPassRow?.querySelector("details")
-    if (!stationPassRow || !stationPass) return
-
-    document.dispatchEvent(new CustomEvent("station-filter:show-all"))
-    stationPassRow.hidden = false
-    stationPass.open = true
-    window.history.replaceState(null, "", selector)
-    stationPassRow.scrollIntoView({ block: "start", behavior: this.#motionBehavior() })
-    stationPass.querySelector("summary")?.focus({ preventScroll: true })
   }
 
   #buildScene() {
@@ -413,7 +396,7 @@ export default class extends Controller {
       <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-paper/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-paper/50">
         <span>Verification ${this.#escape(station.verification.label)}</span>
         <span class="flex items-center gap-3">
-          <a class="font-semibold text-[#f4b860] hover:text-paper" data-turbo="false" data-action="terrain-map#openStationPass" href="#${this.#escape(station.details_id || `station-pass-${station.sequence}`)}">Full station pass</a>
+          <a class="font-semibold text-[#f4b860] hover:text-paper" data-turbo="false" data-action="race-page#openStationPass" href="#${this.#escape(station.details_id || `station-pass-${station.sequence}`)}">Full station pass</a>
           ${directions}
         </span>
       </div>
