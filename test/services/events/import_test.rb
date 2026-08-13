@@ -252,17 +252,19 @@ module Events
       assert jackpot.open?
       assert_equal 30, jackpot.cutoff_hours
       assert_equal 45, jackpot.aid_stations.count,
-                   "a Start pass, 43 certified-loop passes, and the short-loop Finish"
+                   "a Start pass, the short opening loop, and 43 certified-loop passes ending at 100.49"
       assert_equal 1, jackpot.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
                    "every loop crosses the single Main Strip Aid Station"
       assert jackpot.aid_stations.all?(&:crew_accessible?), "crew sees their runner every lap"
+      assert jackpot.aid_stations.all? { |station| station.has_medical == true },
+             "first aid kits, an EMT, and a medical tent are onsite at the venue every loop crosses"
       assert jackpot.aid_stations.none?(&:pacer_access?),
              "the sunset-to-sunrise pacer allowance is time-based, so no pass guarantees pickup"
       assert_equal 1, jackpot.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
                    "only the overall 30-hour cutoff is published"
-      assert_equal "30h", jackpot.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
-      assert_equal 231.0, (jackpot.aid_stations.find_by!(mile: 2.31).mile * 100).to_f,
-                   "pass miles use the USATF-certified 2.3094-mile loop"
+      assert_equal "30h", jackpot.aid_stations.find_by!(mile: 100.49).cutoff_elapsed_label
+      assert_equal [ 0.0, 1.18, 3.49 ], jackpot.aid_stations.order(:sequence).limit(3).pluck(:mile).map(&:to_f),
+                   "the race opens with the short loop, then steps by the certified 2.3094 miles"
       assert_equal Time.find_zone("America/Los_Angeles").parse("2027-02-21 2:00 PM"), jackpot.final_cutoff_at
       assert_includes jackpot.source_metadata.fetch("sources").pluck("url"),
                       "https://www.aravaiparunning.com/avr/wp-content/uploads/2023/03/NV23003MWC-Jackpot-Ultras-Long-Course.pdf"
