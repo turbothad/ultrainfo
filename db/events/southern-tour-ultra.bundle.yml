@@ -3,7 +3,7 @@ slug: southern-tour-ultra
 files:
   race:
     path: southern-tour-ultra.yml
-    sha256: 61f93d4bb985d381d9f9a1517ffa13eb711727365f5eba7ada72e175025772b4
+    sha256: e09a54a58b4dde2f937e793f7187eb49936178f021a97c2bf6cf61795bef25a0
   course:
     path: southern-tour-ultra.gpx
     sha256: 5ef824590a1e98ff5d9c379e5e57b2acb40528850dc92780003267bdc89e3ef6
