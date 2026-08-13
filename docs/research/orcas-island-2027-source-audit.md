@@ -62,7 +62,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 - **Name.** "Orcas Island 100" (S1).
 - **Registration status.** `open` — S6 live at verification.
 - **Lottery.** `false` — direct Webscorer registration for this race;
-  Rainshadow's lottery pages cover other events.
+  Rainshadow's lottery pages cover other races.
 - **Cutoffs.** Five both-form last-lap cutoffs from the 8:00 AM PST Friday
   start: 75 = 11:00 AM (1,620), 80 = 12:45 PM (1,725), 90 = 4:00 PM
   (1,920), 95 = 6:15 PM (2,055), 100 = 8:00 PM (2,160) with the

@@ -1,7 +1,7 @@
 # Orcas Island 100 — event data (imported by Events::Import via db/seeds.rb).
 # Course geometry, elevations, and the four station waypoints copy the
 # organizer's official GPX download; pass miles use the organizer's nominal
-# 25-mile loop frame, which their own last-lap cutoff miles (75/80/90/96/100)
+# 25-mile loop frame, which their own last-lap cutoff miles (75/80/90/95/100)
 # confirm. Source decisions are documented in
 # docs/research/orcas-island-2027-source-audit.md.
 
@@ -222,7 +222,7 @@ aid_stations:
       source_label: "Orcas Island 100 official page (Rainshadow Running)"
       source_url: "https://www.rainshadowrunning.com/orcas100.html"
       verified_on: "2026-08-13"
-      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles use the organizer's nominal 25-mile loop frame (their own last-lap cutoffs quote miles 75/80/90/96/100); the official GPX GPS-measures the loop at 24.0 miles and the organizer calls the full course 100.8. Water and full aid are served at every station but potability is never certified. Station coordinates and elevations come from the organizer's GPX waypoints. Crew-lap and pacer rules follow the page's Crew Access & Pacers section; the schedule and course-turn details come from the linked course description document."
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles use the organizer's nominal 25-mile loop frame (their own last-lap cutoffs quote miles 75/80/90/95/100); the official GPX GPS-measures the loop at 24.0 miles and the organizer calls the full course 100.8. Water and full aid are served at every station but potability is never certified. Station coordinates and elevations come from the organizer's GPX waypoints. Crew-lap and pacer rules follow the page's Crew Access & Pacers section; the schedule and course-turn details come from the linked course description document."
       sources:
         - *source_race_page
         - *source_gpx

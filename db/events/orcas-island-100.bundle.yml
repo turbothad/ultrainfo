@@ -3,7 +3,7 @@ slug: orcas-island-100
 files:
   race:
     path: orcas-island-100.yml
-    sha256: 938845be8ad3ce550f9707395f68b6aa6ae72ceb868c0400e4b91d68ddbbedd1
+    sha256: f022200e08edeaf69acbcc36018df25ccdcb83dd464c49e02972902daa7b41fc
   course:
     path: orcas-island-100.gpx
     sha256: e063dd52a8097219a2e207d9bd6ccac063e0b37871bd738ccd3de1f946e16819
