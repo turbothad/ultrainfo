@@ -3,7 +3,7 @@ slug: rocky-raccoon-100
 files:
   race:
     path: rocky-raccoon-100.yml
-    sha256: 50af90416cdf662146024c80a1ce3ecc849cec4cb26814d7e7081d7058b39567
+    sha256: ea7c8c63e17350a0ed49fab115d8e793a2626f484e29777ebce57685da39bad9
   course:
     path: rocky-raccoon-100.gpx
     sha256: 1cd75f62048b4e73bea200aab619fd3af6eb94b6ebff7f1afa575bef26a45a8a

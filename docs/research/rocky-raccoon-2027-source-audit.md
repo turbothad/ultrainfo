@@ -27,7 +27,7 @@ Recorded discrepancies:
 3. **GPX vintage and length.** The official GPX download is embedded-named
    "2021 Rocky Raccoon 100" and its GPS-recorded lap measures 21.5 miles
    against the chart's 20.0 frame. It is used for geometry and elevations
-   only (Bighorn precedent); its trailing junk zero-elevation point is
+   only (Bighorn precedent); its trailing zero-elevation points are
    replaced by the start value in the profile.
 4. **run100s staleness.** run100s lists a 30-hour cutoff and 5,375 ft of
    climb; the chart's ladder ends at 32 hours and the page says ~1,250
@@ -50,8 +50,9 @@ All URLs below were opened or downloaded on 2026-08-13.
 
 ## Claim-level decisions
 
-- **Name.** "Rocky Raccoon 100" (S1). First run in 1993 (run100s first-year
-  datum, corroborated by the race's own history framing on S1).
+- **Name.** "Rocky Raccoon 100" (S1). run100s lists 1993 as the first year,
+  but no reviewed first-party source states a founding year, so the record
+  publishes none.
 - **Registration status.** `open` — S5 sign-up live at verification; the
   sell-out warning stays in prose.
 - **Lottery.** `false` — direct first-come RunSignup registration.

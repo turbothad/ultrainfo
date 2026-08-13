@@ -26,7 +26,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-13"
-    source_notes: "The aid station chart's 20-mile split frame (3.8/5.3/5.0/5.9) governs pass miles; the official GPX download's GPS-recorded lap measures 21.5 miles and its embedded name says 2021, so it is used for geometry only. The race page's summary lists a 7:41 AM final-lap cutoff while the chart's mile-80 row says 7:36 AM; the chart governs the pass rows and the conflict is recorded. The chart prints final-lap mid-stations as miles 84/89/94 against its own split arithmetic of 83.8/89.1/94.1, which this record uses. Elevation gain is five times the organizer's ~1,250 ft per-lap figure; the profile uses the official GPX's elevations with the file's junk trailing zero replaced by the start value."
+    source_notes: "The aid station chart's 20-mile split frame (3.8/5.3/5.0/5.9) governs pass miles; the official GPX download's GPS-recorded lap measures 21.5 miles and its embedded name says 2021, so it is used for geometry only. The race page's summary lists a 7:41 AM final-lap cutoff while the chart's mile-80 row says 7:36 AM; the chart governs the pass rows and the conflict is recorded. The chart prints final-lap mid-stations as miles 84/89/94 against its own split arithmetic of 83.8/89.1/94.1, which this record uses. Elevation gain is five times the organizer's ~1,250 ft per-lap figure; the profile uses the official GPX's elevations with the file's trailing zero-elevation points replaced by the start value."
     section_verifications:
       race_facts:
         verified_on: "2026-08-13"
@@ -73,14 +73,13 @@ race:
     1,250 ft of gain per lap and full hot-and-cold aid at four stations every
     lap. Mass start 6:00 AM Saturday; 32-hour limit with rolling final-lap
     cutoffs from mile 80 (7:36 AM Sunday) to the 2:00 PM Sunday course
-    closure. First run in 1993, it is one of the longest-standing 100-mile
-    trail races in the country.
+    closure.
   start_venue: Tyler's Last Resort, Huntsville State Park, 565 Park Road 40 West, Huntsville, TX
   finish_venue: Tyler's Last Resort, Huntsville State Park, 565 Park Road 40 West, Huntsville, TX
 
 # Profile from the official GPX download's elevations, sampled per lap mile
-# and repeated for each of the 5 laps; the file's junk trailing zero is
-# replaced with the start-line value.
+# and repeated for each of the 5 laps; the file's trailing zero-elevation
+# points are replaced with the start-line value.
 elevation_series:
   - [0, 236]
   - [1, 351]
@@ -555,7 +554,6 @@ aid_stations:
     crew_notes: "Crew is welcome at every station per the aid chart. No drop-bag delivery; runner gear stays at the start/finish area."
     pacer_notes: "Pacers may join from mile 49 onward; runners 60 and older may have a pacer for the entire race."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Aid-chart cutoff: 7:36 AM (25 hr, 36 min from the 6:00 AM mass start). Verified on is the retrieval date. Pass miles use the aid chart's 20-mile split frame; the chart prints the final-lap Gate, Nature Center, and Dam Nation rows as miles 84, 89, and 94."
@@ -579,7 +577,6 @@ aid_stations:
     crew_notes: "Crew is welcome at every station per the aid chart. Drop bags are delivered here; separate labeled bags are due Friday by 7:00 PM."
     pacer_notes: "Pacers may join from mile 49 onward; runners 60 and older may have a pacer for the entire race."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Aid-chart cutoff: 8:48 AM (26 hr, 48 min from the 6:00 AM mass start). Verified on is the retrieval date. Pass miles use the aid chart's 20-mile split frame; the chart prints the final-lap Gate, Nature Center, and Dam Nation rows as miles 84, 89, and 94."
@@ -603,7 +600,6 @@ aid_stations:
     crew_notes: "Crew is welcome at every station per the aid chart. No drop-bag delivery at this station."
     pacer_notes: "Pacers may join from mile 49 onward; runners 60 and older may have a pacer for the entire race."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Aid-chart cutoff: 10:30 AM (28 hr, 30 min from the 6:00 AM mass start). Verified on is the retrieval date. Pass miles use the aid chart's 20-mile split frame; the chart prints the final-lap Gate, Nature Center, and Dam Nation rows as miles 84, 89, and 94."
@@ -627,7 +623,6 @@ aid_stations:
     crew_notes: "Crew is welcome at every station per the aid chart. Drop bags are delivered here; separate labeled bags are due Friday by 7:00 PM."
     pacer_notes: "Pacers may join from mile 49 onward; runners 60 and older may have a pacer for the entire race."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Aid-chart cutoff: 12:06 PM (30 hr, 6 min from the 6:00 AM mass start). Verified on is the retrieval date. Pass miles use the aid chart's 20-mile split frame; the chart prints the final-lap Gate, Nature Center, and Dam Nation rows as miles 84, 89, and 94."
@@ -651,7 +646,6 @@ aid_stations:
     crew_notes: "Crew is welcome at every station per the aid chart. No drop-bag delivery; runner gear stays at the start/finish area."
     pacer_notes: "Pacers may join from mile 49 onward; runners 60 and older may have a pacer for the entire race."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Aid-chart cutoff: 2:00 PM (32 hr, 0 min from the 6:00 AM mass start). Verified on is the retrieval date. Pass miles use the aid chart's 20-mile split frame; the chart prints the final-lap Gate, Nature Center, and Dam Nation rows as miles 84, 89, and 94."
