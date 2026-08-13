@@ -28,7 +28,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-13"
-    source_notes: "The 100 Mile runs two Red Loops then three Blue Loops (Red, Red, Blue, Blue, Blue) and the 2026 Runner Guide calls the full course 101.2 miles against the billed 100; the organizer's CalTopo line measures 101.0. Pass miles use the guide's cutoff-table frame; Gila Aid and the mid-red HQ pass carry map-measured miles because the guide publishes no red-loop station miles. The guide spells the second blue-loop station Pedersen in its cutoff table and Pederson on its maps. Detailed cutoffs, menu, and site layout are from the 2026-edition guide and may change for 2027; the 2027 race page already states the same cutoff pattern. Spot elevations are USGS 3DEP queries at the organizer's station markers."
+    source_notes: "The 100 Mile runs two Red Loops then three Blue Loops (Red, Red, Blue, Blue, Blue). Against the billed 100, the 2027 page's key stats say 101.3 miles, the 2026 Runner Guide's cutoff table 101.2, and the organizer's CalTopo line measures 101.0. Pass miles use the guide's cutoff-table frame; Gila Aid and the mid-red HQ pass carry map-measured miles because the guide publishes no red-loop station miles. The guide spells the second blue-loop station Pedersen in its cutoff table and Pederson on its maps. Detailed cutoffs, menu, and site layout are from the 2026-edition guide and may change for 2027; the 2027 race page already states the same cutoff pattern. Spot elevations are USGS 3DEP queries at the organizer's station markers."
     section_verifications:
       race_facts:
         verified_on: "2026-08-13"

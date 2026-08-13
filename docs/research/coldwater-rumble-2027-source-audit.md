@@ -18,10 +18,11 @@ official mile frame and detailed rules, flagged as prior-edition material.
 
 Recorded discrepancies:
 
-1. **Course length.** The guide's cutoff table calls the full course 101.2
-   miles (18:59 min/mile framing) against the billed 100; the organizer's
-   CalTopo "100 Mile" line measures 101.0. The record keeps the guide frame:
-   red loops clear at 20.1, blue loops at 47.1/74.1/101.2.
+1. **Course length.** The race is billed as the 100 Mile, but the 2027 page's
+   key stats say 101.3 miles, the guide's cutoff table 101.2 (18:59 min/mile
+   framing), and the organizer's CalTopo "100 Mile" line measures 101.0. The
+   record keeps the guide's cutoff frame — red loops clear at 20.1, blue
+   loops at 47.1/74.1/101.2 — and `distance_mi` stays the billed 100.
 2. **Red-loop station miles.** The guide publishes no red-loop station miles;
    Gila Aid (2.8/12.9) and the mid-red HQ pass (10.1) carry map-measured
    values, with the second red loop anchored to the guide's 20.1.
@@ -83,7 +84,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 - **Elevation series.** S6 station spot elevations at each pass's guide-frame
   mile — the flat-profile approach reviewed for prior records, here over a
   456-ft spot range.
-- **Follow.** Live tracking on S5; results appear on the UltraSignup event
+- **Follow.** Live tracking on S5; results appear on the UltraSignup listing
   (S2) after the race.
 
 ## Stale-source traps
@@ -93,7 +94,8 @@ All URLs below were opened or downloaded on 2026-08-13.
   the 2027 page is silent beyond the stated start times and cutoffs.
 - run100s' row (32h, 4400'/4400') reflects an older venue/course era; its
   climb figures contradict the organizer's 8,687 ft and were not copied.
-- The CalTopo map also hosts 100K/60K/40K/10-mile/5-mile lines; geometry must
-  come from the "100 Mile" line only, and Strava mirrors must not be used.
+- The 2026 guide links separate CalTopo maps and Strava routes per distance;
+  this record's geometry must come from the race page's map (UUDUK23), whose
+  only line is "100 Mile", and Strava mirrors must not be used.
 - "Pederson" on maps vs "Pedersen" in the cutoff table: keep the cutoff-table
   spelling and note the variant.
