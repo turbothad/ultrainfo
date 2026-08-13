@@ -1,0 +1,356 @@
+# Long Haul 100 — event data (imported by Events::Import via db/seeds.rb).
+# Course geometry copies the organizer's CalTopo course line; station
+# coordinates are the organizer's CalTopo markers (the Day Use Area waypoint is
+# placed at the organizer's MM 0.5 track point). Station-pass miles use the
+# organizer's per-loop frame from the 2027 UltraSignup listing (South Loop at
+# MM 3.3 and 8.5, Metal Mark Pond at MM 13.4, Day Use at MM 0.5, loops of 16.8
+# miles); the race page's older MM 13.2 and mile-50.1 figures are recorded as
+# conflicts. Source decisions are documented in
+# docs/research/long-haul-100-2027-source-audit.md.
+
+race:
+  name: Long Haul 100
+  slug: long-haul-100
+  year: 2027
+  state: FL
+  distance_mi: 100
+  elevation_gain_ft: null # No organizer figure; the park sits at 88-94 ft throughout.
+  elevation_loss_ft: null
+  start_date: 2027-01-16
+  end_date: 2027-01-17
+  start_time: 7:00 AM
+  time_zone: America/New_York
+  cutoff_hours: 32 # 7:00 AM Saturday start → 3:00 PM Sunday course cutoff.
+  official_url: https://a1ultraevents.wordpress.com/long-haul-100/
+  registration_url: https://ultrasignup.com/register.aspx?did=134998
+  results_url: https://ultrasignup.com/results_event.aspx?did=123897
+  registration_status: sold_out # 2027 UltraSignup listing: "Our 2027 event is sold out"; waitlist temporarily closed.
+  lottery: false # Direct first-come UltraSignup registration that sold out; no lottery in any reviewed source.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "Organizer surfaces conflict on details: the 2027 UltraSignup listing says 6 loops of 16.8 miles with Metal Mark Pond at MM 13.4 and lists the mile-0.5 station as `Middle Lake AS = MM .05` (an evident typo for .5); the official race page says MM 13.2 and `Day Use Area` at MM .5, and its `pacers join at mile 50.1` sentence matches the prior 16.7-mile loop frame. This record uses the UltraSignup 16.8/13.4 frame, which the organizer's own CalTopo line supports (loop measures 16.82 miles; Metal Mark marker at line-mile 13.36). Six 16.8-mile loops total 100.8 miles against the billed 100. Spot elevations are USGS 3DEP queries at the station points; the organizer publishes no elevation figures."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_race_page
+        label: "Long Haul 100 official race page (A1 Ultra Events)"
+        url: "https://a1ultraevents.wordpress.com/long-haul-100/"
+        verified_on: "2026-08-13"
+      - &source_ultrasignup
+        label: "2027 UltraSignup listing (start time, loops, cutoffs, stations, sold out)"
+        url: "https://ultrasignup.com/register.aspx?did=134998"
+        verified_on: "2026-08-13"
+      - &source_handbook
+        label: "LH100 Runner & Crew Handbook (2026 edition, updated 2025-11-11)"
+        url: "https://a1ultraevents.wordpress.com/wp-content/uploads/2025/11/lh100-handbook.pdf"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo course map (line and station markers)"
+        url: "https://caltopo.com/m/558GS72"
+        verified_on: "2026-08-13"
+      - &source_usgs
+        label: "USGS 3DEP Elevation Point Query Service (spot elevations)"
+        url: "https://epqs.nationalmap.gov/v1/json"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Water is implied by full-service `hot and cold food and beverages` at every station but no source certifies potability. The 2026-edition handbook states there are no medical checks before, during, or after the race, so has_medical is false at every pass; first-aid supplies are stocked at the stations. The 30-hour Western States qualifying mark and the sub-24-hour silver buckle are performance marks, not runner cutoffs. Operational details sourced only from the 2026-edition handbook (schedule pattern, parking areas, drop-bag logistics) may change for 2027."
+    overall_cutoff_label: "3:00 PM January 17, 2027"
+    overall_cutoff_notes: "32 hours from the 7:00 AM Saturday start. No intermediate station cutoffs are published. Finishing under 30 hours earns a Western States qualifier; under 24 hours earns the silver buckle."
+    pacer_rule_summary: "Pacers may join their runner during loops 4-6 (from the mile-50.4 end of loop 3 in this record's 16.8-mile frame; the race page's older sentence says mile 50.1). Runners 60 and older may have a pacer at any time. One pacer at a time, free mandatory registration and waiver, pacer bib required, no muling, no bicycles, and pacers start and pull out only at official stations."
+    drop_bag_summary: "Drop bags are allowed in the pavilion at the start/finish and at Aid Station 1 (one bag, max 5-gallon size, delivered by race staff and returned periodically). The 2026-edition handbook carries the labeling and staging rules."
+  blurb: Six flat 16.8-mile loops through longleaf pine flatwoods and cypress domes at Colt Creek State Park.
+  about: >-
+    The Long Haul 100 runs six 16.8-mile loops at Colt Creek State Park in
+    Lakeland, FL — longleaf pine flatwoods, cypress domes, and open vistas on
+    a flat, fully marked course. Start 7:00 AM Saturday; 32-hour course cutoff
+    (3:00 PM Sunday) with a 30-hour Western States qualifying mark. Stations at
+    the Mac Lake pavilion, the Day Use Area, the South Loop (passed twice each
+    loop), and Metal Mark Pond. The 2027 race is sold out.
+  start_venue: Mac Lake Pavilion, Colt Creek State Park, 16000 State Rte 471, Lakeland, FL
+  finish_venue: Mac Lake Pavilion, Colt Creek State Park, 16000 State Rte 471, Lakeland, FL
+
+# Profile from USGS 3DEP spot elevations at the organizer's station points,
+# listed at each pass's mile in the 16.8-mile loop frame (the CalTopo line's
+# embedded elevations are unlabeled; the park is uniformly flat at 88-94 ft).
+elevation_series:
+  - [0, 89]
+  - [3.3, 94]
+  - [8.5, 94]
+  - [13.4, 91]
+  - [16.8, 89]
+  - [17.3, 88]
+  - [20.1, 94]
+  - [25.3, 94]
+  - [30.2, 91]
+  - [33.6, 89]
+  - [34.1, 88]
+  - [36.9, 94]
+  - [42.1, 94]
+  - [47, 91]
+  - [50.4, 89]
+  - [50.9, 88]
+  - [53.7, 94]
+  - [58.9, 94]
+  - [63.8, 91]
+  - [67.2, 89]
+  - [67.7, 88]
+  - [70.5, 94]
+  - [75.7, 94]
+  - [80.6, 91]
+  - [84, 89]
+  - [84.5, 88]
+  - [87.3, 94]
+  - [92.5, 94]
+  - [97.4, 91]
+  - [100.8, 89]
+
+# Station passes: coordinates from the GPX waypoints (`match` = waypoint-name
+# substring). Miles use the 2027 UltraSignup per-loop frame: South Loop at MM
+# 3.3 and 8.5, Metal Mark Pond at MM 13.4, Day Use at MM 0.5 (loops 2-6 only),
+# loop length 16.8. Later loops merge (`<<:`) the first passes and override
+# what changes.
+aid_stations:
+  - match: "HQ Aid Station"
+    name: "Start — Mac Lake Pavilion"
+    direction: "Start"
+    mile: 0.0
+    elev: 89
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full-service HQ station with hot and cold food and beverages, plus first-aid supplies. Drop bags for the start/finish and Aid Station 1 are staged at the pavilion on race morning."
+    bathroom: null
+    park: "No runner, crew, pacer, or spectator parking in the paved Mac Lake lot (ADA excepted). Assigned runner parking areas A-D; crews and spectators parallel-park along the main road opposite the lake. Park entry costs $4 per vehicle or $3 per person for non-runners."
+    crew_notes: "Crew canopies may be set up along the paved path at the start/finish beyond the pavilion (Area D); crews can also self-crew from vehicles at the Area C grassy lot at mile 16.4 of each loop. Crew bicycles are prohibited."
+    pacer_notes: "Pacers join during loops 4-6 — not at the start. Runners 60 and older may have a pacer at any time."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "2027 UltraSignup listing"
+      source_url: "https://ultrasignup.com/register.aspx?did=134998"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Water is implied by full-service beverages; potability is not certified. Miles use the 2027 UltraSignup 16.8-mile loop frame with Metal Mark Pond at MM 13.4; the race page's MM 13.2 and mile-50.1 pacer sentence conflict and are recorded in the source audit. Crew, parking, and drop-bag logistics come from the 2026-edition handbook and may change for 2027. Spot elevations are USGS 3DEP values at the station points."
+      sources:
+        - *source_ultrasignup
+        - *source_race_page
+        - *source_handbook
+        - *source_caltopo
+        - *source_usgs
+  - &as1_pass
+    match: "Aid Station 1"
+    name: "Aid Station 1 — South Loop"
+    direction: "Loop 1"
+    mile: 3.3
+    elev: 94
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full-service station with hot and cold food and beverages, plus first-aid supplies. Passed at MM 3.3 and MM 8.5 of every loop; one drop bag per runner (max 5-gallon size) is delivered here by race staff."
+    bathroom: null
+    park: null
+    crew_notes: "No published crew access; published crew points are the start/finish area, the Day Use Area at MM 0.5, and the group camp the course crosses at MM 5.5."
+    pacer_notes: "Pacers join during loops 4-6 and may start or pull out only at official stations. Runners 60 and older may have a pacer at any time."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *as1_pass
+    mile: 8.5
+  - &as2_pass
+    match: "Aid Station 2"
+    name: "Aid Station 2 — Metal Mark Pond"
+    direction: "Loop 1"
+    mile: 13.4
+    elev: 91
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full-service station with hot and cold food and beverages, plus first-aid supplies. Available to runners and pacers only."
+    bathroom: null
+    park: null
+    crew_notes: "No access for crews at Metal Mark Pond."
+    pacer_notes: "Pacers join during loops 4-6 and may start or pull out only at official stations. Runners 60 and older may have a pacer at any time."
+    road: null
+    source_metadata: *official_station_source
+  - &hq_pass
+    match: "HQ Aid Station"
+    name: "HQ — Mac Lake Pavilion"
+    direction: "Loop 1"
+    mile: 16.8
+    elev: 89
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full-service HQ station with hot and cold food and beverages, plus first-aid supplies. Start/finish and next-lap drop bags are kept in the pavilion."
+    bathroom: null
+    park: null
+    crew_notes: "Crew canopies along the paved path beyond the pavilion (Area D); self-crewing from vehicles at the Area C grassy lot at mile 16.4 of each loop. Crew bicycles are prohibited."
+    pacer_notes: "Pacers join during loops 4-6 and may start or pull out only at official stations. Runners 60 and older may have a pacer at any time."
+    road: null
+    source_metadata: *official_station_source
+  - &as3_pass
+    match: "Aid Station 3"
+    name: "Aid Station 3 — Day Use Area"
+    direction: "Loop 2"
+    mile: 17.3
+    elev: 88
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station with hot and cold food and beverages, open on loops 2-6 (the UltraSignup listing calls it the Middle Lake station)."
+    bathroom: null
+    park: null
+    crew_notes: "Runners may be crewed from vehicles in the Day Use Area (parking Area A); canopies are allowed behind parked cars."
+    pacer_notes: "Pacers join during loops 4-6 and may start or pull out only at official stations. Runners 60 and older may have a pacer at any time."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *as1_pass
+    direction: "Loop 2"
+    mile: 20.1
+  - <<: *as1_pass
+    direction: "Loop 2"
+    mile: 25.3
+  - <<: *as2_pass
+    direction: "Loop 2"
+    mile: 30.2
+  - <<: *hq_pass
+    direction: "Loop 2"
+    mile: 33.6
+  - <<: *as3_pass
+    direction: "Loop 3"
+    mile: 34.1
+  - <<: *as1_pass
+    direction: "Loop 3"
+    mile: 36.9
+  - <<: *as1_pass
+    direction: "Loop 3"
+    mile: 42.1
+  - <<: *as2_pass
+    direction: "Loop 3"
+    mile: 47.0
+  - <<: *hq_pass
+    direction: "Loop 3"
+    mile: 50.4
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as3_pass
+    direction: "Loop 4"
+    mile: 50.9
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as1_pass
+    direction: "Loop 4"
+    mile: 53.7
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as1_pass
+    direction: "Loop 4"
+    mile: 58.9
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as2_pass
+    direction: "Loop 4"
+    mile: 63.8
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *hq_pass
+    direction: "Loop 4"
+    mile: 67.2
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as3_pass
+    direction: "Loop 5"
+    mile: 67.7
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as1_pass
+    direction: "Loop 5"
+    mile: 70.5
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as1_pass
+    direction: "Loop 5"
+    mile: 75.7
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as2_pass
+    direction: "Loop 5"
+    mile: 80.6
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *hq_pass
+    direction: "Loop 5"
+    mile: 84.0
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as3_pass
+    direction: "Loop 6"
+    mile: 84.5
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as1_pass
+    direction: "Loop 6"
+    mile: 87.3
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as1_pass
+    direction: "Loop 6"
+    mile: 92.5
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *as2_pass
+    direction: "Loop 6"
+    mile: 97.4
+    pacer: true
+    pacer_notes: "Pacers may join from the end of loop 3 (mile 50.4). One pacer at a time; no muling; no bicycles; free mandatory registration and waiver; pacers start and pull out only at official stations."
+  - <<: *hq_pass
+    name: "Finish — Mac Lake Pavilion"
+    direction: "Finish"
+    mile: 100.8
+    pacer: true
+    pacer_notes: "A pacer picked up during loops 4-6 may accompany their runner to the finish."
+    cutoff: "3:00 PM"
+    cutoff_clock: "3:00 PM"
+    cutoff_elapsed_minutes: 1920
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Course cutoff: 3:00 PM Sunday, 32 hours after the 7:00 AM Saturday start. A 30-hour finish earns a Western States qualifier and a sub-24-hour finish the silver buckle; neither is a cutoff. Verified on is the retrieval date. Miles use the 2027 UltraSignup 16.8-mile loop frame."

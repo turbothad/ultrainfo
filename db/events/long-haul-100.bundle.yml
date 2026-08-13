@@ -1,0 +1,9 @@
+version: 1
+slug: long-haul-100
+files:
+  race:
+    path: long-haul-100.yml
+    sha256: 99f75b4880f638330d3ead9f267a6d6ac18825b94cf98e5624f650c014ac1749
+  course:
+    path: long-haul-100.gpx
+    sha256: f015b66802670a376971e9ea628ef41826fa4895e0e4adb256080798a828ea9b

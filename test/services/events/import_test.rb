@@ -6,7 +6,7 @@ module Events
     test "publishes the version-controlled Active event catalog" do
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
-      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100" ], published_races.map(&:name)
+      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -115,6 +115,32 @@ module Events
       assert_equal Time.find_zone("Pacific/Honolulu").parse("2027-01-17 6:00 PM"), hurt.final_cutoff_at
       assert_includes hurt.source_metadata.fetch("sources").pluck("url"),
                       "https://hurt100.com/book-of-hurt-2027/"
+
+      long_haul = published_races.find { |published| published.slug == "long-haul-100" }
+      assert_equal 2027, long_haul.year
+      assert_equal Date.new(2027, 1, 16), long_haul.start_date
+      assert long_haul.sold_out?, "the 2027 UltraSignup listing says the race is sold out"
+      assert_equal false, long_haul.lottery
+      assert_equal 32, long_haul.cutoff_hours
+      assert_nil long_haul.elevation_gain_ft, "the organizer publishes no vert figure for the flat park"
+      assert_equal 30, long_haul.aid_stations.count,
+                   "a Start pass plus the per-loop South Loop x2, Metal Mark, HQ, and loops 2-6 Day Use passes"
+      assert_equal 4, long_haul.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "four physical stations: HQ, South Loop, Metal Mark Pond, and Day Use"
+      assert long_haul.aid_stations.all? { |station| station.has_medical == false },
+             "the handbook states there are no medical checks before, during, or after the race"
+      assert_equal 5, long_haul.aid_stations.count { |station| station.name.include?("Day Use") },
+                   "the Day Use station is passed on loops 2-6 only"
+      assert_not long_haul.aid_stations.find_by!(mile: 47).pacer_access?,
+                 "pacers may not join before the end of loop 3"
+      assert long_haul.aid_stations.find_by!(mile: 50.4).pacer_access?,
+             "pacers join at the loop 3/4 checkpoint for loops 4-6"
+      assert_equal 1, long_haul.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "no intermediate station cutoffs are published; only the 32-hour course cutoff"
+      assert_equal "32h", long_haul.aid_stations.find_by!(mile: 100.8).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/New_York").parse("2027-01-17 3:00 PM"), long_haul.final_cutoff_at
+      assert_includes long_haul.source_metadata.fetch("sources").pluck("url"),
+                      "https://ultrasignup.com/register.aspx?did=134998"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
