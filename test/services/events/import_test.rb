@@ -231,7 +231,7 @@ module Events
       assert_equal 4, rocky.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
                    "four physical stations: Tyler's, Gate, Nature Center, Dam Nation"
       assert rocky.aid_stations.all?(&:crew_accessible?), "the aid chart marks crew Y at every pass"
-      assert_equal 8, rocky.aid_stations.count(&:drop_bag?),
+      assert_equal 10, rocky.aid_stations.count(&:drop_bag?),
                    "drop bags are delivered to Gate and Dam Nation on every lap"
       assert_not rocky.aid_stations.find_by!(mile: 43.8).pacer_access?,
                  "pacers may not join before mile 49"
