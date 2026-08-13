@@ -45,7 +45,8 @@ _Avoid_: stop, visit, aid station (when the crossing is meant)
 
 **Direction**:
 The leg of the course a station pass belongs to: Start, Outbound, Turnaround,
-Inbound, or Finish.
+Inbound, or Finish. Lap courses label mid-race passes by loop instead
+(e.g. Loop 3), keeping Start and Finish for the landmark passes.
 
 **Cutoff**:
 The time by which a runner must leave a station pass (or finish), expressed

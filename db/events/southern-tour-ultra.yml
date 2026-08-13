@@ -2,9 +2,9 @@
 # Course geometry and station coordinates exactly match the organizer-published
 # Google My Maps "10 mile course" linked from the official Course page.
 # Station-pass miles use the organizer's published per-loop frame (Station 1 at
-# mile 5, checkpoint at mile 10 of each loop); the organizer's own map measures
-# the loop at 10.2 mi with Station 1 at ~6.1 mi in the direction of travel.
-# Source decisions and contradictions are documented in
+# mile 5, the event-field station at mile 10 of each loop); the organizer's own
+# map measures the loop at 10.2 mi with Station 1 at ~6.1 mi in the direction
+# of travel. Source decisions and contradictions are documented in
 # docs/research/southern-tour-2027-source-audit.md.
 
 race:
@@ -28,7 +28,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-13"
-    source_notes: "The organizer bills the individual course as 10-mile loops (100 miles in 10 loops); the organizer's own course map measures the loop at 10.2 miles with the mid-loop station at ~6.1 miles in the direction of travel. Loop structure is `subject to change based on conditions`. The course map stores no elevations; spot elevations are USGS 3DEP queries at the mapped points."
+    source_notes: "The organizer bills the individual course as 10-mile loops (100 miles in 10 loops); the organizer's own course map measures the loop at 10.2 miles with the mid-loop station at ~6.1 miles in the direction of travel. Loop structure is `subject to change based on conditions`. The course map stores no elevations; spot elevations are USGS 3DEP queries at the on-course points nearest each mapped station."
     section_verifications:
       race_facts:
         verified_on: "2026-08-13"
@@ -75,139 +75,61 @@ race:
         label: "USGS 3DEP Elevation Point Query Service (spot elevations)"
         url: "https://epqs.nationalmap.gov/v1/json"
         verified_on: "2026-08-13"
-    notes: "Checked against first-party sources on August 13, 2026. Water is listed at both stations but no source certifies potability. The 29-hour `on your final lap by 5:00 PM Saturday` rule is published as a soft cutoff; the 32-hour overall limit is firm. The relay and shorter distances share the venue on Saturday; this record covers the 100-mile individual event."
+    notes: "Checked against first-party sources on August 13, 2026. Water is listed at both stations but no source certifies potability. The 29-hour `on your final lap by 5:00 PM Saturday` rule is published as a soft cutoff; the 32-hour overall limit is firm. The relay and shorter Saturday races share the venue; this record covers the 100-mile individual race (the organizer's `Individual Events` page)."
     overall_cutoff_label: "8:00 PM January 16, 2027"
     overall_cutoff_notes: "The Individual Events page states a 32-hour limit with a 29-hour soft cutoff: the final lap must start by 5:00 PM Saturday with a headlamp and be completed by 8:00 PM Saturday."
     pacer_rule_summary: "Personal pacers may join their runner anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time, no pacing on bicycles, muling is allowed."
-    drop_bag_summary: "No drop-bag service is published. Runners may place personal aid near the camping area by the 10-mile checkpoint, and the main aid station hosts a personal crew area."
+    drop_bag_summary: "No drop-bag service is published. Runners may place personal aid near the camping area by the event-field station, and the main aid station hosts a personal crew area."
   blurb: Ten flat coastal loops along the Atlantic Intracoastal Waterway on private land outside Wilmington, NC.
   about: >-
     The Southern Tour Ultra 100-miler runs 10 laps of a 10-mile loop on private
-    property along the Atlantic Intracoastal Waterway at Scotts Hill, just
+    property along the Atlantic Intracoastal Waterway at Scott's Hill, just
     outside Wilmington, NC — packed sand paths, single track, and bush-hogged
-    routes through coastal woods where George Washington's 1791 Southern Tour
-    once passed. Start 12:00 PM Friday; 32-hour overall limit (8:00 PM Saturday)
-    with a soft cutoff requiring the final lap to start by 5:00 PM Saturday.
-  start_venue: Southern Tour Race Site, Scotts Hill Loop Road, Wilmington, NC
-  finish_venue: Southern Tour Race Site, Scotts Hill Loop Road, Wilmington, NC
+    routes through coastal woods that the organizer says George Washington's
+    Southern Tour once crossed. Start 12:00 PM Friday; 32-hour overall limit
+    (8:00 PM Saturday) with a soft cutoff requiring the final lap to start by
+    5:00 PM Saturday.
+  start_venue: Southern Tour Race Site, Scott's Hill Loop Road, Wilmington, NC
+  finish_venue: Southern Tour Race Site, Scott's Hill Loop Road, Wilmington, NC
 
-# Profile from USGS 3DEP spot elevations sampled every ~1.02 mi along the
-# organizer's course-map loop, mapped to the organizer's nominal 10-mile loop
-# frame and repeated for each of the 10 laps (the My Maps track carries no ele).
+# Profile from USGS 3DEP spot elevations at the on-course points nearest each
+# mapped station, listed at each pass's nominal mile (the My Maps track carries
+# no ele) — the same spot-elevation approach as the Bighorn record.
 elevation_series:
   - [0, 22]
-  - [1, 17]
-  - [2, 29]
-  - [3, 21]
-  - [4, 24]
-  - [5, 27]
-  - [6, 18]
-  - [7, 11]
-  - [8, 19]
-  - [9, 16]
+  - [5, 18]
   - [10, 22]
-  - [11, 17]
-  - [12, 29]
-  - [13, 21]
-  - [14, 24]
-  - [15, 27]
-  - [16, 18]
-  - [17, 11]
-  - [18, 19]
-  - [19, 16]
+  - [15, 18]
   - [20, 22]
-  - [21, 17]
-  - [22, 29]
-  - [23, 21]
-  - [24, 24]
-  - [25, 27]
-  - [26, 18]
-  - [27, 11]
-  - [28, 19]
-  - [29, 16]
+  - [25, 18]
   - [30, 22]
-  - [31, 17]
-  - [32, 29]
-  - [33, 21]
-  - [34, 24]
-  - [35, 27]
-  - [36, 18]
-  - [37, 11]
-  - [38, 19]
-  - [39, 16]
+  - [35, 18]
   - [40, 22]
-  - [41, 17]
-  - [42, 29]
-  - [43, 21]
-  - [44, 24]
-  - [45, 27]
-  - [46, 18]
-  - [47, 11]
-  - [48, 19]
-  - [49, 16]
+  - [45, 18]
   - [50, 22]
-  - [51, 17]
-  - [52, 29]
-  - [53, 21]
-  - [54, 24]
-  - [55, 27]
-  - [56, 18]
-  - [57, 11]
-  - [58, 19]
-  - [59, 16]
+  - [55, 18]
   - [60, 22]
-  - [61, 17]
-  - [62, 29]
-  - [63, 21]
-  - [64, 24]
-  - [65, 27]
-  - [66, 18]
-  - [67, 11]
-  - [68, 19]
-  - [69, 16]
+  - [65, 18]
   - [70, 22]
-  - [71, 17]
-  - [72, 29]
-  - [73, 21]
-  - [74, 24]
-  - [75, 27]
-  - [76, 18]
-  - [77, 11]
-  - [78, 19]
-  - [79, 16]
+  - [75, 18]
   - [80, 22]
-  - [81, 17]
-  - [82, 29]
-  - [83, 21]
-  - [84, 24]
-  - [85, 27]
-  - [86, 18]
-  - [87, 11]
-  - [88, 19]
-  - [89, 16]
+  - [85, 18]
   - [90, 22]
-  - [91, 17]
-  - [92, 29]
-  - [93, 21]
-  - [94, 24]
-  - [95, 27]
-  - [96, 18]
-  - [97, 11]
-  - [98, 19]
-  - [99, 16]
+  - [95, 18]
   - [100, 22]
 
 # Station passes: coordinates from the GPX waypoints (`match` = waypoint-name
 # substring; both waypoints come from the organizer's course map placemarks).
 # Miles use the organizer's published per-loop frame: Station 1 at mile 5 and
-# the event-field checkpoint at mile 10 of each loop. The organizer's own map
+# the event-field station at mile 10 of each loop. The organizer's own map
 # measures the loop at 10.2 mi with Station 1 at ~6.1 mi in travel direction.
+# Later loops merge (`<<:`) the Loop 1 passes and override what changes.
 aid_stations:
-  - match: "Start/Finish Checkpoint"
+  - match: "Start/Finish Aid Station"
     name: "Start — Event Field"
     direction: "Start"
     mile: 0.0
-    elev: 23
+    elev: 22
     crew: true
     water: true
     pacer: false
@@ -220,7 +142,7 @@ aid_stations:
     aid: "Main aid station in the event field; hot food is served throughout the race."
     bathroom: "Portable restrooms and handwashing stations are provided at the event field."
     park: "QR-code parking pass required (about 450 cars). Overflow at Poplar Grove, 1.5 miles away, with shuttles Saturday 5:30 am-7:00 pm. 4-wheel drive recommended for field parking; enter via the Scott's Hill Loop gate."
-    crew_notes: "Personal crew area at the main aid station; 100-mile parking-pass holders may enter Friday from 10:00 am."
+    crew_notes: "Personal crew area at the main aid station. Friday gates open at 10:00 am for 100-mile participants only."
     pacer_notes: "Pacing begins after 50 miles or after 11:59 PM Friday, whichever comes first — not at the start."
     road: null
     source_metadata: &official_station_source
@@ -228,18 +150,19 @@ aid_stations:
       source_label: "Individual Events page"
       source_url: "https://runsignup.com/Race/SouthernTourUltra/Page/IndividualEvents"
       verified_on: "2026-08-13"
-      source_notes: "Verified on is the retrieval date, not the material's effective year. Listed water is not certified potable by any source. Pass miles use the organizer's per-loop frame (Station 1 at mile 5, checkpoint at mile 10); the organizer's course map measures the loop at 10.2 miles with Station 1 at ~6.1 miles in the direction of travel. Spot elevations are USGS 3DEP values at the mapped station coordinates."
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Listed water is not certified potable by any source. Pass miles use the organizer's per-loop frame (Station 1 at mile 5, the event-field station at mile 10); the organizer's course map measures the loop at 10.2 miles with Station 1 at ~6.1 miles in the direction of travel. Spot elevations are USGS 3DEP values at the on-course points nearest each mapped station."
       sources:
         - *source_individual_events
         - *source_faq
         - *source_course_map
         - *source_camping
         - *source_usgs
-  - match: "Mid-Loop Aid Station"
+  - &mid_loop_pass
+    match: "Mid-Loop Aid Station"
     name: "Station 1 — Mid-Loop Aid"
     direction: "Loop 1"
     mile: 5.0
-    elev: 10
+    elev: 18
     crew: false
     water: true
     pacer: true
@@ -256,11 +179,12 @@ aid_stations:
     pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
     road: null
     source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - &event_field_pass
+    match: "Start/Finish Aid Station"
+    name: "Station 2 — Event Field"
     direction: "Loop 1"
     mile: 10.0
-    elev: 23
+    elev: 22
     crew: true
     water: true
     pacer: true
@@ -270,388 +194,81 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
+    aid: "Event-field aid at the end of each loop: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area."
     bathroom: "Portable restrooms and handwashing stations are provided at the event field."
     park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
+    crew_notes: "Personal crew area at the main aid station. Runners must pass through this station on every lap for an official time."
     pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
     road: null
     source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 2"
     mile: 15.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 2"
     mile: 20.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 3"
     mile: 25.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 3"
     mile: 30.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 4"
     mile: 35.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 4"
     mile: 40.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 5"
     mile: 45.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 5"
     mile: 50.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
     crew_notes: "Personal crew area at the main aid station. Pacing is allowed from this point (50 miles) or from 11:59 PM Friday, whichever comes first."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 6"
     mile: 55.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 6"
     mile: 60.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 7"
     mile: 65.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 7"
     mile: 70.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 8"
     mile: 75.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 8"
     mile: 80.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+  - <<: *mid_loop_pass
     direction: "Loop 9"
     mile: 85.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
-    name: "Station 2 — Event Field Checkpoint"
+  - <<: *event_field_pass
     direction: "Loop 9"
     mile: 90.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: "Final lap must start by 5:00 PM Saturday with a headlamp (29-hour soft cutoff; course sweep begins)."
+    cutoff: "5:00 PM"
     cutoff_clock: "5:00 PM"
     cutoff_elapsed_minutes: 1740
-    aid: "10-mile checkpoint in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. Runners may place personal aid near the camping area by the checkpoint."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
-    crew_notes: "Personal crew area at the main aid station. Runners must pass through this checkpoint on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Mid-Loop Aid Station"
-    name: "Station 1 — Mid-Loop Aid"
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "The 5:00 PM Saturday time at this pass is published as a soft cutoff: the final lap must start by 5:00 PM with a headlamp, and the course sweep begins at 5:00 PM. Verified on is the retrieval date, not the material's effective year. Pass miles use the organizer's per-loop frame; the organizer's course map measures the loop at 10.2 miles."
+  - <<: *mid_loop_pass
     direction: "Loop 10"
     mile: 95.0
-    elev: 10
-    crew: false
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: null
-    cutoff_clock: null
-    cutoff_elapsed_minutes: null
-    aid: "Stocked aid station with volunteers: gels, water, and electrolytes. The FAQ also lists Ramen and fruit."
-    bathroom: null
-    park: null
-    crew_notes: "Crew access is not published for the mid-loop station; every published crew provision is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
-  - match: "Start/Finish Checkpoint"
+  - <<: *event_field_pass
     name: "Finish — Event Field"
     direction: "Finish"
     mile: 100.0
-    elev: 23
-    crew: true
-    water: true
-    pacer: true
-    drop: null
-    food: true
-    med: null
-    cutoff: "All athletes must be finished and off the course by 8:00 PM Saturday (32 hours)."
+    cutoff: "8:00 PM"
     cutoff_clock: "8:00 PM"
     cutoff_elapsed_minutes: 1920
-    aid: "Finish at the event-field checkpoint: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. 100-mile finishers receive a belt buckle; runners stopping at 50 miles are recognized as 50-mile finishers."
-    bathroom: "Portable restrooms and handwashing stations are provided at the event field."
-    park: null
+    aid: "Finish in the event field: gels, water, bananas, fruit, salty snacks, soup, and grilled food such as quesadillas. 100-mile finishers receive a belt buckle; runners stopping at 50 miles are recognized as 50-mile finishers."
     crew_notes: "Personal crew area at the main aid station."
     pacer_notes: "Pacers may accompany their runner to the finish once pacing has begun. One pacer at a time; no bicycles; muling is allowed."
-    road: null
-    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "All athletes must be finished and off the course by 8:00 PM Saturday (32 hours). Verified on is the retrieval date, not the material's effective year. Pass miles use the organizer's per-loop frame; the organizer's course map measures the loop at 10.2 miles."

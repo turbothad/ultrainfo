@@ -35,8 +35,11 @@ Recorded discrepancies:
    structure and carries the organizer's caveat in `source_notes`.
 4. **Elevation.** The My Maps export stores no elevations and the organizer
    publishes no vert figure ("primarily flat"). `elevation_gain_ft` and
-   `elevation_loss_ft` stay null; the profile and station spot elevations are
-   USGS 3DEP point queries (11–29 ft along the loop) at the mapped coordinates.
+   `elevation_loss_ft` stay null. Pass spot elevations and the profile use
+   USGS 3DEP point queries at the on-course track points nearest each mapped
+   station (event field 22 ft, mid-loop station 18 ft; raw placemark points,
+   which sit slightly off the track, query at 23 ft and 10 ft). Loop samples
+   run 11–29 ft.
 5. **Water potability.** Water is listed at both stations; nothing certifies
    potability. `potable_water` stays null at every pass.
 
@@ -46,13 +49,13 @@ All URLs below were opened or downloaded on 2026-08-13.
 
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
-| S1 | Race site home (RunSignup) | https://runsignup.com/Race/NC/Wilmington/SouthernTourUltra | Supports the January 15–16, 2027 date, distances, and registration deadline (January 9, 2027, 11:59 PM ET). https://www.southerntourultra.com redirects here. |
+| S1 | Race site home (RunSignup) | https://runsignup.com/Race/NC/Wilmington/SouthernTourUltra | Supports the January 15–16, 2027 date, distances, and registration deadline (January 9, 2027, 11:59 PM ET). https://www.southerntourultra.com redirects here. Its own Sign Up and Results links carry raceId 36713, the id in `registration_url` and `results_url`. |
 | S2 | Individual Events page | https://runsignup.com/Race/SouthernTourUltra/Page/IndividualEvents | Primary 100-mile source: 12:00 PM Friday start, 11:30 AM meeting, 32-hour limit, 29-hour soft cutoff (final lap by 5:00 PM Saturday with a headlamp, complete by 8:00 PM), 10 laps of a 10-mile course "subject to change based on conditions", checkpoint every lap, pacer/muling rules, both stations' aid inventories, buckle policy. |
-| S3 | Schedule page | https://runsignup.com/Race/SouthernTourUltra/Page/Schedule | Supports Friday gate/packet times for 100-milers, the 5:00 PM Saturday course sweep, the 8:00 PM Saturday course close, and shuttle times. |
+| S3 | Schedule page | https://runsignup.com/Race/SouthernTourUltra/Page/Schedule | Supports Friday gate/packet times for 100-milers (gates open 10:00 am Friday for 100-mile participants only), the "Southern Tour Race Site" venue name, Saturday gates at Scott's Hill Loop Road, the 5:00 PM Saturday course sweep, the 8:00 PM Saturday course close, and shuttle times. |
 | S4 | FAQ page | https://runsignup.com/Race/SouthernTourUltra/Page/FrequentlyAskedQuestions | Supports loop structure (two aid stations per loop at mile 5 and mile 10), pacer timing, station menus (adds Ramen and fruit at Station 1), and finisher recognition. |
-| S5 | Course page | https://runsignup.com/Race/SouthernTourUltra/Page/Course | Course narrative (private property along the Atlantic Intracoastal Waterway; packed sand, single track, bush-hogged routes) and links to S6 and the site-layout map. |
+| S5 | Course page | https://runsignup.com/Race/SouthernTourUltra/Page/Course | Course narrative (private property along the Atlantic Intracoastal Waterway; packed sand, single track, bush-hogged routes; the organizer's claim that "George Washington's historic Southern Tour once traversed this very property" — no year given) and links to S6 and the site-layout map. |
 | S6 | Organizer Google My Maps "10 mile course" (KML export) | https://www.google.com/maps/d/kml?mid=1TXRiHGQ6AkgURW1N5CQgnLt362qD5ILo&forcekml=1 | Geometry authority: 896-point loop line (measures 10.20 mi), START/FINISH/AID/CHECKPOINT placemark (34.330738, -77.739602), AID STATION placemark (34.324688, -77.729747). `db/events/southern-tour-ultra.gpx` is converted from this export; direction of travel follows the map's course-direction chevrons. |
-| S7 | Camping, Parking and Rules page | https://runsignup.com/Race/SouthernTourUltra/Page/CampingParkingandRules | Supports parking passes/QR system, ~450-car limit, Poplar Grove overflow (1.5 mi) with Saturday shuttles 5:30 am–7:00 pm, camping rules, and portable restrooms/handwashing at the venue. |
+| S7 | Camping, Parking and Rules page | https://runsignup.com/Race/SouthernTourUltra/Page/CampingParkingandRules | Supports parking passes/QR system, ~450-car limit, entry "via the Scott's Hill Loop Gate", Poplar Grove overflow (1.5 mi) with Saturday shuttles 5:30 am–7:00 pm, camping rules, and portable restrooms/handwashing at the venue. Together with S3 this sources the "Southern Tour Race Site, Scott's Hill Loop Road" venue line. |
 | S8 | USGS 3DEP Elevation Point Query Service | https://epqs.nationalmap.gov/v1/json | Spot elevations at mapped points (queried 2026-08-13): event-field checkpoint 23 ft, mid-loop station 10 ft, loop samples 11–29 ft. Not an organizer source; used only because the organizer publishes no elevation data. |
 
 ## Claim-level decisions
@@ -83,11 +86,12 @@ All URLs below were opened or downloaded on 2026-08-13.
   event-field checkpoint (per-loop mile 10) for each of ten loops, with the
   final checkpoint recorded as the Finish. Coordinates come from the S6
   placemarks via GPX waypoints.
-- **Elevation series.** USGS 3DEP samples every ~1.02 mi along the S6 line,
-  mapped onto the nominal 10-mile loop frame and repeated per lap. This is
-  terrain context, not organizer data, and is flagged in `source_notes`.
-- **Other distances.** The 50-mile, 50K, relay, and shorter Saturday events
-  share the venue; this record covers only the 100-mile individual event.
+- **Elevation series.** USGS 3DEP spot elevations at the on-course points
+  nearest each mapped station, listed at each pass's nominal mile — the same
+  spot-elevation profile approach as the Bighorn record. This is terrain
+  context, not organizer data, and is flagged in `source_notes`.
+- **Other distances.** The 50-mile, 50K, relay, and shorter Saturday races
+  share the venue; this record covers only the 100-mile individual race.
 
 ## Stale-source traps
 

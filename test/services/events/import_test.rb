@@ -7,7 +7,7 @@ module Events
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra" ], published_races.map(&:name)
-      race = published_races.first
+      race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
       assert_equal Date.new(2026, 6, 20), race.end_date
@@ -51,7 +51,7 @@ module Events
         race_slug: race.slug
       ).data.dig("race", "slug")
 
-      southern_tour = published_races.last
+      southern_tour = published_races.find { |published| published.slug == "southern-tour-ultra" }
       assert_equal 2027, southern_tour.year
       assert_equal Date.new(2027, 1, 15), southern_tour.start_date
       assert_equal Date.new(2027, 1, 16), southern_tour.end_date
