@@ -80,9 +80,11 @@ race:
   finish_venue: Emerson Center, Beaumont Scout Reservation, 6480 Beaumont Reservation Drive, High Ridge, MO
 
 # Profile from the altitude values embedded in the organizer's course line,
-# sampled per nominal lap mile and repeated for each of the 5 laps.
+# sampled per nominal lap mile and repeated for each of the 5 laps; lap
+# boundaries use the line altitude at the organizer's start/finish marker so
+# the profile matches the Emerson pass rows.
 elevation_series:
-  - [0, 528]
+  - [0, 561]
   - [1, 761]
   - [2, 781]
   - [3, 525]
@@ -102,7 +104,7 @@ elevation_series:
   - [17, 771]
   - [18, 827]
   - [19, 702]
-  - [20, 528]
+  - [20, 561]
   - [21, 761]
   - [22, 781]
   - [23, 525]
@@ -122,7 +124,7 @@ elevation_series:
   - [37, 771]
   - [38, 827]
   - [39, 702]
-  - [40, 528]
+  - [40, 561]
   - [41, 761]
   - [42, 781]
   - [43, 525]
@@ -142,7 +144,7 @@ elevation_series:
   - [57, 771]
   - [58, 827]
   - [59, 702]
-  - [60, 528]
+  - [60, 561]
   - [61, 761]
   - [62, 781]
   - [63, 525]
@@ -162,7 +164,7 @@ elevation_series:
   - [77, 771]
   - [78, 827]
   - [79, 702]
-  - [80, 528]
+  - [80, 561]
   - [81, 761]
   - [82, 781]
   - [83, 525]
@@ -182,7 +184,7 @@ elevation_series:
   - [97, 771]
   - [98, 827]
   - [99, 702]
-  - [100, 528]
+  - [100, 561]
 
 # Station passes: coordinates from the GPX waypoints (`match` = waypoint-name
 # substring; waypoints are the organizer's markers). Miles are measured along
@@ -206,7 +208,7 @@ aid_stations:
     cutoff_elapsed_minutes: null
     aid: "Indoor aid at the Emerson Center: standard ultramarathon foods with meal and snack items through the weekend (eggs, bacon, pancakes, burgers, quesadillas, broth among others). The race is cupless — bring your own cup or bottle. The timing mat is outside; runners go inside for aid."
     bathroom: "Bathrooms and showers are downstairs in the Emerson Center."
-    park: "Main parking at the start/finish; 50K, 20M, and 25K runners park at Cub World and walk about 0.3 miles to Emerson."
+    park: "Main parking at the start/finish; 50K, 20M, and 25K runners park at Cub World and walk of roughly 0.3-0.5 miles to Emerson."
     crew_notes: "Crews camp indoors 15 yards from the start/finish line and see their runner every 3-5.3 miles. Crew may give food, water, and aid only at the stations."
     pacer_notes: "Pacing begins after 40 miles (two loops) or 5:00 PM Saturday — not at the start. All pacers must register."
     road: null

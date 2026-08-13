@@ -3,7 +3,7 @@ slug: shippey-100
 files:
   race:
     path: shippey-100.yml
-    sha256: 77464265ea3ba88f3b1c5de15bdd17a17f58b6e5db9371c1f7bae46e97b9e4a6
+    sha256: 70f1c02b1e1ac7c5504fee91ab2d0df7d8319461109255187fedb3d1d420c42a
   course:
     path: shippey-100.gpx
     sha256: e1eca86a7ae33042d2844946166c139bbe6cdd4d43a4632af51d977b5bcbca6f
