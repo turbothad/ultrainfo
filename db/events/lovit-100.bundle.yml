@@ -1,0 +1,9 @@
+version: 1
+slug: lovit-100
+files:
+  race:
+    path: lovit-100.yml
+    sha256: b1c15eeb9e4fd8ee7897316109747cd2b011f0cf25c111f5ccfe29dae1469fcb
+  course:
+    path: lovit-100.gpx
+    sha256: 3a11f22d8c1e6a3f57bfce3d2efbc8c00b2c7de53e275a6d2aa8c3e2e29bbe82

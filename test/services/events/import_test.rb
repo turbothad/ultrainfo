@@ -8,7 +8,7 @@ module Events
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
-                     "Orcas Island 100" ], published_races.map(&:name)
+                     "Orcas Island 100", "LOViT 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -298,6 +298,33 @@ module Events
       assert_equal Time.find_zone("America/Los_Angeles").parse("2027-02-27 8:00 PM"), orcas.final_cutoff_at
       assert_includes orcas.source_metadata.fetch("sources").pluck("url"),
                       "https://www.rainshadowrunning.com/orcas100.html"
+
+      lovit = published_races.find { |published| published.slug == "lovit-100" }
+      assert_equal 2027, lovit.year
+      assert_equal Date.new(2027, 2, 27), lovit.start_date
+      assert lovit.open?
+      assert_equal 34, lovit.cutoff_hours
+      assert_nil lovit.elevation_gain_ft, "the organizer publishes no gain figure"
+      assert_equal 23, lovit.aid_stations.count, "the aid chart's 23 rows"
+      assert_equal 12, lovit.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "twelve physical station locations across the two out-and-backs"
+      assert_equal 2, lovit.aid_stations.where(direction: "Turnaround").count,
+                   "the Avery east end and ADA west end turnarounds"
+      assert_equal Time.find_zone("America/Chicago").parse("2027-02-27 5:35 PM"), lovit.turnaround_cutoff_at,
+                   "the first turnaround carries the Avery cutoff"
+      assert_equal 6, lovit.aid_stations.count(&:pacer_access?),
+                   "safety runners are picked up only at the six listed stations"
+      assert_not lovit.aid_stations.find_by!(mile: 27.1).pacer_access?,
+                 "eastbound Brady Mountain Road is not a pickup; westbound at 39.8 is"
+      assert lovit.aid_stations.find_by!(mile: 39.8).pacer_access?
+      assert_equal 6, lovit.aid_stations.count(&:drop_bag?),
+                   "bags at Crystal Springs x2, Avery, Tompkin's x2, and the finish"
+      assert_equal 4, lovit.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? }
+      assert_equal "11h 35m", lovit.aid_stations.find_by!(mile: 32.8).cutoff_elapsed_label
+      assert_equal "34h", lovit.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/Chicago").parse("2027-02-28 4:00 PM"), lovit.final_cutoff_at
+      assert_includes lovit.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.runlovit.com/s/lovit-100m-2025-jzzs.gpx"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

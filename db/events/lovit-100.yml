@@ -1,0 +1,709 @@
+# LOViT 100 — event data (imported by Events::Import via db/seeds.rb).
+# Course geometry and elevations copy the organizer's official 100-mile GPX
+# download; pass miles, crew, drop-bag, and restroom flags follow the
+# published aid station chart, cutoffs follow the cutoffs page, and safety-
+# runner pickups follow the pacing page. Source decisions are documented in
+# docs/research/lovit-2027-source-audit.md.
+
+race:
+  name: LOViT 100
+  slug: lovit-100
+  year: 2027
+  state: AR
+  distance_mi: 100
+  elevation_gain_ft: null # No organizer figure; the official GPX sums to ~13,500 ft.
+  elevation_loss_ft: null
+  start_date: 2027-02-27
+  end_date: 2027-02-28
+  start_time: 6:00 AM
+  time_zone: America/Chicago
+  cutoff_hours: 34 # 6:00 AM Saturday start → 4:00 PM Sunday finish (a 20:24-per-mile pace).
+  official_url: https://www.runlovit.com/
+  registration_url: https://www.runlovit.com/register
+  results_url: https://www.runlovit.com/results
+  registration_status: open # The 2027 site's Register page is live; swag deadlines run through January 31, 2027.
+  lottery: false # Direct registration; no lottery in any reviewed source.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "The Lake Ouachita Vista Trail course starts and finishes at Mountain Harbor Resort's East Cove and runs two out-and-backs — east to the Avery Rec Area turnaround (mile 32.8) and west to the ADA west-end turnaround (79.4). The cutoffs page quotes Avery at 34.5, Hickory Nut Mountain at 66, and ADA at 81 while the aid chart's cumulative column says 32.8, 62.9, and 79.4; the chart governs pass rows. The official GPX (embedded name `LOViT 100M 2025`, the current download) GPS-measures 97.6 miles against the chart's 100 and sums ~13,500 ft of gain; the organizer publishes no gain figure and run100s' 17,000 was not copied. The pacing page's `Charlton (Westbound) 58 miles` approximate mileage corresponds to the chart's mile-55 Charlton pass."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_home
+        label: "LOViT official site home"
+        url: "https://www.runlovit.com/"
+        verified_on: "2026-08-13"
+      - &source_details
+        label: "Race details page (starts, cutoffs, records)"
+        url: "https://www.runlovit.com/race/details"
+        verified_on: "2026-08-13"
+      - &source_cutoffs
+        label: "Cutoffs page"
+        url: "https://www.runlovit.com/cutoffs"
+        verified_on: "2026-08-13"
+      - &source_aid_chart
+        label: "Aid stations page and 100 Mile aid station chart"
+        url: "https://www.runlovit.com/aid-stations"
+        verified_on: "2026-08-13"
+      - &source_pacers
+        label: "Pacing and safety runners page"
+        url: "https://www.runlovit.com/pacers"
+        verified_on: "2026-08-13"
+      - &source_drop_bags
+        label: "Drop bags page"
+        url: "https://www.runlovit.com/drop-bags"
+        verified_on: "2026-08-13"
+      - &source_gpx
+        label: "Official 100-mile course GPX download"
+        url: "https://www.runlovit.com/s/lovit-100m-2025-jzzs.gpx"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo course maps"
+        url: "https://caltopo.com/m/GB9S"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Aid stations serve standard ultra food with water and Tailwind; potability is never certified and no medical service is published — the chart's two Spillway passes are marked minimal. Drop bags go to the start/finish, Crystal Springs Pavilion, Avery Rec Area, and (100-mile only) Tompkin's Bend, labeled with name, race number, and station. Safety runners (pacers) are picked up only at the six stations on the pacing page; runners 60 and older may have one from the start with prior Race Director permission. Hosted by Mountain Harbor Resort with the start/finish in the East Cove building, new this year."
+    overall_cutoff_label: "4:00 PM February 28, 2027"
+    overall_cutoff_notes: "34 hours from the 6:00 AM Saturday start. Firm intermediate cutoffs at Avery Rec Area (5:35 PM Saturday), Hickory Nut Mountain Vista inbound (4:30 AM Sunday), and the ADA west end (10:00 AM Sunday); the cutoffs page quotes those stations at miles 34.5, 66, and 81 against the chart's 32.8, 62.9, and 79.4."
+    pacer_rule_summary: "Safety runners are allowed one at a time and only from the six listed pickup stations — westbound Brady Mountain Road (39.8), Crystal Springs Pavilion (50.5), westbound Charlton (chart mile 55), westbound Joplin Road Crossing (68.3), the ADA west end (79.4), and eastbound Joplin Road Crossing (90.5). Runners 60 and older may have a safety runner from the start with prior Race Director permission; safety runners sign a waiver and wear a bib."
+    drop_bag_summary: "Drop bags go to the start/finish, Crystal Springs Pavilion, Avery Rec Area, and Tompkin's Bend (100-mile only), labeled with name, race number, and aid station; bags return to the finish pavilion on a rolling schedule and unclaimed items are donated the week after the race."
+  blurb: Two Ouachita out-and-backs along the Lake Ouachita Vista Trail from Mountain Harbor Resort.
+  about: >-
+    The LOViT 100 runs the Lake Ouachita Vista Trail from Mountain Harbor
+    Resort's East Cove near Mt. Ida, AR — east to the Avery Rec Area
+    turnaround and back, then west past Hickory Nut Mountain to the ADA
+    turnaround and home — through the Ouachita National Forest above Lake
+    Ouachita. Start 6:00 AM Saturday; 34-hour limit (4:00 PM Sunday) with
+    firm cutoffs at Avery, Hickory Nut inbound, and the ADA west end, and
+    22 manned aid station passes along the way.
+  start_venue: East Cove, Mountain Harbor Resort, Mt. Ida, AR
+  finish_venue: East Cove, Mountain Harbor Resort, Mt. Ida, AR
+
+# Profile from the official GPX download's elevations, sampled per nominal
+# chart mile across the full course.
+elevation_series:
+  - [0, 623]
+  - [1, 761]
+  - [2, 728]
+  - [3, 935]
+  - [4, 1243]
+  - [5, 1158]
+  - [6, 771]
+  - [7, 666]
+  - [8, 643]
+  - [9, 669]
+  - [10, 715]
+  - [11, 1007]
+  - [12, 682]
+  - [13, 935]
+  - [14, 784]
+  - [15, 699]
+  - [16, 774]
+  - [17, 617]
+  - [18, 604]
+  - [19, 715]
+  - [20, 623]
+  - [21, 869]
+  - [22, 1135]
+  - [23, 1207]
+  - [24, 1178]
+  - [25, 1227]
+  - [26, 1086]
+  - [27, 801]
+  - [28, 689]
+  - [29, 968]
+  - [30, 876]
+  - [31, 643]
+  - [32, 673]
+  - [33, 699]
+  - [34, 456]
+  - [35, 535]
+  - [36, 804]
+  - [37, 620]
+  - [38, 889]
+  - [39, 1017]
+  - [40, 827]
+  - [41, 719]
+  - [42, 955]
+  - [43, 1220]
+  - [44, 1198]
+  - [45, 1194]
+  - [46, 1102]
+  - [47, 1053]
+  - [48, 764]
+  - [49, 650]
+  - [50, 614]
+  - [51, 630]
+  - [52, 614]
+  - [53, 837]
+  - [54, 719]
+  - [55, 984]
+  - [56, 817]
+  - [57, 896]
+  - [58, 968]
+  - [59, 659]
+  - [60, 607]
+  - [61, 666]
+  - [62, 696]
+  - [63, 837]
+  - [64, 1266]
+  - [65, 1273]
+  - [66, 1122]
+  - [67, 791]
+  - [68, 689]
+  - [69, 636]
+  - [70, 689]
+  - [71, 617]
+  - [72, 610]
+  - [73, 636]
+  - [74, 594]
+  - [75, 591]
+  - [76, 627]
+  - [77, 610]
+  - [78, 607]
+  - [79, 610]
+  - [80, 594]
+  - [81, 620]
+  - [82, 679]
+  - [83, 643]
+  - [84, 610]
+  - [85, 604]
+  - [86, 604]
+  - [87, 600]
+  - [88, 663]
+  - [89, 709]
+  - [90, 689]
+  - [91, 794]
+  - [92, 689]
+  - [93, 748]
+  - [94, 1053]
+  - [95, 1234]
+  - [96, 1217]
+  - [97, 915]
+  - [98, 738]
+  - [99, 761]
+  - [100, 597]
+
+# Station passes: coordinates and elevations from the official GPX at each
+# station's first chart mile (`match` = waypoint-name substring). Miles,
+# crew, drop-bag, and restroom flags follow the 100 Mile aid station chart;
+# the two turnarounds are the Avery east end and the ADA west end.
+aid_stations:
+  - match: "Mountain Harbor Start/Finish"
+    name: "Start — Mountain Harbor Resort"
+    direction: "Start"
+    mile: 0.0
+    elev: 623
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid at the East Cove start/finish at Mountain Harbor Resort: standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "LOViT 100 Mile aid station chart"
+      source_url: "https://www.runlovit.com/aid-stations"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Every pass mile and crew/drop-bag/restroom flag comes from the published 100 Mile aid station chart; cutoffs come from the cutoffs page, whose station miles (34.5/66/81) differ slightly from the chart's cumulative miles (32.8/62.9/79.4) — the chart governs the rows and the conflict is recorded. Water and Tailwind are served but potability is never certified. Station coordinates and elevations are taken from the official course GPX at each station's first chart mile (the download carries no waypoints)."
+      sources:
+        - *source_aid_chart
+        - *source_cutoffs
+        - *source_details
+        - *source_pacers
+        - *source_drop_bags
+        - *source_gpx
+  - match: "Hickory Nut Mountain Vista"
+    name: "Hickory Nut Mountain Vista"
+    direction: null
+    mile: 4.1
+    elev: 1302
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "FS47A"
+    name: "FS47A"
+    direction: null
+    mile: 7.5
+    elev: 673
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Charlton"
+    name: "Charlton"
+    direction: null
+    mile: 12.0
+    elev: 682
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Crystal Springs Pavilion"
+    name: "Crystal Springs Pavilion"
+    direction: null
+    mile: 16.5
+    elev: 610
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bear Creek"
+    name: "Bear Creek"
+    direction: null
+    mile: 19.8
+    elev: 653
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Brady Mountain Road"
+    name: "Brady Mountain Road"
+    direction: null
+    mile: 27.1
+    elev: 732
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Spillway"
+    name: "Spillway"
+    direction: null
+    mile: 30.1
+    elev: 863
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Minimal station — the chart marks Spillway as minimal; plan on water and little else."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Avery Rec Area"
+    name: "Avery Rec Area (east end)"
+    direction: "Turnaround"
+    mile: 32.8
+    elev: 728
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:35 PM"
+    cutoff_clock: "5:35 PM"
+    cutoff_elapsed_minutes: 695
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Firm cutoff: 5:35 PM (11 hr 35 min from the 6:00 AM Saturday start); runners past it may be removed from the course. The cutoffs page quotes this station at mile 34.5; the aid chart's cumulative mile governs this record. Verified on is the retrieval date."
+  - match: "Spillway"
+    name: "Spillway"
+    direction: null
+    mile: 35.8
+    elev: 863
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Minimal station — the chart marks Spillway as minimal; plan on water and little else."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Brady Mountain Road"
+    name: "Brady Mountain Road"
+    direction: null
+    mile: 39.8
+    elev: 732
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bear Creek"
+    name: "Bear Creek"
+    direction: null
+    mile: 47.0
+    elev: 653
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Crystal Springs Pavilion"
+    name: "Crystal Springs Pavilion"
+    direction: null
+    mile: 50.5
+    elev: 610
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Charlton"
+    name: "Charlton"
+    direction: null
+    mile: 55.0
+    elev: 682
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
+    road: null
+    source_metadata: *official_station_source
+  - match: "FS47A"
+    name: "FS47A"
+    direction: null
+    mile: 59.5
+    elev: 673
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hickory Nut Mountain Vista"
+    name: "Hickory Nut Mountain Vista"
+    direction: null
+    mile: 62.9
+    elev: 1302
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "4:30 AM"
+    cutoff_clock: "4:30 AM"
+    cutoff_elapsed_minutes: 1350
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Firm cutoff: 4:30 AM (22 hr 30 min from the 6:00 AM Saturday start); runners past it may be removed from the course. The cutoffs page quotes this station at mile 66; the aid chart's cumulative mile governs this record. Verified on is the retrieval date."
+  - match: "Joplin Road Crossing"
+    name: "Joplin Road Crossing"
+    direction: null
+    mile: 68.3
+    elev: 673
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tompkins Bend"
+    name: "Tompkin's Bend"
+    direction: null
+    mile: 73.8
+    elev: 594
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "ADA West End"
+    name: "ADA (west end)"
+    direction: "Turnaround"
+    mile: 79.4
+    elev: 617
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "10:00 AM"
+    cutoff_clock: "10:00 AM"
+    cutoff_elapsed_minutes: 1680
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
+    road: null
+    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Firm cutoff: 10:00 AM (28 hr 0 min from the 6:00 AM Saturday start); runners past it may be removed from the course. The cutoffs page quotes this station at mile 81; the aid chart's cumulative mile governs this record. Verified on is the retrieval date."
+  - match: "Tompkins Bend"
+    name: "Tompkin's Bend"
+    direction: null
+    mile: 85.0
+    elev: 594
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Joplin Road Crossing"
+    name: "Joplin Road Crossing"
+    direction: null
+    mile: 90.5
+    elev: 673
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hickory Nut Mountain Vista"
+    name: "Hickory Nut Mountain Vista"
+    direction: null
+    mile: 95.9
+    elev: 1302
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind, with occasional extra treats."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access at this pass per the aid chart."
+    pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Mountain Harbor Start/Finish"
+    name: "Finish — Mountain Harbor Resort"
+    direction: "Finish"
+    mile: 100.0
+    elev: 623
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "4:00 PM"
+    cutoff_clock: "4:00 PM"
+    cutoff_elapsed_minutes: 2040
+    aid: "Full aid at the East Cove start/finish at Mountain Harbor Resort: standard ultra food (bananas, pretzels, potatoes, chips), water, and Tailwind."
+    bathroom: "Restroom at this station per the aid chart."
+    park: null
+    crew_notes: "Crew access per the aid chart."
+    pacer_notes: "A safety runner picked up at a listed station may accompany their runner to the finish."
+    road: null
+    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Firm cutoff: 4:00 PM (34 hr 0 min from the 6:00 AM Saturday start); runners past it may be removed from the course. Verified on is the retrieval date."
