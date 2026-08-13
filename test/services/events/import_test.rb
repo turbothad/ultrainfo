@@ -6,7 +6,8 @@ module Events
     test "publishes the version-controlled Active event catalog" do
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
-      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100" ], published_races.map(&:name)
+      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100" ],
+                   published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -141,6 +142,34 @@ module Events
       assert_equal Time.find_zone("America/New_York").parse("2027-01-17 3:00 PM"), long_haul.final_cutoff_at
       assert_includes long_haul.source_metadata.fetch("sources").pluck("url"),
                       "https://ultrasignup.com/register.aspx?did=134998"
+
+      coldwater = published_races.find { |published| published.slug == "coldwater-rumble-100" }
+      assert_equal 2027, coldwater.year
+      assert_equal Date.new(2027, 1, 16), coldwater.start_date
+      assert coldwater.open?, "registration is open until January 11, 2027"
+      assert_equal false, coldwater.lottery
+      assert_equal 32, coldwater.cutoff_hours
+      assert_equal 8_687, coldwater.elevation_gain_ft, "the race page publishes total gain for the 100 Mile"
+      assert_nil coldwater.elevation_loss_ft, "the organizer publishes gain only"
+      assert_equal 17, coldwater.aid_stations.count,
+                   "a Start pass, two Red Loops with Gila and HQ, and three Blue Loops with four passes each"
+      assert_equal 5, coldwater.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "five physical stations: Rumble HQ, Gila, Rainbow Valley, Pedersen, Horse Thief"
+      assert coldwater.aid_stations.where(name: [ "Start — Rumble HQ", "Rumble HQ", "Finish — Rumble HQ" ]).all?(&:has_medical?),
+             "the HQ site layout marks a medical tent"
+      assert_not coldwater.aid_stations.find_by!(mile: 39.3).pacer_access?,
+                 "pacers may not join before mile 47.1 even at Horse Thief"
+      assert coldwater.aid_stations.find_by!(mile: 47.1).pacer_access?,
+             "pacing begins at Rumble HQ after mile 47.1"
+      assert_not coldwater.aid_stations.find_by!(mile: 82.7).pacer_access?,
+                 "pacers may not enter or exit at Rainbow Valley"
+      assert_equal 6, coldwater.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "three hard cutoffs, two soft cutoffs, and the final cutoff"
+      assert_equal "6h 30m", coldwater.aid_stations.find_by!(mile: 20.1).cutoff_elapsed_label
+      assert_equal "29h 30m", coldwater.aid_stations.find_by!(mile: 93.3).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/Phoenix").parse("2027-01-17 3:00 PM"), coldwater.final_cutoff_at
+      assert_includes coldwater.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.aravaiparunning.com/avr/wp-content/uploads/CWR26-Runner-Guide.pdf"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

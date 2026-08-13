@@ -1,0 +1,335 @@
+# Coldwater Rumble 100 — event data (imported by Events::Import via db/seeds.rb).
+# Course geometry copies the organizer's CalTopo "100 Mile" line; station
+# coordinates are the organizer's CalTopo markers. Station-pass miles use the
+# 2026 Runner Guide's cutoff-table frame (red loops clear at 20.1, blue loops
+# at 47.1/74.1/101.2, Rainbow Valley +8.6, Pedersen +11.0, Horse Thief +19.2
+# per blue loop); the CalTopo line measures 101.0 miles against the guide's
+# 101.2. Source decisions are documented in
+# docs/research/coldwater-rumble-2027-source-audit.md.
+
+race:
+  name: Coldwater Rumble 100
+  slug: coldwater-rumble-100
+  year: 2027
+  state: AZ
+  distance_mi: 100
+  elevation_gain_ft: 8687 # Official race page: total gain for the 100 Mile.
+  elevation_loss_ft: null # The loop course returns to Rumble HQ; the organizer publishes gain only.
+  start_date: 2027-01-16
+  end_date: 2027-01-17
+  start_time: 7:00 AM
+  time_zone: America/Phoenix
+  cutoff_hours: 32 # 7:00 AM Saturday start → 3:00 PM Sunday final cutoff.
+  official_url: https://aravaiparunning.com/coldwater/
+  registration_url: https://ultrasignup.com/register.aspx?did=138367
+  results_url: https://ultrasignup.com/results_event.aspx?did=138367
+  registration_status: open # Registration open at verification; closes 2027-01-11 11:59 PM MT.
+  lottery: false # Direct first-come UltraSignup registration; no lottery in any reviewed source.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "The 100 Mile runs two Red Loops then three Blue Loops (Red, Red, Blue, Blue, Blue) and the 2026 Runner Guide calls the full course 101.2 miles against the billed 100; the organizer's CalTopo line measures 101.0. Pass miles use the guide's cutoff-table frame; Gila Aid and the mid-red HQ pass carry map-measured miles because the guide publishes no red-loop station miles. The guide spells the second blue-loop station Pedersen in its cutoff table and Pederson on its maps. Detailed cutoffs, menu, and site layout are from the 2026-edition guide and may change for 2027; the 2027 race page already states the same cutoff pattern. Spot elevations are USGS 3DEP queries at the organizer's station markers."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_race_page
+        label: "Coldwater Rumble official race page (Aravaipa Running)"
+        url: "https://aravaiparunning.com/coldwater/"
+        verified_on: "2026-08-13"
+      - &source_runner_guide
+        label: "Coldwater Rumble Runner Guide (2026 edition)"
+        url: "https://www.aravaiparunning.com/avr/wp-content/uploads/CWR26-Runner-Guide.pdf"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo course map (100 Mile line and station markers)"
+        url: "https://caltopo.com/m/UUDUK23"
+        verified_on: "2026-08-13"
+      - &source_ultrasignup
+        label: "2027 UltraSignup listing"
+        url: "https://ultrasignup.com/register.aspx?did=138367"
+        verified_on: "2026-08-13"
+      - &source_live
+        label: "Aravaipa live tracking"
+        url: "https://live.aravaiparunning.com/#/"
+        verified_on: "2026-08-13"
+      - &source_usgs
+        label: "USGS 3DEP Elevation Point Query Service (spot elevations)"
+        url: "https://epqs.nationalmap.gov/v1/json"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Every station serves food from the published menu but no source certifies water potability. The Rumble HQ site layout marks a medical tent; no medical service is published for the backcountry stations. Rainbow Valley and Pedersen cutoffs are published as soft cutoffs that may be enforced at the race director's discretion. Aravaipa posts live tracking for each runner during the race."
+    overall_cutoff_label: "3:00 PM January 17, 2027"
+    overall_cutoff_notes: "32 hours from the 7:00 AM Saturday start, an 18:59 min/mile elapsed pace for the guide's 101.2-mile course. Hard intermediate cutoffs: clear the second Red Loop by 1:30 PM Saturday (mile 20.1), begin the final Blue Loop by 6:30 AM Sunday (74.1), leave Horse Thief by 12:30 PM Sunday (93.3). Soft cutoffs at Rainbow Valley (9:15 AM, 82.7) and Pedersen (10:00 AM, 85.1) may be enforced at the race director's discretion."
+    pacer_rule_summary: "Pacers may join 100 Mile runners after mile 47.1 for the last two Blue Loops, entering and exiting the course only at Rumble HQ or Horse Thief Aid. One pacer per runner at any given time, human and on foot, no muling. Pacers need no bib and are welcome to aid-station offerings."
+    drop_bag_summary: "Drop bags are dropped at Rumble HQ on Friday during packet pickup or on race morning, with designated spots for bags going to Horse Thief and bags staying at the start/finish."
+  blurb: Two red loops and three blue loops of Sonoran desert single track at Estrella Mountain Regional Park.
+  about: >-
+    The Coldwater Rumble 100 runs two 10-mile Red Loops and three 27-mile Blue
+    Loops from Rumble HQ at Estrella Mountain Regional Park's Competitive
+    Track in Goodyear, AZ — crushed-granite single track, rocky ridges, sandy
+    washes, and old jeep roads with 8,687 ft of gain. Start 7:00 AM Saturday;
+    32-hour limit (3:00 PM Sunday) with hard cutoffs at miles 20.1, 74.1, and
+    93.3. Crews work Rumble HQ every lap and Horse Thief on the blue loops.
+  start_venue: Rumble HQ, Competitive Track, Estrella Mountain Regional Park, Goodyear, AZ
+  finish_venue: Rumble HQ, Competitive Track, Estrella Mountain Regional Park, Goodyear, AZ
+
+# Profile from USGS 3DEP spot elevations at the organizer's station markers,
+# listed at each pass's guide-frame mile (the CalTopo line carries no
+# elevations; the organizer publishes total gain but no profile).
+elevation_series:
+  - [0, 1035]
+  - [2.8, 1113]
+  - [10.1, 1035]
+  - [12.9, 1113]
+  - [20.1, 1035]
+  - [28.7, 1385]
+  - [31.1, 1153]
+  - [39.3, 929]
+  - [47.1, 1035]
+  - [55.7, 1385]
+  - [58.1, 1153]
+  - [66.3, 929]
+  - [74.1, 1035]
+  - [82.7, 1385]
+  - [85.1, 1153]
+  - [93.3, 929]
+  - [101.2, 1035]
+
+# Station passes: coordinates from the GPX waypoints (`match` = waypoint-name
+# substring; waypoints are the organizer's CalTopo markers). Miles use the
+# 2026 Runner Guide cutoff-table frame; Gila and the mid-red HQ pass are
+# map-measured. Later loops merge (`<<:`) the first passes and override what
+# changes.
+aid_stations:
+  - match: "Rumble HQ Aid"
+    name: "Start — Rumble HQ"
+    direction: "Start"
+    mile: 0.0
+    elev: 1035
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid at the start/finish with the published hot-food menu (grilled cheese, quesadillas, pasta, potato soup, pancakes, breakfast burritos, hot dogs through the weekend). The HQ site layout includes a medical tent, warming tent, and timing."
+    bathroom: "Restrooms are marked at the Rumble HQ site layout."
+    park: "Rumble HQ parking is reserved for runners; crews and spectators use the satellite lots across the road. Enter from Indian Springs Road onto Old Baseline Road — do not navigate to the main park entrance."
+    crew_notes: "Crews are welcome at Rumble HQ for the full 32 hours; canopies and pop-ups line the interior of the HQ loop, and runners pass through every lap. The final ~0.2-mile HQ loop is a neutral zone where crew, family, and dogs may run in with their runner."
+    pacer_notes: "Pacing begins after mile 47.1 — not at the start."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Coldwater Rumble Runner Guide (2026 edition)"
+      source_url: "https://www.aravaiparunning.com/avr/wp-content/uploads/CWR26-Runner-Guide.pdf"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Water is served at every station but never certified potable. Pass miles use the 2026 guide's cutoff-table frame (course 101.2 miles); Gila Aid and the mid-red HQ pass carry map-measured miles. Menu, site layout, and cutoff details are 2026-edition material; the 2027 race page states the same cutoff pattern. Spot elevations are USGS 3DEP values at the organizer's station markers."
+      sources:
+        - *source_runner_guide
+        - *source_race_page
+        - *source_caltopo
+        - *source_ultrasignup
+        - *source_usgs
+  - &gila_pass
+    match: "Gila Aid"
+    name: "Gila Aid"
+    direction: "Loop 1"
+    mile: 2.8
+    elev: 1113
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Red Loop station with traditional aid offerings from the published menu."
+    bathroom: null
+    park: null
+    crew_notes: "No published crew access; crews work Rumble HQ and Horse Thief only."
+    pacer_notes: "Pacing begins after mile 47.1; the Red Loops are unpaced."
+    road: null
+    source_metadata: *official_station_source
+  - &hq_pass
+    match: "Rumble HQ Aid"
+    name: "Rumble HQ"
+    direction: "Loop 1"
+    mile: 10.1
+    elev: 1035
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid every lap with the published hot-food menu; medical and warming tents at the HQ site."
+    bathroom: "Restrooms are marked at the Rumble HQ site layout."
+    park: null
+    crew_notes: "Crews are welcome at Rumble HQ for the full 32 hours; canopies and pop-ups line the interior of the HQ loop. Start/finish drop bags stay here."
+    pacer_notes: "Pacers may enter or exit the course at Rumble HQ once pacing begins after mile 47.1."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *gila_pass
+    direction: "Loop 2"
+    mile: 12.9
+  - <<: *hq_pass
+    direction: "Loop 2"
+    mile: 20.1
+    cutoff: "1:30 PM"
+    cutoff_clock: "1:30 PM"
+    cutoff_elapsed_minutes: 390
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Hard cutoff: runners must be clear of the second Red Loop by 1:30 PM Saturday (6.5 hours). Verified on is the retrieval date. Pass miles use the 2026 guide's cutoff-table frame."
+  - &rv_pass
+    match: "Rainbow Valley Aid"
+    name: "Rainbow Valley Aid"
+    direction: "Loop 3"
+    mile: 28.7
+    elev: 1385
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Backcountry Blue Loop station with the published menu (sandwiches, chili and rice, potato soup, pancakes)."
+    bathroom: null
+    park: null
+    crew_notes: "No published crew access; crews work Rumble HQ and Horse Thief only."
+    pacer_notes: "Pacers may not enter or exit here; entry and exit are at Rumble HQ or Horse Thief only."
+    road: null
+    source_metadata: *official_station_source
+  - &ped_pass
+    match: "Pedersen Aid"
+    name: "Pedersen Aid"
+    direction: "Loop 3"
+    mile: 31.1
+    elev: 1153
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Backcountry Blue Loop station with the published menu (rollups, grilled cheese, quesadillas, tomato soup, pancakes)."
+    bathroom: null
+    park: null
+    crew_notes: "No published crew access; crews work Rumble HQ and Horse Thief only."
+    pacer_notes: "Pacers may not enter or exit here; entry and exit are at Rumble HQ or Horse Thief only."
+    road: null
+    source_metadata: *official_station_source
+  - &ht_pass
+    match: "Horse Thief Aid"
+    name: "Horse Thief Aid"
+    direction: "Loop 3"
+    mile: 39.3
+    elev: 929
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Blue Loop station with the published menu (pinwheels, sloppy joes, potato soup, pancakes). Drop bags going to Horse Thief are staged at Rumble HQ."
+    bathroom: null
+    park: "Reached through the main Estrella Mountain Regional Park entrance on Vineyard Avenue, then Casey Abbott Drive to the station."
+    crew_notes: "Crews are allowed at Horse Thief, but structures cannot be set up and there is no camping."
+    pacer_notes: "Pacers may enter or exit the course at Horse Thief once pacing begins after mile 47.1."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *hq_pass
+    direction: "Loop 3"
+    mile: 47.1
+    pacer: true
+    pacer_notes: "Pacing begins here (mile 47.1) for the last two Blue Loops. One pacer per runner at a time, human and on foot, no muling; pacers enter and exit only at Rumble HQ or Horse Thief."
+  - <<: *rv_pass
+    direction: "Loop 4"
+    mile: 55.7
+  - <<: *ped_pass
+    direction: "Loop 4"
+    mile: 58.1
+  - <<: *ht_pass
+    direction: "Loop 4"
+    mile: 66.3
+    pacer: true
+    pacer_notes: "Pacers may enter or exit the course here. One pacer per runner at a time, human and on foot, no muling."
+  - <<: *hq_pass
+    direction: "Loop 4"
+    mile: 74.1
+    pacer: true
+    pacer_notes: "Pacers may enter or exit the course here. One pacer per runner at a time, human and on foot, no muling."
+    cutoff: "6:30 AM"
+    cutoff_clock: "6:30 AM"
+    cutoff_elapsed_minutes: 1410
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Hard cutoff: runners must begin the final Blue Loop by 6:30 AM Sunday (23.5 hours). Verified on is the retrieval date. Pass miles use the 2026 guide's cutoff-table frame."
+  - <<: *rv_pass
+    direction: "Loop 5"
+    mile: 82.7
+    cutoff: "9:15 AM"
+    cutoff_clock: "9:15 AM"
+    cutoff_elapsed_minutes: 1575
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Soft cutoff: runners must leave Rainbow Valley by 9:15 AM Sunday (26.25 hours); it may be enforced at the race director's discretion if a runner is significantly behind pace. Verified on is the retrieval date. Pass miles use the 2026 guide's cutoff-table frame."
+  - <<: *ped_pass
+    direction: "Loop 5"
+    mile: 85.1
+    cutoff: "10:00 AM"
+    cutoff_clock: "10:00 AM"
+    cutoff_elapsed_minutes: 1620
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Soft cutoff: runners must leave Pedersen by 10:00 AM Sunday (27 hours); it may be enforced at the race director's discretion if a runner is significantly behind pace. Verified on is the retrieval date. Pass miles use the 2026 guide's cutoff-table frame."
+  - <<: *ht_pass
+    direction: "Loop 5"
+    mile: 93.3
+    pacer: true
+    pacer_notes: "Pacers may enter or exit the course here. One pacer per runner at a time, human and on foot, no muling."
+    cutoff: "12:30 PM"
+    cutoff_clock: "12:30 PM"
+    cutoff_elapsed_minutes: 1770
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Hard cutoff: runners must leave Horse Thief by 12:30 PM Sunday (29.5 hours). Verified on is the retrieval date. Pass miles use the 2026 guide's cutoff-table frame."
+  - <<: *hq_pass
+    name: "Finish — Rumble HQ"
+    direction: "Finish"
+    mile: 101.2
+    pacer: true
+    pacer_notes: "A pacer picked up at or after mile 47.1 may accompany their runner to the finish; crew, family, and dogs may join for the final ~0.2-mile neutral zone into the finish."
+    cutoff: "3:00 PM"
+    cutoff_clock: "3:00 PM"
+    cutoff_elapsed_minutes: 1920
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Final cutoff: 3:00 PM Sunday, 32 hours after the 7:00 AM Saturday start; the guide's elapsed-pace framing is 18:59 min/mile over 101.2 miles. Verified on is the retrieval date."

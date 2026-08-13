@@ -1,0 +1,9 @@
+version: 1
+slug: coldwater-rumble-100
+files:
+  race:
+    path: coldwater-rumble-100.yml
+    sha256: e4be3a3e2a9e4ebb9afdf257ee63932b011af7dde8430c3e69a813edb349a48a
+  course:
+    path: coldwater-rumble-100.gpx
+    sha256: 57ea5d24ce1a2b5cc319bceb0a4dfd7aee4a4ff9dfc125e29b8547a63d63b400
