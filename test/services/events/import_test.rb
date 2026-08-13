@@ -6,7 +6,7 @@ module Events
     test "publishes the version-controlled Active event catalog" do
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
-      assert_equal [ "Bighorn 100" ], published_races.map(&:name)
+      assert_equal [ "Bighorn 100", "Southern Tour Ultra" ], published_races.map(&:name)
       race = published_races.first
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -50,6 +50,38 @@ module Events
         from: Rails.root.join("public/terrain/bighorn-100.json"),
         race_slug: race.slug
       ).data.dig("race", "slug")
+
+      southern_tour = published_races.last
+      assert_equal 2027, southern_tour.year
+      assert_equal Date.new(2027, 1, 15), southern_tour.start_date
+      assert_equal Date.new(2027, 1, 16), southern_tour.end_date
+      assert southern_tour.open?
+      assert_equal false, southern_tour.lottery,
+                   "direct first-come RunSignup registration establishes there is no lottery"
+      assert_equal 32, southern_tour.cutoff_hours
+      assert_nil southern_tour.elevation_gain_ft,
+                 "the organizer says only `primarily flat` and publishes no vert figure"
+      assert_equal "warning", southern_tour.source_metadata["verification_status"]
+      assert_equal 600, southern_tour.simplified_track.size
+      assert_equal 21, southern_tour.aid_stations.count,
+                   "a Start pass plus two passes on each of the ten 10-mile loops"
+      assert southern_tour.aid_stations.all?(&:coordinates?), "every Station pass gets coordinates from a course waypoint"
+      assert_equal 2, southern_tour.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "a loop race crosses the same two physical stations on every lap"
+      assert_in_delta southern_tour.start_lat.to_f, southern_tour.finish_lat.to_f, 0.001,
+                      "the organizer map draws one closed loop"
+      assert southern_tour.aid_stations.all?(&:has_water?),
+             "the Individual Events page lists water at both stations"
+      assert southern_tour.aid_stations.all? { |station| station.potable_water.nil? },
+             "listed water does not establish potability at any pass"
+      assert_not southern_tour.aid_stations.find_by!(mile: 5).crew_accessible?,
+                 "published crew provisions are all at the start/finish event field"
+      assert_equal "29h", southern_tour.aid_stations.find_by!(mile: 90).cutoff_elapsed_label,
+                   "the final lap must start by 5:00 PM Saturday"
+      assert_equal "32h", southern_tour.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/New_York").parse("2027-01-16 8:00 PM"), southern_tour.final_cutoff_at
+      assert_includes southern_tour.source_metadata.fetch("sources").pluck("url"),
+                      "https://runsignup.com/Race/SouthernTourUltra/Page/IndividualEvents"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
@@ -67,7 +99,7 @@ module Events
         source_metadata: { "verified_on" => "2026-07-02" }
       )
 
-      published_race = Import.new(Rails.root.join("db/events/active.yml")).call.sole
+      published_race = Import.new(Rails.root.join("db/events/active.yml")).call.find { |race| race.slug == "bighorn-100" }
 
       assert_not_equal stale_race.id, published_race.id
       assert_equal "2026-08-13", published_race.source_metadata.dig("section_verifications", "station_passes", "verified_on")
