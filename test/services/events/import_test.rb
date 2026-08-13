@@ -7,7 +7,7 @@ module Events
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
-                     "The Shippey 100", "Forgotten Florida 100" ], published_races.map(&:name)
+                     "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -219,6 +219,31 @@ module Events
       assert_equal Time.find_zone("America/New_York").parse("2027-01-31 4:30 PM"), forgotten.final_cutoff_at
       assert_includes forgotten.source_metadata.fetch("sources").pluck("url"),
                       "https://ultrasignup.com/register.aspx?did=135495"
+
+      rocky = published_races.find { |published| published.slug == "rocky-raccoon-100" }
+      assert_equal 2027, rocky.year
+      assert_equal Date.new(2027, 2, 6), rocky.start_date
+      assert rocky.open?
+      assert_equal 32, rocky.cutoff_hours
+      assert_equal 6_250, rocky.elevation_gain_ft, "five times the organizer's ~1,250 ft per-lap figure"
+      assert_equal 21, rocky.aid_stations.count,
+                   "a Start pass plus four chart passes on each of the five 20-mile laps"
+      assert_equal 4, rocky.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "four physical stations: Tyler's, Gate, Nature Center, Dam Nation"
+      assert rocky.aid_stations.all?(&:crew_accessible?), "the aid chart marks crew Y at every pass"
+      assert_equal 8, rocky.aid_stations.count(&:drop_bag?),
+                   "drop bags are delivered to Gate and Dam Nation on every lap"
+      assert_not rocky.aid_stations.find_by!(mile: 43.8).pacer_access?,
+                 "pacers may not join before mile 49"
+      assert rocky.aid_stations.find_by!(mile: 49.1).pacer_access?,
+             "pacing begins after mile 49"
+      assert_equal 5, rocky.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "rolling cutoffs cover the final lap from mile 80"
+      assert_equal "25h 36m", rocky.aid_stations.find_by!(mile: 80).cutoff_elapsed_label
+      assert_equal "32h", rocky.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/Chicago").parse("2027-02-07 2:00 PM"), rocky.final_cutoff_at
+      assert_includes rocky.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.tejastrails.com/rocky100/"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
