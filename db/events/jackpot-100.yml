@@ -99,9 +99,9 @@ elevation_series:
 
 # Station passes: every loop crosses the Main Strip Aid Station at the
 # start/finish (`match` = the GPX waypoint from the organizer's marker).
-# Miles use the USATF-certified 2.3094-mile loop; the final short loop closes
-# the distance at 100. Later loops merge (`<<:`) the Loop 1 pass and override
-# what changes.
+# The race opens with the short loop (first pass at 1.18), then steps by the
+# USATF-certified 2.3094 miles to the 100.49 finish. Later loops merge
+# (`<<:`) the Loop 1 pass and override what changes.
 aid_stations:
   - match: "Main Strip Aid Station"
     name: "Start — Main Strip Aid Station"

@@ -68,7 +68,7 @@ All URLs below were opened or downloaded on 2026-08-13.
   minutes from the 8:00 AM Saturday start), both forms on the Finish pass;
   the early-start variant is prose.
 - **Station passes.** 45: the Start, the short-loop crossing at 1.18, 42
-  certified-loop crossings (3.49 through 98.13), and the Finish at 100.49.
+  certified-loop crossings (3.49 through 98.18), and the Finish at 100.49.
 - **Crew.** `true` at every pass — crew areas line the loop.
 - **Pacers.** `false` at every pass (time-based allowance; see decision 3).
 - **Drop bags.** `null` everywhere — no published service; runners pass

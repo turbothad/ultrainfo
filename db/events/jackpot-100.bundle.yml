@@ -3,7 +3,7 @@ slug: jackpot-100
 files:
   race:
     path: jackpot-100.yml
-    sha256: 923f17df729311ec949aaf0007d8bf643dbc0307306a2c3828fda68b80cbc2aa
+    sha256: 20802a9fec8a6ef0f4252ad8cbc861fe5f87b6217d5a1bce120f39b0447b7adc
   course:
     path: jackpot-100.gpx
     sha256: b5b40d2413c8c8590d3c8b1d9c58d20fb4c49c96a1e4a3e6ebe06fd2aeccae80
