@@ -8,7 +8,7 @@ module Events
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
-                     "Orcas Island 100", "LOViT 100" ], published_races.map(&:name)
+                     "Orcas Island 100", "LOViT 100", "The Drift 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -325,6 +325,31 @@ module Events
       assert_equal Time.find_zone("America/Chicago").parse("2027-02-28 4:00 PM"), lovit.final_cutoff_at
       assert_includes lovit.source_metadata.fetch("sources").pluck("url"),
                       "https://www.runlovit.com/s/lovit-100m-2025-jzzs.gpx"
+
+      drift = published_races.find { |published| published.slug == "the-drift-100" }
+      assert_equal 2027, drift.year
+      assert_equal Date.new(2027, 3, 12), drift.start_date
+      assert drift.not_open?, "UltraSignup registration opens October 1, 2026"
+      assert_equal 55, drift.cutoff_hours
+      assert_equal 101, drift.distance_mi, "the aid table's cumulative frame; the blurb bills 103"
+      assert_equal 6, drift.aid_stations.count, "the aid table's six rows"
+      assert_equal 5, drift.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "Strawberry is passed at 24.9 and again at 83.5"
+      assert drift.aid_stations.none?(&:crew_accessible?),
+             "the FAQ bans all outside assistance"
+      assert drift.aid_stations.none?(&:pacer_access?), "no pacers in this human-powered race"
+      assert drift.aid_stations.none? { |station| station.drop_bag == true },
+             "no drop bags or gear drops anywhere"
+      assert_equal 5, drift.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "leave-by cutoffs at every pass after the start"
+      assert_equal "35h", drift.aid_stations.find_by!(mile: 67.3).cutoff_elapsed_label,
+                   "clock-derived elapsed governs over the table's printed 33 hours"
+      assert_equal "42h", drift.aid_stations.find_by!(mile: 83.5).cutoff_elapsed_label,
+                   "true elapsed across the March 14 spring-forward"
+      assert_equal Time.find_zone("America/Denver").parse("2027-03-14 5:00 PM"), drift.final_cutoff_at,
+                   "9:00 AM Friday plus 55 hours lands at 5:00 PM Sunday across the DST change"
+      assert_includes drift.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.thedrift100.com/100-mile-course/"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

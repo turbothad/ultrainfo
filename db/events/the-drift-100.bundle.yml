@@ -1,0 +1,9 @@
+version: 1
+slug: the-drift-100
+files:
+  race:
+    path: the-drift-100.yml
+    sha256: 08ba5013f36b072737ceaed690651b283c83d200bfb8babf0b5d04b74fe93d47
+  course:
+    path: the-drift-100.gpx
+    sha256: 8cc11424e25afb8f7d7b926267b3ca8572bd9bc41a6c5ae79353bf4272153171

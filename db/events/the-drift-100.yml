@@ -1,0 +1,346 @@
+# The Drift 100 — event data (imported by Events::Import via db/seeds.rb).
+# Course geometry copies the organizer's official GPX download; pass miles,
+# leave-by cutoff clocks, menus, and bathroom flags follow the published aid
+# station table on the 100-mile course page; crew, pacer, and drop-bag rules
+# follow the course page and FAQ. Source decisions are documented in
+# docs/research/the-drift-2027-source-audit.md.
+
+race:
+  name: The Drift 100
+  slug: the-drift-100
+  year: 2027
+  state: WY
+  distance_mi: 101 # The aid table's cumulative column ends at 101; the course page blurb says 103 miles and the official GPX GPS-measures 103.1.
+  elevation_gain_ft: 9000 # Organizer: "over 9,000 ft elevation loss/gain".
+  elevation_loss_ft: 9000
+  start_date: 2027-03-12
+  end_date: 2027-03-14
+  start_time: 9:00 AM
+  time_zone: America/Denver
+  cutoff_hours: 55 # Friday 9:00 AM MST start to the Sunday 5:00 PM MDT course close is 55 elapsed hours — the race weekend crosses the March 14, 2027 spring-forward.
+  official_url: https://www.thedrift100.com/
+  registration_url: https://ultrasignup.com/register.aspx?eid=15694
+  results_url: https://ultrasignup.com/register.aspx?did=131889
+  registration_status: not_open # UltraSignup 2027 page: "Registration Opens Thu. Oct 1, 2026 @ 12:00 AM MT".
+  lottery: false # Direct UltraSignup registration, but every racer must be approved: the 100 requires a winter/wilderness qualification resume at the Race Directors' discretion.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "A point-to-point winter race (run, fat bike, or ski divisions on one course) from the Green River Trailhead to Kendall Valley Lodge near Cora, WY. Three distance frames disagree: the aid table's cumulative column ends at 101 (governs pass miles), the course page blurb bills 103 miles, and the official GPX GPS-measures 103.1. The aid table's elapsed-hours sub-column conflicts with its own leave-by clocks at two rows: Warm Springs says Saturday 8 pm / 33 hours (the clock is 35 elapsed hours from the Friday 9 am start) and the second Strawberry pass says Sunday 4 am / 41 hours (the clock is 42 true elapsed hours across the March 14 spring-forward); the posted clocks govern and the pass rows record clock-derived elapsed minutes. The finish row's Sunday 5 pm / 55 hours pair is self-consistent because of the DST change. The site's TIMELINE page still carries the 2025 edition's weekday-date pairs (Friday March 14th) and the home page still says registration opens 11/01/24; the 2027 masthead and the UltraSignup 2027 page (March 12, 2027) govern the date. run100s' 48-hour figure has no organizer counterpart and was not copied."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_home
+        label: "The Drift official site home"
+        url: "https://www.thedrift100.com/"
+        verified_on: "2026-08-13"
+      - &source_course
+        label: "100-mile course page (aid table, cutoffs, menus, evacuation, qualification)"
+        url: "https://www.thedrift100.com/100-mile-course/"
+        verified_on: "2026-08-13"
+      - &source_faq
+        label: "FAQ (no pacers, no outside assistance, conditions)"
+        url: "https://www.thedrift100.com/faq/"
+        verified_on: "2026-08-13"
+      - &source_gear
+        label: "Mandatory gear list"
+        url: "https://www.thedrift100.com/the-gear/"
+        verified_on: "2026-08-13"
+      - &source_schedule
+        label: "Timeline page (gear check, start time, directions; stale 2025 dates)"
+        url: "https://www.thedrift100.com/schedule/"
+        verified_on: "2026-08-13"
+      - &source_gpx
+        label: "Official course GPX download (Google Drive, linked from the course page)"
+        url: "https://drive.google.com/file/d/15pjbQ-uvs6j8rOZO3dhF-HLRqoIjV-gf/view"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo course map"
+        url: "https://caltopo.com/m/N564"
+        verified_on: "2026-08-13"
+      - &source_ultrasignup
+        label: "UltraSignup 2027 event page (March 12, 2027; registration opens October 1, 2026)"
+        url: "https://ultrasignup.com/register.aspx?eid=15694"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. A remote winter wilderness race under Bridger-Teton and Shoshone National Forest permits: qualification is required (list winter, expedition, and race experience on the registration form; Race Directors approve entries and may refuse under-prepared racers on race day without refund). The mandatory gear list (0°F sleeping bag, tent or true bivy, stove with fuel, and more) is required in full, and racers must start and finish with all gear. Racers must check in and out of every aid station; sleeping in aid stations is not allowed, and stations are small (no bikes, skis, or sleds inside). A racer who misses a leave-by cutoff is snowmachined off the course and pays a $200 evacuation fee; evacuation may take hours. Start times may be moved back one hour if temperatures are around zero. The course is subject to slight modification before race day."
+    overall_cutoff_label: "5:00 PM March 14, 2027"
+    overall_cutoff_notes: "The aid table's finish row: Kendall Valley Lodge, Sunday 5 pm, 55 hours. That is 55 true elapsed hours from the Friday 9:00 AM start because the race weekend crosses the March 14, 2027 spring-forward. Leave-by cutoffs at every station are strictly enforced; missing one means snowmachine evacuation and a $200 fee."
+    pacer_rule_summary: "No pacers anywhere — the FAQ answers dog, pacer, and personal snow machine with 'Nope, nope and nope.' This is an individual, human-powered race: spectators may cheer on course, but non-racers pacing, following, or otherwise assisting a racer is disqualification. Racers may help each other."
+    drop_bag_summary: "No drop bags, gear drops, or outside assistance; racers start and finish with all gear. One exception: racers with food allergies or restrictions may leave the organizer a small container of food for the Warm Springs Aid Station (hot food only)."
+  blurb: A winter wilderness point-to-point up the Upper Green — run, fat bike, or ski — from the Green River Trailhead to Kendall Valley Lodge.
+  about: >-
+    The Drift 100 follows snowmachine trails through the Upper Green River
+    country of the Wind River Range from the Green River Trailhead to
+    Kendall Valley Lodge near Cora, WY, sharing one winter course across
+    run, fat bike, and ski divisions. Start 9:00 AM Friday; the course
+    closes 5:00 PM Sunday (55 elapsed hours across the daylight-saving
+    change) with strict leave-by cutoffs at four manned, heated aid
+    stations near miles 25, 50, 67, and 83. Qualification, mandatory
+    winter gear, and full self-sufficiency are required — no drop bags,
+    no pacers, no outside assistance, and little cell coverage.
+  start_venue: Green River Trailhead, Cora, WY
+  finish_venue: Kendall Valley Lodge, Cora, WY
+
+# Profile from USGS 3DEP spot elevations sampled at each nominal chart mile
+# along the official GPX line (the official download carries no elevations);
+# GPS miles are scaled to the aid table's 101-mile cumulative frame.
+elevation_series:
+  - [0, 7657]
+  - [1, 7722]
+  - [2, 7743]
+  - [3, 7766]
+  - [4, 7803]
+  - [5, 7842]
+  - [6, 7818]
+  - [7, 7899]
+  - [8, 7915]
+  - [9, 8081]
+  - [10, 8372]
+  - [11, 8453]
+  - [12, 8668]
+  - [13, 8858]
+  - [14, 8922]
+  - [15, 8943]
+  - [16, 8934]
+  - [17, 9000]
+  - [18, 9151]
+  - [19, 9088]
+  - [20, 9030]
+  - [21, 8999]
+  - [22, 8886]
+  - [23, 8992]
+  - [24, 8960]
+  - [25, 8880]
+  - [26, 8906]
+  - [27, 8933]
+  - [28, 9123]
+  - [29, 9111]
+  - [30, 9120]
+  - [31, 9198]
+  - [32, 8975]
+  - [33, 8848]
+  - [34, 8781]
+  - [35, 9138]
+  - [36, 9489]
+  - [37, 9710]
+  - [38, 9588]
+  - [39, 9346]
+  - [40, 9622]
+  - [41, 9654]
+  - [42, 9691]
+  - [43, 9566]
+  - [44, 9598]
+  - [45, 9724]
+  - [46, 9840]
+  - [47, 9592]
+  - [48, 9463]
+  - [49, 9252]
+  - [50, 9099]
+  - [51, 9103]
+  - [52, 8950]
+  - [53, 9000]
+  - [54, 9066]
+  - [55, 8825]
+  - [56, 8793]
+  - [57, 8694]
+  - [58, 8769]
+  - [59, 8876]
+  - [60, 8682]
+  - [61, 8892]
+  - [62, 8476]
+  - [63, 8844]
+  - [64, 8555]
+  - [65, 8395]
+  - [66, 8351]
+  - [67, 8383]
+  - [68, 8292]
+  - [69, 8635]
+  - [70, 8912]
+  - [71, 9318]
+  - [72, 9648]
+  - [73, 9616]
+  - [74, 9435]
+  - [75, 9289]
+  - [76, 9193]
+  - [77, 9187]
+  - [78, 9214]
+  - [79, 9094]
+  - [80, 9151]
+  - [81, 9027]
+  - [82, 8831]
+  - [83, 8972]
+  - [84, 8939]
+  - [85, 9044]
+  - [86, 9208]
+  - [87, 9031]
+  - [88, 8752]
+  - [89, 8235]
+  - [90, 7971]
+  - [91, 7845]
+  - [92, 7811]
+  - [93, 7823]
+  - [94, 7815]
+  - [95, 7817]
+  - [96, 7840]
+  - [97, 7803]
+  - [98, 7766]
+  - [99, 7745]
+  - [100, 7722]
+  - [101, 7673]
+
+# Station passes: coordinates from the official GPX download's waypoints
+# (`match` = waypoint-name substring); spot elevations are USGS 3DEP values
+# at those coordinates. Miles, leave-by cutoff clocks, menus, and bathroom
+# flags follow the course page's aid table; crew, pacer, and drop-bag rules
+# follow the course page and FAQ. Mid-race passes are unlabeled: the course
+# is a point-to-point whose upper loop passes Strawberry twice.
+aid_stations:
+  - match: "Start"
+    name: "Start — Green River Trailhead"
+    direction: "Start"
+    mile: 0.0
+    elev: 7660
+    crew: false
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid at the start — the aid table's menu column reads NA. The four manned, heated aid stations are near miles 25, 50, 67, and 83."
+    bathroom: null
+    park: "Cross the cattle guard, go through the first parking lot, and park in the second parking lot; the organizer asks racers to park efficiently."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
+    road: "From Pinedale: north on US 191 about 5.5 miles, then right on Highway 352 toward Cora for about 25 miles."
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "The Drift 100 course page aid table"
+      source_url: "https://www.thedrift100.com/100-mile-course/"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Every pass mile, leave-by clock, menu, and bathroom flag comes from the aid table on the 100-mile course page; crew and pacer rules come from the FAQ's outside-assistance ban; drop-bag rules come from the course page and gear rules. The table's elapsed-hours sub-column disagrees with its own clocks at Warm Springs (33 hours printed against a 35-hour clock) and the second Strawberry pass (41 printed against 42 true elapsed hours across the March 14 spring-forward); the posted clocks govern and elapsed minutes are clock-derived. Station coordinates are the official GPX download's waypoints; elevations are USGS 3DEP spot values at those coordinates. Aid stations serve hot menu items plus sweet and salty snacks, coffee, tea, and water with the ability to heat it; potability is never certified and no medical service is published, though racers who miss cutoffs are evacuated by snowmachine."
+      sources:
+        - *source_course
+        - *source_faq
+        - *source_gear
+        - *source_schedule
+        - *source_gpx
+        - *source_ultrasignup
+  - match: "Strawberry Aid Station"
+    name: "Strawberry Aid Station"
+    direction: null
+    mile: 24.9
+    elev: 8974
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "10:00 PM"
+    cutoff_clock: "10:00 PM"
+    cutoff_elapsed_minutes: 780
+    aid: "Mashed potatoes and ramen, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it."
+    bathroom: "Bathroom available per the aid table."
+    park: null
+    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Sheridan Aid Station"
+    name: "Sheridan Aid Station"
+    direction: null
+    mile: 50.0
+    elev: 9141
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "1:00 PM"
+    cutoff_clock: "1:00 PM"
+    cutoff_elapsed_minutes: 1680
+    aid: "Soup, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it. The race does not have exclusive use of the Strawberry or Sheridan stations."
+    bathroom: null
+    park: null
+    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Warm Springs Aid Station"
+    name: "Warm Springs Aid Station"
+    direction: null
+    mile: 67.3
+    elev: 8395
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "8:00 PM"
+    cutoff_clock: "8:00 PM"
+    cutoff_elapsed_minutes: 2100
+    aid: "Cheese and peanut butter quesadillas and ramen, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it. Racers with food allergies or restrictions may leave the organizer a small container of food for this station (hot food only)."
+    bathroom: "Bathroom available per the aid table."
+    park: null
+    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Strawberry Aid Station"
+    name: "Strawberry Aid Station"
+    direction: null
+    mile: 83.5
+    elev: 8974
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "4:00 AM"
+    cutoff_clock: "4:00 AM"
+    cutoff_elapsed_minutes: 2520
+    aid: "Pita pizza, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it."
+    bathroom: "Bathroom available per the aid table."
+    park: null
+    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Finish Kendall Valley Lodge"
+    name: "Finish — Kendall Valley Lodge"
+    direction: "Finish"
+    mile: 101.0
+    elev: 7680
+    crew: false
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "5:00 PM"
+    cutoff_clock: "5:00 PM"
+    cutoff_elapsed_minutes: 3300
+    aid: "The aid table's menu column is empty for the finish; the four manned, heated aid stations end at mile 83.5."
+    bathroom: null
+    park: null
+    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
+    road: "To reach Kendall Valley Lodge, turn left just before the cattle guard, cross the Green River, and follow the road to the lodge."
+    source_metadata: *official_station_source
