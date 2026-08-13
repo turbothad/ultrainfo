@@ -3,13 +3,13 @@ slug: bighorn-100
 files:
   race:
     path: bighorn-100.yml
-    sha256: 7920addb9d12d69a52378a5dc7c754485044dd5318bce20e1d019966609900c2
+    sha256: 45d5ed291fa3406e58e40ccd9418e5ea1a981f8d6765ba7dea9685a2eb12a367
   course:
     path: bighorn-100.gpx
     sha256: 23b61f90e7e4931e55cadb9dbc2f781043c0290638a83958b1331a91e0ea2cd5
   crew_route:
     path: bighorn-100.crew_route.json
-    sha256: 504c6281d489ad25e55ed44f9b3245fb2e7dbf09b0d894e12029ffeef6e9cba8
+    sha256: 4c438cecd7f37b876021fac2f28a8ca01651253f648f9343e37f5edde6949675
   terrain:
     path: ../../public/terrain/bighorn-100.json
     sha256: 6c4a1cb2461c4d3a1ad17f24ffdc06abfb543c54d0facbb3ce5f347c80821689

@@ -11,20 +11,39 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       name: "Bighorn 100", slug: "bighorn-100", year: 2026, state: "WY",
       distance_mi: 100.4, start_lat: 44.87, start_lng: -107.26,
       simplified_track: [ [ 44.87, -107.26 ], [ 44.80, -107.30 ] ],
-      terrain_artifacts: @terrain_reference
+      terrain_artifacts: @terrain_reference,
+      source_metadata: {
+        "section_verifications" => {
+          "race_facts" => { "verified_on" => "2026-08-13" },
+          "course" => { "verified_on" => "2026-07-02" },
+          "station_passes" => { "verified_on" => "2026-08-13" },
+          "crew_pacers" => { "verified_on" => "2026-08-13" },
+          "follow" => { "verified_on" => "2026-08-13" },
+          "sources" => { "verified_on" => "2026-08-13" }
+        }
+      }
     )
     @outbound = @race.aid_stations.create!(
       name: "Dry Fork", sequence: 1, mile: 13.4, direction: "Outbound",
-      crew_accessible: true, lat: 44.8, lng: -107.3
+      elevation_ft: 7_480, crew_accessible: true, drop_bag: true, has_water: nil,
+      aid_notes: "Sandwiches, soup, fruit, chips, soda, cookies, candy, and jerky.",
+      lat: 44.8, lng: -107.3,
+      source_metadata: {
+        "verification_status" => "verified",
+        "verified_on" => "2026-08-13",
+        "source_label" => "Aid Station Chart"
+      }
     )
     @inbound = @race.aid_stations.create!(
       name: "Dry Fork", sequence: 2, mile: 82.5, direction: "Inbound",
+      elevation_ft: 7_480,
       cutoff_clock: "10:00 PM", cutoff_elapsed_minutes: 2_220,
       crew_accessible: false, drop_bag: true, lat: 44.8, lng: -107.3,
       directions_notes: "Approach from Red Grade Road.",
       road_notes: "High-clearance vehicles recommended.",
       source_metadata: {
         "verification_status" => "verified",
+        "verified_on" => "2026-08-13",
         "source_label" => "Aid Station Chart",
         "source_url" => "https://example.test/chart"
       }
@@ -49,10 +68,10 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
       assert_text /Mile 82.5/i
       assert_text "10:00 PM / 37h"
       assert_text /Crew\s+No/i
-      assert_text /Pacer\s+No/i
+      assert_text /Pacer pickup\s+No/i
       assert_text /Drop bag\s+Yes/i
-      assert_text /Medical\s+No/i
-      assert_text /Elevation\s+Not listed/i
+      assert_text /Medical\s+Not specified/i
+      assert_text /Elevation\s+7,480 ft/i
       assert_text "Approach from Red Grade Road."
       assert_text "High-clearance vehicles recommended."
       assert_text /Verification\s+Verified source/i
@@ -82,6 +101,53 @@ class RaceMapStationPassesTest < ApplicationSystemTestCase
     end
     assert_selector "#station_pass_aid_station_#{@inbound.id} summary:focus"
     assert_scrolled_to "#station_pass_aid_station_#{@inbound.id}"
+  end
+
+  test "station table exposes aid, water provenance, next-pass planning, and freshness" do
+    visit race_path(@race)
+
+    within "#aid-stations" do
+      assert_text /Last checked August 13, 2026/i
+      assert_text "Potability is not established at any pass."
+      assert_selector "th", count: 6
+      assert_selector "th", text: /Aid & water/i
+      assert_selector "th", text: /Crew & bags/i
+      assert_selector "th", text: /Next marker/i
+      assert_selector "th", text: /Timing/i
+
+      within "#station_pass_aid_station_#{@outbound.id}" do
+        assert_text "Sandwiches, soup, fruit, chips, soda, cookies, candy, and jerky."
+        assert_text /Not specified/i
+        assert_text "69.1 mi by markers · next marker 7,480 ft · Level between markers"
+        assert_text "August 13, 2026"
+      end
+
+      within "#station_pass_aid_station_#{@inbound.id}" do
+        assert_text /Course complete/i
+      end
+    end
+  end
+
+  test "station planning fields fit the mobile viewport without horizontal scrolling" do
+    page.current_window.resize_to(390, 900)
+    visit race_path(@race)
+
+    table_scroller_fits = page.evaluate_script(<<~JS)
+      (() => {
+        const table = document.querySelector("#station-pass-table table")
+        return table.parentElement.scrollWidth <= table.parentElement.clientWidth
+      })()
+    JS
+
+    assert table_scroller_fits
+    within "#station_pass_aid_station_#{@outbound.id}" do
+      assert_text /Aid & water/i
+      assert_text /Crew & bags/i
+      assert_text /Next marker/i
+      assert_text /Timing/i
+    end
+  ensure
+    page.current_window.resize_to(1400, 900)
   end
 
   test "terrain failure leaves useful course navigation in the map" do

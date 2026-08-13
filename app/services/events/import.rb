@@ -127,7 +127,8 @@ module Events
       {
         name: station["name"], sequence: index + 1, mile: station["mile"], elevation_ft: station["elev"],
         cutoff: station["cutoff"], crew_accessible: station["crew"], pacer_access: station["pacer"],
-        drop_bag: station["drop"], has_water: true, has_food: station["food"], has_medical: station["med"],
+        drop_bag: station["drop"], has_water: station["water"], potable_water: station["potable_water"],
+        has_food: station["food"], has_medical: station["med"],
         parking_notes: station["park"], lat: waypoint&.fetch(:lat), lng: waypoint&.fetch(:lng),
         source_metadata: station["source_metadata"] || {}, direction: station["direction"],
         aid_notes: station["aid"], bathroom_notes: station["bathroom"], crew_access_notes: station["crew_notes"],

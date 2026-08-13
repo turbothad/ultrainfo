@@ -62,7 +62,7 @@
           </div>
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.08em] text-paper/40">Final cutoff</dt>
-            <dd class="mt-1 font-mono text-xs font-semibold text-paper"><%= race.cutoff_hours.to_i %> h</dd>
+            <dd class="mt-1 font-mono text-xs font-semibold text-paper"><%= race.cutoff_hours.to_i %> h<%= " · disputed" if overall_cutoff_warning(race) %></dd>
           </div>
         </dl>
       </div>

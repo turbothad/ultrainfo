@@ -14,7 +14,7 @@
       <% [
         [ "Distance", race.distance_mi && "#{race.distance_mi.to_f.round(1)} mi" ],
         [ "Vert", race.elevation_gain_ft && "#{number_with_delimiter race.elevation_gain_ft} ft" ],
-        [ "Cutoff", race.cutoff_hours && "#{race.cutoff_hours.to_i} h" ],
+        [ "Cutoff", race.cutoff_hours && "#{race.cutoff_hours.to_i} h#{' · disputed' if overall_cutoff_warning(race)}" ],
         [ "Aid stations", race.aid_station_location_count ]
       ].each do |label, value| %>
         <div class="border-b border-ink/10 px-3 py-3 odd:pl-0 even:border-l even:border-ink/10 last:border-b-0 sm:border-b-0 sm:first:pl-0">

@@ -30,6 +30,7 @@ class RaceTest < ActiveSupport::TestCase
   test "lottery_required? reads the event-level lottery flag" do
     assert Race.new(lottery: true).lottery_required?
     assert_not Race.new(lottery: false).lottery_required?
+    assert_nil Race.new(lottery: nil).lottery_required?
   end
 
   test "aid_stations are ordered by sequence" do

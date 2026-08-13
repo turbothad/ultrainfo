@@ -1620,5 +1620,12 @@
       "distance_mi": 50.2,
       "duration_min": 80
     }
-  ]
+  ],
+  "provenance": {
+    "generator": "Ultrainfo Routing::Osrm",
+    "provider": "OSRM demo server",
+    "provider_url": "https://router.project-osrm.org",
+    "generated_on": "2026-06-26",
+    "notes": "Cached routing estimate through selected aid-station crew stops; not an official Bighorn itinerary."
+  }
 }

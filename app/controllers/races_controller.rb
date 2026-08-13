@@ -3,7 +3,7 @@ class RacesController < ApplicationController
 
   def show
     @race.aid_stations.load
-    @station_passes = @race.aid_stations.sort_by { |station| station.sequence || 0 }.map { |station| StationPassPresentation.call(station) }
+    @station_passes = station_pass_presentations
   end
 
   def runner
@@ -36,7 +36,7 @@ class RacesController < ApplicationController
       crew_route: @race.crew_route,
       terrain_artifacts: terrain_artifacts_payload,
       start: { lat: @race.start_lat, lng: @race.start_lng, name: @race.start_venue },
-      stations: @race.aid_stations.map { |station| StationPassPresentation.call(station) }
+      stations: station_pass_presentations
     }
   end
 
@@ -50,5 +50,12 @@ class RacesController < ApplicationController
     return {} if @race.terrain_artifacts.blank?
 
     Terrain::Artifact.runtime_reference(@race.terrain_artifacts)
+  end
+
+  def station_pass_presentations
+    station_passes = @race.aid_stations.sort_by { |station| station.sequence || 0 }
+    station_passes.each_with_index.map do |station_pass, index|
+      StationPassPresentation.call(station_pass, next_station_pass: station_passes[index + 1])
+    end
   end
 end

@@ -1,9 +1,8 @@
 # Bighorn 100 — event data (imported by Events::Import via db/seeds.rb).
-# REAL: course track + aid-station coords come from bighorn-100.gpx (official).
-# VERIFIED 2026-07-02 against the official Course Description + Aid Station Chart PDFs
-#   (linked from https://bighorntrailrun.com/100-mile) and bhtr.itsyourrace.com:
-#   miles, crew/pacer/drop flags, cutoffs, spot elevations, total gain/loss, 2026 date,
-#   registration platform. Entry fee isn't published there — and we don't display fees.
+# Course geometry and waypoint coordinates exactly match the GPX currently linked from
+# the official Maps & Profiles page. Its embedded 2016 operations are not used as 2026 facts.
+# Source decisions and contradictions are documented in
+# docs/research/bighorn-2026-source-audit.md.
 
 race:
   name: Bighorn 100
@@ -20,32 +19,98 @@ race:
   cutoff_hours: 35 # 9:00 AM start → 8:00 PM next-day cutoff
   official_url: https://bighorntrailrun.com/100-mile
   registration_url: https://bhtr.itsyourrace.com/event.aspx?id=384 # ITS YOUR RACE — official platform
-  results_url: https://bighorntrailrun.com/results-%26-timing-1
-  registration_status: closed # 2026 filled from the wait list; race ran June 19–20
-  lottery: false
+  results_url: https://bhtr.itsyourrace.com/Results.aspx?id=384
+  registration_status: closed # Past event; no causal claim about capacity or a wait list.
+  lottery: null # Reviewed first-party sources do not establish whether a lottery was used.
   source_metadata:
-    verification_status: verified
-    verified_on: "2026-07-02"
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "Official sources conflict on the overall limit (35 hours in the 2026 schedule and course PDF; 34 hours on ITS YOUR RACE). Direct sources and claim-level caveats are listed below."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
     sources:
-      - label: "Official Bighorn 100 page"
+      - &station_aid_page
+        label: "Bighorn 100 page"
         url: "https://bighorntrailrun.com/100-mile"
-        fetched_on: "2026-06-26"
-      - label: "Official Course Description PDF"
-        url: "https://bighorntrailrun.com/100-mile"
-        verified_on: "2026-07-02"
-      - label: "Official Aid Station Chart PDF"
-        url: "https://bighorntrailrun.com/100-mile"
-        verified_on: "2026-07-02"
-      - label: "ITS YOUR RACE registration page"
+        verified_on: "2026-08-13"
+      - &station_course_pdf
+        label: "Bighorn Mountain Trail 100 course description PDF (undated)"
+        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/Bighorn100_Course_Description-0cce83e.pdf"
+        verified_on: "2026-08-13"
+      - &station_aid_chart
+        label: "Bighorn 100 aid station quick reference PDF (undated)"
+        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/downloads/30d8acf5-26bd-40cf-b6a4-a5ffefb537e2/Bighorn%20100%20Aid%20Station%20Chart.pdf?ver=1782760210683"
+        verified_on: "2026-08-13"
+      - label: "2026 race weekend schedule PDF"
+        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/2026%20BHTR%20SCHEDULE-fb5032e.pdf"
+        verified_on: "2026-08-13"
+      - label: "Maps & Profiles"
+        url: "https://bighorntrailrun.com/maps-%26-profiles-4"
+        verified_on: "2026-08-13"
+      - &station_gpx
+        label: "Bighorn 100 GPX archive (current Maps & Profiles download)"
+        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/downloads/7a86f4c4-57c7-4031-85fa-7894b7441563/Bighorn_100.zip?ver=1782760216101"
+        verified_on: "2026-08-13"
+      - &station_crew
+        label: "Crew information"
+        url: "https://bighorntrailrun.com/general-crew-information-1"
+        verified_on: "2026-08-13"
+      - &station_crew_directions
+        label: "Official crew directions PDF"
+        url: "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/downloads/1d1cfu236_586761.pdf?ver=1782760220604"
+        verified_on: "2026-08-13"
+      - &station_pacer
+        label: "Pacer information"
+        url: "https://bighorntrailrun.com/general-pacer-information-1"
+        verified_on: "2026-08-13"
+      - &station_rules
+        label: "Course rules"
+        url: "https://bighorntrailrun.com/course-rules"
+        verified_on: "2026-08-13"
+      - &station_drop_bags
+        label: "Drop-bag information"
+        url: "https://bighorntrailrun.com/drop-bags-1"
+        verified_on: "2026-08-13"
+      - &station_medical
+        label: "Medical information"
+        url: "https://bighorntrailrun.com/medical-1"
+        verified_on: "2026-08-13"
+      - label: "2026 race announcements"
+        url: "https://bighorntrailrun.com/race-announcements"
+        verified_on: "2026-08-13"
+      - label: "ITS YOUR RACE event page"
         url: "https://bhtr.itsyourrace.com/event.aspx?id=384"
-        verified_on: "2026-07-02"
-      - label: "Bighorn results and timing"
+        verified_on: "2026-08-13"
+      - label: "Official 2026 results"
+        url: "https://bhtr.itsyourrace.com/Results.aspx?id=384"
+        verified_on: "2026-08-13"
+      - label: "Bighorn results and timing hub"
         url: "https://bighorntrailrun.com/results-%26-timing-1"
-        verified_on: "2026-08-11"
-    notes: "Race facts, aid station miles, cutoffs, access flags, and course totals are sourced from official race materials represented in this file."
+        verified_on: "2026-08-13"
+      - label: "SPOT tracking information"
+        url: "https://bighorntrailrun.com/tracking-device"
+        verified_on: "2026-08-13"
+      - &station_bus_info
+        label: "Bus and finish parking information"
+        url: "https://bighorntrailrun.com/bus-info-1"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Potability is unknown at every pass: sources that list water do not certify it as potable. The 35-hour operational limit follows the explicit 2026 schedule and course PDF, but ITS YOUR RACE says 34 hours. The GPX is an exact copy of the current official download, but its embedded operational metadata is from 2016 and is not used for current race facts."
     overall_cutoff_label: "8:00 PM June 20, 2026"
-    crew_drive_label: "Start to Dry Fork to Sally's to Jaws to Finish"
-    pacer_rule_summary: "Pacers are for 100-mile runners only. Standard pacer pickup points are Sally's Footbridge outbound, Jaws Trailhead, Sally's Footbridge inbound, and Dry Fork Ridge inbound. Pacers must check in and out with their runners and wear the runner's official pacer bib."
+    overall_cutoff_notes: "The 2026 schedule and course PDF support 35 hours; ITS YOUR RACE says 34 hours."
+    crew_drive_label: "Ultrainfo routing estimate between selected aid-station crew stops; it omits official non-aid crewing points and includes difficult walk/shuttle access."
+    pacer_rule_summary: "Pacers are for 100-mile runners only. General pacing begins at Sally's Footbridge outbound and may continue to the finish. Pickup or transfer is listed at Sally's outbound, Jaws, Sally's inbound, and Dry Fork inbound. The pacer page incorrectly calls Jaws mile 52; current course sources place it at mile 48."
+    drop_bag_summary: "The organizer asks runners to combine each location's outbound and inbound supplies into one larger bag at Dry Fork and Sally's Footbridge. Jaws is a single turnaround pass."
   terrain_artifacts:
     status: generated
     path: "/terrain/bighorn-100.json"
@@ -96,9 +161,9 @@ aid_stations:
     elev: 4275
     crew: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -106,23 +171,30 @@ aid_stations:
     bathroom: null
     park: "Crew and spectators are welcome at the start."
     crew_notes: "Crew and spectators allowed at the start area."
-    pacer_notes: "Standard pacer pickup starts later on course."
+    pacer_notes: "No standard pickup; entrants with approved age or medical exceptions may be paced from the start."
     road: null
     source_metadata: &official_aid_source
-      verification_status: verified
-      source_label: "Official Bighorn 100 page and Aid Station Chart PDF"
+      verification_status: warning
+      source_label: "Bighorn 100 page"
       source_url: "https://bighorntrailrun.com/100-mile"
-      verified_on: "2026-07-02"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Potability is not established. Pacer access means pickup or transfer at this pass, not whether an existing pacer may continue through."
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_pacer
+        - *station_rules
   - match: "Tongue River Trail Head"
     name: "Tongue River Trailhead"
     direction: "Outbound"
     mile: 1.25
     elev: 4240
     crew: false
+    water: true
     pacer: false
-    drop: false
+    drop: null
     food: false
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -130,7 +202,7 @@ aid_stations:
     bathroom: "Restrooms on-site."
     park: "No outbound crew or pacers."
     crew_notes: "No crew access outbound."
-    pacer_notes: "No pacers."
+    pacer_notes: "Before general pacing begins; no standard pickup or transfer at this pass."
     road: null
     source_metadata: *official_aid_source
   - match: "Lower Sheep Creek"
@@ -139,10 +211,11 @@ aid_stations:
     mile: 3.5
     elev: 5025
     crew: false
+    water: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -150,7 +223,7 @@ aid_stations:
     bathroom: null
     park: "No vehicle access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "Before general pacing begins; no standard pickup or transfer at this pass."
     road: null
     source_metadata: *official_aid_source
   - match: "Upper Sheep Creek"
@@ -159,10 +232,11 @@ aid_stations:
     mile: 8.5
     elev: 7450
     crew: false
+    water: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -170,7 +244,7 @@ aid_stations:
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "Before general pacing begins; no standard pickup or transfer at this pass."
     road: null
     source_metadata: *official_aid_source
   - match: "Dry Fork Ridge"
@@ -182,17 +256,28 @@ aid_stations:
     pacer: false
     drop: true
     food: true
-    med: false
+    med: null
     cutoff: "3:00 PM"
     cutoff_clock: "3:00 PM"
     cutoff_elapsed_minutes: 360
-    aid: "Major aid with food and drinks."
+    aid: "Sandwiches, soup, fruit, chips, soda, cookies, candy, and jerky."
     bathroom: "Restrooms available."
     park: "Crew parking is about one-quarter mile away."
     crew_notes: "Crew allowed."
     pacer_notes: "Standard pacer pickup starts at Sally's Footbridge outbound."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      source_notes: "Pass-specific warning: the current 100-mile page omits a medical check outbound and names one inbound; the current-served GPX says inbound only, while the general medical page does not distinguish direction. Medical is therefore not listed for this outbound pass. Potability is not established."
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_gpx
+        - *station_crew
+        - *station_pacer
+        - *station_rules
+        - *station_drop_bags
+        - *station_medical
   - match: "Kearns Cow Camp"
     name: "Kern's Cow Camp"
     direction: "Outbound"
@@ -200,9 +285,9 @@ aid_stations:
     elev: 6600
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -210,7 +295,7 @@ aid_stations:
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "Before general pacing begins; no standard pickup or transfer at this pass."
     road: null
     source_metadata: *official_aid_source
   - match: "Bear Camp"
@@ -220,9 +305,9 @@ aid_stations:
     elev: 6800
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -230,7 +315,7 @@ aid_stations:
     bathroom: null
     park: "No vehicle access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "Before general pacing begins; no standard pickup or transfer at this pass."
     road: null
     source_metadata: *official_aid_source
   - match: "Sally's Footbridge"
@@ -248,51 +333,77 @@ aid_stations:
     cutoff_elapsed_minutes: 690
     aid: "Major aid and medical check with hot food, sandwiches, fruit, soda, cookies, candy, and jerky."
     bathroom: "Restrooms available."
-    park: "Crew parking is about one-half mile away."
+    park: "Official sources conflict: the race page says parking is one-half mile away; detailed crew information says a three-quarter-mile shuttle or walk. Plan for the longer access."
     crew_notes: "Crew welcome."
     pacer_notes: "Pacer pickup allowed."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_crew
+        - *station_crew_directions
+        - *station_pacer
+        - *station_rules
+        - *station_drop_bags
+        - *station_medical
   - match: "Cathedral Rock"
     name: "Cathedral Rock"
     direction: "Outbound"
     mile: 33.5
     elev: 5080
     crew: false
+    water: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Drinks, soup, pretzels, bars, candy, and nuts."
+    aid: "Drinks, soup, pretzels, bars, candy, and nuts. The course description says station water is filtered by hand; potability is not certified."
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_course_pdf
+        - *station_pacer
+        - *station_rules
   - match: "Spring Marsh"
     name: "Spring Marsh"
     direction: "Outbound"
     mile: 40.0
     elev: 6920
     crew: false
+    water: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Moderate aid with drinks, trail mix, pretzels, and candy."
+    aid: "Moderate aid with drinks, trail mix, pretzels, and candy. The course description lists fresh spring water; potability is not certified."
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_course_pdf
+        - *station_pacer
+        - *station_rules
   - match: "Jaws Trail Head"
     name: "Jaws Trailhead"
     direction: "Turnaround"
@@ -312,7 +423,17 @@ aid_stations:
     crew_notes: "Crew allowed."
     pacer_notes: "Pacer pickup allowed."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_crew
+        - *station_crew_directions
+        - *station_pacer
+        - *station_rules
+        - *station_drop_bags
+        - *station_medical
   - match: "Spring Marsh"
     name: "Spring Marsh"
     direction: "Inbound"
@@ -320,17 +441,17 @@ aid_stations:
     elev: 6920
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Moderate aid with drinks, trail mix, pretzels, and candy."
+    aid: "Moderate aid; the current page describes the inbound inventory only as the same great snacks."
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
     source_metadata: *official_aid_source
   - match: "Cathedral Rock"
@@ -340,9 +461,9 @@ aid_stations:
     elev: 5080
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -350,7 +471,7 @@ aid_stations:
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
     source_metadata: *official_aid_source
   - match: "Sally's Footbridge"
@@ -368,11 +489,20 @@ aid_stations:
     cutoff_elapsed_minutes: 1500
     aid: "Major aid, medical check, and drop bags."
     bathroom: "Restrooms available."
-    park: "Crew parking is about one-half mile away."
+    park: "Official sources conflict on the walk distance; detailed crew information says three-quarters of a mile."
     crew_notes: "Crew welcome."
     pacer_notes: "Pacer pickup allowed."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_crew
+        - *station_pacer
+        - *station_rules
+        - *station_drop_bags
+        - *station_medical
   - match: "Bear Camp"
     name: "Bear Camp"
     direction: "Inbound"
@@ -380,9 +510,9 @@ aid_stations:
     elev: 6800
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -390,7 +520,7 @@ aid_stations:
     bathroom: null
     park: "No vehicle access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
     source_metadata: *official_aid_source
   - match: "Kearns Cow Camp"
@@ -400,17 +530,17 @@ aid_stations:
     elev: 6600
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Moderate aid with drinks, snacks, fruit, and bacon."
+    aid: "Moderate aid with snacks, fruit, and bacon."
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
     source_metadata: *official_aid_source
   - match: "Dry Fork Ridge"
@@ -428,11 +558,21 @@ aid_stations:
     cutoff_elapsed_minutes: 1800
     aid: "Major aid, medical check, and drop bags."
     bathroom: "Restrooms available."
-    park: "Major crew hub with meadow parking."
+    park: "Saturday inbound parking is restricted; follow race staff to designated parking and expect a short walk."
     crew_notes: "Crew allowed."
     pacer_notes: "Pacer pickup allowed."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_crew
+        - *station_crew_directions
+        - *station_pacer
+        - *station_rules
+        - *station_drop_bags
+        - *station_medical
   - match: "Upper Sheep Creek"
     name: "Upper Sheep Creek"
     direction: "Inbound"
@@ -440,9 +580,9 @@ aid_stations:
     elev: 7450
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: "4:30 PM"
     cutoff_clock: "4:30 PM"
     cutoff_elapsed_minutes: 1890
@@ -450,7 +590,7 @@ aid_stations:
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
     source_metadata: *official_aid_source
   - match: "Lower Sheep Creek"
@@ -460,9 +600,9 @@ aid_stations:
     elev: 5025
     crew: false
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -470,7 +610,7 @@ aid_stations:
     bathroom: null
     park: "No crew access."
     crew_notes: "No crew access."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: null
     source_metadata: *official_aid_source
   - match: "Tongue River Trail Head"
@@ -480,9 +620,9 @@ aid_stations:
     elev: 4240
     crew: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: "6:45 PM"
     cutoff_clock: "6:45 PM"
     cutoff_elapsed_minutes: 2025
@@ -490,9 +630,16 @@ aid_stations:
     bathroom: "Restrooms on-site."
     park: "Crew allowed on foot or bike only; no vehicles."
     crew_notes: "Crew allowed on foot or bike only."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer may continue with the runner."
     road: "Vehicles are not allowed on Tongue Canyon Road from the trailhead to the finish at Scott Park."
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_crew
+        - *station_pacer
+        - *station_rules
   - match: "Home Stretch"
     name: "Home Stretch"
     direction: "Inbound"
@@ -500,9 +647,9 @@ aid_stations:
     elev: 4040
     crew: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: false
+    med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
@@ -510,9 +657,16 @@ aid_stations:
     bathroom: null
     park: "Crew allowed on foot or bike only."
     crew_notes: "Crew allowed on foot or bike only."
-    pacer_notes: "No pacers."
+    pacer_notes: "No pickup or transfer at this pass; an existing pacer or crew runner may continue with the runner."
     road: "Vehicles are not allowed on Tongue Canyon Road from the trailhead to the finish at Scott Park."
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_crew
+        - *station_pacer
+        - *station_rules
   - match: "End of BH"
     name: "Finish - Scott Park"
     direction: "Finish"
@@ -520,9 +674,9 @@ aid_stations:
     elev: 3970
     crew: true
     pacer: false
-    drop: false
+    drop: null
     food: true
-    med: true
+    med: null
     cutoff: "8:00 PM"
     cutoff_clock: "8:00 PM"
     cutoff_elapsed_minutes: 2100
@@ -530,9 +684,18 @@ aid_stations:
     bathroom: null
     park: "Finish line in Dayton with public parking nearby."
     crew_notes: "Crew and spectators welcome at the finish."
-    pacer_notes: "Pacers must remain with their runner through checkpoints and follow official bib rules."
+    pacer_notes: "An existing pacer may accompany the runner through the finish and must follow official check-in and bib rules."
     road: null
-    source_metadata: *official_aid_source
+    source_metadata:
+      <<: *official_aid_source
+      sources:
+        - *station_aid_page
+        - *station_aid_chart
+        - *station_course_pdf
+        - *station_crew
+        - *station_bus_info
+        - *station_pacer
+        - *station_rules
 
 # Crew driving route between the drivable trailheads (foot/bike-only stations excluded).
 crew_drive_order:

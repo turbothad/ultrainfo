@@ -59,9 +59,11 @@ class StationPassPresentationTest < ActiveSupport::TestCase
     assert_equal({
       status: "verified",
       label: "Verified source",
+      verified_on: nil,
       source_label: "Aid Station Chart",
       source_url: "https://example.test/chart",
-      source_notes: "Checked against the 2026 chart."
+      source_notes: "Checked against the 2026 chart.",
+      sources: []
     }, presentation.fetch(:verification))
   end
 
@@ -92,8 +94,54 @@ class StationPassPresentationTest < ActiveSupport::TestCase
     assert_equal [
       { key: "crew", label: "Crew", available: true, value: "Allowed", detail_label: "Crew", detail: "Crew welcome.", filter: "crew" },
       { key: "drop_bag", label: "Drop bag", available: true, value: "Yes", detail_label: "Drop bag", detail: "Yes", filter: "drop" },
-      { key: "pacer", label: "Pacer", available: false, value: "No", detail_label: "Pacer allowed", detail: "No", filter: "pacer" },
+      { key: "pacer", label: "Pacer pickup", available: false, value: "No", detail_label: "Pacer pickup allowed", detail: "No", filter: "pacer" },
       { key: "medical", label: "Medical", available: true, value: "Yes", detail_label: "Medical", detail: "Yes", filter: nil }
     ], presentation.fetch(:features)
+  end
+
+  test "presents water provenance, verification date, and the next station pass" do
+    station = @race.aid_stations.create!(
+      name: "Lower Sheep Creek",
+      sequence: 2,
+      mile: 3.5,
+      elevation_ft: 5_025,
+      has_water: true,
+      potable_water: nil,
+      source_metadata: {
+        "verification_status" => "verified",
+        "verified_on" => "2026-08-13",
+        "source_label" => "Bighorn 100 Aid Station Chart"
+      }
+    )
+    next_station = @race.aid_stations.create!(
+      name: "Upper Sheep Creek",
+      sequence: 3,
+      mile: 8.5,
+      elevation_ft: 7_450
+    )
+
+    presentation = StationPassPresentation.call(station, next_station_pass: next_station)
+
+    assert_equal "Yes", presentation.fetch(:water_label)
+    assert_equal "Not specified", presentation.fetch(:potable_water_label)
+    assert_equal "2026-08-13", presentation.dig(:verification, :verified_on)
+    assert_equal({
+      name: "Upper Sheep Creek",
+      distance: "5 mi",
+      elevation: "7,450 ft",
+      elevation_change: "Up 2,425 ft net",
+      label: "5 mi by markers · next marker 7,450 ft · Up 2,425 ft net between markers"
+    }, presentation.fetch(:next_station_pass))
+  end
+
+  test "does not claim water or next-station facts that the Race record does not specify" do
+    station = @race.aid_stations.create!(name: "Dry Fork", has_water: nil)
+
+    presentation = StationPassPresentation.call(station)
+
+    assert_equal "Not specified", presentation.fetch(:water_label)
+    assert_equal "Not specified", presentation.fetch(:features).find { |feature| feature[:key] == "drop_bag" }.fetch(:value)
+    assert_equal "Not specified", presentation.fetch(:features).find { |feature| feature[:key] == "medical" }.fetch(:value)
+    assert_nil presentation.fetch(:next_station_pass)
   end
 end

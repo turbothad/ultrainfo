@@ -9,7 +9,7 @@
     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Race facts</h2>
       <p class="font-mono text-[9px] uppercase tracking-[0.1em] text-stone-light">
-        <%= source_status_label(@race.source_metadata) %><% if @race.source_metadata["verified_on"].present? %> · <%= @race.source_metadata["verified_on"] %><% end %> ·
+        <%= source_status_label(@race.source_metadata) %><% if (checked_on = section_verified_on_label(@race, "race_facts")) %> · Last checked <%= checked_on %><% end %> ·
         <%= link_to "#{Array(@race.source_metadata["sources"]).count} sources", "#sources", class: "font-semibold text-pine hover:text-ink" %>
       </p>
     </div>
@@ -28,13 +28,19 @@
       <% end %>
     </dl>
 
+    <% if (cutoff_warning = overall_cutoff_warning(@race)) %>
+      <p class="mt-4 border-l-2 border-gold bg-card px-3 py-2 text-xs leading-relaxed text-stone">
+        <strong class="text-ink">Cutoff source conflict:</strong> <%= cutoff_warning %>
+      </p>
+    <% end %>
+
     <% if @race.registration_url.present? %>
       <div class="mt-5 flex flex-col gap-4 border border-ink/10 bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex gap-8">
           <div><span class="data-label block">Registration</span><span class="data-value block"><%= @race.registration_status.humanize %></span></div>
-          <div><span class="data-label block">Lottery</span><span class="data-value block"><%= @race.lottery_required? ? "Yes" : "No" %></span></div>
+          <div><span class="data-label block">Lottery</span><span class="data-value block"><%= @race.lottery.nil? ? "Not published" : (@race.lottery_required? ? "Yes" : "No") %></span></div>
         </div>
-        <%= link_to "Open registration ↗", @race.registration_url, target: "_blank", rel: "noopener", class: "inline-flex self-start rounded-md bg-ink px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-white no-underline hover:bg-pine sm:self-auto" %>
+        <%= link_to @race.closed? ? "Official event page ↗" : "Open registration ↗", @race.registration_url, target: "_blank", rel: "noopener", class: "inline-flex self-start rounded-md bg-ink px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-white no-underline hover:bg-pine sm:self-auto" %>
       </div>
     <% end %>
   </section>
@@ -42,7 +48,10 @@
   <section id="course" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
     <div class="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Course</h2>
-      <p class="max-w-md text-sm leading-relaxed text-stone">Select a station pass for cutoffs, access, aid, and directions.</p>
+      <div class="max-w-md text-left sm:text-right">
+        <p class="text-sm leading-relaxed text-stone">Select a station pass for cutoffs, access, aid, and directions.</p>
+        <% if (checked_on = section_verified_on_label(@race, "course")) %><p class="mt-1 data-label">Last checked <%= checked_on %></p><% end %>
+      </div>
     </div>
     <%= render "races/map", race: @race, station_passes: @station_passes, drive: true %>
     <div class="mt-5"><%= render "races/elevation_profile", race: @race %></div>
@@ -51,7 +60,10 @@
   <section id="aid-stations" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Station passes</h2>
-      <p class="text-sm text-stone"><%= @race.aid_stations.size %> passes at <%= @race.aid_station_location_count %> aid stations.</p>
+      <div class="text-left sm:text-right">
+        <p class="text-sm text-stone"><%= @race.aid_stations.size %> passes at <%= @race.aid_station_location_count %> aid stations.</p>
+        <% if (checked_on = section_verified_on_label(@race, "station_passes")) %><p class="mt-1 data-label">Last checked <%= checked_on %></p><% end %>
+      </div>
     </div>
 
     <dl class="mt-7 grid grid-cols-2 border-y border-ink/10 sm:grid-cols-3 lg:grid-cols-6">
@@ -60,8 +72,8 @@
         [ "Crew", @race.aid_stations.count(&:crew_accessible?) ],
         [ "Drop bags", @race.aid_stations.count(&:drop_bag?) ],
         [ "Medical", @race.aid_stations.count(&:has_medical?) ],
-        [ "Pacer", @race.aid_stations.count(&:pacer_access?) ],
-        [ "Cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h" : "—" ]
+        [ "Pacer pickup", @race.aid_stations.count(&:pacer_access?) ],
+        [ "Cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h#{' · disputed' if overall_cutoff_warning(@race)}" : "—" ]
       ].each do |label, value| %>
         <div class="border-b border-ink/10 py-3 even:border-l even:pl-4 sm:border-l sm:px-4 sm:first:border-l-0 sm:first:pl-0 lg:border-b-0">
           <dt class="data-label"><%= label %></dt>
@@ -70,13 +82,26 @@
       <% end %>
     </dl>
 
+    <p class="mt-5 border-l-2 border-gold bg-card px-3 py-2 text-xs leading-relaxed text-stone">
+      Potability is not established at any pass. Some sources list water, filtered water, or spring water, but none certify it as potable. Do not rely on this table alone for refill safety.
+    </p>
+    <% if @race.source_metadata["drop_bag_summary"].present? %>
+      <p class="mt-3 border-l-2 border-pine bg-card px-3 py-2 text-xs leading-relaxed text-stone">
+        <strong class="text-ink">Drop-bag handling:</strong> <%= @race.source_metadata["drop_bag_summary"] %>
+        <%= link_to "Official guidance ↗", "https://bighorntrailrun.com/drop-bags-1", target: "_blank", rel: "noopener", class: "ml-1 font-semibold text-pine hover:text-ink" %>
+      </p>
+    <% end %>
+
     <div class="mt-7"><%= render "races/aid_station_table", station_passes: @station_passes, initial_filter: params[:stations] %></div>
   </section>
 
   <section id="crew" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Crew & pacers</h2>
-      <%= link_to "Crew-accessible passes ↑", "#aid-stations", data: { action: "race-page#showCrewPasses" }, class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
+      <div class="text-left sm:text-right">
+        <%= link_to "Crew-accessible passes ↑", "#aid-stations", data: { action: "race-page#showCrewPasses" }, class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
+        <% if (checked_on = section_verified_on_label(@race, "crew_pacers")) %><p class="mt-1 data-label">Last checked <%= checked_on %></p><% end %>
+      </div>
     </div>
 
     <div class="mt-7 grid border-y border-ink/10 lg:grid-cols-2">
@@ -87,8 +112,14 @@
       <div class="py-5 lg:pl-8">
         <h3 class="data-label">Crew drive</h3>
         <% if @race.crew_route.present? %>
-          <p class="mt-3 font-mono text-sm font-semibold text-ink"><%= @race.crew_route["distance_mi"] %> mi · <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h</p>
+          <p class="mt-3 font-mono text-sm font-semibold text-ink">Estimate: <%= @race.crew_route["distance_mi"] %> mi · <%= (@race.crew_route["duration_min"] / 60.0).round(1) %> h</p>
           <% if @race.source_metadata["crew_drive_label"].present? %><p class="mt-2 text-sm text-stone"><%= @race.source_metadata["crew_drive_label"] %></p><% end %>
+          <% if (provenance = @race.crew_route["provenance"]).present? %>
+            <p class="mt-2 font-mono text-[9px] uppercase tracking-[0.08em] text-stone-light">
+              Cached <%= provenance["generated_on"] %> via
+              <%= link_to provenance["provider"], provenance["provider_url"], target: "_blank", rel: "noopener", class: "font-semibold text-pine hover:text-ink" %>
+            </p>
+          <% end %>
           <%= link_to "Show crew drive on map ↑", "#course", data: { action: "race-page#showCrewDrive", turbo: false }, class: "mt-4 inline-flex font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
         <% else %>
           <p class="mt-3 text-sm text-stone">No crew route published.</p>
@@ -99,7 +130,10 @@
 
   <section id="follow" class="scroll-mt-28 border-b border-ink/10 py-10 sm:py-14">
     <% turnaround_pass = @station_passes.find { |station_pass| station_pass[:direction] == "Turnaround" } %>
-    <h2 class="section-heading">Follow</h2>
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="section-heading">Follow</h2>
+      <% if (checked_on = section_verified_on_label(@race, "follow")) %><p class="data-label">Last checked <%= checked_on %></p><% end %>
+    </div>
 
     <dl class="mt-7 grid border-y border-ink/10 sm:grid-cols-3">
       <% [
@@ -120,7 +154,7 @@
         <% if @race.tracking_url.present? %>
           <%= link_to "Open tracking ↗", @race.tracking_url, target: "_blank", rel: "noopener", class: "mt-2 inline-block text-sm font-semibold text-pine hover:text-ink" %>
         <% else %>
-          <p class="mt-2 text-sm text-stone">No tracking link published.</p>
+          <p class="mt-2 text-sm text-stone">SPOT tracking was announced for the race, but no durable public 2026 map link was verified.</p>
         <% end %>
       </div>
       <div class="border border-ink/10 bg-card p-4">
@@ -137,7 +171,10 @@
   <section id="sources" class="scroll-mt-28 py-10 sm:py-14">
     <div class="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <h2 class="section-heading">Sources</h2>
-      <%= link_to "Report wrong or missing information ↗", "https://github.com/turbothad/ultrainfo/issues/new/choose", target: "_blank", rel: "noopener", class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
+      <div class="text-left sm:text-right">
+        <%= link_to "Report wrong or missing information ↗", "https://github.com/turbothad/ultrainfo/issues/new/choose", target: "_blank", rel: "noopener", class: "font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-pine hover:text-ink" %>
+        <% if (checked_on = section_verified_on_label(@race, "sources")) %><p class="mt-1 data-label">Last checked <%= checked_on %></p><% end %>
+      </div>
     </div>
     <%= render "races/sources", race: @race %>
   </section>

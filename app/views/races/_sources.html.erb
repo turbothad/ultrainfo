@@ -19,7 +19,7 @@
           <% end %>
         </div>
         <span class="font-mono text-[10px] uppercase tracking-[0.08em] text-stone-light">
-          <%= [ source["verified_on"] && "verified #{source["verified_on"]}", source["fetched_on"] && "fetched #{source["fetched_on"]}" ].compact.join(" / ").presence || "date not listed" %>
+          <%= [ source["verified_on"] && "checked #{source["verified_on"]}", source["fetched_on"] && "fetched #{source["fetched_on"]}" ].compact.join(" / ").presence || "date not listed" %>
         </span>
       </li>
     <% end %>

@@ -43,6 +43,16 @@ module ApplicationHelper
     dates.max&.strftime("%B %-d, %Y")
   end
 
+  def section_verified_on_label(race, section)
+    metadata = race.source_metadata.dig("section_verifications", section) || {}
+    latest_verified_on_label(metadata)
+  end
+
+  def availability_tag(label)
+    color = label == "Yes" ? "text-pine font-bold" : "text-stone-light"
+    tag.span label, class: "whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.08em] #{color}"
+  end
+
   def registration_display(race)
     status = race.registration_status.humanize
     return status if race.registration_url.blank?
@@ -56,7 +66,12 @@ module ApplicationHelper
     parts = []
     parts << "#{race.cutoff_hours.to_i}h" if race.cutoff_hours.present?
     parts << race.source_metadata["overall_cutoff_label"] if race.source_metadata["overall_cutoff_label"].present?
-    parts.presence&.join(" / ") || "Not listed"
+    value = parts.presence&.join(" / ") || "Not listed"
+    overall_cutoff_warning(race) ? "#{value} · disputed" : value
+  end
+
+  def overall_cutoff_warning(race)
+    race.source_metadata["overall_cutoff_notes"].presence
   end
 
   def key_race_times(race)
@@ -74,7 +89,7 @@ module ApplicationHelper
       [ "Drop bags", stations.count(&:drop_bag?) ],
       [ "Medical", stations.count(&:has_medical?) ],
       [ "Crew access", stations.count(&:crew_accessible?) ],
-      [ "Pacer points", stations.count(&:pacer_access?) ],
+      [ "Pacer pickup", stations.count(&:pacer_access?) ],
       [ "Overall cutoff", race.cutoff_hours ? "#{race.cutoff_hours.to_i} hours" : nil ]
     ]
   end

@@ -27,6 +27,8 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
       crew_route: { "distance_mi" => 12.3, "duration_min" => 25, "geometry" => [] },
       source_metadata: {
         "verification_status" => "verified",
+        "overall_cutoff_notes" => "Official sources disagree.",
+        "section_verifications" => { "race_facts" => { "verified_on" => "2026-08-13" } },
         "sources" => [ { "label" => "Race guide", "url" => "https://example.test/guide" } ]
       }
     )
@@ -44,16 +46,25 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "[data-terrain-map-target='detail']", /Select a station pass/i
     assert_select "button[data-action='station-filter#filter']", count: 4
     assert_select "table", count: 1
-    assert_select "th", /Medical/i
+    assert_select "th", count: 6
+    assert_select "th", /Aid & water/i
+    assert_select "th", /Crew & bags/i
+    assert_select "th", /Next marker/i
+    assert_select "th", /Timing/i
     assert_select "details#station-pass-1"
     assert_select "details#station-pass-2"
     assert_select "a[href='https://example.test/register']", /registration/i
     assert_select "#facts", /Waitlist/i
     assert_select "#facts", /Lottery.*Yes/im
+    assert_select "#facts", /35h.*disputed/im
+    assert_select "#facts", /Cutoff source conflict.*Official sources disagree/im
+    assert_select "[data-terrain-map-target='detail']", /35 h.*disputed/im
+    assert_select "#facts", /Last checked/i
     assert_select "a[href='https://example.test/results']", /results/i
     assert_select "#follow", /4:00 AM \/ 6h/
     assert_select "#station-pass-1", /Drop bag/i
     assert_select "#station-pass-1", /Crew allowed/i
+    assert_select "#station-pass-1", /Medical/i
     assert_select "a[data-action='race-page#showCrewDrive']", /crew drive/i
     assert_select "#sources details", count: 0
     assert_select "#sources a[href='https://example.test/guide']", /Race guide/i
@@ -103,7 +114,9 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Use Highway 14 only.", station["road"]
     assert_equal "Use Highway 14 only.", station["road_notes"]
     assert station["crew"]
-    assert_not station["drop_bag"]
+    assert_nil station["drop_bag"]
+    assert_not station["pacer_pickup"]
+    assert_not station.key?("pacer")
     assert_equal @crew.source_metadata, station["source_metadata"]
     assert station["landmark"]
     assert_equal "Approach from the east.", station.dig("directions", "notes")

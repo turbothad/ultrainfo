@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_15_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_120400) do
   create_table "aid_stations", force: :cascade do |t|
     t.text "access_notes"
     t.text "aid_notes"
@@ -23,11 +23,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_15_120000) do
     t.integer "cutoff_elapsed_minutes"
     t.string "direction"
     t.text "directions_notes"
-    t.boolean "drop_bag", default: false, null: false
+    t.boolean "drop_bag"
     t.integer "elevation_ft"
     t.boolean "has_food", default: false, null: false
-    t.boolean "has_medical", default: false, null: false
-    t.boolean "has_water", default: true, null: false
+    t.boolean "has_medical"
+    t.boolean "has_water"
     t.decimal "lat", precision: 10, scale: 6
     t.decimal "lng", precision: 10, scale: 6
     t.decimal "mile", precision: 6, scale: 2
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_15_120000) do
     t.boolean "pacer_access", default: false, null: false
     t.text "pacer_notes"
     t.text "parking_notes"
+    t.boolean "potable_water"
     t.integer "race_id", null: false
     t.text "road_notes"
     t.integer "sequence"
@@ -58,7 +59,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_15_120000) do
     t.decimal "finish_lat", precision: 10, scale: 6
     t.decimal "finish_lng", precision: 10, scale: 6
     t.string "finish_venue"
-    t.boolean "lottery", default: false, null: false
+    t.boolean "lottery"
     t.string "name", null: false
     t.string "official_url"
     t.integer "registration_status", default: 0, null: false

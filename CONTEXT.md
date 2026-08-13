@@ -78,7 +78,9 @@ _Avoid_: course (for driving), drive course
 **Verification status**:
 How well a fact is backed by source metadata: verified, warning, or
 unverified. Uncertain facts stay visible but clearly flagged, never presented
-as certain.
+as certain. A last-verified date records when that section or fact was most
+recently checked against its cited evidence; it is not a promise that the Race
+will not change afterward.
 _Avoid_: confidence, trust level
 
 **Event bundle**:

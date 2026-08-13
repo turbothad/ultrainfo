@@ -12,13 +12,37 @@ module Events
       assert_equal Date.new(2026, 6, 19), race.start_date
       assert_equal Date.new(2026, 6, 20), race.end_date
       assert race.closed?
-      assert_equal "https://bighorntrailrun.com/results-%26-timing-1", race.results_url
-      assert_equal "verified", race.source_metadata["verification_status"]
+      assert_nil race.lottery, "lottery status is unpublished by the reviewed first-party sources"
+      assert_equal "https://bhtr.itsyourrace.com/Results.aspx?id=384", race.results_url
+      assert_equal "warning", race.source_metadata["verification_status"]
       assert_equal 600, race.simplified_track.size
       assert_equal 22, race.aid_stations.count
       assert race.aid_stations.all?(&:coordinates?), "every Station pass gets coordinates from a course waypoint"
+      assert_equal [ 1.25, 3.5, 8.5, 33.5, 40.0 ], race.aid_stations.where(has_water: true).pluck(:mile).map(&:to_f),
+                   "only passes whose current page or course description names water are marked as listing it"
+      assert race.aid_stations.all? { |station| station.potable_water.nil? },
+             "listed water does not establish potability at any pass"
+      station_source_urls = race.aid_stations.first.source_metadata.fetch("sources").pluck("url")
+      assert_includes station_source_urls, "https://bighorntrailrun.com/100-mile"
+      assert_includes station_source_urls,
+                      "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/downloads/30d8acf5-26bd-40cf-b6a4-a5ffefb537e2/Bighorn%20100%20Aid%20Station%20Chart.pdf?ver=1782760210683"
+      assert_nil race.aid_stations.find_by!(mile: 13.5).has_water,
+                 "water remains unspecified when the source only lists general drinks or aid"
+      assert_match(/outbound pass/i, race.aid_stations.find_by!(mile: 13.5).source_metadata.fetch("source_notes"))
+      assert_equal 5, race.aid_stations.count(&:drop_bag?),
+                   "only the five pass-specific drop-bag accesses are counted"
+      assert race.aid_stations.reject(&:drop_bag?).all? { |station| station.drop_bag.nil? },
+             "other passes remain not listed rather than being reported as no"
       assert_equal "30h", race.aid_stations.find_by!(mile: 82.5).cutoff_elapsed_label
+      assert_nil race.aid_stations.find_by!(mile: 100).has_medical,
+                 "the official sources do not establish a finish-line medical check"
+      assert_equal 4, race.aid_stations.count(&:has_medical?),
+                   "only pass-specific scheduled medical checks are counted"
+      assert_includes race.source_metadata.fetch("sources").pluck("url"),
+                      "https://img1.wsimg.com/blobby/go/07161f14-d61e-453c-a3cc-f57e0150d044/2026%20BHTR%20SCHEDULE-fb5032e.pdf"
       assert_equal 4, race.crew_route["legs"].size
+      assert_equal "Ultrainfo Routing::Osrm", race.crew_route.dig("provenance", "generator")
+      assert_equal "2026-06-26", race.crew_route.dig("provenance", "generated_on")
       assert_equal Terrain::Artifact::SCHEMA_VERSION, race.terrain_artifacts.fetch("schema_version")
       assert_match(/\A[0-9a-f]{64}\z/, race.terrain_artifacts.fetch("sha256"))
       assert_equal race.slug, Terrain::Artifact.read(
@@ -26,6 +50,29 @@ module Events
         from: Rails.root.join("public/terrain/bighorn-100.json"),
         race_slug: race.slug
       ).data.dig("race", "slug")
+    end
+
+    test "replaces stale Bighorn rows when publishing the Active event catalog" do
+      stale_race = Race.create!(
+        name: "Bighorn 100",
+        slug: "bighorn-100",
+        year: 2026,
+        source_metadata: { "verified_on" => "2026-07-02" }
+      )
+      stale_race.aid_stations.create!(
+        name: "Dry Fork Ridge",
+        sequence: 1,
+        mile: 13.5,
+        has_water: true,
+        source_metadata: { "verified_on" => "2026-07-02" }
+      )
+
+      published_race = Import.new(Rails.root.join("db/events/active.yml")).call.sole
+
+      assert_not_equal stale_race.id, published_race.id
+      assert_equal "2026-08-13", published_race.source_metadata.dig("section_verifications", "station_passes", "verified_on")
+      assert_nil published_race.aid_stations.find_by!(mile: 13.5).has_water
+      assert_nil published_race.aid_stations.find_by!(mile: 0).drop_bag
     end
 
     test "publishes every Race in the explicit Active event catalog" do
