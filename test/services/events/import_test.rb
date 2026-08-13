@@ -283,13 +283,13 @@ module Events
                  "no crew at Mountain Lake on lap 1"
       assert orcas.aid_stations.find_by!(mile: 30).crew_accessible?,
              "crews are allowed at Mountain Lake from lap 2"
-      assert_not orcas.aid_stations.find_by!(mile: 71).crew_accessible?,
+      assert_not orcas.aid_stations.find_by!(mile: 70).crew_accessible?,
                  "Mt Constitution allows crews on lap 4 only"
-      assert_not orcas.aid_stations.find_by!(mile: 21).pacer_access?,
+      assert_not orcas.aid_stations.find_by!(mile: 20).pacer_access?,
                  "no pacers on the first lap"
       assert orcas.aid_stations.find_by!(mile: 25).pacer_access?,
              "pacers join from mile 25 at crew-accessible stations"
-      assert_not orcas.aid_stations.find_by!(mile: 46).pacer_access?,
+      assert_not orcas.aid_stations.find_by!(mile: 45).pacer_access?,
                  "pacers may start from Mt Constitution on the last lap only"
       assert_equal 5, orcas.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
                    "last-lap cutoffs run from mile 75 through the finish"

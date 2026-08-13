@@ -26,7 +26,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-13"
-    source_notes: "The organizer bills four 25-mile loops and a 100.8-mile total and quotes last-lap cutoffs at miles 75/80/90/96/100, so pass miles use the nominal 25-mile frame; the official GPX (embedded name `2026 Orcas 100`, revised 2.23) GPS-measures the loop at 24.0 miles and is used for geometry, station coordinates, and elevations. The 2026-revision GPX is the current download on the 2027 page. A runner who leaves the final aid station by its cutoff earns an official finish even after the 8:00 PM close."
+    source_notes: "The organizer bills four 25-mile loops and a 100.8-mile total and quotes last-lap cutoffs at miles 75/80/90/95/100, so pass miles use the nominal 25-mile frame; the official GPX (embedded name `2026 Orcas 100`, revised 2.23) GPS-measures the loop at 24.0 miles and is used for geometry, station coordinates, and elevations. The 2026-revision GPX is the current download on the 2027 page. A runner who leaves the final aid station by its cutoff earns an official finish even after the 8:00 PM close."
     section_verifications:
       race_facts:
         verified_on: "2026-08-13"
@@ -71,7 +71,7 @@ race:
         verified_on: "2026-08-13"
     notes: "Checked against first-party sources on August 13, 2026. Every station serves full aid but no source certifies water potability and no medical service is published. Runners who climb the Mt Constitution tower on all four loops and punch their bib at the top join the Tower Club. Getting to Orcas Island requires a Washington State Ferries reservation; crews display a Discover Pass to park in Moran State Park. The race is on the traditional lands of the Lhaq'temish and Samish Peoples, as the organizer notes."
     overall_cutoff_label: "8:00 PM February 27, 2027"
-    overall_cutoff_notes: "36 hours from the 8:00 AM Friday start, with last-lap cutoffs: Camp Moran mile 75 by 11:00 AM Saturday, Mountain Lake mile 80 by 12:45 PM, Cascade Lake mile 90 by 4:00 PM, Mt Constitution mile 96 by 6:15 PM, and the finish at 8:00 PM — though a runner out of the last aid station by its cutoff earns an official finish even after 8:00 PM."
+    overall_cutoff_notes: "36 hours from the 8:00 AM Friday start, with last-lap cutoffs: Camp Moran mile 75 by 11:00 AM Saturday, Mountain Lake mile 80 by 12:45 PM, Cascade Lake mile 90 by 4:00 PM, Mt Constitution mile 95 by 6:15 PM, and the finish at 8:00 PM — though a runner out of the last aid station by its cutoff earns an official finish even after 8:00 PM."
     pacer_rule_summary: "Pacers are allowed for all runners from mile 25 — none on the first lap. They start from any crew-accessible station (Camp Moran, Mountain Lake, or Cascade Lake after lap 1; Mt Constitution on the last lap only), must register and collect a pacer bib at Camp Moran, and may not mule — runners may take things from pacers or crew only at aid stations."
     drop_bag_summary: "Drop bags are handed in at Thursday bib pickup at Camp Moran; Mountain Lake bags are due by 7:30 AM Friday and the other stations' bags by 8:00 AM."
   blurb: Four 25-mile Moran State Park loops with 26,000 ft of climbing above the Salish Sea.
@@ -194,7 +194,7 @@ elevation_series:
 # Station passes: coordinates and elevations from the organizer GPX's own
 # station waypoints (`match` = waypoint-name substring). Miles use the
 # organizer's nominal 25-mile loop frame: Mountain Lake at 5, Cascade Lake at
-# 15, Mt Constitution at 21, Camp Moran at 25 per lap. Crew laps and pacer
+# 15, Mt Constitution at 20, Camp Moran at 25 per lap. Crew laps and pacer
 # pickup follow the page's Crew Access & Pacers rules.
 aid_stations:
   - match: "Start/Finish/Camp Moran"
@@ -274,7 +274,7 @@ aid_stations:
   - match: "Constitution Aid Station"
     name: "Mt Constitution"
     direction: "Loop 1"
-    mile: 21.0
+    mile: 20.0
     elev: 2388
     crew: false
     water: true
@@ -358,7 +358,7 @@ aid_stations:
   - match: "Constitution Aid Station"
     name: "Mt Constitution"
     direction: "Loop 2"
-    mile: 46.0
+    mile: 45.0
     elev: 2388
     crew: false
     water: true
@@ -442,7 +442,7 @@ aid_stations:
   - match: "Constitution Aid Station"
     name: "Mt Constitution"
     direction: "Loop 3"
-    mile: 71.0
+    mile: 70.0
     elev: 2388
     crew: false
     water: true
@@ -503,7 +503,6 @@ aid_stations:
     crew_notes: "Crews are allowed at Mountain Lake on laps 2, 3, and 4 — not on lap 1; parking is very limited."
     pacer_notes: "Pacers may join from mile 25 at any crew-accessible station and must register and collect a pacer bib at Camp Moran. No muling — pacers may hand their runner things only at aid stations."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Last-lap cutoff: 12:45 PM Saturday (28 hr 45 min from the 8:00 AM Friday start). Verified on is the retrieval date. Pass miles use the organizer's nominal 25-mile loop frame."
@@ -527,14 +526,13 @@ aid_stations:
     crew_notes: "Crews are allowed at Cascade Lake on every lap; parking is very limited."
     pacer_notes: "Pacers may join from mile 25 at any crew-accessible station and must register and collect a pacer bib at Camp Moran. No muling — pacers may hand their runner things only at aid stations."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Last-lap cutoff: 4:00 PM Saturday (32 hr from the 8:00 AM Friday start). Verified on is the retrieval date. Pass miles use the organizer's nominal 25-mile loop frame."
   - match: "Constitution Aid Station"
     name: "Mt Constitution"
     direction: "Loop 4"
-    mile: 96.0
+    mile: 95.0
     elev: 2388
     crew: true
     water: true
@@ -551,7 +549,6 @@ aid_stations:
     crew_notes: "Crews are allowed at Mt Constitution on lap 4 only, and only if the summit road is open to the public."
     pacer_notes: "Pacers may join from mile 25 at any crew-accessible station and must register and collect a pacer bib at Camp Moran. No muling — pacers may hand their runner things only at aid stations."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Last-lap cutoff: 6:15 PM Saturday (34 hr 15 min from the 8:00 AM Friday start). Verified on is the retrieval date. Pass miles use the organizer's nominal 25-mile loop frame."
@@ -575,7 +572,6 @@ aid_stations:
     crew_notes: "Crews are allowed at Camp Moran on every lap; display a Discover Pass when parking in the park."
     pacer_notes: "A pacer picked up from mile 25 may accompany their runner to the finish; runners out of the last aid station by its cutoff earn an official finish even after 8:00 PM."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Last-lap cutoff: 8:00 PM Saturday (36 hr from the 8:00 AM Friday start); a runner out of the last aid station by its cutoff earns an official finish even after 8:00 PM. Verified on is the retrieval date. Pass miles use the organizer's nominal 25-mile loop frame."
