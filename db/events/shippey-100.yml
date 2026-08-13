@@ -1,0 +1,398 @@
+# The Shippey 100 — event data (imported by Events::Import via db/seeds.rb).
+# Course geometry copies the organizer's Google My Maps "Shippey 20 mile loop"
+# line, drawn in the clockwise direction the race runs in odd years including
+# 2027; station coordinates are the organizer's markers. Station-pass miles are
+# measured along that line (Sverdrup at 5.2, 9.8, and 13.2; Emerson mid-loop at
+# 16.4 of each nominal 20-mile loop). Source decisions are documented in
+# docs/research/shippey-2027-source-audit.md.
+
+race:
+  name: The Shippey 100
+  slug: shippey-100
+  year: 2027
+  state: MO
+  distance_mi: 100
+  elevation_gain_ft: null # No organizer figure; the organizer map's own altitudes total ~2,800 ft per loop.
+  elevation_loss_ft: null
+  start_date: 2027-01-16
+  end_date: 2027-01-17
+  start_time: 6:00 AM
+  time_zone: America/Chicago
+  cutoff_hours: 34 # 6:00 AM Saturday start → 4:00 PM Sunday final cutoff.
+  official_url: https://theshippey.com/
+  registration_url: https://ultrasignup.com/register.aspx?did=135549
+  results_url: https://ultrasignup.com/results_event.aspx?did=135549
+  registration_status: open # 2027 UltraSignup listing open at verification.
+  lottery: false # Direct first-come UltraSignup registration; no lottery in any reviewed source.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "The course switches direction each year — clockwise in odd years like 2027, counterclockwise in even years — and the organizer's course line is drawn in the clockwise direction; even-year records would need the reverse frame. The 2027 UltraSignup listing still carries `January 18th` in its cutoff blurb, a leftover from the 2026 dates; the 2027 race runs January 16-17. The organizer publishes no elevation figures; the profile and station spot elevations use the altitude values embedded in the organizer's course line, and pass miles are measured along it (the loop measures 20.03 miles)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_site
+        label: "The Shippey official site"
+        url: "https://theshippey.com/"
+        verified_on: "2026-08-13"
+      - &source_course_page
+        label: "Course details page"
+        url: "https://theshippey.com/course-details-1"
+        verified_on: "2026-08-13"
+      - &source_runner_info
+        label: "Runner information page"
+        url: "https://theshippey.com/runner-info/"
+        verified_on: "2026-08-13"
+      - &source_ultrasignup
+        label: "2027 UltraSignup listing"
+        url: "https://ultrasignup.com/register.aspx?did=135549"
+        verified_on: "2026-08-13"
+      - &source_mymaps
+        label: "Organizer Google My Maps course map (KML export)"
+        url: "https://www.google.com/maps/d/kml?mid=1PYJm-QOer7LvmGH4y4iRRRyYvocHGCI&forcekml=1"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. The race is cupless — runners bring their own cup or bottle; fluids and standard ultramarathon foods (the runner page lists eggs, bacon, pancakes, burgers, quesadillas, and broth among others) are served at both indoor stations, but no source certifies water potability and no medical service is published. The Sverdrup station closes at 2:00 PM Sunday, when all runners must be on leg 4 of the final loop (odd-year direction). The organizer warns that not completing leg 3 of the final loop by 1:00 PM makes the final cutoff unlikely. Live per-leg splits are posted through Final Lap Racing from timing mats at both stations."
+    overall_cutoff_label: "4:00 PM January 17, 2027"
+    overall_cutoff_notes: "34 hours from the 6:00 AM Saturday start. The Sverdrup station shuts at 2:00 PM Sunday and all runners must be on leg 4 of the final loop by then; the organizer advises that finishing leg 3 of the final loop after 1:00 PM makes the 4:00 PM finish unlikely."
+    pacer_rule_summary: "Pacers are allowed any time after 40 miles (two loops) or after 5:00 PM Saturday for solo 100-mile and 100K runners. All pacers must register through the organizer's pacer entry; no pacers for the shorter distances."
+    drop_bag_summary: "Drop bags are allowed at both indoor stations for solo runners and should not exceed 24x16x13 inches; larger bags may not be transported."
+  blurb: Five 20-mile wooded loops at Beaumont Scout Reservation, indoors through both aid stations.
+  about: >-
+    The Shippey 100 runs five 20-mile loops on the Greater St. Louis Boy
+    Scouts' Beaumont Scout Reservation at High Ridge, MO — about 75%
+    single and double track with short 35-40% grade climbs, run clockwise in
+    odd years like 2027. Two indoor stations serve every loop: Emerson at the
+    start/finish (passed twice per loop) and Sverdrup Lodge (three times per
+    loop). Start 6:00 AM Saturday; 34-hour limit (4:00 PM Sunday) with the
+    Sverdrup station closing at 2:00 PM Sunday.
+  start_venue: Emerson Center, Beaumont Scout Reservation, 6480 Beaumont Reservation Drive, High Ridge, MO
+  finish_venue: Emerson Center, Beaumont Scout Reservation, 6480 Beaumont Reservation Drive, High Ridge, MO
+
+# Profile from the altitude values embedded in the organizer's course line,
+# sampled per nominal lap mile and repeated for each of the 5 laps.
+elevation_series:
+  - [0, 528]
+  - [1, 761]
+  - [2, 781]
+  - [3, 525]
+  - [4, 741]
+  - [5, 548]
+  - [6, 801]
+  - [7, 554]
+  - [8, 656]
+  - [9, 682]
+  - [10, 604]
+  - [11, 643]
+  - [12, 614]
+  - [13, 545]
+  - [14, 656]
+  - [15, 837]
+  - [16, 768]
+  - [17, 771]
+  - [18, 827]
+  - [19, 702]
+  - [20, 528]
+  - [21, 761]
+  - [22, 781]
+  - [23, 525]
+  - [24, 741]
+  - [25, 548]
+  - [26, 801]
+  - [27, 554]
+  - [28, 656]
+  - [29, 682]
+  - [30, 604]
+  - [31, 643]
+  - [32, 614]
+  - [33, 545]
+  - [34, 656]
+  - [35, 837]
+  - [36, 768]
+  - [37, 771]
+  - [38, 827]
+  - [39, 702]
+  - [40, 528]
+  - [41, 761]
+  - [42, 781]
+  - [43, 525]
+  - [44, 741]
+  - [45, 548]
+  - [46, 801]
+  - [47, 554]
+  - [48, 656]
+  - [49, 682]
+  - [50, 604]
+  - [51, 643]
+  - [52, 614]
+  - [53, 545]
+  - [54, 656]
+  - [55, 837]
+  - [56, 768]
+  - [57, 771]
+  - [58, 827]
+  - [59, 702]
+  - [60, 528]
+  - [61, 761]
+  - [62, 781]
+  - [63, 525]
+  - [64, 741]
+  - [65, 548]
+  - [66, 801]
+  - [67, 554]
+  - [68, 656]
+  - [69, 682]
+  - [70, 604]
+  - [71, 643]
+  - [72, 614]
+  - [73, 545]
+  - [74, 656]
+  - [75, 837]
+  - [76, 768]
+  - [77, 771]
+  - [78, 827]
+  - [79, 702]
+  - [80, 528]
+  - [81, 761]
+  - [82, 781]
+  - [83, 525]
+  - [84, 741]
+  - [85, 548]
+  - [86, 801]
+  - [87, 554]
+  - [88, 656]
+  - [89, 682]
+  - [90, 604]
+  - [91, 643]
+  - [92, 614]
+  - [93, 545]
+  - [94, 656]
+  - [95, 837]
+  - [96, 768]
+  - [97, 771]
+  - [98, 827]
+  - [99, 702]
+  - [100, 528]
+
+# Station passes: coordinates from the GPX waypoints (`match` = waypoint-name
+# substring; waypoints are the organizer's markers). Miles are measured along
+# the organizer's course line in the 2027 clockwise direction: Sverdrup at
+# 5.2, 9.8, and 13.2 and Emerson mid-loop at 16.4 of each nominal 20-mile
+# loop. Later loops merge (`<<:`) the Loop 1 passes and override what changes.
+aid_stations:
+  - match: "Emerson Start/Finish"
+    name: "Start — Emerson Center"
+    direction: "Start"
+    mile: 0.0
+    elev: 561
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Indoor aid at the Emerson Center: standard ultramarathon foods with meal and snack items through the weekend (eggs, bacon, pancakes, burgers, quesadillas, broth among others). The race is cupless — bring your own cup or bottle. The timing mat is outside; runners go inside for aid."
+    bathroom: "Bathrooms and showers are downstairs in the Emerson Center."
+    park: "Main parking at the start/finish; 50K, 20M, and 25K runners park at Cub World and walk about 0.3 miles to Emerson."
+    crew_notes: "Crews camp indoors 15 yards from the start/finish line and see their runner every 3-5.3 miles. Crew may give food, water, and aid only at the stations."
+    pacer_notes: "Pacing begins after 40 miles (two loops) or 5:00 PM Saturday — not at the start. All pacers must register."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "2027 UltraSignup listing"
+      source_url: "https://ultrasignup.com/register.aspx?did=135549"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Fluids are served at both cupless stations but potability is not certified. Pass miles are measured along the organizer's course line in the 2027 clockwise direction (the loop measures 20.03 miles); the course reverses in even years. Spot elevations are the altitude values in the organizer's course line at the station markers."
+      sources:
+        - *source_ultrasignup
+        - *source_runner_info
+        - *source_course_page
+        - *source_mymaps
+  - &sverdrup_pass
+    match: "Sverdrup Lodge"
+    name: "Sverdrup Lodge"
+    direction: "Loop 1"
+    mile: 5.2
+    elev: 551
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Indoor aid at Sverdrup Lodge, passed three times each loop: standard ultramarathon foods, cupless. Timing mats are inside — enter the left side and exit the opposite."
+    bathroom: null
+    park: "No crew parking on the road to or at Sverdrup; designated Sverdrup lots are limited — carpool."
+    crew_notes: "Limited crew is allowed inside the Sverdrup Aid Station."
+    pacer_notes: "Pacing begins after 40 miles (two loops) or 5:00 PM Saturday. All pacers must register."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *sverdrup_pass
+    mile: 9.8
+  - <<: *sverdrup_pass
+    mile: 13.2
+  - &emerson_mid_pass
+    match: "Emerson Start/Finish"
+    name: "Emerson Center"
+    direction: "Loop 1"
+    mile: 16.4
+    elev: 561
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Indoor aid at the Emerson Center: standard ultramarathon foods with meal and snack items through the weekend. Cupless; the timing mat is outside and runners go inside for aid."
+    bathroom: "Bathrooms and showers are downstairs in the Emerson Center."
+    park: null
+    crew_notes: "Crews camp indoors 15 yards from the start/finish line. Crew may give food, water, and aid only at the stations."
+    pacer_notes: "Pacing begins after 40 miles (two loops) or 5:00 PM Saturday. All pacers must register."
+    road: null
+    source_metadata: *official_station_source
+  - &hq_pass
+    match: "Emerson Start/Finish"
+    name: "Emerson Center — Loop End"
+    direction: "Loop 1"
+    mile: 20.0
+    elev: 561
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Indoor aid at the Emerson Center at the end of every loop. Cupless; the timing mat is outside and runners go inside for aid."
+    bathroom: "Bathrooms and showers are downstairs in the Emerson Center."
+    park: null
+    crew_notes: "Crews camp indoors 15 yards from the start/finish line. Crew may give food, water, and aid only at the stations."
+    pacer_notes: "Pacing begins after 40 miles (two loops) or 5:00 PM Saturday. All pacers must register."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *sverdrup_pass
+    direction: "Loop 2"
+    mile: 25.2
+  - <<: *sverdrup_pass
+    direction: "Loop 2"
+    mile: 29.8
+  - <<: *sverdrup_pass
+    direction: "Loop 2"
+    mile: 33.2
+  - <<: *emerson_mid_pass
+    direction: "Loop 2"
+    mile: 36.4
+  - <<: *hq_pass
+    direction: "Loop 2"
+    mile: 40.0
+    pacer: true
+    pacer_notes: "Pacing begins here at 40 miles (or from 5:00 PM Saturday, whichever came first). All pacers must register; no pacers for the shorter distances."
+  - <<: *sverdrup_pass
+    direction: "Loop 3"
+    mile: 45.2
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 3"
+    mile: 49.8
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 3"
+    mile: 53.2
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *emerson_mid_pass
+    direction: "Loop 3"
+    mile: 56.4
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *hq_pass
+    direction: "Loop 3"
+    mile: 60.0
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 4"
+    mile: 65.2
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 4"
+    mile: 69.8
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 4"
+    mile: 73.2
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *emerson_mid_pass
+    direction: "Loop 4"
+    mile: 76.4
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *hq_pass
+    direction: "Loop 4"
+    mile: 80.0
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 5"
+    mile: 85.2
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 5"
+    mile: 89.8
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *sverdrup_pass
+    direction: "Loop 5"
+    mile: 93.2
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+    cutoff: "2:00 PM"
+    cutoff_clock: "2:00 PM"
+    cutoff_elapsed_minutes: 1920
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "The Sverdrup station shuts down at 2:00 PM Sunday (32 hours) and all runners must be on leg 4 of the final loop by then in the odd-year direction. The organizer advises that completing leg 3 of the final loop after 1:00 PM makes the final cutoff unlikely. Verified on is the retrieval date. Pass miles are measured along the organizer's course line."
+  - <<: *emerson_mid_pass
+    direction: "Loop 5"
+    mile: 96.4
+    pacer: true
+    pacer_notes: "Pacers are allowed any time after 40 miles or 5:00 PM Saturday. All pacers must register."
+  - <<: *hq_pass
+    name: "Finish — Emerson Center"
+    direction: "Finish"
+    mile: 100.0
+    pacer: true
+    pacer_notes: "A registered pacer picked up after 40 miles or 5:00 PM Saturday may accompany their runner to the finish."
+    cutoff: "4:00 PM"
+    cutoff_clock: "4:00 PM"
+    cutoff_elapsed_minutes: 2040
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Final cutoff: all runners must cross the finish by 4:00 PM Sunday, 34 hours after the 6:00 AM Saturday start. Verified on is the retrieval date. Pass miles are measured along the organizer's course line."

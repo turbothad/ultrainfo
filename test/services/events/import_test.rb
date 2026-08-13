@@ -6,8 +6,8 @@ module Events
     test "publishes the version-controlled Active event catalog" do
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
-      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100" ],
-                   published_races.map(&:name)
+      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
+                     "The Shippey 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -170,6 +170,29 @@ module Events
       assert_equal Time.find_zone("America/Phoenix").parse("2027-01-17 3:00 PM"), coldwater.final_cutoff_at
       assert_includes coldwater.source_metadata.fetch("sources").pluck("url"),
                       "https://www.aravaiparunning.com/avr/wp-content/uploads/CWR26-Runner-Guide.pdf"
+
+      shippey = published_races.find { |published| published.slug == "shippey-100" }
+      assert_equal 2027, shippey.year
+      assert_equal Date.new(2027, 1, 16), shippey.start_date
+      assert shippey.open?
+      assert_equal 34, shippey.cutoff_hours
+      assert_nil shippey.elevation_gain_ft, "the organizer publishes no vert figure"
+      assert_equal 26, shippey.aid_stations.count,
+                   "a Start pass plus five passes on each of the five 20-mile loops"
+      assert_equal 2, shippey.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "two indoor stations: Emerson and Sverdrup Lodge"
+      assert_equal 15, shippey.aid_stations.count { |station| station.name.include?("Sverdrup") },
+                   "Sverdrup is passed three times on each of the five loops"
+      assert_not shippey.aid_stations.find_by!(mile: 36.4).pacer_access?,
+                 "pacers may not join before 40 miles"
+      assert shippey.aid_stations.find_by!(mile: 40).pacer_access?,
+             "pacing begins after 40 miles (two loops) or 5:00 PM Saturday"
+      assert_equal "32h", shippey.aid_stations.find_by!(mile: 93.2).cutoff_elapsed_label,
+                   "the Sverdrup station shuts at 2:00 PM Sunday"
+      assert_equal "34h", shippey.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/Chicago").parse("2027-01-17 4:00 PM"), shippey.final_cutoff_at
+      assert_includes shippey.source_metadata.fetch("sources").pluck("url"),
+                      "https://ultrasignup.com/register.aspx?did=135549"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
