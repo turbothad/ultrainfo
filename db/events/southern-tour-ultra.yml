@@ -142,7 +142,7 @@ aid_stations:
     aid: "Main aid station in the event field; hot food is served throughout the race."
     bathroom: "Portable restrooms and handwashing stations are provided at the event field."
     park: "QR-code parking pass required (about 450 cars). Overflow at Poplar Grove, 1.5 miles away, with shuttles Saturday 5:30 am-7:00 pm. 4-wheel drive recommended for field parking; enter via the Scott's Hill Loop gate."
-    crew_notes: "Personal crew area at the main aid station. Friday gates open at 10:00 am for 100-mile participants only."
+    crew_notes: "Personal crew area at the main aid station. Friday gates open at 10:00 am for 100-mile runners only."
     pacer_notes: "Pacing begins after 50 miles or after 11:59 PM Friday, whichever comes first — not at the start."
     road: null
     source_metadata: &official_station_source
@@ -165,7 +165,7 @@ aid_stations:
     elev: 18
     crew: false
     water: true
-    pacer: true
+    pacer: false
     drop: null
     food: true
     med: null
@@ -176,7 +176,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not published for the mid-loop station; every published crew provision (personal crew area, personal aid placement, camping) is at the start/finish event field."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
+    pacer_notes: "Pacer pickup is guaranteed only from mile 50; a pacer may join anywhere earlier once it is past 11:59 PM Friday. One pacer at a time; no bicycles; muling is allowed."
     road: null
     source_metadata: *official_station_source
   - &event_field_pass
@@ -187,7 +187,7 @@ aid_stations:
     elev: 22
     crew: true
     water: true
-    pacer: true
+    pacer: false
     drop: null
     food: true
     med: null
@@ -198,7 +198,7 @@ aid_stations:
     bathroom: "Portable restrooms and handwashing stations are provided at the event field."
     park: null
     crew_notes: "Personal crew area at the main aid station. Runners must pass through this station on every lap for an official time."
-    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
+    pacer_notes: "Pacer pickup is guaranteed only from mile 50; a pacer may join anywhere earlier once it is past 11:59 PM Friday. One pacer at a time; no bicycles; muling is allowed."
     road: null
     source_metadata: *official_station_source
   - <<: *mid_loop_pass
@@ -225,31 +225,49 @@ aid_stations:
   - <<: *event_field_pass
     direction: "Loop 5"
     mile: 50.0
+    pacer: true
     crew_notes: "Personal crew area at the main aid station. Pacing is allowed from this point (50 miles) or from 11:59 PM Friday, whichever comes first."
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *mid_loop_pass
     direction: "Loop 6"
     mile: 55.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *event_field_pass
     direction: "Loop 6"
     mile: 60.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *mid_loop_pass
     direction: "Loop 7"
     mile: 65.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *event_field_pass
     direction: "Loop 7"
     mile: 70.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *mid_loop_pass
     direction: "Loop 8"
     mile: 75.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *event_field_pass
     direction: "Loop 8"
     mile: 80.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *mid_loop_pass
     direction: "Loop 9"
     mile: 85.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *event_field_pass
     direction: "Loop 9"
     mile: 90.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
     cutoff: "5:00 PM"
     cutoff_clock: "5:00 PM"
     cutoff_elapsed_minutes: 1740
@@ -259,10 +277,13 @@ aid_stations:
   - <<: *mid_loop_pass
     direction: "Loop 10"
     mile: 95.0
+    pacer: true
+    pacer_notes: "Pacers may join anywhere on the course after 50 miles or after 11:59 PM Friday, whichever comes first. One pacer at a time; no bicycles; muling is allowed."
   - <<: *event_field_pass
     name: "Finish — Event Field"
     direction: "Finish"
     mile: 100.0
+    pacer: true
     cutoff: "8:00 PM"
     cutoff_clock: "8:00 PM"
     cutoff_elapsed_minutes: 1920
@@ -271,4 +292,4 @@ aid_stations:
     pacer_notes: "Pacers may accompany their runner to the finish once pacing has begun. One pacer at a time; no bicycles; muling is allowed."
     source_metadata:
       <<: *official_station_source
-      source_notes: "All athletes must be finished and off the course by 8:00 PM Saturday (32 hours). Verified on is the retrieval date, not the material's effective year. Pass miles use the organizer's per-loop frame; the organizer's course map measures the loop at 10.2 miles."
+      source_notes: "The organizer's course-close rule (`All athletes must be finished and off the course` by 8:00 PM Saturday) spans 32 hours from the Friday noon start. Verified on is the retrieval date, not the material's effective year. Pass miles use the organizer's per-loop frame; the organizer's course map measures the loop at 10.2 miles."

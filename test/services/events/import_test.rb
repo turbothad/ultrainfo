@@ -76,6 +76,10 @@ module Events
              "listed water does not establish potability at any pass"
       assert_not southern_tour.aid_stations.find_by!(mile: 5).crew_accessible?,
                  "published crew provisions are all at the start/finish event field"
+      assert_not southern_tour.aid_stations.find_by!(mile: 45).pacer_access?,
+                 "pacer pickup is not guaranteed before mile 50"
+      assert southern_tour.aid_stations.find_by!(mile: 50).pacer_access?,
+             "pacing is allowed from mile 50 (or 11:59 PM Friday, whichever comes first)"
       assert_equal "29h", southern_tour.aid_stations.find_by!(mile: 90).cutoff_elapsed_label,
                    "the final lap must start by 5:00 PM Saturday"
       assert_equal "32h", southern_tour.aid_stations.find_by!(mile: 100).cutoff_elapsed_label

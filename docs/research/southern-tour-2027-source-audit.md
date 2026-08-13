@@ -50,13 +50,13 @@ All URLs below were opened or downloaded on 2026-08-13.
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
 | S1 | Race site home (RunSignup) | https://runsignup.com/Race/NC/Wilmington/SouthernTourUltra | Supports the January 15–16, 2027 date, distances, and registration deadline (January 9, 2027, 11:59 PM ET). https://www.southerntourultra.com redirects here. Its own Sign Up and Results links carry raceId 36713, the id in `registration_url` and `results_url`. |
-| S2 | Individual Events page | https://runsignup.com/Race/SouthernTourUltra/Page/IndividualEvents | Primary 100-mile source: 12:00 PM Friday start, 11:30 AM meeting, 32-hour limit, 29-hour soft cutoff (final lap by 5:00 PM Saturday with a headlamp, complete by 8:00 PM), 10 laps of a 10-mile course "subject to change based on conditions", checkpoint every lap, pacer/muling rules, both stations' aid inventories, buckle policy. |
-| S3 | Schedule page | https://runsignup.com/Race/SouthernTourUltra/Page/Schedule | Supports Friday gate/packet times for 100-milers (gates open 10:00 am Friday for 100-mile participants only), the "Southern Tour Race Site" venue name, Saturday gates at Scott's Hill Loop Road, the 5:00 PM Saturday course sweep, the 8:00 PM Saturday course close, and shuttle times. |
+| S2 | Individual Events page | https://runsignup.com/Race/SouthernTourUltra/Page/IndividualEvents | Primary 100-mile source: 12:00 PM Friday start, 11:30 AM meeting, 32-hour limit, 29-hour soft cutoff (final lap by 5:00 PM Saturday with a headlamp, complete by 8:00 PM), 10 laps of a 10-mile course "subject to change based on conditions", pass through the "checkpoint" (the event-field station) every lap, pacer/muling rules, both stations' aid inventories, buckle policy. |
+| S3 | Schedule page | https://runsignup.com/Race/SouthernTourUltra/Page/Schedule | Supports Friday gate/packet times for 100-milers (gates open 10:00 am Friday "for 100 mile participants only"), the "Southern Tour Race Site" venue name, Saturday gates at Scott's Hill Loop Road, the 5:00 PM Saturday course sweep, the 8:00 PM Saturday course close, and shuttle times. |
 | S4 | FAQ page | https://runsignup.com/Race/SouthernTourUltra/Page/FrequentlyAskedQuestions | Supports loop structure (two aid stations per loop at mile 5 and mile 10), pacer timing, station menus (adds Ramen and fruit at Station 1), and finisher recognition. |
 | S5 | Course page | https://runsignup.com/Race/SouthernTourUltra/Page/Course | Course narrative (private property along the Atlantic Intracoastal Waterway; packed sand, single track, bush-hogged routes; the organizer's claim that "George Washington's historic Southern Tour once traversed this very property" — no year given) and links to S6 and the site-layout map. |
 | S6 | Organizer Google My Maps "10 mile course" (KML export) | https://www.google.com/maps/d/kml?mid=1TXRiHGQ6AkgURW1N5CQgnLt362qD5ILo&forcekml=1 | Geometry authority: 896-point loop line (measures 10.20 mi), START/FINISH/AID/CHECKPOINT placemark (34.330738, -77.739602), AID STATION placemark (34.324688, -77.729747). `db/events/southern-tour-ultra.gpx` is converted from this export; direction of travel follows the map's course-direction chevrons. |
 | S7 | Camping, Parking and Rules page | https://runsignup.com/Race/SouthernTourUltra/Page/CampingParkingandRules | Supports parking passes/QR system, ~450-car limit, entry "via the Scott's Hill Loop Gate", Poplar Grove overflow (1.5 mi) with Saturday shuttles 5:30 am–7:00 pm, camping rules, and portable restrooms/handwashing at the venue. Together with S3 this sources the "Southern Tour Race Site, Scott's Hill Loop Road" venue line. |
-| S8 | USGS 3DEP Elevation Point Query Service | https://epqs.nationalmap.gov/v1/json | Spot elevations at mapped points (queried 2026-08-13): event-field checkpoint 23 ft, mid-loop station 10 ft, loop samples 11–29 ft. Not an organizer source; used only because the organizer publishes no elevation data. |
+| S8 | USGS 3DEP Elevation Point Query Service | https://epqs.nationalmap.gov/v1/json | Spot elevations at mapped points (queried 2026-08-13): event-field station placemark 23 ft, mid-loop station placemark 10 ft, loop samples 11–29 ft. Not an organizer source; used only because the organizer publishes no elevation data. |
 
 ## Claim-level decisions
 
@@ -75,7 +75,7 @@ All URLs below were opened or downloaded on 2026-08-13.
   anywhere on course; one at a time; no bicycles; muling allowed (S2). The FAQ's
   older "after 11:59 PM" phrasing is superseded by S2's fuller rule.
 - **Crew.** Personal crew area at the main aid station; personal aid may be
-  placed near the camping area by the checkpoint (S2). No source publishes crew
+  placed near the camping area by the event-field station (S2). No source publishes crew
   access at the mid-loop station, and all parking/access instructions point to
   the event field, so mid-loop passes record `crew: false` with a note.
 - **Drop bags.** No drop-bag service is published anywhere; `drop` stays null
@@ -83,8 +83,8 @@ All URLs below were opened or downloaded on 2026-08-13.
 - **Medical.** No source describes medical service at any station; `med` stays
   null everywhere.
 - **Station passes.** 21 passes: Start, then Station 1 (per-loop mile 5) and the
-  event-field checkpoint (per-loop mile 10) for each of ten loops, with the
-  final checkpoint recorded as the Finish. Coordinates come from the S6
+  event-field station (per-loop mile 10) for each of ten loops, with the
+  final event-field pass recorded as the Finish. Coordinates come from the S6
   placemarks via GPX waypoints.
 - **Elevation series.** USGS 3DEP spot elevations at the on-course points
   nearest each mapped station, listed at each pass's nominal mile — the same
@@ -97,7 +97,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 
 - eagle-endurance.com (this race is unrelated to it, but nearby January
   ultra listings on run100s still point there) now serves spam content.
-- run100s.com's table row for this race predates the current edition; its
+- run100s.com's table row for this race predates the current listing; its
   32-hour cutoff matches, but its "Southern Tour" name and any operational
   details must not be copied without checking the RunSignup pages above.
 - The Palmetto Ultras-style pattern of unlinked "Runner Guide" text does not
