@@ -30,6 +30,12 @@ fail_queue.call("queue must be a mapping") unless queue.is_a?(Hash)
 fail_queue.call("candidates must be a list") unless candidates.is_a?(Array)
 fail_queue.call("candidate_count does not match candidates") unless queue["candidate_count"] == candidates.length
 
+goal_path = repository_root.join(queue["goal_condition_path"].to_s)
+fail_queue.call("goal condition file is missing: #{goal_path}") unless goal_path.file?
+goal_condition = goal_path.read
+fail_queue.call("goal condition must start with /goal") unless goal_condition.start_with?("/goal ")
+fail_queue.call("goal condition exceeds Claude's 4,000-character limit") if goal_condition.length > 4_000
+
 ids = candidates.map { |candidate| candidate["id"] }
 fail_queue.call("candidate ids must be present and unique") unless ids.all?(&present) && ids.uniq.length == ids.length
 

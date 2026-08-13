@@ -15,6 +15,7 @@ queue:
   processing_order: source_order
   active_candidate_id:
   workflow_reference: docs/research/claude-code-goal-workflow.md
+  goal_condition_path: docs/agents/run100s-goal.txt
   allowed_statuses:
   - queued
   - researching

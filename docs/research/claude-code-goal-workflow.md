@@ -217,19 +217,11 @@ iteration and must not advance the queue.
 
 ## Paste-ready goal condition
 
-This condition references the checked-in workflow and frozen queue directly.
-It deliberately describes the terminal state rather than repeating the whole
-procedure:
-
-```text
-/goal Process `db/events/onboarding/run100s-queue.yml` by following its agent_contract and the workflow in `docs/research/claude-code-goal-workflow.md`. Run `bin/validate-run100s-queue` before selecting work and after every queue update. One race candidate is one iteration. Use only a main-only serial workflow: do not create feature branches or pull requests. Run bounded read-only source research in parallel when useful, but keep all repository mutation, review, push, release, and deployment sequential, and never start the next candidate until the current candidate is in a recorded terminal state.
-
-At the start of every eligible candidate, require a clean local `main` whose HEAD equals `origin/main`, and record that HEAD as `<iteration-base-sha>`. Use Run100s only for discovery and current first-party race sources for publishable facts. Implement through the shared race engine, keep uncertainty and source-check dates visible, run the relevant tests, and make traceable commits directly on local `main`. Then run `/mattpocock-skills:code-review <iteration-base-sha>` and resolve or explicitly classify every actionable standards/spec finding. After that stage is accepted, run Claude Code's bundled `/code-review` against the same fixed point and resolve every actionable bug finding. Both reviews must identify the same final commit. If a review causes a code change, rerun tests, commit, and restart the two-review sequence. Stop and record a blocker instead of looping after the same review failure repeats three times.
-
-Only after both review gates pass for the final local-main commit: push `main` to `origin`, verify `origin/main` equals that exact SHA, and wait for successful ci.yml on it. Then select the next valid SemVer under docs/operations/releases.md, run `bin/release prepare <version>` and `bin/release check <version>`, deploy with `ULTRAINFO_HOST=ultrainfo.org bin/release deploy <version>`, verify the tag and deployed revision, require HTTP success from `https://ultrainfo.org/up` and the deployed race page, and publish the draft GitHub release. A failed push, CI, permission, credential, release, deploy, revision, or smoke check blocks the current race and forbids queue advancement.
-
-The goal is achieved only when the frozen queue has no non-terminal candidates, every completed candidate's ledger entry contains checked first-party sources, final commit SHA, passing tests, Matt review evidence, bundled code-review evidence, release tag, deployed SHA, and successful public smoke evidence, and `bin/validate-run100s-queue` passes. Surface the validator summary and the final candidate counts in the transcript so the goal evaluator can judge them. Do not claim success from plans, task status, command exit alone, or evidence that is only stored in files.
-```
+The exact condition is isolated in
+[`docs/agents/run100s-goal.txt`](../agents/run100s-goal.txt). Copy only that
+file's contents into Claude Code. Keeping the command in a plain-text file
+prevents the surrounding research and explanation from being included in the
+4,000-character condition by mistake.
 
 This is production deployment authority only for an iteration that passes every
 named gate. It is not authority to bypass permissions, CI, source uncertainty,
