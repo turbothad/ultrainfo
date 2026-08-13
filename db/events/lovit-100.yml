@@ -85,8 +85,8 @@ race:
     turnaround and back, then west past Hickory Nut Mountain to the ADA
     turnaround and home — through the Ouachita National Forest above Lake
     Ouachita. Start 6:00 AM Saturday; 34-hour limit (4:00 PM Sunday) with
-    firm cutoffs at Avery, Hickory Nut inbound, and the ADA west end, and
-    22 manned aid station passes along the way.
+    firm cutoffs at Avery, Hickory Nut inbound, and the ADA west end —
+    the organizer counts 22 manned aid stations along the 100-mile course.
   start_venue: East Cove, Mountain Harbor Resort, Mt. Ida, AR
   finish_venue: East Cove, Mountain Harbor Resort, Mt. Ida, AR
 
@@ -400,7 +400,6 @@ aid_stations:
     crew_notes: "Crew access per the aid chart."
     pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Firm cutoff: 5:35 PM (11 hr 35 min from the 6:00 AM Saturday start); runners past it may be removed from the course. The cutoffs page quotes this station at mile 34.5; the aid chart's cumulative mile governs this record. Verified on is the retrieval date."
@@ -550,7 +549,6 @@ aid_stations:
     crew_notes: "No crew access at this pass per the aid chart."
     pacer_notes: "Not a listed safety-runner pickup station; pickups happen only at the six stations on the pacing page, starting westbound at Brady Mountain Road (mile 39.8)."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Firm cutoff: 4:30 AM (22 hr 30 min from the 6:00 AM Saturday start); runners past it may be removed from the course. The cutoffs page quotes this station at mile 66; the aid chart's cumulative mile governs this record. Verified on is the retrieval date."
@@ -616,7 +614,6 @@ aid_stations:
     crew_notes: "Crew access per the aid chart."
     pacer_notes: "Safety runners (pacers) may be picked up or switched here — one of the six listed pickup stations. One at a time; runners 60 and older may have one from the start with prior Race Director permission."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Firm cutoff: 10:00 AM (28 hr 0 min from the 6:00 AM Saturday start); runners past it may be removed from the course. The cutoffs page quotes this station at mile 81; the aid chart's cumulative mile governs this record. Verified on is the retrieval date."
@@ -703,7 +700,6 @@ aid_stations:
     crew_notes: "Crew access per the aid chart."
     pacer_notes: "A safety runner picked up at a listed station may accompany their runner to the finish."
     road: null
-    source_metadata: *official_station_source
     source_metadata:
       <<: *official_station_source
       source_notes: "Firm cutoff: 4:00 PM (34 hr 0 min from the 6:00 AM Saturday start); runners past it may be removed from the course. Verified on is the retrieval date."
