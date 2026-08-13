@@ -44,7 +44,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
 | S1 | HURT100 site home | https://hurt100.com/ | Entry point; links the Book of HURT, course map page, and results page. |
-| S2 | Book of HURT 2027 | https://hurt100.com/book-of-hurt-2027/ | Primary operational source: January 16–17, 2027; 6:00 AM start; Hawaiʻi Nature Center, 2131 Makiki Heights Drive; 5 laps, 99% single track, 24,500 ft gain, 20 stream crossings; 36-hour limit; cutoffs Makiki mile 80 11:00 AM, Mānoa mile 87 1:30 PM, Nuʻuanu mile 92.5 3:30 PM, finish 6:00 PM Sunday, stations closing 15 minutes after cutoff; station inventories and the explicit not-provided list; crew rules (Makiki anytime, Mānoa not before 10:00 AM Saturday, Nuʻuanu never, 100-yard rule, authorized parking); pacer rules (after 60 miles or 5:00 PM Saturday, one pacer, starts only at Mānoa or Makiki, bib, aid-station entry/exit rules); drop-bag rules (12x12x18, Makiki delivery 4:45–5:45 AM, Arboretum Trail staging, retrieval by 6:15 PM Sunday at Hālau Kū Māna); lottery (registration July 15–28 2026, drawn August 8 2026, 130 runners, kukui-nut weighting, qualifying 50-mile finish, 8 hours trail work); $425 fee. |
+| S2 | Book of HURT 2027 | https://hurt100.com/book-of-hurt-2027/ | Primary operational source: January 16–17, 2027; 6:00 AM start; Hawaiʻi Nature Center, 2131 Makiki Heights Drive; 5 laps, 99% single track, 24,500 ft gain, 20 stream crossings; 36-hour limit; cutoffs Makiki mile 80 11:00 AM, Mānoa mile 87 1:30 PM, Nuʻuanu mile 92.5 3:30 PM, finish 6:00 PM Sunday, stations closing 15 minutes after cutoff; station inventories and the explicit not-provided list; crew rules (Makiki anytime, Mānoa not before 10:00 AM Saturday, Nuʻuanu never, 100-yard rule, authorized parking); pacer rules (after 60 miles or 5:00 PM Saturday, "Only one pacer is allowed to accompany a runner at a time", starts only at Mānoa or Makiki, bib, aid-station entry/exit rules); drop-bag rules (12x12x18, Makiki delivery 4:45–5:45 AM, Arboretum Trail staging, "Runners may have personal supplies at any of the three aid stations", post-closure transfer of Mānoa/Nuʻuanu bags to Hālau Kū Māna, retrieval by 6:15 PM Sunday); lottery (registration July 15–28 2026, drawn August 8 2026, "a goal of starting 135 runners (or the current permitted limit)", kukui-nut weighting, qualifying 50-mile finish, 8 hours trail work); $425 fee. |
 | S3 | Course map page | https://hurt100.com/course-map/ | Links the official GPX, KML, CalTopo map (caltopo.com/p/F08HC), and the My Maps course map. |
 | S4 | Official HURT100.gpx route download | https://hurt100.com/HURT100.gpx | Geometry authority: CALTOPO export, one `full loop` route of 1,230 points starting and ending at Makiki (25 ft closure gap), measuring ~16.8 miles. SHA-256 c1d490a3fe0d8d27797195e8a09ccd3850e1e93561667f0b67fd618a750cc012. `db/events/hurt-100.gpx` copies these coordinates exactly, converted from route points to track points because Ultrainfo reads tracks; no elevations. |
 | S5 | Organizer Google My Maps "HURT 100 Course" (KML export) | https://www.google.com/maps/d/kml?mid=12L8hV6-KuFKDGc26uqvEzbxSJ1_NN2Q&forcekml=1 | Station placemarks (Makiki 21.316378,-157.827723; Mānoa 21.331349,-157.801411; Nuʻuanu 21.346832,-157.820921) used as GPX waypoints, and three course legs with embedded altitudes used for the elevation profile and spot elevations. Leg positions put Mānoa at ~6.9 and Nuʻuanu at ~11.8 of an ~18.8-mile loop, consistent with the Book's mile 7 / mile 12.5 frame. |
@@ -71,9 +71,10 @@ All URLs below were opened or downloaded on 2026-08-13.
   `true` only where distance alone guarantees eligibility at a permitted
   station (Makiki/Mānoa passes from mile 60), `false` elsewhere with the
   5:00 PM Saturday exception and the no-starts-at-Nuʻuanu rule in notes.
-- **Drop bags.** `true` at Makiki lap passes (bags staged into that station),
-  `null` at the Start (bags are handed in pre-race), `false` at Mānoa and
-  Nuʻuanu (S2 locates the service exclusively at Makiki).
+- **Drop bags.** `true` at every lap pass: S2 says "Runners may have personal
+  supplies at any of the three aid stations" and race personnel transfer
+  Mānoa/Nuʻuanu bags to Hālau Kū Māna as those stations close. `null` at the
+  Start (bags are handed in pre-race).
 - **Medical.** `false` everywhere — S2's explicit not-provided list.
 - **Station passes.** 16: Start, then Mānoa (mile 7), Nuʻuanu (12.5), Makiki
   (20) per lap, final Makiki pass recorded as the Finish.
@@ -87,5 +88,5 @@ All URLs below were opened or downloaded on 2026-08-13.
   not be copied.
 - The CalTopo map p/F08HC is interactive; the checked-in geometry must always
   be regenerated from the direct HURT100.gpx download, not hand-traced.
-- Older editions' Books of HURT remain online at similar URLs; only the 2027
-  edition governs this record.
+- Books of HURT for earlier years remain online at similar URLs; only the
+  2027 Book governs this record.

@@ -102,6 +102,8 @@ module Events
              "the Book of HURT states typical first-aid items are not provided at aid stations"
       assert hurt.aid_stations.select { |station| station.name.include?("Nuʻuanu") }.none?(&:crew_accessible?),
              "crew access is never allowed at Nuʻuanu"
+      assert hurt.aid_stations.where.not(mile: 0).all?(&:drop_bag?),
+             "runners may have personal supplies at any of the three aid stations"
       assert_not hurt.aid_stations.find_by!(mile: 47).pacer_access?,
                  "pacer pickup is not guaranteed before mile 60"
       assert hurt.aid_stations.find_by!(mile: 60).pacer_access?,

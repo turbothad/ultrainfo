@@ -3,7 +3,7 @@ slug: hurt-100
 files:
   race:
     path: hurt-100.yml
-    sha256: b8003c30e5966cfa4abdb2c970dff168e0bf9816de3925a476b62324a27e2f65
+    sha256: f84452dff0acc5c6a416696c1062e85699198c38e67316b7077df7d9e8d61138
   course:
     path: hurt-100.gpx
     sha256: 2549a8d7cc4026c352313b9d272cc90f7918a36e6dcad1a4c4464a09ba7bd51b
