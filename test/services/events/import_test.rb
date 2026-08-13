@@ -7,8 +7,8 @@ module Events
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
-                     "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100" ],
-                   published_races.map(&:name)
+                     "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
+                     "Orcas Island 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -268,6 +268,36 @@ module Events
       assert_equal Time.find_zone("America/Los_Angeles").parse("2027-02-21 2:00 PM"), jackpot.final_cutoff_at
       assert_includes jackpot.source_metadata.fetch("sources").pluck("url"),
                       "https://www.aravaiparunning.com/avr/wp-content/uploads/2023/03/NV23003MWC-Jackpot-Ultras-Long-Course.pdf"
+
+      orcas = published_races.find { |published| published.slug == "orcas-island-100" }
+      assert_equal 2027, orcas.year
+      assert_equal Date.new(2027, 2, 26), orcas.start_date
+      assert orcas.open?
+      assert_equal 36, orcas.cutoff_hours
+      assert_equal 26_000, orcas.elevation_gain_ft, "the organizer publishes ~26,000 ft of gain"
+      assert_equal 17, orcas.aid_stations.count,
+                   "a Start pass plus four passes on each of the four nominal 25-mile loops"
+      assert_equal 4, orcas.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "the organizer GPX's four station waypoints"
+      assert_not orcas.aid_stations.find_by!(mile: 5).crew_accessible?,
+                 "no crew at Mountain Lake on lap 1"
+      assert orcas.aid_stations.find_by!(mile: 30).crew_accessible?,
+             "crews are allowed at Mountain Lake from lap 2"
+      assert_not orcas.aid_stations.find_by!(mile: 71).crew_accessible?,
+                 "Mt Constitution allows crews on lap 4 only"
+      assert_not orcas.aid_stations.find_by!(mile: 21).pacer_access?,
+                 "no pacers on the first lap"
+      assert orcas.aid_stations.find_by!(mile: 25).pacer_access?,
+             "pacers join from mile 25 at crew-accessible stations"
+      assert_not orcas.aid_stations.find_by!(mile: 46).pacer_access?,
+                 "pacers may start from Mt Constitution on the last lap only"
+      assert_equal 5, orcas.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "last-lap cutoffs run from mile 75 through the finish"
+      assert_equal "27h", orcas.aid_stations.find_by!(mile: 75).cutoff_elapsed_label
+      assert_equal "36h", orcas.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-02-27 8:00 PM"), orcas.final_cutoff_at
+      assert_includes orcas.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.rainshadowrunning.com/orcas100.html"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

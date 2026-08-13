@@ -1,0 +1,9 @@
+version: 1
+slug: orcas-island-100
+files:
+  race:
+    path: orcas-island-100.yml
+    sha256: bf0a296f6a91ea1f7baa158b9b747786130d3148976d7929e3b58525dc62750a
+  course:
+    path: orcas-island-100.gpx
+    sha256: e063dd52a8097219a2e207d9bd6ccac063e0b37871bd738ccd3de1f946e16819
