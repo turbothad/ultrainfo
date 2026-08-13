@@ -1,0 +1,9 @@
+version: 1
+slug: forgotten-florida-100
+files:
+  race:
+    path: forgotten-florida-100.yml
+    sha256: d5a193b4bf535be7f1b8434a39822cf376680675b8a971b0a322c0a0a5d1be9d
+  course:
+    path: forgotten-florida-100.gpx
+    sha256: 2a516b3f60edb5ffdddec776b4a9a131e9a4611e48319df520f9a39346f4524f

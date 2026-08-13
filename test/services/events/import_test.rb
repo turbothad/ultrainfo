@@ -7,7 +7,7 @@ module Events
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
-                     "The Shippey 100" ], published_races.map(&:name)
+                     "The Shippey 100", "Forgotten Florida 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -193,6 +193,32 @@ module Events
       assert_equal Time.find_zone("America/Chicago").parse("2027-01-17 4:00 PM"), shippey.final_cutoff_at
       assert_includes shippey.source_metadata.fetch("sources").pluck("url"),
                       "https://ultrasignup.com/register.aspx?did=135549"
+
+      forgotten = published_races.find { |published| published.slug == "forgotten-florida-100" }
+      assert_equal 2027, forgotten.year
+      assert_equal Date.new(2027, 1, 30), forgotten.start_date
+      assert forgotten.open?
+      assert_equal 34, forgotten.cutoff_hours
+      assert_equal 24, forgotten.aid_stations.count, "the handbook matrix's 23 passes plus the start"
+      assert_equal 14, forgotten.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "a point-to-point course over fourteen physical station locations"
+      assert_not_equal forgotten.start_lat, forgotten.finish_lat,
+                       "the course runs point to point from Oviedo to Tosohatchee"
+      assert_equal 19, forgotten.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the matrix publishes leave-by cutoffs at nineteen passes"
+      assert_equal "Turnaround", forgotten.aid_stations.find_by!(mile: 52.6).direction,
+                   "the 50-mile finish line is the 100-mile turnaround"
+      assert_equal Time.find_zone("America/New_York").parse("2027-01-30 10:30 PM"), forgotten.turnaround_cutoff_at
+      assert_not forgotten.aid_stations.find_by!(mile: 53.1).pacer_access?,
+                 "the matrix marks no pacer pickup at False Finish"
+      assert forgotten.aid_stations.find_by!(mile: 52.6).pacer_access?,
+             "pacers join from the 50-mile turnaround onward"
+      assert_equal 4, forgotten.aid_stations.count(&:drop_bag?),
+                   "drop bags go to Joshua Creek and the three Charlie Lake passes"
+      assert_equal "34h", forgotten.aid_stations.find_by!(mile: 98.85).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/New_York").parse("2027-01-31 4:30 PM"), forgotten.final_cutoff_at
+      assert_includes forgotten.source_metadata.fetch("sources").pluck("url"),
+                      "https://ultrasignup.com/register.aspx?did=135495"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
