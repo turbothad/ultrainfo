@@ -134,7 +134,7 @@ module Events
       assert_not long_haul.aid_stations.find_by!(mile: 47).pacer_access?,
                  "pacers may not join before the end of loop 3"
       assert long_haul.aid_stations.find_by!(mile: 50.4).pacer_access?,
-             "pacers join at the loop 3/4 checkpoint for loops 4-6"
+             "pacers join at the loop 3/4 HQ pass for loops 4-6"
       assert_equal 1, long_haul.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
                    "no intermediate station cutoffs are published; only the 32-hour course cutoff"
       assert_equal "32h", long_haul.aid_stations.find_by!(mile: 100.8).cutoff_elapsed_label
