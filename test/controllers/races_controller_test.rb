@@ -139,4 +139,10 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     get race_path("nope")
     assert_response :not_found
   end
+
+  test "page title names the Race" do
+    get race_path(@race)
+
+    assert_select "title", "Bighorn 100 2026 — cutoffs, aid stations & crew access · ultrainfo"
+  end
 end
