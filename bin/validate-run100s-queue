@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+require "yaml"
+
+repository_root = Pathname(__dir__).join("..").expand_path
+queue_path = Pathname(ARGV.fetch(0, repository_root.join("db/events/onboarding/run100s-queue.yml"))).expand_path
+
+fail_queue = ->(message) do
+  warn "Run100s queue is invalid: #{message}"
+  exit 1
+end
+
+value_at = ->(candidate, path) do
+  path.split(".").reduce(candidate) do |value, key|
+    break nil unless value.is_a?(Hash)
+
+    value[key]
+  end
+end
+
+present = ->(value) { !value.nil? && (!value.respond_to?(:empty?) || !value.empty?) }
+
+data = YAML.safe_load_file(queue_path, permitted_classes: [], aliases: false)
+fail_queue.call("schema_version must be 1") unless data["schema_version"] == 1
+
+queue = data["queue"]
+candidates = data["candidates"]
+fail_queue.call("queue must be a mapping") unless queue.is_a?(Hash)
+fail_queue.call("candidates must be a list") unless candidates.is_a?(Array)
+fail_queue.call("candidate_count does not match candidates") unless queue["candidate_count"] == candidates.length
+
+ids = candidates.map { |candidate| candidate["id"] }
+fail_queue.call("candidate ids must be present and unique") unless ids.all?(&present) && ids.uniq.length == ids.length
+
+expected_order = (1..candidates.length).to_a
+actual_order = candidates.map { |candidate| candidate["source_order"] }
+fail_queue.call("source_order must be contiguous and sorted") unless actual_order == expected_order
+
+allowed_statuses = queue["allowed_statuses"]
+active_statuses = queue["active_statuses"]
+terminal_statuses = queue["terminal_statuses"]
+requirements = queue["status_requirements"]
+fail_queue.call("allowed_statuses must be a non-empty list") unless allowed_statuses.is_a?(Array) && allowed_statuses.any?
+fail_queue.call("terminal_statuses must be allowed") unless terminal_statuses.is_a?(Array) && (terminal_statuses - allowed_statuses).empty?
+fail_queue.call("active_statuses must be allowed and non-terminal") unless active_statuses.is_a?(Array) &&
+  (active_statuses - allowed_statuses).empty? && (active_statuses & terminal_statuses).empty?
+fail_queue.call("status_requirements must be a mapping") unless requirements.is_a?(Hash)
+
+candidates.each do |candidate|
+  id = candidate["id"]
+  status = candidate["status"]
+  fail_queue.call("#{id} has unsupported status #{status.inspect}") unless allowed_statuses.include?(status)
+  fail_queue.call("#{id} with active status #{status} requires started_at") if active_statuses.include?(status) && !present.call(candidate["started_at"])
+
+  Array(requirements[status]).each do |required_path|
+    fail_queue.call("#{id} with status #{status} requires #{required_path}") unless present.call(value_at.call(candidate, required_path))
+  end
+end
+
+active_candidates = candidates.select { |candidate| active_statuses.include?(candidate["status"]) }
+fail_queue.call("more than one candidate is in progress") if active_candidates.length > 1
+
+active_id = queue["active_candidate_id"]
+expected_active_id = active_candidates.first&.fetch("id")
+fail_queue.call("active_candidate_id must identify the sole in-progress candidate") unless active_id == expected_active_id
+
+already_active = candidates.select { |candidate| candidate["status"] == "already_active" }
+already_active.each do |candidate|
+  %w[active_catalog bundle].each do |artifact|
+    artifact_path = repository_root.join(candidate.dig("terminal_evidence", artifact).to_s)
+    fail_queue.call("#{candidate.fetch("id")} references missing #{artifact} #{artifact_path}") unless artifact_path.file?
+  end
+end
+
+counts = candidates.map { |candidate| candidate.fetch("status") }.tally.sort.to_h
+puts "Run100s queue valid: #{candidates.length} candidates #{counts}"

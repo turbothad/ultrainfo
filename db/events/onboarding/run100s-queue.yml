@@ -1,0 +1,4917 @@
+---
+schema_version: 1
+queue:
+  id: run100s-north-america-100-mile-2026-08-13
+  source_url: http://www.run100s.com/ultra.htm
+  source_table: 100 mile events in North America (in chronological order)
+  captured_at: '2026-08-13T17:43:38Z'
+  source_last_modified: '2026-08-13T15:22:29Z'
+  source_etag: 17ba5-658ef45b06ca2
+  source_sha256: 95735007b4fa71145420cca2b8183ef38fcbe7e9771daef0231d61c2e4c2095e
+  source_warning: Discovery queue only. Run100s says its statistics are updated infrequently.
+    Every publishable race fact must be rechecked against current first-party race
+    sources.
+  candidate_count: 284
+  processing_order: source_order
+  active_candidate_id:
+  workflow_reference: docs/research/claude-code-goal-workflow.md
+  allowed_statuses:
+  - queued
+  - researching
+  - implementing
+  - implementation_verified
+  - matt_review_running
+  - matt_review_clean
+  - claude_code_review_running
+  - claude_code_review_clean
+  - release_deploy_running
+  - deployed_smoke_verified
+  - deployed
+  - already_active
+  - duplicate
+  - not_eligible
+  - blocked_needs_human
+  active_statuses:
+  - researching
+  - implementing
+  - implementation_verified
+  - matt_review_running
+  - matt_review_clean
+  - claude_code_review_running
+  - claude_code_review_clean
+  - release_deploy_running
+  - deployed_smoke_verified
+  terminal_statuses:
+  - deployed
+  - already_active
+  - duplicate
+  - not_eligible
+  - blocked_needs_human
+  status_requirements:
+    deployed:
+    - event_slug
+    - terminal_evidence.final_commit_sha
+    - terminal_evidence.tests
+    - terminal_evidence.matt_review
+    - terminal_evidence.claude_code_review
+    - terminal_evidence.release_tag
+    - terminal_evidence.deployed_sha
+    - terminal_evidence.deployed_at
+    - terminal_evidence.healthcheck_url
+    - terminal_evidence.race_url
+    - terminal_evidence.smoke_checked_at
+    already_active:
+    - event_slug
+    - terminal_evidence.active_catalog
+    - terminal_evidence.bundle
+    duplicate:
+    - terminal_evidence.duplicate_of
+    not_eligible:
+    - terminal_evidence.reason
+    blocked_needs_human:
+    - terminal_evidence.reason
+    - terminal_evidence.blocked_at
+  agent_contract:
+  - Process at most one non-terminal candidate at a time, in source_order.
+  - Use discovery_url only to locate the organizer; establish facts from current first-party
+    race sources.
+  - Do not begin the next candidate until the current candidate has a terminal status
+    and its required evidence is recorded.
+  - Keep all repository mutation, review, push, release, and deployment sequential
+    on main.
+  - Preserve candidate id and source_order when updating workflow status or evidence.
+candidates:
+- id: run100s-001-frozen-h3-sc
+  source_order: 1
+  name: 'Frozen: H3'
+  location_hint: SC
+  display_name: 'Frozen: H3(SC)'
+  date_text: 1/8-9/27
+  discovery_url: http://www.Eagle-Endurance.com/
+  run100s_href: http://www.Eagle-Endurance.com/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '18:45:22'
+    winning_time: '18:45:22'
+    finishers: '11'
+    results_year: "'26"
+  status: queued
+- id: run100s-002-southern-tour-nc
+  source_order: 2
+  name: Southern Tour
+  location_hint: NC
+  display_name: Southern Tour(NC)
+  date_text: 1/15-16/27
+  discovery_url: https://www.SouthernTourUltra.com
+  run100s_href: https://www.SouthernTourUltra.com
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '18:58:36'
+    winning_time: '18:58:36'
+    finishers: '27'
+    results_year: "'26"
+  status: queued
+- id: run100s-003-hurt-hi
+  source_order: 3
+  name: HURT
+  location_hint: HI
+  display_name: HURT(HI)
+  date_text: 1/16-17/27
+  discovery_url: http://www.run100s.com/ht100.htm
+  run100s_href: "./ht100.htm"
+  discovery_facts:
+    first_year: '2001'
+    cutoff_hours: '36'
+    climb_descent: 24935'/24935'
+    course_record: '19:22:44'
+    winning_time: '19:22:44'
+    finishers: '84'
+    results_year: "'26"
+  status: queued
+- id: run100s-004-long-haul-fl
+  source_order: 4
+  name: Long Haul
+  location_hint: FL
+  display_name: Long Haul(FL)
+  date_text: 1/16-17/27
+  discovery_url: https://a1ultraevents.wordpress.com/long-haul-100/
+  run100s_href: https://a1ultraevents.wordpress.com/long-haul-100/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '32'
+    climb_descent: 741'/778'
+    course_record: '13:18:58'
+    winning_time: '14:26:56'
+    finishers: '185'
+    results_year: "'26"
+  status: queued
+- id: run100s-005-coldwater-rumble-az
+  source_order: 5
+  name: Coldwater Rumble
+  location_hint: AZ
+  display_name: Coldwater Rumble(AZ)
+  date_text: 1/16-17/27
+  discovery_url: http://www.AravaipaRunning.com/coldwater/
+  run100s_href: http://www.AravaipaRunning.com/coldwater/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '32'
+    climb_descent: 4400'/4400'
+    course_record: '15:09:52'
+    winning_time: '16:19:17'
+    finishers: '90'
+    results_year: "'26"
+  status: queued
+- id: run100s-006-shippey-mo
+  source_order: 6
+  name: Shippey
+  location_hint: MO
+  display_name: Shippey(MO)
+  date_text: 1/16-17/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=124128
+  run100s_href: https://ultrasignup.com/register.aspx?did=124128
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '34'
+    climb_descent: 15000'/15000'
+    course_record: '18:45:51'
+    winning_time: '18:45:51'
+    finishers: '22'
+    results_year: "'26"
+  status: queued
+- id: run100s-007-run-of-the-century-al
+  source_order: 7
+  name: Run of the Century
+  location_hint: AL
+  display_name: Run of the Century(AL)
+  date_text: 1/23-24/27
+  discovery_url: https://runsignup.com/Race/AL/Pelham/TheRunOfTheCentury
+  run100s_href: https://runsignup.com/Race/AL/Pelham/TheRunOfTheCentury
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-008-forgotten-florida-fl
+  source_order: 8
+  name: Forgotten Florida
+  location_hint: FL
+  display_name: Forgotten Florida(FL)
+  date_text: 1/30-31/27
+  discovery_url: https://www.runbumtours.com/forgotten-florida
+  run100s_href: https://www.runbumtours.com/forgotten-florida
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '15:26:13'
+    winning_time: '16:08:55'
+    finishers: '75'
+    results_year: "'26"
+  status: queued
+- id: run100s-009-bootleg-boogie-nv
+  source_order: 9
+  name: Bootleg Boogie
+  location_hint: NV
+  display_name: Bootleg Boogie(NV)
+  date_text: 1/30-31/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=136133
+  run100s_href: https://ultrasignup.com/register.aspx?did=136133
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '36'
+    climb_descent: 13200'/13200'
+    course_record: '20:07:05'
+    winning_time: '20:07:05'
+    finishers: '18'
+    results_year: "'26"
+  status: queued
+- id: run100s-010-rocky-raccoon-tx
+  source_order: 10
+  name: Rocky Raccoon
+  location_hint: TX
+  display_name: Rocky Raccoon(TX)
+  date_text: 2/6-7/27
+  discovery_url: http://www.TejasTrails.com/rocky100/
+  run100s_href: http://www.TejasTrails.com/rocky100/
+  discovery_facts:
+    first_year: '1993'
+    cutoff_hours: '30'
+    climb_descent: 5375'/5375'
+    course_record: '12:44:33'
+    winning_time: 14;38:37
+    finishers: '236'
+    results_year: "'26"
+  status: queued
+- id: run100s-011-beast-of-burden-winter-ny
+  source_order: 11
+  name: Beast of Burden - Winter
+  location_hint: NY
+  display_name: Beast of Burden - Winter(NY)
+  date_text: 2/6-7/27
+  discovery_url: https://www.happilyrunning.com/beastofburden
+  run100s_href: https://www.happilyrunning.com/beastofburden
+  discovery_facts:
+    first_year: '2010'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '14:47:30'
+    winning_time: '17:42:43'
+    finishers: '14'
+    results_year: "'23"
+  status: queued
+- id: run100s-012-burt-wa
+  source_order: 12
+  name: BURT
+  location_hint: WA
+  display_name: BURT(WA)
+  date_text: 2/6-7/27
+  discovery_url: https://burtrun.wixsite.com/burtultra
+  run100s_href: https://burtrun.wixsite.com/burtultra
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '21:50:18'
+    winning_time: '21:50:18'
+    finishers: '5'
+    results_year: "'26"
+  status: queued
+- id: run100s-013-susitna-ak
+  source_order: 13
+  name: Susitna
+  location_hint: AK
+  display_name: Susitna(AK)
+  date_text: 2/13-15/27
+  discovery_url: http://www.Susitna100.com/
+  run100s_href: http://www.Susitna100.com/
+  discovery_facts:
+    first_year: '2004'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '17:29:00'
+    winning_time: '40:15:00'
+    finishers: '2'
+    results_year: "'26"
+  status: queued
+- id: run100s-014-outlaw-ok
+  source_order: 14
+  name: Outlaw
+  location_hint: OK
+  display_name: Outlaw(OK)
+  date_text: 2/13-15/27
+  discovery_url: https://www.Outlaw100.com/
+  run100s_href: https://www.Outlaw100.com/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '40'
+    climb_descent: "?'/?'"
+    course_record: '23:53:42'
+    winning_time: '29:25:11'
+    finishers: '6'
+    results_year: "'25"
+  status: queued
+- id: run100s-015-flat-top-mesa-nv
+  source_order: 15
+  name: Flat Top Mesa
+  location_hint: NV
+  display_name: Flat Top Mesa(NV)
+  date_text: 2/13-14/27
+  discovery_url: https://runsignup.com/Race/NV/Mesquite/FlatTopMesaEnduranceRun
+  run100s_href: https://runsignup.com/Race/NV/Mesquite/FlatTopMesaEnduranceRun
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '24:47:00'
+    winning_time: '24:47:00'
+    finishers: '4'
+    results_year: "'26"
+  status: queued
+- id: run100s-016-iron-heart-mo
+  source_order: 16
+  name: Iron Heart
+  location_hint: MO
+  display_name: Iron Heart(MO)
+  date_text: 2/13-14/27
+  discovery_url: https://ironheart.itsyourrace.com/event.aspx?id=16564
+  run100s_href: https://ironheart.itsyourrace.com/event.aspx?id=16564
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '35'
+    climb_descent: "?'/?'"
+    course_record: '34:13:49'
+    winning_time: '34:13:49'
+    finishers: '1'
+    results_year: "'26"
+  status: queued
+- id: run100s-017-jackpot-nv
+  source_order: 17
+  name: Jackpot
+  location_hint: NV
+  display_name: Jackpot(NV)
+  date_text: 2/19-20/27
+  discovery_url: https://www.AravaipaRunning.com/jackpot/
+  run100s_href: https://www.AravaipaRunning.com/jackpot/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '11:38:56'
+    winning_time: '11:38:56'
+    finishers: '24'
+    results_year: "'26"
+  status: queued
+- id: run100s-018-space-pirate-fl
+  source_order: 18
+  name: Space Pirate
+  location_hint: FL
+  display_name: Space Pirate(FL)
+  date_text: 2/20-21/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=115344
+  run100s_href: https://ultrasignup.com/register.aspx?did=115344
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '31'
+    climb_descent: "?'/?'"
+    course_record: '18:04:11'
+    winning_time: '19:26:34'
+    finishers: '17'
+    results_year: "'26"
+  status: queued
+- id: run100s-019-enoree-sc
+  source_order: 19
+  name: Enoree
+  location_hint: SC
+  display_name: Enoree(SC)
+  date_text: 2/20-21/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=137902
+  run100s_href: hhttps://ultrasignup.com/register.aspx?did=137902
+  discovery_facts:
+    first_year: '2027'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'27"
+  status: queued
+  url_note: Corrected the source pages obvious hhttps scheme typo in discovery_url;
+    run100s_href preserves the original.
+- id: run100s-020-orcas-island-wa
+  source_order: 20
+  name: Orcas Island
+  location_hint: WA
+  display_name: Orcas Island(WA)
+  date_text: 2/26-27/27
+  discovery_url: http://www.RainshadowRunning.com/
+  run100s_href: http://www.RainshadowRunning.com/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '36'
+    climb_descent: 26000'/26000'
+    course_record: '19:19:53'
+    winning_time: '20:56:35'
+    finishers: '62'
+    results_year: "'26"
+  status: queued
+- id: run100s-021-grandmaster-az
+  source_order: 21
+  name: Grandmaster
+  location_hint: AZ
+  display_name: Grandmaster(AZ)
+  date_text: 2/26-28/27
+  discovery_url: https://grandmasterultras.com/
+  run100s_href: https://grandmasterultras.com/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '48'
+    climb_descent: 5340'/5340'
+    course_record: '17:42:34'
+    winning_time: '22:46:00'
+    finishers: '40'
+    results_year: "'26"
+  status: queued
+- id: run100s-022-lovit-ar
+  source_order: 22
+  name: LOViT
+  location_hint: AR
+  display_name: LOViT(AR)
+  date_text: 2/27-28/27
+  discovery_url: http://www.RunLOViT.com/
+  run100s_href: http://www.RunLOViT.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '34'
+    climb_descent: 17000'/17000'
+    course_record: '20:33:17'
+    winning_time: '20:33:17'
+    finishers: '29'
+    results_year: "'23"
+  status: queued
+- id: run100s-023-lake-vian-hilltop-ok
+  source_order: 23
+  name: Lake Vian Hilltop
+  location_hint: OK
+  display_name: Lake Vian Hilltop(OK)
+  date_text: 2/27-28/27
+  discovery_url: https://runsignup.com/Race/OK/Vian/LakeVianHilltopRun
+  run100s_href: https://runsignup.com/Race/OK/Vian/LakeVianHilltopRun
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '19:53:29'
+    winning_time: '19:53:29'
+    finishers: '15'
+    results_year: "'26"
+  status: queued
+- id: run100s-024-mississippi-ms
+  source_order: 24
+  name: Mississippi
+  location_hint: MS
+  display_name: Mississippi(MS)
+  date_text: 3/5-6/27
+  discovery_url: http://www.ms50.com/
+  run100s_href: http://www.ms50.com/
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '16:33:30'
+    winning_time: '16:33:30'
+    finishers: '18'
+    results_year: "'26"
+  status: queued
+- id: run100s-025-mst-nc
+  source_order: 25
+  name: MST
+  location_hint: NC
+  display_name: MST(NC)
+  date_text: 3/6-7/27
+  discovery_url: http://www.MountainsToSea100.com/
+  run100s_href: http://www.MountainsToSea100.com/
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '36'
+    climb_descent: 7000'/7000'
+    course_record: '19:10:16'
+    winning_time: '23:26:00'
+    finishers: '23'
+    results_year: "'26"
+  status: queued
+- id: run100s-026-holly-springs-nc
+  source_order: 26
+  name: Holly Springs
+  location_hint: NC
+  display_name: Holly Springs(NC)
+  date_text: 3/6-7/27
+  discovery_url: https://runsignup.com/Race/NC/HollySprings/HollySpringsRaceAgainsttheSun/
+  run100s_href: https://runsignup.com/Race/NC/HollySprings/HollySpringsRaceAgainsttheSun/
+  discovery_facts:
+    first_year: '2027'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'27"
+  status: queued
+- id: run100s-027-appalachian-nc
+  source_order: 27
+  name: Appalachian
+  location_hint: NC
+  display_name: Appalachian(NC)
+  date_text: 3/10-11/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=141411
+  run100s_href: https://ultrasignup.com/register.aspx?did=141411
+  discovery_facts:
+    first_year: '2027'
+    cutoff_hours: '39'
+    climb_descent: 20000'/20000'
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'27"
+  status: queued
+- id: run100s-028-the-drift-wy
+  source_order: 28
+  name: The Drift
+  location_hint: WY
+  display_name: The Drift(WY)
+  date_text: 3/12-14/27
+  discovery_url: https://www.TheDrift100.com/
+  run100s_href: https://www.TheDrift100.com/
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '48'
+    climb_descent: 9000'/9000'
+    course_record: '29:36:00'
+    winning_time: '36:23:00'
+    finishers: '4'
+    results_year: "'24"
+  status: queued
+- id: run100s-029-viper-tn
+  source_order: 29
+  name: Viper
+  location_hint: TN
+  display_name: Viper(TN)
+  date_text: 3/12-13/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=137755
+  run100s_href: https://ultrasignup.com/register.aspx?did=137755
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '38'
+    climb_descent: "?'/?'"
+    course_record: '20:10:42'
+    winning_time: '22:55:04'
+    finishers: '25'
+    results_year: "'26"
+  status: queued
+- id: run100s-030-the-pistol-ultra-tn
+  source_order: 30
+  name: The Pistol Ultra
+  location_hint: TN
+  display_name: The Pistol Ultra(TN)
+  date_text: 3/13-14/27
+  discovery_url: http://www.PistolUltra.com/
+  run100s_href: http://www.PistolUltra.com/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '30'
+    climb_descent: 1350'/1350'
+    course_record: '14:01:33'
+    winning_time: '16:46:27'
+    finishers: '36'
+    results_year: "'26"
+  status: queued
+- id: run100s-031-thunder-kiss-al
+  source_order: 31
+  name: Thunder Kiss
+  location_hint: AL
+  display_name: Thunder Kiss(AL)
+  date_text: 3/13-14/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=128488
+  run100s_href: https://ultrasignup.com/register.aspx?did=128488
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: 12500'/12500'
+    course_record: '25:45:54'
+    winning_time: '25:45:54'
+    finishers: '11'
+    results_year: "'26"
+  status: queued
+- id: run100s-032-warbird-ky
+  source_order: 32
+  name: Warbird
+  location_hint: KY
+  display_name: Warbird(KY)
+  date_text: 3/19-20/27
+  discovery_url: https://www.trailsick.com/warbird-100
+  run100s_href: https://www.trailsick.com/warbird-100
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '35'
+    climb_descent: "?'/?'"
+    course_record: '22:39:15'
+    winning_time: '22:39:15'
+    finishers: '27'
+    results_year: "'26"
+  status: queued
+- id: run100s-033-pulse-id
+  source_order: 33
+  name: Pulse
+  location_hint: ID
+  display_name: Pulse(ID)
+  date_text: 3/19-20/27
+  discovery_url: https://www.pulserunning.com/pulseenduranceruns
+  run100s_href: https://www.pulserunning.com/pulseenduranceruns
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '32'
+    climb_descent: 600'/600'
+    course_record: '16:59:41'
+    winning_time: '19:28:46'
+    finishers: '9'
+    results_year: "'26"
+  status: queued
+- id: run100s-034-blackbeard-s-revenge-nc
+  source_order: 34
+  name: Blackbeard's Revenge
+  location_hint: NC
+  display_name: Blackbeard's Revenge(NC)
+  date_text: 3/20-21/27
+  discovery_url: http://www.TriviumRacing.com/event/blackbeards-revenge-100/
+  run100s_href: http://www.TriviumRacing.com/event/blackbeards-revenge-100/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '14:44:14'
+    winning_time: '14:44:14'
+    finishers: '93'
+    results_year: "'26"
+  status: queued
+- id: run100s-035-bootlegger-ga
+  source_order: 35
+  name: Bootlegger
+  location_hint: GA
+  display_name: Bootlegger(GA)
+  date_text: 3/20-21/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=137845
+  run100s_href: https://ultrasignup.com/register.aspx?did=137845
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '32'
+    climb_descent: 6000'/6000'
+    course_record: '16:18:52'
+    winning_time: '16:18:52'
+    finishers: '96'
+    results_year: "'26"
+  status: queued
+- id: run100s-036-grasslands-tx
+  source_order: 36
+  name: Grasslands
+  location_hint: TX
+  display_name: Grasslands(TX)
+  date_text: 3/20-21/27
+  discovery_url: https://GrasslandsTrailRun.com/
+  run100s_href: https://GrasslandsTrailRun.com/
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '15:25:16'
+    winning_time: '15:25:16'
+    finishers: '48'
+    results_year: "'25"
+  status: queued
+- id: run100s-037-southern-states-ga
+  source_order: 37
+  name: Southern States
+  location_hint: GA
+  display_name: Southern States(GA)
+  date_text: 3/21-22/27
+  discovery_url: https://www.SouthernStates200.com/
+  run100s_href: https://www.SouthernStates200.com/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '52'
+    climb_descent: "?'/?'"
+    course_record: '22:17:53'
+    winning_time: '22:17:53'
+    finishers: '20'
+    results_year: "'26"
+  status: queued
+- id: run100s-038-canebreak-ga
+  source_order: 38
+  name: Canebreak
+  location_hint: GA
+  display_name: Canebreak(GA)
+  date_text: 3/25-26/27
+  discovery_url: https://www.YetiTrailRunners.com/
+  run100s_href: https://www.YetiTrailRunners.com/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '22:18:35'
+    winning_time: '22:18:35'
+    finishers: '13'
+    results_year: "'26"
+  status: queued
+- id: run100s-039-badger-mt-challenge-wa
+  source_order: 39
+  name: Badger Mt. Challenge
+  location_hint: WA
+  display_name: Badger Mt. Challenge(WA)
+  date_text: 3/26-27/27
+  discovery_url: http://www.BadgerMountainChallenge.com/
+  run100s_href: http://www.BadgerMountainChallenge.com/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '32'
+    climb_descent: 14000'/14000'
+    course_record: '15:44:10'
+    winning_time: '18:55:16'
+    finishers: '68'
+    results_year: "'26"
+  status: queued
+- id: run100s-040-prairie-spirit-ks
+  source_order: 40
+  name: Prairie Spirit
+  location_hint: KS
+  display_name: Prairie Spirit(KS)
+  date_text: 3/27-28/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=129838
+  run100s_href: https://ultrasignup.com/register.aspx?did=129838
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '30'
+    climb_descent: 1200'/1200'
+    course_record: '14:02:25'
+    winning_time: '19:08:45'
+    finishers: '23'
+    results_year: "'26"
+  status: queued
+- id: run100s-041-umstead-nc
+  source_order: 41
+  name: Umstead
+  location_hint: NC
+  display_name: Umstead(NC)
+  date_text: 4/3-4/27
+  discovery_url: http://www.Umstead100.org/
+  run100s_href: http://www.Umstead100.org/
+  discovery_facts:
+    first_year: '1995'
+    cutoff_hours: '30'
+    climb_descent: 8000'/8000'
+    course_record: '12:57:06'
+    winning_time: '15:28:22'
+    finishers: '128'
+    results_year: "'25"
+  status: queued
+- id: run100s-042-crown-stub-or
+  source_order: 42
+  name: Crown Stub
+  location_hint: OR
+  display_name: Crown Stub(OR)
+  date_text: 4/3-4/27
+  discovery_url: https://www.bivouacracing.com/karissawhyracingeventscom
+  run100s_href: https://www.bivouacracing.com/karissawhyracingeventscom
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '30'
+    climb_descent: 10000'/10000'
+    course_record: '18:09:35'
+    winning_time: '18:55:36'
+    finishers: '14'
+    results_year: "'26"
+  status: queued
+- id: run100s-043-leatherwood-nc
+  source_order: 43
+  name: Leatherwood
+  location_hint: NC
+  display_name: Leatherwood(NC)
+  date_text: 4/3-4/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=138204
+  run100s_href: https://ultrasignup.com/register.aspx?did=138204
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: 24400'/24400'
+    course_record: '25:34:07'
+    winning_time: '25:34:07'
+    finishers: '3'
+    results_year: "'26"
+  status: queued
+- id: run100s-044-white-mountains-ak
+  source_order: 44
+  name: White Mountains
+  location_hint: AK
+  display_name: White Mountains(AK)
+  date_text: 4/4-5/27
+  discovery_url: http://www.EnduranceNorth.org/wm-100/
+  run100s_href: http://www.EnduranceNorth.org/wm-100/
+  discovery_facts:
+    first_year: '2010'
+    cutoff_hours: '40'
+    climb_descent: 7366'/7367'
+    course_record: '21:52:00'
+    winning_time: '21:52:00'
+    finishers: '10'
+    results_year: "'24"
+  status: queued
+- id: run100s-045-zumbro-mn
+  source_order: 45
+  name: Zumbro
+  location_hint: MN
+  display_name: Zumbro(MN)
+  date_text: 4/9-10/27
+  discovery_url: http://www.Zumbro100.com/
+  run100s_href: http://www.Zumbro100.com/
+  discovery_facts:
+    first_year: '2009'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '18:04:00'
+    winning_time: '22:07:23'
+    finishers: '42'
+    results_year: "'26"
+  status: queued
+- id: run100s-046-potawatomi-il
+  source_order: 46
+  name: Potawatomi
+  location_hint: IL
+  display_name: Potawatomi(IL)
+  date_text: 4/10-11/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=128673
+  run100s_href: https://ultrasignup.com/register.aspx?did=128673
+  discovery_facts:
+    first_year: '2004'
+    cutoff_hours: '34'
+    climb_descent: 16000'/16000'
+    course_record: '17:56:14'
+    winning_time: '22:18:40'
+    finishers: '27'
+    results_year: "'26"
+  status: queued
+- id: run100s-047-zion-ut
+  source_order: 47
+  name: Zion
+  location_hint: UT
+  display_name: Zion(UT)
+  date_text: 4/10-11/27
+  discovery_url: https://www.VacationRaces.com/ultras/zion/
+  run100s_href: https://www.VacationRaces.com/ultras/zion/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '32'
+    climb_descent: 10700'/10700'
+    course_record: '16:49:53'
+    winning_time: '18:49:59'
+    finishers: '171'
+    results_year: "'26"
+  status: queued
+- id: run100s-048-ozark-foothills-mo
+  source_order: 48
+  name: Ozark Foothills
+  location_hint: MO
+  display_name: Ozark Foothills(MO)
+  date_text: 4/10-11/27
+  discovery_url: http://www.terraintrailrunners.com/ozark-foothills.html
+  run100s_href: http://www.terraintrailrunners.com/ozark-foothills.html
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '32'
+    climb_descent: 14000'/14000'
+    course_record: '19:28:16'
+    winning_time: '26:53:51'
+    finishers: '4'
+    results_year: "'26"
+  status: queued
+- id: run100s-049-rim-runner-tn
+  source_order: 49
+  name: Rim Runner
+  location_hint: TN
+  display_name: Rim Runner (TN)
+  date_text: 4/10-11/27
+  discovery_url: https://www.GreenTunnelEvents.com/rimrunnertrailraces
+  run100s_href: https://www.GreenTunnelEvents.com/rimrunnertrailraces
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '32'
+    climb_descent: 11400'/11400'
+    course_record: '24:12:37'
+    winning_time: '29:03:17'
+    finishers: '3'
+    results_year: "'26"
+  status: queued
+- id: run100s-050-chief-ladiga-al
+  source_order: 50
+  name: Chief Ladiga
+  location_hint: AL
+  display_name: Chief Ladiga(AL)
+  date_text: 4/10-11/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=138837
+  run100s_href: https://ultrasignup.com/register.aspx?did=138837
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '32'
+    climb_descent: 3500'/3500'
+    course_record: '14:57:45'
+    winning_time: '15:40:42'
+    finishers: '61'
+    results_year: "'26"
+  status: queued
+- id: run100s-051-blue-heron-al
+  source_order: 51
+  name: Blue Heron
+  location_hint: AL
+  display_name: Blue Heron(AL)
+  date_text: 4/10-11/27
+  discovery_url: http://UltraSignup.com/register.aspx?did=127033
+  run100s_href: http://UltraSignup.com/register.aspx?did=127033
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '18:48:26'
+    winning_time: '21:08:54'
+    finishers: '17'
+    results_year: "'26"
+  status: queued
+- id: run100s-052-camp-croft-sc
+  source_order: 52
+  name: Camp Croft
+  location_hint: SC
+  display_name: Camp Croft(SC)
+  date_text: 4/10-11/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=142408
+  run100s_href: https://ultrasignup.com/register.aspx?did=142408
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '20:31:20'
+    winning_time: '20:31:20'
+    finishers: '5'
+    results_year: "'26"
+  status: queued
+- id: run100s-053-double-top-stone-anvil-ga
+  source_order: 53
+  name: Double Top - Stone Anvil
+  location_hint: GA
+  display_name: Double Top - Stone Anvil(GA)
+  date_text: 4/16-18/27
+  discovery_url: http://UltraSignup.com/register.aspx?did=127097
+  run100s_href: http://UltraSignup.com/register.aspx?did=127097
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '34'
+    climb_descent: 17500'/17500'
+    course_record: '29:19:00'
+    winning_time: '29:45:00'
+    finishers: '1'
+    results_year: "'25"
+  status: queued
+- id: run100s-054-silver-moon-reedley-ca
+  source_order: 54
+  name: Silver Moon - Reedley
+  location_hint: CA
+  display_name: Silver Moon - Reedley(CA)
+  date_text: 4/17-18/27
+  discovery_url: http://www.SilverMoonRace.com/reedley/
+  run100s_href: http://www.SilverMoonRace.com/reedley/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '30'
+    climb_descent: 5000'/5000'
+    course_record: '23:45:49'
+    winning_time: '23:45:49'
+    finishers: '3'
+    results_year: "'18"
+  status: queued
+- id: run100s-055-leona-divide-ca
+  source_order: 55
+  name: Leona Divide
+  location_hint: CA
+  display_name: Leona Divide (CA)
+  date_text: 4/17-18/27
+  discovery_url: https://www.khraces.com/series/leona-divide-50-50
+  run100s_href: https://www.khraces.com/series/leona-divide-50-50
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '32'
+    climb_descent: 16447'/16440'
+    course_record: '17:34:57'
+    winning_time: '19:54:31'
+    finishers: '44'
+    results_year: "'26"
+  status: queued
+- id: run100s-056-canyons-ca
+  source_order: 56
+  name: Canyons
+  location_hint: CA
+  display_name: Canyons(CA)
+  date_text: 4/23-24/27
+  discovery_url: http://canyons.utmb.world/
+  run100s_href: http://canyons.utmb.world/
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '32'
+    climb_descent: 17000'/17000'
+    course_record: '16:18:13'
+    winning_time: '17:50:12'
+    finishers: '152'
+    results_year: "'26"
+  status: queued
+- id: run100s-057-feral-mtn-ga
+  source_order: 57
+  name: Feral Mtn.
+  location_hint: GA
+  display_name: Feral Mtn.(GA)
+  date_text: 4/23-25/27
+  discovery_url: https://coyoteuglyracing.com/cohutta-100/
+  run100s_href: https://coyoteuglyracing.com/cohutta-100/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '40'
+    climb_descent: 21000'/21000'
+    course_record: '29:51:29'
+    winning_time: '29:51:29'
+    finishers: '6'
+    results_year: "'26"
+  status: queued
+- id: run100s-058-c-o-canal-md
+  source_order: 58
+  name: C&O Canal
+  location_hint: MD
+  display_name: C&O Canal(MD)
+  date_text: 4/24-25/27
+  discovery_url: http://www.COCanal100.com/
+  run100s_href: http://www.COCanal100.com/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '30'
+    climb_descent: 800'/800'
+    course_record: '14:03:12'
+    winning_time: '15:58:57'
+    finishers: '167'
+    results_year: "'26"
+  status: queued
+- id: run100s-059-skunk-ape-fl
+  source_order: 59
+  name: Skunk Ape
+  location_hint: FL
+  display_name: Skunk Ape(FL)
+  date_text: 4/24-25/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=129761
+  run100s_href: https://ultrasignup.com/register.aspx?did=129761
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '36'
+    climb_descent: 2790'/2790'
+    course_record: '20:21:32'
+    winning_time: '20:21:32'
+    finishers: '33'
+    results_year: "'26"
+  status: queued
+- id: run100s-060-san-diego-ca
+  source_order: 60
+  name: San Diego
+  location_hint: CA
+  display_name: San Diego(CA)
+  date_text: 4/30-5/1/27
+  discovery_url: http://www.SanDiego100.com/
+  run100s_href: http://www.SanDiego100.com/
+  discovery_facts:
+    first_year: '2001'
+    cutoff_hours: '32'
+    climb_descent: 13165'/13180'
+    course_record: '15:48:00'
+    winning_time: '19:54:05'
+    finishers: '126'
+    results_year: "'26"
+  status: queued
+- id: run100s-061-salt-flats-ut
+  source_order: 61
+  name: Salt Flats
+  location_hint: UT
+  display_name: Salt Flats(UT)
+  date_text: 4/30-5/1/27
+  discovery_url: http://www.SaltFlatsEnduranceRuns.com/
+  run100s_href: http://www.SaltFlatsEnduranceRuns.com/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '14:49:43'
+    winning_time: '19:45:25'
+    finishers: '24'
+    results_year: "'24"
+  status: queued
+- id: run100s-062-big-deal-oh
+  source_order: 62
+  name: Big Deal
+  location_hint: OH
+  display_name: Big Deal(OH)
+  date_text: 5/1-2/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=140726
+  run100s_href: https://ultrasignup.com/register.aspx?did=140726
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '35'
+    climb_descent: 13500'/13500'
+    course_record: '21:43:12'
+    winning_time: '21:43:12'
+    finishers: '23'
+    results_year: "'26"
+  status: queued
+- id: run100s-063-hellbender-nc
+  source_order: 63
+  name: Hellbender
+  location_hint: NC
+  display_name: Hellbender(NC)
+  date_text: 5/7-8/27
+  discovery_url: http://www.Hellbender100.com/
+  run100s_href: http://www.Hellbender100.com/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '40'
+    climb_descent: 20329'/20072'
+    course_record: '18:50:53'
+    winning_time: '18:54:51'
+    finishers: '175'
+    results_year: "'26"
+  status: queued
+- id: run100s-064-born-to-run-ca
+  source_order: 64
+  name: Born To Run
+  location_hint: CA
+  display_name: Born To Run(CA)
+  date_text: 5/14-15/27
+  discovery_url: http://www.AllWeDoIsRun.com/
+  run100s_href: http://www.AllWeDoIsRun.com/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '45'
+    climb_descent: 11500'/11500'
+    course_record: '15:58:11'
+    winning_time: '19:09:51'
+    finishers: '30'
+    results_year: "'26"
+  status: queued
+- id: run100s-065-cruel-jewel-ga
+  source_order: 65
+  name: Cruel Jewel
+  location_hint: GA
+  display_name: Cruel Jewel(GA)
+  date_text: 5/14-16/27
+  discovery_url: http://www.DumassEvents.com/
+  run100s_href: http://www.DumassEvents.com/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '48'
+    climb_descent: 33000'/33000'
+    course_record: '21:41:31'
+    winning_time: '25:04:28'
+    finishers: '143'
+    results_year: "'26"
+  status: queued
+- id: run100s-066-massanutten-mt-va
+  source_order: 66
+  name: Massanutten Mt.
+  location_hint: VA
+  display_name: Massanutten Mt.(VA)
+  date_text: 5/15-16/27
+  discovery_url: https://new.VHTRC.org/races/mmt
+  run100s_href: https://new.VHTRC.org/races/mmt
+  discovery_facts:
+    first_year: '1995'
+    cutoff_hours: '36'
+    climb_descent: 19000'/19000'
+    course_record: '17:40:45'
+    winning_time: '18:26:17'
+    finishers: '103'
+    results_year: "'26"
+  status: queued
+- id: run100s-067-keys100-fl
+  source_order: 67
+  name: KEYS100
+  location_hint: FL
+  display_name: KEYS100(FL)
+  date_text: 5/15-16/27
+  discovery_url: http://www.keys100.com/
+  run100s_href: http://www.keys100.com/
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '13:20:18'
+    winning_time: '15:55:18'
+    finishers: '134'
+    results_year: "'26"
+  status: queued
+- id: run100s-068-coyote-2-moon-ca
+  source_order: 68
+  name: Coyote 2 Moon
+  location_hint: CA
+  display_name: Coyote 2 Moon(CA)
+  date_text: 5/21-22/27
+  discovery_url: http://www.Coyote2Moon.com/
+  run100s_href: http://www.Coyote2Moon.com/
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '40'
+    climb_descent: 26000'/26000'
+    course_record: '17:24:00'
+    winning_time: '27:21:00'
+    finishers: '15'
+    results_year: "'26"
+  status: queued
+- id: run100s-069-sulphur-springs-can
+  source_order: 69
+  name: Sulphur Springs
+  location_hint: CAN
+  display_name: Sulphur Springs(CAN)
+  date_text: 5/22-23/27
+  discovery_url: https://sites.google.com/burlingtonrunners.com/sulphursprings/
+  run100s_href: https://sites.google.com/burlingtonrunners.com/sulphursprings/
+  discovery_facts:
+    first_year: '2001'
+    cutoff_hours: '30'
+    climb_descent: 13900'/13900'
+    course_record: '14:38:21'
+    winning_time: '14:38:21'
+    finishers: '97'
+    results_year: "'25"
+  status: queued
+- id: run100s-070-pigtails-challenge-wa
+  source_order: 70
+  name: Pigtails Challenge
+  location_hint: WA
+  display_name: Pigtails Challenge(WA)
+  date_text: 5/22-23/27
+  discovery_url: https://www.NWEnduranceEvents.com/pigtails/
+  run100s_href: https://www.NWEnduranceEvents.com/pigtails/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '16:55:47'
+    winning_time: '16:55:47'
+    finishers: '12'
+    results_year: "'24"
+  status: queued
+- id: run100s-071-crown-of-the-crest-ne
+  source_order: 71
+  name: Crown of the Crest
+  location_hint: NE
+  display_name: Crown of the Crest(NE)
+  date_text: 5/22-23/27
+  discovery_url: https://www.goatz.org/crown-of-the-crest
+  run100s_href: https://www.goatz.org/crown-of-the-crest
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '23:17:55'
+    winning_time: '23:17:55'
+    finishers: '12'
+    results_year: "'26"
+  status: queued
+- id: run100s-072-high-lea-oh
+  source_order: 72
+  name: High Lea
+  location_hint: OH
+  display_name: High Lea(OH))
+  date_text: 5/22-23/27
+  discovery_url: https://www.ultrasignup.com/register.aspx?did=128431
+  run100s_href: https://www.ultrasignup.com/register.aspx?did=128431
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '30'
+    climb_descent: 8033'/8033'
+    course_record: '14:04:16'
+    winning_time: '24:23:50'
+    finishers: '9'
+    results_year: "'26"
+  status: queued
+- id: run100s-073-infinitus-vt
+  source_order: 73
+  name: Infinitus
+  location_hint: VT
+  display_name: Infinitus(VT)
+  date_text: 5/28-29/27
+  discovery_url: https://www.endurancesociety.org/infinitus
+  run100s_href: https://www.endurancesociety.org/infinitus
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '48'
+    climb_descent: 33000'/33000'
+    course_record: '18:48:00'
+    winning_time: '18:48:00'
+    finishers: '23'
+    results_year: "'26"
+  status: queued
+- id: run100s-074-nanny-goat-ca
+  source_order: 74
+  name: Nanny Goat
+  location_hint: CA
+  display_name: Nanny Goat(CA)
+  date_text: 5/29-31/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=118091
+  run100s_href: https://ultrasignup.com/register.aspx?did=118091
+  discovery_facts:
+    first_year: '2009'
+    cutoff_hours: '28'
+    climb_descent: "?'/?'"
+    course_record: '17:20:16'
+    winning_time: 19;37:45
+    finishers: '33'
+    results_year: "'26"
+  status: queued
+- id: run100s-075-chesterfield-gorge-ma
+  source_order: 75
+  name: Chesterfield Gorge
+  location_hint: MA
+  display_name: Chesterfield Gorge(MA)
+  date_text: 5/29-30/27
+  discovery_url: https://www.beastcoasttrailrunning.org/chesterfield-gorge-ultra-trail/
+  run100s_href: https://www.beastcoasttrailrunning.org/chesterfield-gorge-ultra-trail/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '17:43:30'
+    winning_time: '18:03:49'
+    finishers: '13'
+    results_year: "'26"
+  status: queued
+- id: run100s-076-iron-will-ks
+  source_order: 76
+  name: Iron Will
+  location_hint: KS
+  display_name: Iron Will(KS)
+  date_text: 5/29-30/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=139672
+  run100s_href: https://ultrasignup.com/register.aspx?did=139672
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '19:32:14'
+    winning_time: '26:27:00'
+    finishers: '3'
+    results_year: "'26"
+  status: queued
+- id: run100s-077-hell-hole-hundred-sc
+  source_order: 77
+  name: Hell Hole Hundred
+  location_hint: SC
+  display_name: Hell Hole Hundred(SC)
+  date_text: 6/4-5/27
+  discovery_url: http://www.PalmettoUltras.com/
+  run100s_href: http://www.PalmettoUltras.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '15:30:36'
+    winning_time: '15:30:36'
+    finishers: '17'
+    results_year: "'26"
+  status: queued
+- id: run100s-078-big-al-s-tn
+  source_order: 78
+  name: Big Al's
+  location_hint: TN
+  display_name: Big Al's(TN)
+  date_text: 6/4-5/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=128358
+  run100s_href: https://ultrasignup.com/register.aspx?did=128358
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '120'
+    climb_descent: 27000'/27000'
+    course_record: '26:43:00'
+    winning_time: '26:43:00'
+    finishers: '4'
+    results_year: "'26"
+  status: queued
+- id: run100s-079-old-dominion-va
+  source_order: 79
+  name: Old Dominion
+  location_hint: VA
+  display_name: Old Dominion(VA)
+  date_text: 6/5-6/27
+  discovery_url: http://www.run100s.com/od100.htm
+  run100s_href: "./od100.htm"
+  discovery_facts:
+    first_year: '1979'
+    cutoff_hours: '28'
+    climb_descent: 14000'/14000'
+    course_record: '15:10:13'
+    winning_time: '17:33:28'
+    finishers: '63'
+    results_year: "'26"
+  status: queued
+- id: run100s-080-mohican-trail-oh
+  source_order: 80
+  name: Mohican Trail
+  location_hint: OH
+  display_name: Mohican Trail(OH)
+  date_text: 6/5-6/27
+  discovery_url: http://ombc.net/
+  run100s_href: http://ombc.net/
+  discovery_facts:
+    first_year: '1990'
+    cutoff_hours: '32'
+    climb_descent: 12862'/12862'
+    course_record: '15:11:35'
+    winning_time: '18:04:14'
+    finishers: '87'
+    results_year: "'26"
+  status: queued
+- id: run100s-081-eagle-up-oh
+  source_order: 81
+  name: Eagle Up
+  location_hint: OH
+  display_name: Eagle Up(OH)
+  date_text: 6/5-6/27
+  discovery_url: https://www.race-brimstone.com/eagle-up-ultra
+  run100s_href: https://www.race-brimstone.com/eagle-up-ultra
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '24'
+    climb_descent: "?'/?'"
+    course_record: '13:37:58'
+    winning_time: '18:07:34'
+    finishers: '14'
+    results_year: "'26"
+  status: queued
+- id: run100s-082-rabid-raccoon-pa
+  source_order: 82
+  name: Rabid Raccoon
+  location_hint: PA
+  display_name: Rabid Raccoon(PA)
+  date_text: 6/5-6/27
+  discovery_url: https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100
+  run100s_href: https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '36'
+    climb_descent: 16900'/16900'
+    course_record: '15:42:57'
+    winning_time: '15:42:57'
+    finishers: '76'
+    results_year: "'26"
+  status: queued
+- id: run100s-083-scout-mountain-id
+  source_order: 83
+  name: Scout Mountain
+  location_hint: ID
+  display_name: Scout Mountain(ID)
+  date_text: 6/5-6/26 ???
+  discovery_url: http://www.ScoutMountainUltras.com/
+  run100s_href: http://www.ScoutMountainUltras.com/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '36'
+    climb_descent: 23800'/23800'
+    course_record: '19:48:43'
+    winning_time: '19:48:43'
+    finishers: '53'
+    results_year: "'26"
+  status: queued
+- id: run100s-084-mace-s-hideout-co
+  source_order: 84
+  name: Mace's Hideout
+  location_hint: CO
+  display_name: Mace's Hideout(CO)
+  date_text: 6/6-7/26 ???
+  discovery_url: https://www.TempestAdventures.com/maces-hideout-100/about/
+  run100s_href: https://www.TempestAdventures.com/maces-hideout-100/about/
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '36'
+    climb_descent: 22500'/22500'
+    course_record: '25:02:11'
+    winning_time: '26:38:14'
+    finishers: '11'
+    results_year: "'26"
+  status: queued
+- id: run100s-085-great-divide-co
+  source_order: 85
+  name: Great Divide
+  location_hint: CO
+  display_name: Great Divide(CO)
+  date_text: 6/6-7/26 ???
+  discovery_url: https://www.revenantrunning.com/race/the-great-divide-ultra
+  run100s_href: https://www.revenantrunning.com/race/the-great-divide-ultra
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '38'
+    climb_descent: "?'/?'"
+    course_record: '25:02:11'
+    winning_time: '24:44:49'
+    finishers: '17'
+    results_year: "'25"
+  status: queued
+- id: run100s-086-metahqua-oh
+  source_order: 86
+  name: Metahqua
+  location_hint: OH
+  display_name: Metahqua(OH)
+  date_text: 6/6-7/26 ???
+  discovery_url: https://www.runfluentevents.com/metahqua
+  run100s_href: https://www.runfluentevents.com/metahqua
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '20:43:27'
+    winning_time: '20:43:27'
+    finishers: '5'
+    results_year: "'24"
+  status: queued
+- id: run100s-087-huron-mi
+  source_order: 87
+  name: Huron
+  location_hint: MI
+  display_name: Huron(MI))
+  date_text: 6/12-13/27
+  discovery_url: https://www.TheHuron100.com
+  run100s_href: https://www.TheHuron100.com
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '33'
+    climb_descent: 8200'/8200'
+    course_record: '18:29:14'
+    winning_time: '19:02:06'
+    finishers: '67'
+    results_year: "'26"
+  status: queued
+- id: run100s-088-bay-area-ca
+  source_order: 88
+  name: Bay Area
+  location_hint: CA
+  display_name: Bay Area(CA)
+  date_text: 6/12-13/27
+  discovery_url: http://www.BayArea100.com/
+  run100s_href: http://www.BayArea100.com/
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '33'
+    climb_descent: 18263'/18263'
+    course_record: '16:54:56'
+    winning_time: '16:54:56'
+    finishers: '103'
+    results_year: "'26"
+  status: queued
+- id: run100s-089-kettle-moraine-wi
+  source_order: 89
+  name: Kettle Moraine
+  location_hint: WI
+  display_name: Kettle Moraine(WI)
+  date_text: 6/13-14/26 ???
+  discovery_url: http://www.KettleMoraine100.com/
+  run100s_href: http://www.KettleMoraine100.com/
+  discovery_facts:
+    first_year: '1996'
+    cutoff_hours: '30'
+    climb_descent: 8800'/8800'
+    course_record: '14:15:22'
+    winning_time: '17:19:15'
+    finishers: '112'
+    results_year: "'26"
+  status: queued
+- id: run100s-090-cool-moon-ca
+  source_order: 90
+  name: Cool Moon
+  location_hint: CA
+  display_name: Cool Moon(CA)
+  date_text: 6/13-14/26 ???
+  discovery_url: http://www.CoolMoon100.com/
+  run100s_href: http://www.CoolMoon100.com/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '40'
+    climb_descent: 16000'/16000'
+    course_record: '19:24:45'
+    winning_time: '19:36:08'
+    finishers: '37'
+    results_year: "'25"
+  status: queued
+- id: run100s-091-woodbooger-va
+  source_order: 91
+  name: Woodbooger
+  location_hint: VA
+  display_name: Woodbooger(VA)
+  date_text: 6/13-14/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=132671
+  run100s_href: https://ultrasignup.com/register.aspx?did=132671
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '33'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers:
+    results_year: "'26"
+  status: queued
+- id: run100s-092-boom-or-bust-nv
+  source_order: 92
+  name: Boom or Bust
+  location_hint: NV
+  display_name: Boom or Bust(NV)
+  date_text: 6/13-14/26
+  discovery_url: https://rockyroadadventuresnv.com/boom-or-bust-ultra-trail-run/
+  run100s_href: https://rockyroadadventuresnv.com/boom-or-bust-ultra-trail-run/
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers:
+    results_year: "'26"
+  status: queued
+- id: run100s-093-burney-mountain-ca
+  source_order: 93
+  name: Burney Mountain
+  location_hint: CA
+  display_name: Burney Mountain(CA)
+  date_text: 6/18-20/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=121006
+  run100s_href: https://ultrasignup.com/register.aspx?did=121006
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '38'
+    climb_descent: 7500'/7500'
+    course_record: '20:48:00'
+    winning_time: '20:48:00'
+    finishers: '44'
+    results_year: "'26"
+  status: queued
+- id: run100s-094-bighorn-wy
+  source_order: 94
+  name: Bighorn
+  location_hint: WY
+  display_name: Bighorn(WY)
+  date_text: 6/19-20/26
+  discovery_url: http://www.BighornTrailRun.com/
+  run100s_href: http://www.BighornTrailRun.com/
+  discovery_facts:
+    first_year: '1993'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '17:58:04'
+    winning_time: '17:58:04'
+    finishers: '173'
+    results_year: "'26"
+  status: already_active
+  event_slug: bighorn-100
+  terminal_evidence:
+    active_catalog: db/events/active.yml
+    bundle: db/events/bighorn-100.bundle.yml
+- id: run100s-095-froggy-mountain-va
+  source_order: 95
+  name: Froggy Mountain
+  location_hint: VA
+  display_name: Froggy Mountain(VA)
+  date_text: 6/19-21/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=130547
+  run100s_href: https://ultrasignup.com/register.aspx?did=130547
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '60'
+    climb_descent: "?'/?'"
+    course_record: '44:03:42'
+    winning_time: '44:03:42'
+    finishers: '5'
+    results_year: "'26"
+  status: queued
+- id: run100s-096-the-great-new-york-ny
+  source_order: 96
+  name: The Great New York
+  location_hint: NY
+  display_name: The Great New York(NY)
+  date_text: 6/20-21/26
+  discovery_url: http://www.TGNY100.com/
+  run100s_href: http://www.TGNY100.com/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '15:19:18'
+    winning_time: '17:58:50'
+    finishers: '52'
+    results_year: "'25"
+  status: queued
+- id: run100s-097-gaspesia-can
+  source_order: 97
+  name: Gaspesia
+  location_hint: CAN
+  display_name: Gaspesia(CAN)
+  date_text: 6/20-21/26
+  discovery_url: https://Gaspesia.org/en/events/ultra-trail-gaspesia-100/
+  run100s_href: https://Gaspesia.org/en/events/ultra-trail-gaspesia-100/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '33'
+    climb_descent: 12664'/13025'
+    course_record: '22:12:44'
+    winning_time: '22:12:44'
+    finishers: '16'
+    results_year: "'19"
+  status: queued
+- id: run100s-098-strawberry-fields-forever-wa
+  source_order: 98
+  name: Strawberry Fields Forever
+  location_hint: WA
+  display_name: Strawberry Fields Forever(WA)
+  date_text: 6/20-21/26
+  discovery_url: https://columbiagorgerunningclub.com/strawberry-fields-forever/
+  run100s_href: https://columbiagorgerunningclub.com/strawberry-fields-forever/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '16:20:03'
+    winning_time: '21:15:05'
+    finishers: '15'
+    results_year: "'26"
+  status: queued
+- id: run100s-099-bloodroot-vt
+  source_order: 99
+  name: Bloodroot
+  location_hint: VT
+  display_name: Bloodroot(VT)
+  date_text: 6/25-26/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=140655
+  run100s_href: https://ultrasignup.com/register.aspx?did=140655
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '34'
+    climb_descent: 24000'/24000'
+    course_record: '23:44:13'
+    winning_time: '30:41:26'
+    finishers: '2'
+    results_year: "'25"
+  status: queued
+- id: run100s-100-black-hills-sd
+  source_order: 100
+  name: Black Hills
+  location_hint: SD
+  display_name: Black Hills(SD)
+  date_text: 6/26-27/26
+  discovery_url: http://www.BlackHills100.com/
+  run100s_href: http://www.BlackHills100.com/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '37'
+    climb_descent: 16231'/16231'
+    course_record: '17:57:57'
+    winning_time: '22:12:23'
+    finishers: '57'
+    results_year: "'26"
+  status: queued
+- id: run100s-101-washington-yeti-wa
+  source_order: 101
+  name: Washington Yeti
+  location_hint: WA
+  display_name: Washington Yeti(WA)
+  date_text: 6/26-27/26
+  discovery_url: http://www.YetiTrailRunners.com/
+  run100s_href: http://www.YetiTrailRunners.com/
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '30'
+    climb_descent: 4500'/4500'
+    course_record: '14:24:40'
+    winning_time: '14:24:40'
+    finishers: '42'
+    results_year: "'26"
+  status: queued
+- id: run100s-102-copper-kings-mt
+  source_order: 102
+  name: Copper Kings
+  location_hint: MT
+  display_name: Copper Kings(MT)
+  date_text: 6/26-27/26
+  discovery_url: http://CopperKings100.com/
+  run100s_href: http://CopperKings100.com/
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '40'
+    climb_descent: 14400'/1400'
+    course_record: '17:49:01'
+    winning_time: '17:49:01'
+    finishers: '115'
+    results_year: "'26"
+  status: queued
+- id: run100s-103-western-states-ca
+  source_order: 103
+  name: Western States
+  location_hint: CA
+  display_name: Western States(CA)
+  date_text: 6/26-27/27
+  discovery_url: http://www.run100s.com/ws100.htm
+  run100s_href: "./ws100.htm"
+  discovery_facts:
+    first_year: '1974'
+    cutoff_hours: '30'
+    climb_descent: 18090'/22970'
+    course_record: '13:46:15'
+    winning_time: '13:46:15'
+    finishers: '322'
+    results_year: "'26"
+  status: queued
+- id: run100s-104-sisu-pnw-wa
+  source_order: 104
+  name: SISU PNW
+  location_hint: WA
+  display_name: SISU PNW(WA)
+  date_text: 6/27-28/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=128197
+  run100s_href: https://ultrasignup.com/register.aspx?did=128197
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '24'
+    climb_descent: "?'/?'"
+    course_record: '27:27:00'
+    winning_time: '27:27:00'
+    finishers: '1'
+    results_year: "'23"
+  status: queued
+- id: run100s-105-centurion-trail-ct
+  source_order: 105
+  name: Centurion Trail
+  location_hint: CT
+  display_name: Centurion Trail(CT)
+  date_text: 6/27-28/26
+  discovery_url: https://RooseveltForestUltras.com/centurion-trail
+  run100s_href: https://RooseveltForestUltras.com/centurion-trail
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '33'
+    climb_descent: "?'/?'"
+    course_record: '31:43:19'
+    winning_time: '31:43:19'
+    finishers: '43'
+    results_year: "'24"
+  status: queued
+- id: run100s-106-underground-circus-ga
+  source_order: 106
+  name: Underground Circus
+  location_hint: GA
+  display_name: Underground Circus(GA)
+  date_text: 7/4-5/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133905
+  run100s_href: https://ultrasignup.com/register.aspx?did=133905
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '18:07:14'
+    winning_time: '18:07:14'
+    finishers: '9'
+    results_year: "'23"
+  status: queued
+- id: run100s-107-hardrock-co
+  source_order: 107
+  name: Hardrock
+  location_hint: CO
+  display_name: Hardrock(CO)
+  date_text: 7/9-11/27
+  discovery_url: http://www.Hardrock100.com/
+  run100s_href: http://www.Hardrock100.com/
+  discovery_facts:
+    first_year: '1992'
+    cutoff_hours: '48'
+    climb_descent: 33992'/33992'
+    course_record: '21:11:36'
+    winning_time: '21:11:36'
+    finishers: '116'
+    results_year: "'26"
+  status: queued
+- id: run100s-108-cry-me-a-river-il
+  source_order: 108
+  name: Cry Me A River!
+  location_hint: IL
+  display_name: Cry Me A River!(IL)
+  date_text: 7/9-10/27
+  discovery_url: http://www.CryMeARiverTrailRuns.com/
+  run100s_href: http://www.CryMeARiverTrailRuns.com/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '34'
+    climb_descent: 20000'/20000'
+    course_record: '21:39:53'
+    winning_time: '23:13:54'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-109-the-brink-or
+  source_order: 109
+  name: The Brink
+  location_hint: OR
+  display_name: The Brink(OR)
+  date_text: 7/9-10/27
+  discovery_url: https://siskiyououtback.com/100m
+  run100s_href: https://siskiyououtback.com/100m
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '38'
+    climb_descent: 22800'/22800'
+    course_record: '20:59:36'
+    winning_time: '20:59:36'
+    finishers: '23'
+    results_year: "'26"
+  status: queued
+- id: run100s-110-silverheels-co
+  source_order: 110
+  name: Silverheels
+  location_hint: CO
+  display_name: Silverheels(CO)
+  date_text: 7/10-11/26
+  discovery_url: http://www.HumanPotentialRunning.com/silverheels-100/
+  run100s_href: http://www.HumanPotentialRunning.com/silverheels-100/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '36'
+    climb_descent: 17300'/17300'
+    course_record: 21:12:__
+    winning_time: '27:42:00'
+    finishers: '6'
+    results_year: "'25"
+  status: queued
+- id: run100s-111-notchview-ma
+  source_order: 111
+  name: Notchview
+  location_hint: MA
+  display_name: Notchview(MA)
+  date_text: 7/10-12/26
+  discovery_url: https://www.ultrasignup.com/register.aspx?did=132847
+  run100s_href: https://www.ultrasignup.com/register.aspx?did=132847
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '60'
+    climb_descent: "?'/?'"
+    course_record: '19:44:43'
+    winning_time: '21:44:00'
+    finishers: '27'
+    results_year: "'26"
+  status: queued
+- id: run100s-112-sinister-7-can
+  source_order: 112
+  name: Sinister 7
+  location_hint: CAN
+  display_name: Sinister 7(CAN)
+  date_text: 7/11-12/26
+  discovery_url: http://www.Sinister7.com/
+  run100s_href: http://www.Sinister7.com/
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '30'
+    climb_descent: 21000'/21000'
+    course_record: '18:05:43'
+    winning_time: '18:50:18'
+    finishers: '64'
+    results_year: "'26"
+  status: queued
+- id: run100s-113-honey-badger-ks
+  source_order: 113
+  name: Honey Badger
+  location_hint: KS
+  display_name: Honey Badger(KS)
+  date_text: 7/11-12/26
+  discovery_url: http://www.HoneyBadger100.com/
+  run100s_href: http://www.HoneyBadger100.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '16:28:11'
+    winning_time: '22:03:00'
+    finishers: '6'
+    results_year: "'26"
+  status: queued
+- id: run100s-114-devil-s-gulch-wa
+  source_order: 114
+  name: Devil's Gulch
+  location_hint: WA
+  display_name: Devil's Gulch(WA)
+  date_text: 7/11-12/26
+  discovery_url: https://www.evergreentrailruns.com/devils-gulch/
+  run100s_href: https://www.evergreentrailruns.com/devils-gulch/
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '23:54:44'
+    winning_time: '25:43:52'
+    finishers: '13'
+    results_year: "'25"
+  status: queued
+- id: run100s-115-octopus-fl
+  source_order: 115
+  name: Octopus
+  location_hint: FL
+  display_name: Octopus(FL)
+  date_text: 7/11-12/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=128887
+  run100s_href: https://ultrasignup.com/register.aspx?did=128887
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '18:25:27'
+    winning_time: '18:25:27'
+    finishers: '19'
+    results_year: "'26"
+  status: queued
+- id: run100s-116-midnight-madness-ok
+  source_order: 116
+  name: Midnight Madness
+  location_hint: OK
+  display_name: Midnight Madness(OK)
+  date_text: 7/11-12/26
+  discovery_url: https://midnightmadness.run
+  run100s_href: https://midnightmadness.run
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '38'
+    climb_descent: "?'/?'"
+    course_record: '23:02:27'
+    winning_time: '23:02:27'
+    finishers: '3'
+    results_year: "'26"
+  status: queued
+- id: run100s-117-rise-in-the-pines-tx
+  source_order: 117
+  name: Rise in the Pines
+  location_hint: TX
+  display_name: Rise in the Pines(TX)
+  date_text: 7/11-12/26
+  discovery_url: https://www.riseracingco.com/rise-in-the-pines
+  run100s_href: https://www.riseracingco.com/rise-in-the-pines
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '30:59:33'
+    winning_time: '30:59:33'
+    finishers: '2'
+    results_year: "'26"
+  status: queued
+- id: run100s-118-vermont-vt
+  source_order: 118
+  name: Vermont
+  location_hint: VT
+  display_name: Vermont(VT)
+  date_text: 7/16-17/27
+  discovery_url: http://www.run100s.com/vt100.htm
+  run100s_href: "./vt100.htm"
+  discovery_facts:
+    first_year: '1989'
+    cutoff_hours: '30'
+    climb_descent: 14160'/14160'
+    course_record: '14:47:35'
+    winning_time: '15:41:43'
+    finishers: '221'
+    results_year: "'26"
+  status: queued
+- id: run100s-119-cascade-crest-wa
+  source_order: 119
+  name: Cascade Crest
+  location_hint: WA
+  display_name: Cascade Crest(WA)
+  date_text: 7/17-18/26
+  discovery_url: http://www.CascadeCrest100.com/
+  run100s_href: http://www.CascadeCrest100.com/
+  discovery_facts:
+    first_year: '1999'
+    cutoff_hours: '33'
+    climb_descent: 21000'/21000'
+    course_record: '17:08:55'
+    winning_time: '18:33:21'
+    finishers: '130'
+    results_year: "'26"
+  status: queued
+- id: run100s-120-tahoe-rim-trail-nv
+  source_order: 120
+  name: Tahoe Rim Trail
+  location_hint: NV
+  display_name: Tahoe Rim Trail(NV)
+  date_text: 7/17-18/27
+  discovery_url: http://www.TRTer.com
+  run100s_href: http://www.TRTer.com
+  discovery_facts:
+    first_year: '2001'
+    cutoff_hours: '35'
+    climb_descent: 19788'/19788'
+    course_record: '17:38:35'
+    winning_time: '21:57:13'
+    finishers: '111'
+    results_year: "'26"
+  status: queued
+- id: run100s-121-ouray-co
+  source_order: 121
+  name: Ouray
+  location_hint: CO
+  display_name: Ouray(CO)
+  date_text: 7/17-19/26
+  discovery_url: http://www.Ouray100.com/
+  run100s_href: http://www.Ouray100.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '52'
+    climb_descent: 41862'/41862'
+    course_record: '29:19:13'
+    winning_time: '29:19:13'
+    finishers: '82'
+    results_year: "'25"
+  status: queued
+- id: run100s-122-high-lonesome-co
+  source_order: 122
+  name: High Lonesome
+  location_hint: CO
+  display_name: High Lonesome(CO)
+  date_text: 7/17-18/26
+  discovery_url: http://www.HighLonesome100.com/
+  run100s_href: http://www.HighLonesome100.com/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '36'
+    climb_descent: 23500'/23500'
+    course_record: '18:52:00'
+    winning_time: '19:56:30'
+    finishers: '180'
+    results_year: "'26"
+  status: queued
+- id: run100s-123-cmar-il
+  source_order: 123
+  name: CMAR
+  location_hint: IL
+  display_name: CMAR(IL)
+  date_text: 7/17-18/26
+  discovery_url: https://www.beradracing.com/cmar
+  run100s_href: https://www.beradracing.com/cmar
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: 18500'/18500'
+    course_record: '31:29:11'
+    winning_time: '31:29:11'
+    finishers: '3'
+    results_year: "'26"
+  status: queued
+- id: run100s-124-resurrection-pass-ak
+  source_order: 124
+  name: Resurrection Pass
+  location_hint: AK
+  display_name: Resurrection Pass(AK)
+  date_text: 7/24-25/26
+  discovery_url: http://www.RPUltras.com/
+  run100s_href: http://www.RPUltras.com/
+  discovery_facts:
+    first_year: '2003'
+    cutoff_hours: '30'
+    climb_descent: 9020'/8737'
+    course_record: '17:57:00'
+    winning_time: '17:57:00'
+    finishers: '16'
+    results_year: "'26"
+  status: queued
+- id: run100s-125-maah-daah-hey-nd
+  source_order: 125
+  name: Maah Daah Hey
+  location_hint: ND
+  display_name: Maah Daah Hey(ND)
+  date_text: 7/24-25/26
+  discovery_url: http://www.ExperienceLand.org/maah-daah-hey-trailrun/
+  run100s_href: http://www.ExperienceLand.org/maah-daah-hey-trailrun/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '30'
+    climb_descent: 11975'/11975'
+    course_record: '23:15:28'
+    winning_time: '23:15:28'
+    finishers: '10'
+    results_year: "'26"
+  status: queued
+- id: run100s-126-crazy-mountain-mt
+  source_order: 126
+  name: Crazy Mountain
+  location_hint: MT
+  display_name: Crazy Mountain(MT)
+  date_text: 7/24-25/26
+  discovery_url: https://www.CrazyMountainUltra.com/
+  run100s_href: https://www.CrazyMountainUltra.com/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '36'
+    climb_descent: 24608'/24608'
+    course_record: '20:41:51'
+    winning_time: '22:46:25'
+    finishers: '138'
+    results_year: "'26"
+  status: queued
+- id: run100s-127-standhope-id
+  source_order: 127
+  name: Standhope
+  location_hint: ID
+  display_name: Standhope(ID)
+  date_text: 7/24-25/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=142077
+  run100s_href: https://ultrasignup.com/register.aspx?did=142077
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '42'
+    climb_descent: 28000'/28000'
+    course_record: '20:49:00'
+    winning_time: '21:08:02'
+    finishers: '29'
+    results_year: "'26"
+  status: queued
+- id: run100s-128-hood-hundred-or
+  source_order: 128
+  name: Hood Hundred
+  location_hint: OR
+  display_name: Hood Hundred(OR)
+  date_text: 7/24-25/27
+  discovery_url: http://www.DaybreakRacing.com/hood-hundred/
+  run100s_href: http://www.DaybreakRacing.com/hood-hundred/
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '34'
+    climb_descent: 17700'/17700'
+    course_record: '16:08:32'
+    winning_time: '21:48:05'
+    finishers: '11'
+    results_year: "'26"
+  status: queued
+- id: run100s-129-burning-river-oh
+  source_order: 129
+  name: Burning River
+  location_hint: OH
+  display_name: Burning River(OH)
+  date_text: 7/25-26/26
+  discovery_url: https://www.WesternReserveRacing.com/events/burning-river-endurance-runs-relay/
+  run100s_href: https://www.WesternReserveRacing.com/events/burning-river-endurance-runs-relay/
+  discovery_facts:
+    first_year: '2007'
+    cutoff_hours: '30'
+    climb_descent: 9000'/9000'
+    course_record: '14:25:14'
+    winning_time: '15:34:45'
+    finishers: '163'
+    results_year: "'26"
+  status: queued
+- id: run100s-130-oregon-cascades-or
+  source_order: 130
+  name: Oregon Cascades
+  location_hint: OR
+  display_name: Oregon Cascades(OR)
+  date_text: 7/25-26/26
+  discovery_url: https://www.AlpineRunning.co/cascades100/
+  run100s_href: https://www.AlpineRunning.co/cascades100/
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '32'
+    climb_descent: 12000'/12500'
+    course_record: '14:36:05'
+    winning_time: '14:36:05'
+    finishers: '203'
+    results_year: "'24"
+  status: queued
+- id: run100s-131-mighty-mosquito-ny
+  source_order: 131
+  name: Mighty Mosquito
+  location_hint: NY
+  display_name: Mighty Mosquito(NY)
+  date_text: 7/25-26/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=128976
+  run100s_href: https://ultrasignup.com/register.aspx?did=128976
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '19:35:46'
+    winning_time: '23:03:34'
+    finishers: '11'
+    results_year: "'26"
+  status: queued
+- id: run100s-132-creede-co
+  source_order: 132
+  name: Creede
+  location_hint: CO
+  display_name: Creede(CO)
+  date_text: 7/25-26/26
+  discovery_url: https://www.TempestAdventures.com/creede-100/
+  run100s_href: https://www.TempestAdventures.com/creede-100/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '40'
+    climb_descent: 20822'/20822'
+    course_record: '26:23:04'
+    winning_time: '26:23:04'
+    finishers: '31'
+    results_year: "'26"
+  status: queued
+- id: run100s-133-tally-in-the-valley-can
+  source_order: 133
+  name: Tally in the Valley
+  location_hint: CAN
+  display_name: Tally in the Valley(CAN)
+  date_text: 7/25-26/26
+  discovery_url: https://www.HappyTrailsRacing.com/races
+  run100s_href: https://www.HappyTrailsRacing.com/races
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '30'
+    climb_descent: "'/'"
+    course_record: '17:05:42'
+    winning_time: '17:05:42'
+    finishers: '26'
+    results_year: "'26"
+  status: queued
+- id: run100s-134-huckleberry-wa
+  source_order: 134
+  name: Huckleberry
+  location_hint: WA
+  display_name: Huckleberry(WA)
+  date_text: 7/25-26/26
+  discovery_url: https://freedomultra.com/the-huckleberry-hundred
+  run100s_href: https://freedomultra.com/the-huckleberry-hundred
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: 19000'/19000'
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-135-trident-fl
+  source_order: 135
+  name: Trident
+  location_hint: FL
+  display_name: Trident(FL)
+  date_text: 7/25-26/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=131773
+  run100s_href: https://ultrasignup.com/register.aspx?did=131773
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '29:05:48'
+    winning_time: '29:05:48'
+    finishers: '4'
+    results_year: "'26"
+  status: queued
+- id: run100s-136-lean-horse-sd
+  source_order: 136
+  name: Lean Horse
+  location_hint: SD
+  display_name: Lean Horse(SD)
+  date_text: 7/31-8/1/26
+  discovery_url: http://www.LeanHorse100.com/
+  run100s_href: http://www.LeanHorse100.com/
+  discovery_facts:
+    first_year: '2005'
+    cutoff_hours: '32'
+    climb_descent: 3524'/3524'
+    course_record: '15:14:15'
+    winning_time: '17:34:11'
+    finishers: '46'
+    results_year: "'26"
+  status: queued
+- id: run100s-137-badger-trail-wi
+  source_order: 137
+  name: Badger Trail
+  location_hint: WI
+  display_name: Badger Trail(WI)
+  date_text: 7/31-8/1/27
+  discovery_url: https://www.TenJunkMilesRacing.com/
+  run100s_href: https://www.TenJunkMilesRacing.com/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '36'
+    climb_descent: 1000'/1000'
+    course_record: '14:05:47'
+    winning_time: '15:30:26'
+    finishers: '132'
+    results_year: "'26"
+  status: queued
+- id: run100s-138-folsom-ca
+  source_order: 138
+  name: Folsom
+  location_hint: CA
+  display_name: Folsom(CA)
+  date_text: 7/31-8/1/26
+  discovery_url: https://www.SSMountainRacing.com/folsom100
+  run100s_href: https://www.SSMountainRacing.com/folsom100
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '34'
+    climb_descent: "'/'"
+    course_record: '19:49:54'
+    winning_time: '19:49:54'
+    finishers: '33'
+    results_year: "'24"
+  status: queued
+- id: run100s-139-angeles-crest-ca
+  source_order: 139
+  name: Angeles Crest
+  location_hint: CA
+  display_name: Angeles Crest(CA)
+  date_text: 8/1-2/26
+  discovery_url: http://www.run100s.com/ac100.htm
+  run100s_href: "./ac100.htm"
+  discovery_facts:
+    first_year: '1986'
+    cutoff_hours: '33'
+    climb_descent: 20610'/25700'
+    course_record: '17:35:48'
+    winning_time: '21:23:43'
+    finishers: '104'
+    results_year: "'25"
+  status: queued
+- id: run100s-140-loopy-looper-nj
+  source_order: 140
+  name: Loopy Looper
+  location_hint: NJ
+  display_name: Loopy Looper(NJ)
+  date_text: 8/1-2/26
+  discovery_url: https://www.endlessendurance.com/loopy-looper
+  run100s_href: https://www.endlessendurance.com/loopy-looper
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '14:41:55'
+    winning_time: '14:41:55'
+    finishers: '34'
+    results_year: "'26"
+  status: queued
+- id: run100s-141-anchor-down-ri
+  source_order: 141
+  name: Anchor Down
+  location_hint: RI
+  display_name: Anchor Down(RI)
+  date_text: 8/7-8/26
+  discovery_url: http://www.AnchorDownUltra.com/
+  run100s_href: http://www.AnchorDownUltra.com/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '24'
+    climb_descent: 2286'/2286'
+    course_record: '23:26:09'
+    winning_time: '23:26:09'
+    finishers: '14'
+    results_year: "'16"
+  status: queued
+- id: run100s-142-high-five-co
+  source_order: 142
+  name: High Five
+  location_hint: CO
+  display_name: High Five(CO)
+  date_text: 8/7-9/26
+  discovery_url: http://www.HighFive100.com/
+  run100s_href: http://www.HighFive100.com/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '48'
+    climb_descent: 40000'/40000'
+    course_record: '30:45:00'
+    winning_time: '37:51:00'
+    finishers: '6'
+    results_year: "'25"
+  status: queued
+- id: run100s-143-wyoming-range-wy
+  source_order: 143
+  name: Wyoming Range
+  location_hint: WY
+  display_name: Wyoming Range(WY)
+  date_text: 8/7-9/26
+  discovery_url: https://www.everlongendurance.com/wyomingrange
+  run100s_href: https://www.everlongendurance.com/wyomingrange
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '48'
+    climb_descent: 28000'/30000'
+    course_record: '25:38:02'
+    winning_time: '25:38:02'
+    finishers: '57'
+    results_year: "'26"
+  status: queued
+- id: run100s-144-eastern-states-pa
+  source_order: 144
+  name: Eastern States
+  location_hint: PA
+  display_name: Eastern States(PA)
+  date_text: 8/8-9/26
+  discovery_url: http://www.EasternStates100.com
+  run100s_href: http://www.EasternStates100.com
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '36'
+    climb_descent: 19288'/19301'
+    course_record: '18:23:47'
+    winning_time: '23:09:48'
+    finishers: '122'
+    results_year: "'26"
+  status: queued
+- id: run100s-145-utfs-can
+  source_order: 145
+  name: UTFS
+  location_hint: CAN
+  display_name: UTFS(CAN)
+  date_text: 8/8-9/26
+  discovery_url: https://www.UltraTrailFjord.com/
+  run100s_href: https://www.UltraTrailFjord.com/
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '38'
+    climb_descent: 20000'/20000'
+    course_record: '23:27:14'
+    winning_time: '25:45:06'
+    finishers:
+    results_year: "'25"
+  status: queued
+- id: run100s-146-ute-ut
+  source_order: 146
+  name: Ute
+  location_hint: UT
+  display_name: Ute(UT)
+  date_text: 8/8-9/26
+  discovery_url: http://www.RevenantRunning.com/race/ute-100/
+  run100s_href: http://www.RevenantRunning.com/race/ute-100/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '33'
+    climb_descent: 23000'/23000'
+    course_record: '20:59:28'
+    winning_time: '23:40:55'
+    finishers: '15'
+    results_year: "'23"
+  status: queued
+- id: run100s-147-buckeye-oh
+  source_order: 147
+  name: Buckeye
+  location_hint: OH
+  display_name: Buckeye(OH)
+  date_text: 8/13-15/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=129182
+  run100s_href: https://ultrasignup.com/register.aspx?did=129182
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '21:52:38'
+    winning_time: '35:52:02'
+    finishers: '5'
+    results_year: "'24"
+  status: queued
+- id: run100s-148-jigger-johnson-nh
+  source_order: 148
+  name: Jigger Johnson
+  location_hint: NH
+  display_name: Jigger Johnson(NH))
+  date_text: 8/14-16/26
+  discovery_url: https://www.AravaipaRunning.com/white-mountain-endurance/jigger/
+  run100s_href: https://www.AravaipaRunning.com/white-mountain-endurance/jigger/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '54'
+    climb_descent: "?'/?'"
+    course_record: '30:27:59'
+    winning_time: '31:26:05'
+    finishers: '27'
+    results_year: "'25"
+  status: queued
+- id: run100s-149-san-juan-softie-co
+  source_order: 149
+  name: San Juan Softie
+  location_hint: CO
+  display_name: San Juan Softie(CO))
+  date_text: 8/14-15/26
+  discovery_url: http://www.SanJuanSoftie.com/
+  run100s_href: http://www.SanJuanSoftie.com/
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '38'
+    climb_descent: 20000'/20000'
+    course_record: '24:08:10'
+    winning_time: '24:08:10'
+    finishers: '26'
+    results_year: "'25"
+  status: queued
+- id: run100s-150-beast-of-burden-summer-ny
+  source_order: 150
+  name: Beast of Burden - Summer
+  location_hint: NY
+  display_name: Beast of Burden - Summer(NY)
+  date_text: 8/15-16/26
+  discovery_url: https://www.happilyrunning.com/beastofburden
+  run100s_href: https://www.happilyrunning.com/beastofburden
+  discovery_facts:
+    first_year: '2010'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '14:41:41'
+    winning_time: '19:47:03'
+    finishers: '25'
+    results_year: "'21"
+  status: queued
+- id: run100s-151-baby-dragon-ga
+  source_order: 151
+  name: Baby Dragon
+  location_hint: GA
+  display_name: Baby Dragon(GA)
+  date_text: 8/15-16/26
+  discovery_url: https://www.hardassevents.com
+  run100s_href: https://www.hardassevents.com
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '50'
+    climb_descent: "?'/?'"
+    course_record: '35:00:44'
+    winning_time: '35:44'
+    finishers: '2'
+    results_year: "'22"
+  status: queued
+- id: run100s-152-bad-dawg-mo
+  source_order: 152
+  name: BAD DAWG
+  location_hint: MO
+  display_name: BAD DAWG(MO)
+  date_text: 8/15-16/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=131213
+  run100s_href: https://ultrasignup.com/register.aspx?did=131213
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '21:18:00'
+    winning_time: '29:53:23'
+    finishers: '4'
+    results_year: "'25"
+  status: queued
+- id: run100s-153-leadville-trail-co
+  source_order: 153
+  name: Leadville Trail
+  location_hint: CO
+  display_name: Leadville Trail(CO)
+  date_text: 8/22-23/26
+  discovery_url: http://www.run100s.com/lt100.htm
+  run100s_href: "./lt100.htm"
+  discovery_facts:
+    first_year: '1983'
+    cutoff_hours: '30'
+    climb_descent: 18168'/18168'
+    course_record: '15:12:30'
+    winning_time: '15:12:30'
+    finishers: '381'
+    results_year: "'25"
+  status: queued
+- id: run100s-154-habanero-hundred-tx
+  source_order: 154
+  name: Habanero Hundred
+  location_hint: TX
+  display_name: Habanero Hundred(TX)
+  date_text: 8/22-23/26
+  discovery_url: http://www.TrailRacingOverTexas.com/habanero-hundred/
+  run100s_href: http://www.TrailRacingOverTexas.com/habanero-hundred/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '20:44:57'
+    winning_time: '20:44:57'
+    finishers: '24'
+    results_year: "'19"
+  status: queued
+- id: run100s-155-shawnee-hills-il
+  source_order: 155
+  name: Shawnee Hills
+  location_hint: IL
+  display_name: Shawnee Hills(IL)
+  date_text: 8/22-23/26
+  discovery_url: http://www.ShawneeHills100.weebly.com/
+  run100s_href: http://www.ShawneeHills100.weebly.com/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '32'
+    climb_descent: 9300'/9300'
+    course_record: '19:50:58'
+    winning_time: '25:33:56'
+    finishers: '7'
+    results_year: "'24"
+  status: queued
+- id: run100s-156-rio-grande-co
+  source_order: 156
+  name: Rio Grande
+  location_hint: CO
+  display_name: Rio Grande(CO)
+  date_text: 8/22-23/26
+  discovery_url: https://www.TempestAdventures.com/rio-grande-100/
+  run100s_href: https://www.TempestAdventures.com/rio-grande-100/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '36'
+    climb_descent: 18727'/18727'
+    course_record: '23:48:33'
+    winning_time: 25;23:57
+    finishers: '16'
+    results_year: "'24"
+  status: queued
+- id: run100s-157-midwest-states-wi
+  source_order: 157
+  name: Midwest States
+  location_hint: WI
+  display_name: Midwest States(WI)
+  date_text: 8/29-30/26
+  discovery_url: https://www.MidwestStates100.com/
+  run100s_href: https://www.MidwestStates100.com/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '23:30:29'
+    winning_time: '23:36:40'
+    finishers: '31'
+    results_year: "'24"
+  status: queued
+- id: run100s-158-ocean-state-ri
+  source_order: 158
+  name: Ocean State
+  location_hint: RI
+  display_name: Ocean State(RI)
+  date_text: 8/29-30/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=136171
+  run100s_href: https://ultrasignup.com/register.aspx?did=136171
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '30'
+    climb_descent: 3940'/3940'
+    course_record: '21:50:00'
+    winning_time: '21:50:00'
+    finishers: '6'
+    results_year: "'25"
+  status: queued
+- id: run100s-159-dark-divide-wa
+  source_order: 159
+  name: Dark Divide
+  location_hint: WA
+  display_name: Dark Divide(WA)
+  date_text: 9/4-6/26
+  discovery_url: https://www.WonderlandRunning.com/dark-divide-100-miler/
+  run100s_href: https://www.WonderlandRunning.com/dark-divide-100-miler/
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '48'
+    climb_descent: 26565'/26564'
+    course_record: '27:48:40'
+    winning_time: '29:13:55'
+    finishers: '12'
+    results_year: "'24"
+  status: queued
+- id: run100s-160-booneville-backroads-ultra-ia
+  source_order: 160
+  name: Booneville Backroads Ultra
+  location_hint: IA
+  display_name: Booneville Backroads Ultra(IA)
+  date_text: 9/5-6/26
+  discovery_url: http://www.BoonevilleBackroadsUltra.com/
+  run100s_href: http://www.BoonevilleBackroadsUltra.com/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '17:25:27'
+    winning_time: '23:27:09'
+    finishers: '4'
+    results_year: "'23"
+  status: queued
+- id: run100s-161-wildcat-ultra-fl
+  source_order: 161
+  name: Wildcat Ultra
+  location_hint: FL
+  display_name: Wildcat Ultra(FL)
+  date_text: 9/5-6/26
+  discovery_url: http://UltraSignup.com/register.aspx?did=133885
+  run100s_href: http://UltraSignup.com/register.aspx?did=133885
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '40'
+    climb_descent: 950'/950'
+    course_record: '18:09:59'
+    winning_time: '19:05:50'
+    finishers: '26'
+    results_year: "'25"
+  status: queued
+- id: run100s-162-tuscazoar-oh
+  source_order: 162
+  name: Tuscazoar
+  location_hint: OH
+  display_name: Tuscazoar(OH)
+  date_text: 9/5-6/26
+  discovery_url: https://www.race-brimstone.com/tuscazoar-100
+  run100s_href: https://www.race-brimstone.com/tuscazoar-100
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '32'
+    climb_descent: 10000'/10000'
+    course_record: '16:14:42'
+    winning_time: '17:54:17'
+    finishers: '15'
+    results_year: "'25"
+  status: queued
+- id: run100s-163-wasatch-front-ut
+  source_order: 163
+  name: Wasatch Front
+  location_hint: UT
+  display_name: Wasatch Front(UT)
+  date_text: 9/11-12/26
+  discovery_url: http://www.run100s.com/wf100.htm
+  run100s_href: "./wf100.htm"
+  discovery_facts:
+    first_year: '1980'
+    cutoff_hours: '36'
+    climb_descent: 26882'/26131'
+    course_record: '18:30:55'
+    winning_time: '20:38:06'
+    finishers: '205'
+    results_year: "'25"
+  status: queued
+- id: run100s-164-superior-sawtooth-mn
+  source_order: 164
+  name: Superior Sawtooth
+  location_hint: MN
+  display_name: Superior Sawtooth(MN)
+  date_text: 9/11-12/26
+  discovery_url: http://www.SuperiorFallTrailRace.com/
+  run100s_href: http://www.SuperiorFallTrailRace.com/
+  discovery_facts:
+    first_year: '1993'
+    cutoff_hours: '38'
+    climb_descent: 20000'/21000'
+    course_record: '17:21:42'
+    winning_time: '20:54:03'
+    finishers: '163'
+    results_year: "'24"
+  status: queued
+- id: run100s-165-lost-soul-can
+  source_order: 165
+  name: Lost Soul
+  location_hint: CAN
+  display_name: Lost Soul(CAN)
+  date_text: 9/11-12/26
+  discovery_url: http://www.LostSoulUltra.com/
+  run100s_href: http://www.LostSoulUltra.com/
+  discovery_facts:
+    first_year: '2001'
+    cutoff_hours: '37'
+    climb_descent: 4750'/4750'
+    course_record: '19:05:56'
+    winning_time: '23:42:28'
+    finishers: '17'
+    results_year: "'24"
+  status: queued
+- id: run100s-166-viaduct-trail-pa
+  source_order: 166
+  name: Viaduct Trail
+  location_hint: PA
+  display_name: Viaduct Trail(PA)
+  date_text: 9/11-12/26
+  discovery_url: http://sites.google.com/site/viaducttrailultramarathon/home
+  run100s_href: http://sites.google.com/site/viaducttrailultramarathon/home
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '30'
+    climb_descent: 4000'/4000'
+    course_record: 15:31:__
+    winning_time: 22:24:__
+    finishers: '10'
+    results_year: "'24"
+  status: queued
+- id: run100s-167-run-woodstock-mi
+  source_order: 167
+  name: Run Woodstock
+  location_hint: MI
+  display_name: Run Woodstock(MI)
+  date_text: 9/11-12/26
+  discovery_url: http://www.RunWoodstock.com/
+  run100s_href: http://www.RunWoodstock.com/
+  discovery_facts:
+    first_year: '2009'
+    cutoff_hours: '30'
+    climb_descent: 7806'/7806'
+    course_record: '16:13:56'
+    winning_time: '17:00:34'
+    finishers: '96'
+    results_year: "'23"
+  status: queued
+- id: run100s-168-kingwood-nj
+  source_order: 168
+  name: KingWood
+  location_hint: NJ
+  display_name: KingWood(NJ)
+  date_text: 9/11-12/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=135729
+  run100s_href: https://ultrasignup.com/register.aspx?did=135729
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-169-haliburton-for-can
+  source_order: 169
+  name: Haliburton For.
+  location_hint: CAN
+  display_name: Haliburton For.(CAN)
+  date_text: 9/12-13/26
+  discovery_url: http://www.HaliburtonForest100.org/
+  run100s_href: http://www.HaliburtonForest100.org/
+  discovery_facts:
+    first_year: '1993'
+    cutoff_hours: '30'
+    climb_descent: 12500'/12500'
+    course_record: '15:36:33'
+    winning_time: '24:13:12'
+    finishers: '17'
+    results_year: "'24"
+  status: queued
+- id: run100s-170-virgil-crest-ny
+  source_order: 170
+  name: Virgil Crest
+  location_hint: NY
+  display_name: Virgil Crest(NY)
+  date_text: 9/12-13/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=135280
+  run100s_href: https://ultrasignup.com/register.aspx?did=135280
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '36'
+    climb_descent: 22460'/22460'
+    course_record: '17:34:00'
+    winning_time: '26:35:00'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-171-hawk-hundred-ks
+  source_order: 171
+  name: Hawk Hundred
+  location_hint: KS
+  display_name: Hawk Hundred(KS)
+  date_text: 9/12-13/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=120393
+  run100s_href: https://ultrasignup.com/register.aspx?did=120393
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '16:12:35'
+    winning_time: '24:36:42'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-172-pine-creek-challenge-pa
+  source_order: 172
+  name: Pine Creek Challenge
+  location_hint: PA
+  display_name: Pine Creek Challenge(PA)
+  date_text: 9/12-13/26
+  discovery_url: http://www.PineCreekChallenge.com/
+  run100s_href: http://www.PineCreekChallenge.com/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '14:16:34'
+    winning_time: '14:50:20'
+    finishers: '42'
+    results_year: "'24"
+  status: queued
+- id: run100s-173-mogollon-monster-az
+  source_order: 173
+  name: Mogollon Monster
+  location_hint: AZ
+  display_name: Mogollon Monster(AZ)
+  date_text: 9/12-13/26
+  discovery_url: http://www.MogollonMonster100.com/
+  run100s_href: http://www.MogollonMonster100.com/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '36'
+    climb_descent: 19256'/19256'
+    course_record: '20:13:07'
+    winning_time: '22:37:25'
+    finishers: '105'
+    results_year: "'24"
+  status: queued
+- id: run100s-174-east-fork-oh
+  source_order: 174
+  name: East Fork
+  location_hint: OH
+  display_name: East Fork(OH))
+  date_text: 9/12-13/26
+  discovery_url: https://www.empowerultras.com/
+  run100s_href: https://www.empowerultras.com/
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '40'
+    climb_descent: "?'/?'"
+    course_record: '21:50:59'
+    winning_time: '21:50:59'
+    finishers: '39'
+    results_year: "'24"
+  status: queued
+- id: run100s-175-soo-can
+  source_order: 175
+  name: SOO
+  location_hint: CAN
+  display_name: SOO(CAN)
+  date_text: 9/12-13/26
+  discovery_url: https://www.sinistersports.ca/soo200/
+  run100s_href: https://www.sinistersports.ca/soo200/
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-176-the-georgia-jewel-ga
+  source_order: 176
+  name: The Georgia Jewel
+  location_hint: GA
+  display_name: The Georgia Jewel(GA)
+  date_text: 9/18-19/26
+  discovery_url: http://www.GeorgiaJewel.com/
+  run100s_href: http://www.GeorgiaJewel.com/
+  discovery_facts:
+    first_year: '2006'
+    cutoff_hours: '33'
+    climb_descent: 18000'/18000'
+    course_record: '19:15:13'
+    winning_time: '22:27:57'
+    finishers: '49'
+    results_year: "'25"
+  status: queued
+- id: run100s-177-grindstone-va
+  source_order: 177
+  name: Grindstone
+  location_hint: VA
+  display_name: Grindstone(VA)
+  date_text: 9/18-20/26
+  discovery_url: https://grindstone.utmb.world/races/100M
+  run100s_href: https://grindstone.utmb.world/races/100M
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '38'
+    climb_descent: 21000'/21000'
+    course_record: '17:13:04'
+    winning_time: '21:47:22'
+    finishers: '109'
+    results_year: "'25"
+  status: queued
+- id: run100s-178-run-rabbit-run-co
+  source_order: 178
+  name: Run Rabbit Run
+  location_hint: CO
+  display_name: Run Rabbit Run(CO)
+  date_text: 9/18-19/26
+  discovery_url: http://www.RunRabbitRunSteamboat.com/
+  run100s_href: http://www.RunRabbitRunSteamboat.com/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '32'
+    climb_descent: 20191'/20191'
+    course_record: '17:15:20'
+    winning_time: '18:01:44'
+    finishers: '256'
+    results_year: "'22"
+  status: queued
+- id: run100s-179-marji-gesick-mi
+  source_order: 179
+  name: Marji Gesick
+  location_hint: MI
+  display_name: Marji Gesick(MI)
+  date_text: 9/18-20/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=109586
+  run100s_href: https://ultrasignup.com/register.aspx?did=109586
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '22:50:14'
+    winning_time: '25:34:38'
+    finishers: '34'
+    results_year: "'25"
+  status: queued
+- id: run100s-180-goat-rattler-ut
+  source_order: 180
+  name: Goat Rattler
+  location_hint: UT
+  display_name: Goat Rattler(UT)
+  date_text: 9/18-19/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=130722
+  run100s_href: https://ultrasignup.com/register.aspx?did=130722
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '36'
+    climb_descent: 22500'/22500'
+    course_record: '23:56:04'
+    winning_time: '23:56:04'
+    finishers: '31'
+    results_year: "'25"
+  status: queued
+- id: run100s-181-plain-wa
+  source_order: 181
+  name: Plain
+  location_hint: WA
+  display_name: Plain(WA)
+  date_text: 9/19-20/26
+  discovery_url: http://www.Plain100.com/
+  run100s_href: http://www.Plain100.com/
+  discovery_facts:
+    first_year: '1998'
+    cutoff_hours: '36'
+    climb_descent: 25365'/26766'
+    course_record: '22:21:40'
+    winning_time: '23:46:00'
+    finishers: '25'
+    results_year: "'24"
+  status: queued
+- id: run100s-182-imtuf-id
+  source_order: 182
+  name: IMTUF
+  location_hint: ID
+  display_name: IMTUF(ID)
+  date_text: 9/19-20/26
+  discovery_url: http://www.IMTUF100.com/
+  run100s_href: http://www.IMTUF100.com/
+  discovery_facts:
+    first_year: '2012'
+    cutoff_hours: '36'
+    climb_descent: 20000'/20000'
+    course_record: '19:22:26'
+    winning_time: '20:04:24'
+    finishers: '121'
+    results_year: "'25"
+  status: queued
+- id: run100s-183-stagecoach-az
+  source_order: 183
+  name: Stagecoach
+  location_hint: AZ
+  display_name: Stagecoach(AZ)
+  date_text: 9/19-20/26
+  discovery_url: https://runazt.org/flagstaff-to-grand-canyon-stagecoach-line-100/
+  run100s_href: https://runazt.org/flagstaff-to-grand-canyon-stagecoach-line-100/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '31'
+    climb_descent: 7000'/7000'
+    course_record: '14:40:43'
+    winning_time: '14:40:43'
+    finishers: '61'
+    results_year: "'25"
+  status: queued
+- id: run100s-184-bryce-canyon-ut
+  source_order: 184
+  name: Bryce Canyon
+  location_hint: UT
+  display_name: Bryce Canyon(UT)
+  date_text: 9/19-20/26
+  discovery_url: https://www.VacationRaces.com/ultras/bryce-canyon/
+  run100s_href: https://www.VacationRaces.com/ultras/bryce-canyon/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '34'
+    climb_descent: 14000'/14000'
+    course_record: '17:58:34'
+    winning_time: '19:42:51'
+    finishers: '63'
+    results_year: "'24"
+  status: queued
+- id: run100s-185-mountain-lakes-or
+  source_order: 185
+  name: Mountain Lakes
+  location_hint: OR
+  display_name: Mountain Lakes(OR)
+  date_text: 9/19-20/26
+  discovery_url: http://www.MountainLakes100.com/
+  run100s_href: http://www.MountainLakes100.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '30'
+    climb_descent: 10800'/10800'
+    course_record: '16:04:09'
+    winning_time: '16:04:09'
+    finishers: '80'
+    results_year: "'25"
+  status: queued
+- id: run100s-186-teanaway-country-wa
+  source_order: 186
+  name: Teanaway Country
+  location_hint: WA
+  display_name: Teanaway Country(WA)
+  date_text: 9/19-20/26
+  discovery_url: https://www.RainshadowRunning.com/tc100.html
+  run100s_href: https://www.RainshadowRunning.com/tc100.html
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '40'
+    climb_descent: 30700'/30700'
+    course_record: '20:07:14'
+    winning_time: '21:42:00'
+    finishers: '33'
+    results_year: "'24"
+  status: queued
+- id: run100s-187-mile-madness-ca
+  source_order: 187
+  name: Mile Madness
+  location_hint: CA
+  display_name: Mile Madness(CA)
+  date_text: 9/19-21/26
+  discovery_url: https://www.everydayenduranceraces.com/events
+  run100s_href: https://www.everydayenduranceraces.com/events
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '18:18:49'
+    winning_time: '20:28:55'
+    finishers: '14'
+    results_year: "'24"
+  status: queued
+- id: run100s-188-wild-goose-nj
+  source_order: 188
+  name: Wild Goose
+  location_hint: NJ
+  display_name: Wild Goose(NJ)
+  date_text: 9/19-20/26
+  discovery_url: https://www.SassquadTrailRunning.com/wildgoose
+  run100s_href: https://www.SassquadTrailRunning.com/wildgoose
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '36'
+    climb_descent: 11275'/11239'
+    course_record: '20:52:09'
+    winning_time: '20:52:09'
+    finishers: '32'
+    results_year: "'24"
+  status: queued
+- id: run100s-189-ultra-trail-forillon-can
+  source_order: 189
+  name: Ultra Trail Forillon
+  location_hint: CAN
+  display_name: Ultra Trail Forillon(CAN)
+  date_text: 9/19-20/26
+  discovery_url: https://gaspesia.org/en/events/ultra-trail-forillon
+  run100s_href: https://gaspesia.org/en/events/ultra-trail-forillon
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '36'
+    climb_descent: 18000'/18000'
+    course_record: '23:48:17'
+    winning_time: '23:48:17'
+    finishers: '12'
+    results_year: "'25"
+  status: queued
+- id: run100s-190-ultra-fest-wa
+  source_order: 190
+  name: Ultra Fest
+  location_hint: WA
+  display_name: Ultra Fest(WA)
+  date_text: 9/19-20/26
+  discovery_url: https://runsuperseries.com/ultra-fest
+  run100s_href: https://runsuperseries.com/ultra-fest
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '12:55:58'
+    winning_time: '17:36:00'
+    finishers: '33'
+    results_year: "'25"
+  status: queued
+- id: run100s-191-porkies-mi
+  source_order: 191
+  name: Porkies
+  location_hint: MI
+  display_name: Porkies(MI)
+  date_text: 9/19-20/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=136530
+  run100s_href: https://ultrasignup.com/register.aspx?did=136530
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-192-the-bear-ut
+  source_order: 192
+  name: The Bear
+  location_hint: UT
+  display_name: The Bear(UT)
+  date_text: 9/25-26/26
+  discovery_url: http://www.Bear100.com/
+  run100s_href: http://www.Bear100.com/
+  discovery_facts:
+    first_year: '1999'
+    cutoff_hours: '36'
+    climb_descent: 21986'/21986'
+    course_record: '17:11:51'
+    winning_time: '18:34:50'
+    finishers: '252'
+    results_year: "'25"
+  status: queued
+- id: run100s-193-yeti-va
+  source_order: 193
+  name: Yeti
+  location_hint: VA
+  display_name: Yeti(VA)
+  date_text: 9/25-26/26
+  discovery_url: http://www.YetiTrailRunners.com/
+  run100s_href: http://www.YetiTrailRunners.com/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '30'
+    climb_descent: 3700'/3700'
+    course_record: '13:33:54'
+    winning_time: '15:42:00'
+    finishers: '160'
+    results_year: "'25"
+  status: queued
+- id: run100s-194-cowboy-ne
+  source_order: 194
+  name: Cowboy
+  location_hint: NE
+  display_name: Cowboy(NE)
+  date_text: 9/25-26/26
+  discovery_url: https://ultraversesupplements.com/our-races/the-cowboy-200
+  run100s_href: https://ultraversesupplements.com/our-races/the-cowboy-200
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '16:31:28'
+    winning_time: '16:31:28'
+    finishers: '34'
+    results_year: "'25"
+  status: queued
+- id: run100s-195-urban-adventure-ok
+  source_order: 195
+  name: Urban Adventure
+  location_hint: OK
+  display_name: Urban Adventure(OK)
+  date_text: 9/26-27/26
+  discovery_url: https://UrbanAdventure.run/
+  run100s_href: https://UrbanAdventure.run/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '22:35:37'
+    winning_time: '26:15:13'
+    finishers: '5'
+    results_year: "'25"
+  status: queued
+- id: run100s-196-miami-fl
+  source_order: 196
+  name: Miami
+  location_hint: FL
+  display_name: Miami(FL)
+  date_text: 9/26-27/26
+  discovery_url: http://www.runningninjamiami.com/miami-100/
+  run100s_href: http://www.runningninjamiami.com/miami-100/
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '18:27:00'
+    winning_time: '20:07:00'
+    finishers: '19'
+    results_year: "'25"
+  status: queued
+- id: run100s-197-sangre-de-cristo-co
+  source_order: 197
+  name: Sangre de Cristo
+  location_hint: CO
+  display_name: Sangre de Cristo(CO)
+  date_text: 9/26-27/26
+  discovery_url: http://www.HumanPotentialRunning.com/sangre-de-cristo/
+  run100s_href: http://www.HumanPotentialRunning.com/sangre-de-cristo/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '36'
+    climb_descent: 18897'/18909'
+    course_record: '22:28:00'
+    winning_time: '29:23:00'
+    finishers: '12'
+    results_year: "'25"
+  status: queued
+- id: run100s-198-midwest-everest-mi
+  source_order: 198
+  name: Midwest Everest
+  location_hint: MI
+  display_name: Midwest Everest(MI)
+  date_text: 9/26-27/26
+  discovery_url: https://WestMichiganWhiskeyRollers.com/midwest-everest/
+  run100s_href: https://WestMichiganWhiskeyRollers.com/midwest-everest/
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '36'
+    climb_descent: 29000'/29000'
+    course_record: '26:06:20'
+    winning_time: '29:39:41'
+    finishers: '3'
+    results_year: "'25"
+  status: queued
+- id: run100s-199-ultrapalooza-ks
+  source_order: 199
+  name: Ultrapalooza
+  location_hint: KS
+  display_name: Ultrapalooza(KS)
+  date_text: 9/26-27/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133730
+  run100s_href: https://ultrasignup.com/register.aspx?did=133730
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '21:55:35'
+    winning_time: '22:42:37'
+    finishers: '4'
+    results_year: "'25"
+  status: queued
+- id: run100s-200-hindsight-il
+  source_order: 200
+  name: Hindsight
+  location_hint: IL
+  display_name: Hindsight(IL))
+  date_text: 9/26-27/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=134946
+  run100s_href: https://ultrasignup.com/register.aspx?did=134946
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '32'
+    climb_descent: 6200'/6200'
+    course_record: '20:38:00'
+    winning_time: '27:46:00'
+    finishers: '3'
+    results_year: "'25"
+  status: queued
+- id: run100s-201-woodstock-warrior-va
+  source_order: 201
+  name: Woodstock Warrior
+  location_hint: VA
+  display_name: Woodstock Warrior(VA)
+  date_text: 9/26-27/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=127070
+  run100s_href: https://ultrasignup.com/register.aspx?did=127070
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '36'
+    climb_descent: 18000'/18000'
+    course_record: '27:18:34'
+    winning_time: '27:18:34'
+    finishers: '4'
+    results_year: "'25"
+  status: queued
+- id: run100s-202-iron-horse-ultra-can
+  source_order: 202
+  name: Iron Horse Ultra
+  location_hint: CAN
+  display_name: Iron Horse Ultra(CAN)
+  date_text: 10/2-3/26
+  discovery_url: http://www.IronHorseUltra.com/
+  run100s_href: http://www.IronHorseUltra.com/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '27'
+    climb_descent: "?'/?'"
+    course_record: '17:41:13'
+    winning_time: '18:11:20'
+    finishers: '10'
+    results_year: "'25"
+  status: queued
+- id: run100s-203-massanutten-s-revenge-va
+  source_order: 203
+  name: Massanutten's Revenge
+  location_hint: VA
+  display_name: Massanutten's Revenge(VA)
+  date_text: 10/2-4/26
+  discovery_url: https://new.VHTRC.org/events/mr100
+  run100s_href: https://new.VHTRC.org/events/mr100
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '48'
+    climb_descent: 22300'/22300'
+    course_record: '39:51:35'
+    winning_time: '42:51:00'
+    finishers: '1'
+    results_year: "'25"
+  status: queued
+- id: run100s-204-arkansas-trav-ar
+  source_order: 204
+  name: Arkansas Trav.
+  location_hint: AR
+  display_name: Arkansas Trav.(AR)
+  date_text: 10/3-4/26
+  discovery_url: http://www.RunArkansas.com/AT100.htm
+  run100s_href: http://www.RunArkansas.com/AT100.htm
+  discovery_facts:
+    first_year: '1991'
+    cutoff_hours: '30'
+    climb_descent: 12086'/12106'
+    course_record: '15:08:34'
+    winning_time: '17:55:34'
+    finishers: '109'
+    results_year: "'25"
+  status: queued
+- id: run100s-205-hennepin-hundred-il
+  source_order: 205
+  name: Hennepin Hundred
+  location_hint: IL
+  display_name: Hennepin Hundred(IL)
+  date_text: 10/3-4/26
+  discovery_url: http://www.HennepinHundred.com/
+  run100s_href: http://www.HennepinHundred.com/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '30'
+    climb_descent: 180'/299'
+    course_record: '12:45:59'
+    winning_time: '13:47:02'
+    finishers: '203'
+    results_year: "'25"
+  status: queued
+- id: run100s-206-saddles-az
+  source_order: 206
+  name: Saddles
+  location_hint: AZ
+  display_name: Saddles(AZ)
+  date_text: 10/3-4/26
+  discovery_url: http://www.Saddles100.com//
+  run100s_href: http://www.Saddles100.com//
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '33'
+    climb_descent: "?'/?'"
+    course_record: '17:57:26'
+    winning_time: '17:57:26'
+    finishers: '105'
+    results_year: "'25"
+  status: queued
+- id: run100s-207-forbidden-forest-ct
+  source_order: 207
+  name: Forbidden Forest
+  location_hint: CT
+  display_name: Forbidden Forest(CT)
+  date_text: 10/3-4/26
+  discovery_url: https://rooseveltforestultras.com/forbidden-forest
+  run100s_href: https://rooseveltforestultras.com/forbidden-forest
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'24"
+  status: queued
+- id: run100s-208-el-diablo-la
+  source_order: 208
+  name: El Diablo
+  location_hint: LA
+  display_name: El Diablo(LA)
+  date_text: 10/3-4/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133926
+  run100s_href: https://ultrasignup.com/register.aspx?did=133926
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '40'
+    climb_descent: "?'/?'"
+    course_record: '28:49:00'
+    winning_time: '28:49:00'
+    finishers: '5'
+    results_year: "'25"
+  status: queued
+- id: run100s-209-export-pa
+  source_order: 209
+  name: Export
+  location_hint: PA
+  display_name: Export(PA)
+  date_text: 10/3-4/26
+  discovery_url: https://www.Darren-Miller.com/events/export-100-endurance-run/
+  run100s_href: https://www.Darren-Miller.com/events/export-100-endurance-run/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '32'
+    climb_descent: 7392'/7392'
+    course_record: '23:26:00'
+    winning_time: '23:26:00'
+    finishers: '4'
+    results_year: "'25"
+  status: queued
+- id: run100s-210-export-pa
+  source_order: 210
+  name: Export
+  location_hint: PA
+  display_name: Export(PA)
+  date_text: 10/3-4/26
+  discovery_url: https://www.Darren-Miller.com/events/export-100-endurance-run/
+  run100s_href: https://www.Darren-Miller.com/events/export-100-endurance-run/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '32'
+    climb_descent: 7392'/7392'
+    course_record: '23:26:00'
+    winning_time: '23:26:00'
+    finishers: '4'
+    results_year: "'25"
+  status: queued
+- id: run100s-211-kodiak-ca
+  source_order: 211
+  name: Kodiak
+  location_hint: CA
+  display_name: Kodiak(CA)
+  date_text: 10/9-11/26
+  discovery_url: https://kodiak.utmb.world/races/100M
+  run100s_href: https://kodiak.utmb.world/races/100M
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '36'
+    climb_descent: 13451'/13451'
+    course_record: '16:22:08'
+    winning_time: '16:40:37'
+    finishers: '328'
+    results_year: "'25"
+  status: queued
+- id: run100s-212-virginia-trail-va
+  source_order: 212
+  name: Virginia Trail
+  location_hint: VA
+  display_name: Virginia Trail(VA)
+  date_text: 10/9-10/26
+  discovery_url: https://www.runbumtours.com/virginia-trail-running-festival
+  run100s_href: https://www.runbumtours.com/virginia-trail-running-festival
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: '13:50:26'
+    winning_time: '13:50:26'
+    finishers: '87'
+    results_year: "'25"
+  status: queued
+- id: run100s-213-biggest-little-ultra-nv
+  source_order: 213
+  name: Biggest Little Ultra
+  location_hint: NV
+  display_name: Biggest Little Ultra(NV)
+  date_text: 10/9-11/26
+  discovery_url: http://www.BiggestLittleUltra.com/
+  run100s_href: http://www.BiggestLittleUltra.com/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '23:06:15'
+    winning_time: '23:06:15'
+    finishers: '14'
+    results_year: "'25"
+  status: queued
+- id: run100s-214-heartland-ks
+  source_order: 214
+  name: Heartland
+  location_hint: KS
+  display_name: Heartland(KS)
+  date_text: 10/10-11/26
+  discovery_url: http://www.ksultrarunners.org/
+  run100s_href: http://www.ksultrarunners.org/
+  discovery_facts:
+    first_year: '2000'
+    cutoff_hours: '30'
+    climb_descent: 6000'/6000'
+    course_record: '14:26:43'
+    winning_time: '17:19:16'
+    finishers: '35'
+    results_year: "'25"
+  status: queued
+- id: run100s-215-antelope-island-buffalo-run-ut
+  source_order: 215
+  name: Antelope Island Buffalo Run
+  location_hint: UT
+  display_name: Antelope Island Buffalo Run(UT)
+  date_text: 10/10-11/26
+  discovery_url: http://www.BuffaloRunAdventures.com/
+  run100s_href: http://www.BuffaloRunAdventures.com/
+  discovery_facts:
+    first_year: '2006'
+    cutoff_hours: '32.5'
+    climb_descent: 7670'/7670'
+    course_record: '14:34:00'
+    winning_time: '16:13:38'
+    finishers: '24'
+    results_year: "'25"
+  status: queued
+- id: run100s-216-oil-creek-pa
+  source_order: 216
+  name: Oil Creek
+  location_hint: PA
+  display_name: Oil Creek(PA)
+  date_text: 10/10-11/26
+  discovery_url: http://www.OilCreek100.org/
+  run100s_href: http://www.OilCreek100.org/
+  discovery_facts:
+    first_year: '2009'
+    cutoff_hours: '32'
+    climb_descent: 17785'/17785'
+    course_record: '17:03:32'
+    winning_time: '18:30:48'
+    finishers: '34'
+    results_year: "'25"
+  status: queued
+- id: run100s-217-indiana-trail-in
+  source_order: 217
+  name: Indiana Trail
+  location_hint: IN
+  display_name: Indiana Trail(IN)
+  date_text: 10/10-11/26
+  discovery_url: http://www.IndianaTrail100.com/
+  run100s_href: http://www.IndianaTrail100.com/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '30'
+    climb_descent: 6000'/6000'
+    course_record: '15:04:55'
+    winning_time: '15:57:34'
+    finishers: '108'
+    results_year: "'25"
+  status: queued
+- id: run100s-218-tesla-hertz-ny
+  source_order: 218
+  name: Tesla Hertz
+  location_hint: NY
+  display_name: Tesla Hertz(NY)
+  date_text: 10/10-11/26
+  discovery_url: http://teslahertzrun.com/
+  run100s_href: http://teslahertzrun.com/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '18:37:38'
+    winning_time: '21:26:49'
+    finishers: '17'
+    results_year: "'21"
+  status: queued
+- id: run100s-219-farmdale-trail-il
+  source_order: 219
+  name: Farmdale Trail
+  location_hint: IL
+  display_name: Farmdale Trail(IL)
+  date_text: 10/10-11/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=123988
+  run100s_href: https://ultrasignup.com/register.aspx?did=123988
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '32'
+    climb_descent: "'/'"
+    course_record: '19:18:29'
+    winning_time: '24:52:07'
+    finishers: '12'
+    results_year: "'24"
+  status: queued
+- id: run100s-220-canal-corridor-oh
+  source_order: 220
+  name: Canal Corridor
+  location_hint: OH
+  display_name: Canal Corridor(OH)
+  date_text: 10/10-11/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133384
+  run100s_href: https://ultrasignup.com/register.aspx?did=133384
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '12:40:22'
+    winning_time: '14:57:18'
+    finishers: '126'
+    results_year: "'25"
+  status: queued
+- id: run100s-221-hainesport-hundred-nj
+  source_order: 221
+  name: Hainesport Hundred
+  location_hint: NJ
+  display_name: Hainesport Hundred(NJ)
+  date_text: 10/10-11/26
+  discovery_url: https://BeastCoastPro.com/hainesport-endurance-run
+  run100s_href: https://BeastCoastPro.com/hainesport-endurance-run
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '30'
+    climb_descent: 0'/0'
+    course_record: '16:22:53'
+    winning_time: '18:13:35'
+    finishers: '27'
+    results_year: "'25"
+  status: queued
+- id: run100s-222-midstate-massive-nh
+  source_order: 222
+  name: Midstate Massive
+  location_hint: NH
+  display_name: Midstate Massive(NH)
+  date_text: 10/10-11/26
+  discovery_url: https://www.newenglandraceevents.com/midstate-massive-ultra-trail
+  run100s_href: https://www.newenglandraceevents.com/midstate-massive-ultra-trail
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '33'
+    climb_descent: "'/'"
+    course_record: '18:54:41'
+    winning_time: '19:29:12'
+    finishers: '75'
+    results_year: "'25"
+  status: queued
+- id: run100s-223-wolverine-state-mi
+  source_order: 223
+  name: Wolverine State
+  location_hint: MI
+  display_name: Wolverine State (MI)
+  date_text: 10/10-11/26
+  discovery_url: https://runsignup.com/Race/MI/Petoskey/WolverineState100
+  run100s_href: https://runsignup.com/Race/MI/Petoskey/WolverineState100
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: '16:50:33'
+    winning_time: '16:50:33'
+    finishers: '95'
+    results_year: "'25"
+  status: queued
+- id: run100s-224-pony-express-trail-ut
+  source_order: 224
+  name: Pony Express Trail
+  location_hint: UT
+  display_name: Pony Express Trail(UT)
+  date_text: 10/16-17/26
+  discovery_url: http://www.PonyExpress100.org/
+  run100s_href: http://www.PonyExpress100.org/
+  discovery_facts:
+    first_year: '2006'
+    cutoff_hours: '30'
+    climb_descent: 3000'/3000'
+    course_record: '15:06:27'
+    winning_time: '18:19:00'
+    finishers: '22'
+    results_year: "'24"
+  status: queued
+- id: run100s-225-mines-of-spain-ia
+  source_order: 225
+  name: Mines of Spain
+  location_hint: IA
+  display_name: Mines of Spain(IA)
+  date_text: 10/16-17/26
+  discovery_url: http://www.MinesOfSpain100.com
+  run100s_href: http://www.MinesOfSpain100.com
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '33'
+    climb_descent: 14000'/14000'
+    course_record: '17:45:20'
+    winning_time: '18:49:00'
+    finishers: '72'
+    results_year: "'24"
+  status: queued
+- id: run100s-226-lake-sonoma-ca
+  source_order: 226
+  name: Lake Sonoma
+  location_hint: CA
+  display_name: Lake Sonoma(CA)
+  date_text: 10/16-17/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133833
+  run100s_href: https://ultrasignup.com/register.aspx?did=133833
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: 27000'/27000'
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers:
+    results_year: "'26"
+  status: queued
+- id: run100s-227-ghost-train-nh
+  source_order: 227
+  name: Ghost Train
+  location_hint: NH
+  display_name: Ghost Train(NH)
+  date_text: 10/17-18/26
+  discovery_url: https://sites.google.com/site/ghosttrainrailtrailrace/
+  run100s_href: https://sites.google.com/site/ghosttrainrailtrailrace/
+  discovery_facts:
+    first_year: '2009'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '13:29:19'
+    winning_time: '14:12:14'
+    finishers: '59'
+    results_year: "'19"
+  status: queued
+- id: run100s-228-pumpkin-holler-ok
+  source_order: 228
+  name: Pumpkin Holler
+  location_hint: OK
+  display_name: Pumpkin Holler(OK)
+  date_text: 10/17-18/26
+  discovery_url: http://www.PH100.run/
+  run100s_href: http://www.PH100.run/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '14:08:35'
+    winning_time: '14:08:35'
+    finishers: '45'
+    results_year: "'24"
+  status: queued
+- id: run100s-229-uwharrie-nc
+  source_order: 229
+  name: Uwharrie
+  location_hint: NC
+  display_name: Uwharrie(NC)
+  date_text: 10/17-18/26
+  discovery_url: http://www.Uwharrie100.com/
+  run100s_href: http://www.Uwharrie100.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '36'
+    climb_descent: 23000'/23000'
+    course_record: '20:27:04'
+    winning_time: '23:21:43'
+    finishers: '23'
+    results_year: "'24"
+  status: queued
+- id: run100s-230-bromont-ultra-can
+  source_order: 230
+  name: Bromont Ultra
+  location_hint: CAN
+  display_name: Bromont Ultra(CAN)
+  date_text: 10/17-18/26
+  discovery_url: http://www.BromontUltra.com/
+  run100s_href: http://www.BromontUltra.com/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '34'
+    climb_descent: 21250'/21250'
+    course_record: '16:51:04'
+    winning_time: '18:47:27'
+    finishers: '63'
+    results_year: "'25"
+  status: queued
+- id: run100s-231-cahuilla-rez-ca
+  source_order: 231
+  name: Cahuilla Rez
+  location_hint: CA
+  display_name: Cahuilla Rez(CA)
+  date_text: 10/17-18/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=131405
+  run100s_href: https://ultrasignup.com/register.aspx?did=131405
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '20:26:20'
+    winning_time: '20:26:20'
+    finishers: '9'
+    results_year: "'25"
+  status: queued
+- id: run100s-232-fsr-tn
+  source_order: 232
+  name: FSR
+  location_hint: TN
+  display_name: FSR(TN)
+  date_text: 10/17-18/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=131617
+  run100s_href: https://ultrasignup.com/register.aspx?did=131617
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '30'
+    climb_descent: 15000'/15000'
+    course_record: '27:02:11'
+    winning_time: '27:02:11'
+    finishers: '7'
+    results_year: "'24"
+  status: queued
+- id: run100s-233-gila-nm
+  source_order: 233
+  name: Gila
+  location_hint: NM
+  display_name: Gila(NM)
+  date_text: 10/17-18/26
+  discovery_url: https://www.gilaenduranceruns.com
+  run100s_href: https://www.gilaenduranceruns.com
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '38'
+    climb_descent: "?'/?'"
+    course_record: 25;38:02
+    winning_time: '25:38:02'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-234-hky-nc
+  source_order: 234
+  name: HKY
+  location_hint: NC
+  display_name: HKY(NC)
+  date_text: 10/17-18/26
+  discovery_url: https://runsignup.com/Race/NC/Hickory/HKY100
+  run100s_href: https://runsignup.com/Race/NC/Hickory/HKY100
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-235-wicked-windstone-pa
+  source_order: 235
+  name: Wicked Windstone
+  location_hint: PA
+  display_name: Wicked Windstone(PA)
+  date_text: 10/17-18/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=140741
+  run100s_href: https://ultrasignup.com/register.aspx?did=140741
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers:
+    results_year: "'26"
+  status: queued
+- id: run100s-236-cactus-rose-tx
+  source_order: 236
+  name: Cactus Rose
+  location_hint: TX
+  display_name: Cactus Rose(TX)
+  date_text: 10/23-25/26
+  discovery_url: http://www.TejasTrails.com/#/cactus-rose/
+  run100s_href: http://www.TejasTrails.com/#/cactus-rose/
+  discovery_facts:
+    first_year: '2007'
+    cutoff_hours: '36'
+    climb_descent: 7318'/7318'
+    course_record: '17:34:08'
+    winning_time: '23:43:58'
+    finishers: '23'
+    results_year: "'24"
+  status: queued
+- id: run100s-237-no-business-tn
+  source_order: 237
+  name: No Business
+  location_hint: TN
+  display_name: No Business(TN)
+  date_text: 10/23-24/26
+  discovery_url: http://www.NoBusiness100.com/
+  run100s_href: http://www.NoBusiness100.com/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '32'
+    climb_descent: 10837'/10837'
+    course_record: '18:26:03'
+    winning_time: '22:09:31'
+    finishers: '148'
+    results_year: "'24"
+  status: queued
+- id: run100s-238-hare-mountain-ar
+  source_order: 238
+  name: Hare Mountain
+  location_hint: AR
+  display_name: Hare Mountain(AR)
+  date_text: 10/23-25/26
+  discovery_url: http://www.HareMountain100.com/
+  run100s_href: http://www.HareMountain100.com/
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '38'
+    climb_descent: 21000'/21000'
+    course_record: '32:00:00'
+    winning_time: '32:00:00'
+    finishers: '11'
+    results_year: "'24"
+  status: queued
+- id: run100s-239-rails-to-trails-ks
+  source_order: 239
+  name: Rails-to-Trails
+  location_hint: KS
+  display_name: Rails-to-Trails(KS)
+  date_text: 10/24-25/26
+  discovery_url: http://www.UltraExtraVaganza.com/
+  run100s_href: http://www.UltraExtraVaganza.com/
+  discovery_facts:
+    first_year: '2015'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '14:13:09'
+    winning_time: '17:34:07'
+    finishers: '17'
+    results_year: "'24"
+  status: queued
+- id: run100s-240-lake-murray-ok
+  source_order: 240
+  name: Lake Murray
+  location_hint: OK
+  display_name: Lake Murray(OK)
+  date_text: 10/24-25/26
+  discovery_url: https://blazetrails.com/lake-murray-endurance-run/
+  run100s_href: https://blazetrails.com/lake-murray-endurance-run/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: 23;32:15
+    winning_time: '25:41:54'
+    finishers: '1'
+    results_year: "'21"
+  status: queued
+- id: run100s-241-rim-to-river-wv
+  source_order: 241
+  name: Rim to River
+  location_hint: WV
+  display_name: Rim to River(WV)
+  date_text: 10/24-25/26
+  discovery_url: https://www.RimToRiverEndurance.com/
+  run100s_href: https://www.RimToRiverEndurance.com/
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '32'
+    climb_descent: 13000'/13000'
+    course_record: '15:34:12'
+    winning_time: '18:29:18'
+    finishers: '188'
+    results_year: "'24"
+  status: queued
+- id: run100s-242-show-me-your-free-state-mo
+  source_order: 242
+  name: Show Me Your Free State
+  location_hint: MO
+  display_name: Show Me Your Free State(MO)
+  date_text: 10/24-25/26
+  discovery_url: https://ShowMeYourFreeState.org
+  run100s_href: https://ShowMeYourFreeState.org
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '30'
+    climb_descent: 558'/558'
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-243-tussey-mountainback-pa
+  source_order: 243
+  name: Tussey mOUnTaiNBACK
+  location_hint: PA
+  display_name: Tussey mOUnTaiNBACK(PA)
+  date_text: 10/24-25/26
+  discovery_url: http://www.TusseymOUnTaiNBACK.com/
+  run100s_href: http://www.TusseymOUnTaiNBACK.com/
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-244-machete-trail-madness-ca
+  source_order: 244
+  name: Machete Trail Madness
+  location_hint: CA
+  display_name: Machete Trail Madness(CA)
+  date_text: 10/28-30/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=132165
+  run100s_href: https://ultrasignup.com/register.aspx?did=132165
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '40'
+    climb_descent: "?'/?'"
+    course_record: '20:21:10'
+    winning_time: '31:21:39'
+    finishers: '17'
+    results_year: "'25"
+  status: queued
+- id: run100s-245-javelina-jundred-az
+  source_order: 245
+  name: Javelina Jundred
+  location_hint: AZ
+  display_name: Javelina Jundred(AZ)
+  date_text: 10/31-11/1/26
+  discovery_url: http://www.JavelinaJundred.com/
+  run100s_href: http://www.JavelinaJundred.com/
+  discovery_facts:
+    first_year: '2003'
+    cutoff_hours: '30'
+    climb_descent: 5000'/5000'
+    course_record: '12:45:04'
+    winning_time: '12:45:04'
+    finishers: '420'
+    results_year: "'24"
+  status: queued
+- id: run100s-246-ozark-mo
+  source_order: 246
+  name: Ozark
+  location_hint: MO
+  display_name: Ozark(MO)
+  date_text: 10/31-11/1/26
+  discovery_url: http://www.OzarkTrail100.com/
+  run100s_href: http://www.OzarkTrail100.com/
+  discovery_facts:
+    first_year: '2010'
+    cutoff_hours: '32'
+    climb_descent: 13500'/13500'
+    course_record: '17:44:37'
+    winning_time: '19:43:19'
+    finishers: '21'
+    results_year: "'22"
+  status: queued
+- id: run100s-247-hell-creek-ks
+  source_order: 247
+  name: Hell Creek
+  location_hint: KS
+  display_name: Hell Creek(KS)
+  date_text: 10/31-11/1/26
+  discovery_url: https://ultraversesupplements.com/our-races/hell-creek-100
+  run100s_href: https://ultraversesupplements.com/our-races/hell-creek-100
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '34'
+    climb_descent: 10120'/10120'
+    course_record: '19:46:57'
+    winning_time: '29:55:47'
+    finishers: '4'
+    results_year: "'25"
+  status: queued
+- id: run100s-248-mamba-tn
+  source_order: 248
+  name: Mamba
+  location_hint: TN
+  display_name: Mamba(TN)
+  date_text: 11/6-7/26
+  discovery_url: https://www.mambatrailrunners.com
+  run100s_href: https://www.mambatrailrunners.com
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '17:17:47'
+    winning_time: '18:58:48'
+    finishers: '109'
+    results_year: "'25"
+  status: queued
+- id: run100s-249-rio-del-lago-ca
+  source_order: 249
+  name: Rio del Lago
+  location_hint: CA
+  display_name: Rio del Lago(CA)
+  date_text: 11/7-8/26
+  discovery_url: http://www.Rio100mile.com/
+  run100s_href: http://www.Rio100mile.com/
+  discovery_facts:
+    first_year: '2000'
+    cutoff_hours: '30'
+    climb_descent: 13874'/13874'
+    course_record: '14:54:18'
+    winning_time: '15:51:35'
+    finishers: '197'
+    results_year: "'25"
+  status: queued
+- id: run100s-250-pinhoti-al
+  source_order: 250
+  name: Pinhoti
+  location_hint: AL
+  display_name: Pinhoti(AL)
+  date_text: 11/7-8/26
+  discovery_url: http://www.PinhotiTrailSeries.com/pinhoti-100.html
+  run100s_href: http://www.PinhotiTrailSeries.com/pinhoti-100.html
+  discovery_facts:
+    first_year: '2008'
+    cutoff_hours: '31'
+    climb_descent: 16180'/16586'
+    course_record: '16:24:15'
+    winning_time: '19:40:56'
+    finishers: '134'
+    results_year: "'25"
+  status: queued
+- id: run100s-251-tbunk-wi
+  source_order: 251
+  name: tBunk
+  location_hint: WI
+  display_name: tBunk(WI)
+  date_text: 11/7-8/26
+  discovery_url: http://www.tBunk.blogspot.com/
+  run100s_href: http://www.tBunk.blogspot.com/
+  discovery_facts:
+    first_year: '2013'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '17:32:40'
+    winning_time: '21:31:00'
+    finishers: '13'
+    results_year: "'25"
+  status: queued
+- id: run100s-252-screaming-monkey-la
+  source_order: 252
+  name: Screaming Monkey
+  location_hint: LA
+  display_name: Screaming Monkey(LA)
+  date_text: 11/7-8/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=136820
+  run100s_href: https://ultrasignup.com/register.aspx?did=136820
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '21:40:52'
+    winning_time: '25:24:40'
+    finishers: '5'
+    results_year: "'23"
+  status: queued
+- id: run100s-253-mountaineer-rumble-sc
+  source_order: 253
+  name: Mountaineer Rumble
+  location_hint: SC
+  display_name: Mountaineer Rumble(SC)
+  date_text: 11/7-8/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133750
+  run100s_href: https://ultrasignup.com/register.aspx?did=133750
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '32'
+    climb_descent: 8000'/8000'
+    course_record: '19:44:10'
+    winning_time: '19:44:10'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-254-willapa-wa
+  source_order: 254
+  name: Willapa
+  location_hint: WA
+  display_name: Willapa(WA)
+  date_text: 11/7-8/26
+  discovery_url: https://olytrailrunners.com/willapa_trail_festival/
+  run100s_href: https://olytrailrunners.com/willapa_trail_festival/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '33'
+    climb_descent: "?'/?'"
+    course_record: '15:18:22'
+    winning_time: '15:18:22'
+    finishers: '26'
+    results_year: "'25"
+  status: queued
+- id: run100s-255-deadman-peaks-nm
+  source_order: 255
+  name: Deadman Peaks
+  location_hint: NM
+  display_name: Deadman Peaks(NM)
+  date_text: 11/7-8/26
+  discovery_url: https://racenm.com/deadman-peaks
+  run100s_href: https://racenm.com/deadman-peaks
+  discovery_facts:
+    first_year: '2024'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '23:53:22'
+    winning_time: '23:53:22'
+    finishers: '5'
+    results_year: "'25"
+  status: queued
+- id: run100s-256-ponderosa-polar-challenge-ut
+  source_order: 256
+  name: Ponderosa Polar Challenge
+  location_hint: UT
+  display_name: Ponderosa Polar Challenge(UT)
+  date_text: 11/7-9/26
+  discovery_url: http://www.HowlingTrailsAdventure.com/
+  run100s_href: http://www.HowlingTrailsAdventure.com/
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '52'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers:
+    results_year: "'25"
+  status: queued
+- id: run100s-257-next-loop-ar
+  source_order: 257
+  name: Next Loop
+  location_hint: AR
+  display_name: Next Loop(AR)
+  date_text: 11/7-8/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=142008
+  run100s_href: https://ultrasignup.com/register.aspx?did=142008
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '35:35:05'
+    winning_time: '35:35:05'
+    finishers: '1'
+    results_year: "'26"
+  status: queued
+- id: run100s-258-tunnel-hill-il
+  source_order: 258
+  name: Tunnel Hill
+  location_hint: IL
+  display_name: Tunnel Hill(IL)
+  date_text: 11/14-15/26
+  discovery_url: http://www.DurbinRaceManagement.com/
+  run100s_href: http://www.DurbinRaceManagement.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '30'
+    climb_descent: 1613'/1613'
+    course_record: '11:26:19'
+    winning_time: '12:03:27'
+    finishers: '172'
+    results_year: "'25"
+  status: queued
+- id: run100s-259-tampa-bay-fl
+  source_order: 259
+  name: Tampa Bay
+  location_hint: FL
+  display_name: Tampa Bay(FL)
+  date_text: 11/14-16/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=135611
+  run100s_href: https://ultrasignup.com/register.aspx?did=135611
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '36'
+    climb_descent: "?'/?'"
+    course_record: '17:17:00'
+    winning_time: '17:17:00'
+    finishers: '55'
+    results_year: "'25"
+  status: queued
+- id: run100s-260-fat-ox-az
+  source_order: 260
+  name: Fat Ox
+  location_hint: AZ
+  display_name: Fat Ox(AZ)
+  date_text: 11/20-22/26
+  discovery_url: https://www.AravaipaRunning.com/fat-ox/
+  run100s_href: https://www.AravaipaRunning.com/fat-ox/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '48'
+    climb_descent: "?'/?'"
+    course_record: '18:24:15'
+    winning_time: '18:24:15'
+    finishers: '21'
+    results_year: "'25"
+  status: queued
+- id: run100s-261-dinosaur-valley-tx
+  source_order: 261
+  name: Dinosaur Valley
+  location_hint: TX
+  display_name: Dinosaur Valley(TX)
+  date_text: 11/21-22/26
+  discovery_url: http://www.DinosaurValleyTrailRun.com/
+  run100s_href: http://www.DinosaurValleyTrailRun.com/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '33'
+    climb_descent: 10000'/10000'
+    course_record: '19:46:45'
+    winning_time: '19:46:45'
+    finishers: '51'
+    results_year: "'22"
+  status: queued
+- id: run100s-262-stuffed-turkey-ia
+  source_order: 262
+  name: Stuffed Turkey
+  location_hint: IA
+  display_name: Stuffed Turkey(IA)
+  date_text: 11/21-22/26
+  discovery_url: https://stuffedturkeyendurance.weebly.com/
+  run100s_href: https://stuffedturkeyendurance.weebly.com/
+  discovery_facts:
+    first_year: '2019'
+    cutoff_hours: '30'
+    climb_descent: 4550'/4550'
+    course_record: '15:58:10'
+    winning_time: 17:33;29
+    finishers: '29'
+    results_year: "'25"
+  status: queued
+- id: run100s-263-fire-fest-ultra-nv
+  source_order: 263
+  name: Fire Fest Ultra
+  location_hint: NV
+  display_name: Fire Fest Ultra(NV)
+  date_text: 11/21-22/26
+  discovery_url: https://tripledarerunningcompany.com/events/valley-of-fire/
+  run100s_href: https://tripledarerunningcompany.com/events/valley-of-fire/
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: '35'
+    climb_descent: "?'/?'"
+    course_record: '19:10:58'
+    winning_time: '19:49:22'
+    finishers: '22'
+    results_year: "'24"
+  status: queued
+- id: run100s-264-fall-creek-tn
+  source_order: 264
+  name: Fall Creek
+  location_hint: TN
+  display_name: Fall Creek(TN)
+  date_text: 11/21-22/26
+  discovery_url: https://www.greentunnelevents.com/fallcreek100
+  run100s_href: https://www.greentunnelevents.com/fallcreek100
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '32'
+    climb_descent: 8200'/8200'
+    course_record: '19:00:52'
+    winning_time: '20:06:39'
+    finishers: '22'
+    results_year: "'25"
+  status: queued
+- id: run100s-265-chattabrewchee-ga
+  source_order: 265
+  name: Chattabrewchee
+  location_hint: GA
+  display_name: Chattabrewchee(GA)
+  date_text: 11/21-22/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=138142
+  run100s_href: https://ultrasignup.com/register.aspx?did=138142
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '24'
+    climb_descent: "?'/?'"
+    course_record: '21:08:21'
+    winning_time: '21:08:21'
+    finishers: '3'
+    results_year: "'25"
+  status: queued
+- id: run100s-266-girl-scout-island-ga
+  source_order: 266
+  name: Girl Scout Island
+  location_hint: GA
+  display_name: Girl Scout Island(GA)
+  date_text: 11/21-22/26
+  discovery_url: https://roughrunnersr4r.com/girl-scout-island-ultra/
+  run100s_href: https://roughrunnersr4r.com/girl-scout-island-ultra/
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-267-boundiful-ca
+  source_order: 267
+  name: Boundiful
+  location_hint: CA
+  display_name: Boundiful(CA))
+  date_text: 11/28-29/26
+  discovery_url: https://negativesplit.io/boundiful/
+  run100s_href: https://negativesplit.io/boundiful/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '16:23:02'
+    winning_time: '22:26:57'
+    finishers: '12'
+    results_year: "'21"
+  status: queued
+- id: run100s-268-new-gemini-ga
+  source_order: 268
+  name: New Gemini
+  location_hint: GA
+  display_name: New Gemini(GA))
+  date_text: 11/28-29/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=141418
+  run100s_href: https://ultrasignup.com/register.aspx?did=141418
+  discovery_facts:
+    first_year: '2026'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: __:__:__
+    winning_time: __:__:__
+    finishers: __
+    results_year: "'26"
+  status: queued
+- id: run100s-269-blood-rock-al
+  source_order: 269
+  name: Blood Rock
+  location_hint: AL
+  display_name: Blood Rock(AL)
+  date_text: 12/4-5/26
+  discovery_url: http://www.SouthEasternTrailRuns.com/
+  run100s_href: http://www.SouthEasternTrailRuns.com/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '44'
+    climb_descent: 26114'/26114'
+    course_record: '19:37:17'
+    winning_time: '27:07:08'
+    finishers: '17'
+    results_year: "'25"
+  status: queued
+- id: run100s-270-island-view-ca
+  source_order: 270
+  name: Island View
+  location_hint: CA
+  display_name: Island View(CA)
+  date_text: 12/4-5/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133256
+  run100s_href: https://ultrasignup.com/register.aspx?did=133256
+  discovery_facts:
+    first_year: '2025'
+    cutoff_hours: '24'
+    climb_descent: "?'/?'"
+    course_record: '23:32:25'
+    winning_time: '23:32:25'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-271-brazos-bend-tx
+  source_order: 271
+  name: Brazos Bend
+  location_hint: TX
+  display_name: Brazos Bend(TX)
+  date_text: 12/5-6/26
+  discovery_url: http://www.TrailRacingOverTexas.com/brazos-100/
+  run100s_href: http://www.TrailRacingOverTexas.com/brazos-100/
+  discovery_facts:
+    first_year: '2014'
+    cutoff_hours: '30'
+    climb_descent: 120'/120'
+    course_record: '12:21:43'
+    winning_time: '14:30:56'
+    finishers: '133'
+    results_year: "'25"
+  status: queued
+- id: run100s-272-devil-dog-va
+  source_order: 272
+  name: Devil Dog
+  location_hint: VA
+  display_name: Devil Dog(VA)
+  date_text: 12/5-6/26
+  discovery_url: http://www.DevilDogUltras.com/
+  run100s_href: http://www.DevilDogUltras.com/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '32'
+    climb_descent: 10250'/10250'
+    course_record: '16:03:57'
+    winning_time: '19:02:35'
+    finishers: '61'
+    results_year: "'25"
+  status: queued
+- id: run100s-273-hitchcock-ia
+  source_order: 273
+  name: Hitchcock
+  location_hint: IA
+  display_name: Hitchcock(IA)
+  date_text: 12/5-6/26
+  discovery_url: https://goatz.org/the-hitchcock-experience/
+  run100s_href: https://goatz.org/the-hitchcock-experience/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '32'
+    climb_descent: 19040'/19040'
+    course_record: '17:59:09'
+    winning_time: '19:56:13'
+    finishers: '16'
+    results_year: "'25"
+  status: queued
+- id: run100s-274-loup-garou-la
+  source_order: 274
+  name: Loup Garou
+  location_hint: LA
+  display_name: Loup Garou(LA)
+  date_text: 12/5-6/26
+  discovery_url: http://www.LoupGarouTrailRun.com/
+  run100s_href: http://www.LoupGarouTrailRun.com/
+  discovery_facts:
+    first_year: '2017'
+    cutoff_hours: '30'
+    climb_descent: 12500'/12500'
+    course_record: '14:32:26'
+    winning_time: '17:33:42'
+    finishers: '24'
+    results_year: "'25"
+  status: queued
+- id: run100s-275-last-chance-mo
+  source_order: 275
+  name: Last Chance
+  location_hint: MO
+  display_name: Last Chance(MO)
+  date_text: 12/5-6/26
+  discovery_url: https://www.heartlandracingco.com/last-chance-ultra.html
+  run100s_href: https://www.heartlandracingco.com/last-chance-ultra.html
+  discovery_facts:
+    first_year: '2020'
+    cutoff_hours: '32'
+    climb_descent: "?'/?'"
+    course_record: '20:19:45'
+    winning_time: '20:19:45'
+    finishers: '7'
+    results_year: "'25"
+  status: queued
+- id: run100s-276-crooked-creek-ky
+  source_order: 276
+  name: Crooked Creek
+  location_hint: KY
+  display_name: Crooked Creek(KY)
+  date_text: 12/5-6/26
+  discovery_url: https://runsignup.com/Race/KY/Shepherdsville/CrookedCreekUltraTrailRace
+  run100s_href: https://runsignup.com/Race/KY/Shepherdsville/CrookedCreekUltraTrailRace
+  discovery_facts:
+    first_year: '2021'
+    cutoff_hours: __
+    climb_descent: "?'/?'"
+    course_record: '19:52:13'
+    winning_time: 25;30:50
+    finishers: '7'
+    results_year: "'25"
+  status: queued
+- id: run100s-277-festivus-fl
+  source_order: 277
+  name: Festivus
+  location_hint: FL
+  display_name: Festivus(FL)
+  date_text: 12/5-6/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=136183
+  run100s_href: https://ultrasignup.com/register.aspx?did=136183
+  discovery_facts:
+    first_year: '2023'
+    cutoff_hours: '38'
+    climb_descent: "?'/?'"
+    course_record: '17:45:40'
+    winning_time: '17:45:40'
+    finishers: '19'
+    results_year: "'25"
+  status: queued
+- id: run100s-278-daytona-fl
+  source_order: 278
+  name: Daytona
+  location_hint: FL
+  display_name: Daytona(FL)
+  date_text: 12/12-13/26
+  discovery_url: http://www.Daytona100Ultra.com/
+  run100s_href: http://www.Daytona100Ultra.com/
+  discovery_facts:
+    first_year: '2016'
+    cutoff_hours: '30'
+    climb_descent: "?'/?'"
+    course_record: '13:34:47'
+    winning_time: '13:34:47'
+    finishers: '104'
+    results_year: "'25"
+  status: queued
+- id: run100s-279-beast-of-the-east-nc
+  source_order: 279
+  name: Beast of the East
+  location_hint: NC
+  display_name: Beast of the East(NC)
+  date_text: 12/12-13/26
+  discovery_url: https://ultrasignup.com/register.aspx?did=133648
+  run100s_href: https://ultrasignup.com/register.aspx?did=133648
+  discovery_facts:
+    first_year: '2018'
+    cutoff_hours: '32'
+    climb_descent: 20000'/20000'
+    course_record: '20:17:18'
+    winning_time: '22:35:41'
+    finishers: '36'
+    results_year: "'25"
+  status: queued
+- id: run100s-280-spirit-of-syllamo-ar
+  source_order: 280
+  name: Spirit of Syllamo
+  location_hint: AR
+  display_name: Spirit of Syllamo(AR)
+  date_text: 12/12-13/26
+  discovery_url: https://www.SyllamoEvents.com/spirit-1/
+  run100s_href: https://www.SyllamoEvents.com/spirit-1/
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '34'
+    climb_descent: "?'/?'"
+    course_record: '21:34:34'
+    winning_time: '21:34:34'
+    finishers: '13'
+    results_year: "'25"
+  status: queued
+- id: run100s-281-ancient-oaks-fl
+  source_order: 281
+  name: Ancient Oaks
+  location_hint: FL
+  display_name: Ancient Oaks(FL)
+  date_text: 12/19-20/26
+  discovery_url: https://runsignup.com/Race/FL/Titusville/AncientOaks100MileEnduranceRun
+  run100s_href: https://runsignup.com/Race/FL/Titusville/AncientOaks100MileEnduranceRun
+  discovery_facts:
+    first_year: '1999'
+    cutoff_hours: '32'
+    climb_descent: 2462'/2496'
+    course_record: '16:41:34'
+    winning_time: '24:55:53'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-282-desert-solstice-az
+  source_order: 282
+  name: Desert Solstice
+  location_hint: AZ
+  display_name: Desert Solstice(AZ)
+  date_text: 12/19-20/26
+  discovery_url: https://www.AravaipaRunning.com/desert-solstice/
+  run100s_href: https://www.AravaipaRunning.com/desert-solstice/
+  discovery_facts:
+    first_year: '2011'
+    cutoff_hours: '24'
+    climb_descent: "?'/?'"
+    course_record: '11:40:55'
+    winning_time: '14:44:08'
+    finishers: '7'
+    results_year: "'25"
+  status: queued
+- id: run100s-283-new-year-s-one-day-ca
+  source_order: 283
+  name: New Year's One Day
+  location_hint: CA
+  display_name: New Year's One Day(CA)
+  date_text: 12/31/26-1/1/27
+  discovery_url: https://www.CoastalTrailRuns.com/
+  run100s_href: https://www.CoastalTrailRuns.com/
+  discovery_facts:
+    first_year: 20??
+    cutoff_hours: '28'
+    climb_descent: "?'/?'"
+    course_record: '13:28:49'
+    winning_time: '18:19:09'
+    finishers: '8'
+    results_year: "'25"
+  status: queued
+- id: run100s-284-run-undead-al
+  source_order: 284
+  name: Run Undead
+  location_hint: AL
+  display_name: Run Undead(AL)
+  date_text: 12/31/26-1/1/27
+  discovery_url: https://ultrasignup.com/register.aspx?did=126152
+  run100s_href: https://ultrasignup.com/register.aspx?did=126152
+  discovery_facts:
+    first_year: '2022'
+    cutoff_hours: '35'
+    climb_descent: "?'/?'"
+    course_record: 17:46;45
+    winning_time: '23:35:17'
+    finishers: '35'
+    results_year: "'25"
+  status: queued
