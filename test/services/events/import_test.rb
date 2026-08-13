@@ -6,7 +6,7 @@ module Events
     test "publishes the version-controlled Active event catalog" do
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
-      assert_equal [ "Bighorn 100", "Southern Tour Ultra" ], published_races.map(&:name)
+      assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -86,6 +86,33 @@ module Events
       assert_equal Time.find_zone("America/New_York").parse("2027-01-16 8:00 PM"), southern_tour.final_cutoff_at
       assert_includes southern_tour.source_metadata.fetch("sources").pluck("url"),
                       "https://runsignup.com/Race/SouthernTourUltra/Page/IndividualEvents"
+
+      hurt = published_races.find { |published| published.slug == "hurt-100" }
+      assert_equal 2027, hurt.year
+      assert_equal Date.new(2027, 1, 16), hurt.start_date
+      assert hurt.closed?, "the 2027 field was set by the August 8, 2026 lottery"
+      assert_equal true, hurt.lottery
+      assert_equal 36, hurt.cutoff_hours
+      assert_equal 24_500, hurt.elevation_gain_ft, "the Book of HURT publishes cumulative gain per 100 miles"
+      assert_equal 16, hurt.aid_stations.count,
+                   "a Start pass plus three passes on each of the five nominal 20-mile laps"
+      assert_equal 3, hurt.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "every lap crosses the same three physical stations"
+      assert hurt.aid_stations.all? { |station| station.has_medical == false },
+             "the Book of HURT states typical first-aid items are not provided at aid stations"
+      assert hurt.aid_stations.select { |station| station.name.include?("Nuʻuanu") }.none?(&:crew_accessible?),
+             "crew access is never allowed at Nuʻuanu"
+      assert_not hurt.aid_stations.find_by!(mile: 47).pacer_access?,
+                 "pacer pickup is not guaranteed before mile 60"
+      assert hurt.aid_stations.find_by!(mile: 60).pacer_access?,
+             "pacers may start at Makiki from mile 60"
+      assert_not hurt.aid_stations.find_by!(mile: 92.5).pacer_access?,
+                 "no pacers may start at Nuʻuanu even on the final lap"
+      assert_equal "29h", hurt.aid_stations.find_by!(mile: 80).cutoff_elapsed_label
+      assert_equal "33h 30m", hurt.aid_stations.find_by!(mile: 92.5).cutoff_elapsed_label
+      assert_equal Time.find_zone("Pacific/Honolulu").parse("2027-01-17 6:00 PM"), hurt.final_cutoff_at
+      assert_includes hurt.source_metadata.fetch("sources").pluck("url"),
+                      "https://hurt100.com/book-of-hurt-2027/"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

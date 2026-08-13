@@ -1,0 +1,374 @@
+# HURT 100 — event data (imported by Events::Import via db/seeds.rb).
+# Course geometry is an exact copy of the organizer's official HURT100.gpx
+# route download; station coordinates come from the organizer's Google My Maps
+# course placemarks. Station-pass miles use the organizer's published frame
+# (Book of HURT 2027 cutoff table: Mānoa at mile 7 and Nuʻuanu at mile 12.5 of
+# each nominal 20-mile lap); the official GPX measures the loop at ~16.8 mi and
+# the organizer's map legs at ~18.8 mi. Source decisions are documented in
+# docs/research/hurt-100-2027-source-audit.md.
+
+race:
+  name: HURT 100
+  slug: hurt-100
+  year: 2027
+  state: HI
+  distance_mi: 100
+  elevation_gain_ft: 24500 # Book of HURT 2027: cumulative gain per 100 miles.
+  elevation_loss_ft: 24500
+  start_date: 2027-01-16
+  end_date: 2027-01-17
+  start_time: 6:00 AM
+  time_zone: Pacific/Honolulu
+  cutoff_hours: 36 # 6:00 AM Saturday start → 6:00 PM Sunday finish.
+  official_url: https://hurt100.com/
+  registration_url: https://hurt100.com/book-of-hurt-2027/
+  results_url: https://hurt100.com/race-data-and-past-results/
+  registration_status: closed # 2027 field set by lottery drawn August 8, 2026.
+  lottery: true # Documented lottery with kukui-nut weighting; 130-runner field.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "The organizer's frame is 5 laps of a nominal 20-mile loop; the official HURT100.gpx route measures ~16.8 miles per loop and the organizer's My Maps legs ~18.8 miles — dense-canopy GPS shortening is documented by neither, so pass miles follow the Book of HURT cutoff table. Neither organizer file carries track elevations; the profile and station spot elevations use the altitude values embedded in the organizer's My Maps course legs."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_hurt_home
+        label: "HURT100 site home"
+        url: "https://hurt100.com/"
+        verified_on: "2026-08-13"
+      - &source_book
+        label: "Book of HURT 2027 (rules, cutoffs, stations, lottery)"
+        url: "https://hurt100.com/book-of-hurt-2027/"
+        verified_on: "2026-08-13"
+      - &source_course_map_page
+        label: "Course map page"
+        url: "https://hurt100.com/course-map/"
+        verified_on: "2026-08-13"
+      - &source_official_gpx
+        label: "Official HURT100.gpx route download"
+        url: "https://hurt100.com/HURT100.gpx"
+        verified_on: "2026-08-13"
+      - &source_mymaps
+        label: "Organizer Google My Maps HURT 100 Course (KML export)"
+        url: "https://www.google.com/maps/d/kml?mid=12L8hV6-KuFKDGc26uqvEzbxSJ1_NN2Q&forcekml=1"
+        verified_on: "2026-08-13"
+      - &source_results
+        label: "Race data and past results page"
+        url: "https://hurt100.com/race-data-and-past-results/"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Water is listed at all three stations but no source certifies potability. The Book of HURT states aid stations do not provide gels, energy bars, supplements, medications, or typical first-aid items; has_medical is therefore recorded as false at every pass. Aid stations close 15 minutes after their cutoff times. The 2027 lottery was drawn on August 8, 2026; registration for the 2027 race is closed."
+    overall_cutoff_label: "6:00 PM January 17, 2027"
+    overall_cutoff_notes: "36 hours from the 6:00 AM Saturday start. Intermediate cutoffs: Makiki mile 80 by 11:00 AM Sunday, Mānoa mile 87 by 1:30 PM Sunday, Nuʻuanu mile 92.5 by 3:30 PM Sunday. Aid stations close 15 minutes after cutoff."
+    pacer_rule_summary: "One pacer per runner, starting after 60 miles or 5:00 PM Saturday, whichever comes first. Pacers may start only at Mānoa or Makiki — never at Nuʻuanu — must wear the provided bib, and may not enter an aid station ahead of their runner or leave after them."
+    drop_bag_summary: "Drop bags (max 12x12x18 inches) are delivered to Makiki between 4:45 and 5:45 AM race morning and staged at the Arboretum Trail trailhead into the Makiki station; retrieve by 6:15 PM Sunday at the Hālau Kū Māna parking lot."
+  blurb: Five rainforest laps above Honolulu — 24,500 ft of climbing on 99% single track.
+  about: >-
+    The HURT 100 runs five nominal 20-mile laps through the semi-tropical
+    rainforest above Honolulu on Oʻahu — 99% single track with about 24,500 ft
+    of cumulative gain, four stream crossings per lap, and three aid stations
+    per lap at Makiki, Mānoa, and Nuʻuanu. Start 6:00 AM Saturday at the
+    Hawaiʻi Nature Center; 36-hour limit with lap cutoffs from mile 80 onward.
+    Entry is by lottery (130 runners) with an 8-hour trail-work requirement.
+  start_venue: Hawaiʻi Nature Center, 2131 Makiki Heights Drive, Honolulu, HI
+  finish_venue: Hawaiʻi Nature Center, 2131 Makiki Heights Drive, Honolulu, HI
+
+# Profile from the altitude values embedded in the organizer's My Maps course
+# legs, sampled per nominal lap mile and repeated for each of the 5 laps (the
+# official GPX route carries no elevations).
+elevation_series:
+  - [0, 434]
+  - [1, 1092]
+  - [2, 1219]
+  - [3, 1440]
+  - [4, 1640]
+  - [5, 1566]
+  - [6, 992]
+  - [7, 540]
+  - [8, 764]
+  - [9, 1115]
+  - [10, 1652]
+  - [11, 1459]
+  - [12, 795]
+  - [13, 751]
+  - [14, 1271]
+  - [15, 1659]
+  - [16, 1904]
+  - [17, 1563]
+  - [18, 1286]
+  - [19, 994]
+  - [20, 434]
+  - [21, 1092]
+  - [22, 1219]
+  - [23, 1440]
+  - [24, 1640]
+  - [25, 1566]
+  - [26, 992]
+  - [27, 540]
+  - [28, 764]
+  - [29, 1115]
+  - [30, 1652]
+  - [31, 1459]
+  - [32, 795]
+  - [33, 751]
+  - [34, 1271]
+  - [35, 1659]
+  - [36, 1904]
+  - [37, 1563]
+  - [38, 1286]
+  - [39, 994]
+  - [40, 434]
+  - [41, 1092]
+  - [42, 1219]
+  - [43, 1440]
+  - [44, 1640]
+  - [45, 1566]
+  - [46, 992]
+  - [47, 540]
+  - [48, 764]
+  - [49, 1115]
+  - [50, 1652]
+  - [51, 1459]
+  - [52, 795]
+  - [53, 751]
+  - [54, 1271]
+  - [55, 1659]
+  - [56, 1904]
+  - [57, 1563]
+  - [58, 1286]
+  - [59, 994]
+  - [60, 434]
+  - [61, 1092]
+  - [62, 1219]
+  - [63, 1440]
+  - [64, 1640]
+  - [65, 1566]
+  - [66, 992]
+  - [67, 540]
+  - [68, 764]
+  - [69, 1115]
+  - [70, 1652]
+  - [71, 1459]
+  - [72, 795]
+  - [73, 751]
+  - [74, 1271]
+  - [75, 1659]
+  - [76, 1904]
+  - [77, 1563]
+  - [78, 1286]
+  - [79, 994]
+  - [80, 434]
+  - [81, 1092]
+  - [82, 1219]
+  - [83, 1440]
+  - [84, 1640]
+  - [85, 1566]
+  - [86, 992]
+  - [87, 540]
+  - [88, 764]
+  - [89, 1115]
+  - [90, 1652]
+  - [91, 1459]
+  - [92, 795]
+  - [93, 751]
+  - [94, 1271]
+  - [95, 1659]
+  - [96, 1904]
+  - [97, 1563]
+  - [98, 1286]
+  - [99, 994]
+  - [100, 434]
+
+# Station passes: coordinates from the GPX waypoints (`match` = waypoint-name
+# substring; waypoints come from the organizer's My Maps placemarks). Miles use
+# the Book of HURT frame: Mānoa at mile 7 and Nuʻuanu at mile 12.5 of each
+# nominal 20-mile lap. Later loops merge (`<<:`) the Loop 1 passes and override
+# what changes.
+aid_stations:
+  - match: "Makiki Aid Station"
+    name: "Start — Makiki (Hawaiʻi Nature Center)"
+    direction: "Start"
+    mile: 0.0
+    elev: 434
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water, electrolyte drinks, carbonated beverages, and hot and cold food. The organizer does not provide gels, energy bars, supplements, medications, or typical first-aid items."
+    bathroom: null
+    park: "Crews must park only in authorized areas; drop bags are delivered here between 4:45 and 5:45 AM race morning."
+    crew_notes: "Crew access is allowed at Makiki at any time, within 100 yards of the station."
+    pacer_notes: "Pacing begins after 60 miles or 5:00 PM Saturday, whichever comes first — not at the start."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Book of HURT 2027"
+      source_url: "https://hurt100.com/book-of-hurt-2027/"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Listed water is not certified potable by any source. Pass miles use the Book of HURT cutoff-table frame (Mānoa mile 7, Nuʻuanu mile 12.5 per nominal 20-mile lap); the official GPX route measures ~16.8 miles per loop. Spot elevations are the altitude values in the organizer's My Maps course legs at the points nearest each station placemark. Aid stations close 15 minutes after cutoff times."
+      sources:
+        - *source_book
+        - *source_course_map_page
+        - *source_official_gpx
+        - *source_mymaps
+  - &manoa_pass
+    match: "Manoa Aid Station"
+    name: "Mānoa — Paradise Park"
+    direction: "Loop 1"
+    mile: 7.0
+    elev: 521
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water, electrolyte drinks, carbonated beverages, and hot and cold food. The organizer does not provide gels, energy bars, supplements, medications, or typical first-aid items."
+    bathroom: null
+    park: "Crews must park only in authorized areas at Paradise Park, 3737 Mānoa Road."
+    crew_notes: "Crew access at Mānoa is not allowed before 10:00 AM Saturday; most runners reach this first pass near or before that time. Crew may support only within 100 yards of the station."
+    pacer_notes: "Pacer pickup is guaranteed only from mile 60; a pacer may start here earlier once it is past 5:00 PM Saturday. Pacers start only at Mānoa or Makiki."
+    road: null
+    source_metadata: *official_station_source
+  - &nuuanu_pass
+    match: "Nuuanu Aid Station"
+    name: "Nuʻuanu — Judd Trail"
+    direction: "Loop 1"
+    mile: 12.5
+    elev: 830
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water, electrolyte drinks, carbonated beverages, and hot and cold food. The organizer does not provide gels, energy bars, supplements, medications, or typical first-aid items."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not allowed at Nuʻuanu at any time."
+    pacer_notes: "No pacers may start at Nuʻuanu; an accompanying pacer may pass through with their runner."
+    road: null
+    source_metadata: *official_station_source
+  - &makiki_pass
+    match: "Makiki Aid Station"
+    name: "Makiki — Hawaiʻi Nature Center"
+    direction: "Loop 1"
+    mile: 20.0
+    elev: 434
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: false
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water, electrolyte drinks, carbonated beverages, and hot and cold food at the start/finish station. The organizer does not provide gels, energy bars, supplements, medications, or typical first-aid items."
+    bathroom: null
+    park: "Crews must park only in authorized areas."
+    crew_notes: "Crew access is allowed at Makiki at any time, within 100 yards of the station. Drop bags are staged at the Arboretum Trail trailhead into this station."
+    pacer_notes: "Pacer pickup is guaranteed only from mile 60; a pacer may start here earlier once it is past 5:00 PM Saturday. Pacers start only at Mānoa or Makiki."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *manoa_pass
+    direction: "Loop 2"
+    mile: 27.0
+    crew: true
+    crew_notes: "Crew access at Mānoa is allowed from 10:00 AM Saturday, within 100 yards of the station."
+  - <<: *nuuanu_pass
+    direction: "Loop 2"
+    mile: 32.5
+  - <<: *makiki_pass
+    direction: "Loop 2"
+    mile: 40.0
+  - <<: *manoa_pass
+    direction: "Loop 3"
+    mile: 47.0
+    crew: true
+    crew_notes: "Crew access at Mānoa is allowed from 10:00 AM Saturday, within 100 yards of the station."
+  - <<: *nuuanu_pass
+    direction: "Loop 3"
+    mile: 52.5
+  - <<: *makiki_pass
+    direction: "Loop 3"
+    mile: 60.0
+    pacer: true
+    pacer_notes: "Pacers may start here from mile 60 (or from 5:00 PM Saturday, whichever came first). One pacer per runner; pacers start only at Mānoa or Makiki."
+  - <<: *manoa_pass
+    direction: "Loop 4"
+    mile: 67.0
+    crew: true
+    crew_notes: "Crew access at Mānoa is allowed from 10:00 AM Saturday, within 100 yards of the station."
+    pacer: true
+    pacer_notes: "Pacers may start here from mile 60 (or from 5:00 PM Saturday, whichever came first). One pacer per runner; pacers start only at Mānoa or Makiki."
+  - <<: *nuuanu_pass
+    direction: "Loop 4"
+    mile: 72.5
+  - <<: *makiki_pass
+    direction: "Loop 4"
+    mile: 80.0
+    pacer: true
+    pacer_notes: "Pacers may start here from mile 60 (or from 5:00 PM Saturday, whichever came first). One pacer per runner; pacers start only at Mānoa or Makiki."
+    cutoff: "11:00 AM"
+    cutoff_clock: "11:00 AM"
+    cutoff_elapsed_minutes: 1740
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Fourth-lap completion cutoff: runners must leave Makiki for the final lap by 11:00 AM Sunday (29 hours); the station closes 15 minutes after cutoff. Verified on is the retrieval date. Pass miles use the Book of HURT cutoff-table frame; the official GPX route measures ~16.8 miles per loop."
+  - <<: *manoa_pass
+    direction: "Loop 5"
+    mile: 87.0
+    crew: true
+    crew_notes: "Crew access at Mānoa is allowed from 10:00 AM Saturday, within 100 yards of the station."
+    pacer: true
+    pacer_notes: "Pacers may start here from mile 60 (or from 5:00 PM Saturday, whichever came first). One pacer per runner; pacers start only at Mānoa or Makiki."
+    cutoff: "1:30 PM"
+    cutoff_clock: "1:30 PM"
+    cutoff_elapsed_minutes: 1890
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Fifth-lap Mānoa cutoff: 1:30 PM Sunday (31.5 hours); the station closes 15 minutes after cutoff. Verified on is the retrieval date. Pass miles use the Book of HURT cutoff-table frame; the official GPX route measures ~16.8 miles per loop."
+  - <<: *nuuanu_pass
+    direction: "Loop 5"
+    mile: 92.5
+    cutoff: "3:30 PM"
+    cutoff_clock: "3:30 PM"
+    cutoff_elapsed_minutes: 2010
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Fifth-lap Nuʻuanu cutoff: 3:30 PM Sunday (33.5 hours); the station closes 15 minutes after cutoff. Verified on is the retrieval date. Pass miles use the Book of HURT cutoff-table frame; the official GPX route measures ~16.8 miles per loop."
+  - <<: *makiki_pass
+    name: "Finish — Makiki (Hawaiʻi Nature Center)"
+    direction: "Finish"
+    mile: 100.0
+    pacer: true
+    pacer_notes: "A pacer picked up at or after mile 60 (or 5:00 PM Saturday) may accompany their runner to the finish."
+    cutoff: "6:00 PM"
+    cutoff_clock: "6:00 PM"
+    cutoff_elapsed_minutes: 2160
+    crew_notes: "Crew access is allowed at Makiki at any time, within 100 yards of the station. Drop bags must be retrieved by 6:15 PM Sunday at the Hālau Kū Māna parking lot, 2101 Makiki Heights Drive."
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Final cutoff: 6:00 PM Sunday, 36 hours after the 6:00 AM Saturday start. Verified on is the retrieval date. Pass miles use the Book of HURT cutoff-table frame; the official GPX route measures ~16.8 miles per loop."
