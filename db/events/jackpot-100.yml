@@ -1,0 +1,290 @@
+# Jackpot Ultras Long Course 100 — event data (imported by Events::Import via
+# db/seeds.rb). Course geometry copies the organizer's CalTopo "Long Course"
+# line (USATF-certified at 2.3094 miles per loop, cert NV23003MWC); the 100
+# Mile runs 43 full loops plus a final short loop at Cornerstone Park. The
+# Friday short-course 100 (85 x 1.17-mile loops, USATF 100 Mile Championship)
+# is a separate race noted in prose. Source decisions are documented in
+# docs/research/jackpot-2027-source-audit.md.
+
+race:
+  name: Jackpot 100
+  slug: jackpot-100
+  year: 2027
+  state: NV
+  distance_mi: 100
+  elevation_gain_ft: null # Flat certified park loop; the organizer publishes no vert figure.
+  elevation_loss_ft: null
+  start_date: 2027-02-20
+  end_date: 2027-02-21
+  start_time: 8:00 AM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 30 # 8:00 AM Saturday start → 2:00 PM Sunday overall cutoff; a 6:00 AM early start gets 32 hours.
+  official_url: https://aravaiparunning.com/jackpot/
+  registration_url: https://ultrasignup.com/register.aspx?did=138131
+  results_url: https://ultrasignup.com/results_event.aspx?did=138131
+  registration_status: open # Online registration closes 2027-02-14; race-day registration opens an hour before each start.
+  lottery: false # Direct first-come UltraSignup registration; no lottery in any reviewed source.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "This record covers the Long Course 100 Mile (Saturday 8:00 AM, 43 full USATF-certified 2.3094-mile loops plus a final short loop, 30-hour cutoff, 32 with the 6:00 AM early start). Jackpot also runs a separate Friday 100 Mile on the certified 1.17078-mile Short Course (85 loops, 48-hour window) that hosts the USATF 100 Mile Road Championship; run100s' single row conflates the two. Pass miles use the certified loop length; the organizer's drawn CalTopo line measures 2.35 miles. The spot elevation is a USGS 3DEP query at the organizer's start/finish marker; the flat park profile is represented as a constant series."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_race_page
+        label: "Jackpot Ultras official race page (Aravaipa Running)"
+        url: "https://aravaiparunning.com/jackpot/"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo Long Course map"
+        url: "https://caltopo.com/m/T3R0R9M"
+        verified_on: "2026-08-13"
+      - &source_cert
+        label: "USATF course certification, Long Course (NV23003MWC)"
+        url: "https://www.aravaiparunning.com/avr/wp-content/uploads/2023/03/NV23003MWC-Jackpot-Ultras-Long-Course.pdf"
+        verified_on: "2026-08-13"
+      - &source_ultrasignup
+        label: "2027 UltraSignup listing"
+        url: "https://ultrasignup.com/register.aspx?did=138131"
+        verified_on: "2026-08-13"
+      - &source_live
+        label: "Aravaipa live results (Jackpot Ultras 2027)"
+        url: "https://live.aravaiparunning.com/#/jackpot_ultras-2027?raceId=301959"
+        verified_on: "2026-08-13"
+      - &source_usgs
+        label: "USGS 3DEP Elevation Point Query Service (spot elevation)"
+        url: "https://epqs.nationalmap.gov/v1/json"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. The Main Strip Aid Station at the start/finish operates 24/7 with vegan, vegetarian, and gluten-free options; water is served but never certified potable, and no medical service is published. Pacers on the Long Course may run from sunset to sunrise only, and USATF Championship (Short Course) competitors may not use pacers at all — the allowance is time-based, so no pass records guaranteed pacer pickup. Crew works the marked crew areas beside the loop at Cornerstone Park."
+    overall_cutoff_label: "2:00 PM February 21, 2027"
+    overall_cutoff_notes: "30 hours from the 8:00 AM Saturday start; runners taking the 6:00 AM early start get 32 hours to the same 2:00 PM Sunday close. No intermediate cutoffs are published for the Long Course."
+    pacer_rule_summary: "Long Course runners may use one pacer from sunset to sunrise only; pacers are prohibited for USATF Championship competitors on the Short Course. Because the allowance is time-based, no pass guarantees pacer pickup."
+    drop_bag_summary: "No drop-bag service is published; runners pass their own crew area and the Main Strip Aid Station every 2.31-mile loop."
+  blurb: Forty-three certified 2.31-mile loops around Cornerstone Park's lake in Henderson, Nevada.
+  about: >-
+    The Jackpot 100 Long Course runs 43 USATF-certified 2.3094-mile loops
+    plus a final short loop around the lake at Cornerstone Park in Henderson,
+    NV, with the 24/7 Main Strip Aid Station at the start/finish every lap.
+    Start 8:00 AM Saturday; 30-hour limit (2:00 PM Sunday) or 32 hours with
+    the 6:00 AM early start. A separate Friday 100 on the certified
+    1.17-mile Short Course hosts the USATF 100 Mile Championship.
+  start_venue: Cornerstone Park, 1600 Wigwam Parkway, Henderson, NV
+  finish_venue: Cornerstone Park, 1600 Wigwam Parkway, Henderson, NV
+
+# The certified park loop is flat; the profile is the USGS 3DEP spot value at
+# the organizer's start/finish marker, held constant.
+elevation_series:
+  - [0, 1903]
+  - [25, 1903]
+  - [50, 1903]
+  - [75, 1903]
+  - [100, 1903]
+
+# Station passes: every loop crosses the Main Strip Aid Station at the
+# start/finish (`match` = the GPX waypoint from the organizer's marker).
+# Miles use the USATF-certified 2.3094-mile loop; the final short loop closes
+# the distance at 100. Later loops merge (`<<:`) the Loop 1 pass and override
+# what changes.
+aid_stations:
+  - match: "Main Strip Aid Station"
+    name: "Start — Main Strip Aid Station"
+    direction: "Start"
+    mile: 0.0
+    elev: 1903
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Main Strip Aid Station runs 24/7 at the start/finish with vegan, vegetarian, and gluten-free options."
+    bathroom: null
+    park: "Crew areas are marked beside the loop; camping is available at the park per the organizer's map."
+    crew_notes: "Crew works the marked crew areas beside the loop and sees their runner every lap."
+    pacer_notes: "Long Course pacers may run from sunset to sunrise only; the allowance is time-based, so no pass guarantees pickup."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Jackpot Ultras official race page"
+      source_url: "https://aravaiparunning.com/jackpot/"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Every loop crosses the same start/finish station; pass miles use the USATF-certified 2.3094-mile loop length (cert NV23003MWC) with the final short loop closing the distance at 100. Water is served but never certified potable. The spot elevation is a USGS 3DEP value at the organizer's start/finish marker."
+      sources:
+        - *source_race_page
+        - *source_caltopo
+        - *source_cert
+        - *source_ultrasignup
+        - *source_usgs
+  - &loop_pass
+    match: "Main Strip Aid Station"
+    name: "Main Strip Aid Station"
+    direction: "Loop 1"
+    mile: 2.31
+    elev: 1903
+    crew: true
+    water: true
+    pacer: false
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Main Strip Aid Station runs 24/7 with vegan, vegetarian, and gluten-free options; runners cross it every loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew works the marked crew areas beside the loop and sees their runner every lap."
+    pacer_notes: "Long Course pacers may run from sunset to sunrise only; the allowance is time-based, so no pass guarantees pickup."
+    road: null
+    source_metadata: *official_station_source
+  - <<: *loop_pass
+    direction: "Loop 2"
+    mile: 4.62
+  - <<: *loop_pass
+    direction: "Loop 3"
+    mile: 6.93
+  - <<: *loop_pass
+    direction: "Loop 4"
+    mile: 9.24
+  - <<: *loop_pass
+    direction: "Loop 5"
+    mile: 11.55
+  - <<: *loop_pass
+    direction: "Loop 6"
+    mile: 13.86
+  - <<: *loop_pass
+    direction: "Loop 7"
+    mile: 16.17
+  - <<: *loop_pass
+    direction: "Loop 8"
+    mile: 18.48
+  - <<: *loop_pass
+    direction: "Loop 9"
+    mile: 20.78
+  - <<: *loop_pass
+    direction: "Loop 10"
+    mile: 23.09
+  - <<: *loop_pass
+    direction: "Loop 11"
+    mile: 25.4
+  - <<: *loop_pass
+    direction: "Loop 12"
+    mile: 27.71
+  - <<: *loop_pass
+    direction: "Loop 13"
+    mile: 30.02
+  - <<: *loop_pass
+    direction: "Loop 14"
+    mile: 32.33
+  - <<: *loop_pass
+    direction: "Loop 15"
+    mile: 34.64
+  - <<: *loop_pass
+    direction: "Loop 16"
+    mile: 36.95
+  - <<: *loop_pass
+    direction: "Loop 17"
+    mile: 39.26
+  - <<: *loop_pass
+    direction: "Loop 18"
+    mile: 41.57
+  - <<: *loop_pass
+    direction: "Loop 19"
+    mile: 43.88
+  - <<: *loop_pass
+    direction: "Loop 20"
+    mile: 46.19
+  - <<: *loop_pass
+    direction: "Loop 21"
+    mile: 48.5
+  - <<: *loop_pass
+    direction: "Loop 22"
+    mile: 50.81
+  - <<: *loop_pass
+    direction: "Loop 23"
+    mile: 53.12
+  - <<: *loop_pass
+    direction: "Loop 24"
+    mile: 55.43
+  - <<: *loop_pass
+    direction: "Loop 25"
+    mile: 57.73
+  - <<: *loop_pass
+    direction: "Loop 26"
+    mile: 60.04
+  - <<: *loop_pass
+    direction: "Loop 27"
+    mile: 62.35
+  - <<: *loop_pass
+    direction: "Loop 28"
+    mile: 64.66
+  - <<: *loop_pass
+    direction: "Loop 29"
+    mile: 66.97
+  - <<: *loop_pass
+    direction: "Loop 30"
+    mile: 69.28
+  - <<: *loop_pass
+    direction: "Loop 31"
+    mile: 71.59
+  - <<: *loop_pass
+    direction: "Loop 32"
+    mile: 73.9
+  - <<: *loop_pass
+    direction: "Loop 33"
+    mile: 76.21
+  - <<: *loop_pass
+    direction: "Loop 34"
+    mile: 78.52
+  - <<: *loop_pass
+    direction: "Loop 35"
+    mile: 80.83
+  - <<: *loop_pass
+    direction: "Loop 36"
+    mile: 83.14
+  - <<: *loop_pass
+    direction: "Loop 37"
+    mile: 85.45
+  - <<: *loop_pass
+    direction: "Loop 38"
+    mile: 87.76
+  - <<: *loop_pass
+    direction: "Loop 39"
+    mile: 90.07
+  - <<: *loop_pass
+    direction: "Loop 40"
+    mile: 92.38
+  - <<: *loop_pass
+    direction: "Loop 41"
+    mile: 94.69
+  - <<: *loop_pass
+    direction: "Loop 42"
+    mile: 96.99
+  - <<: *loop_pass
+    direction: "Loop 43"
+    mile: 99.3
+  - <<: *loop_pass
+    name: "Finish — Main Strip Aid Station"
+    direction: "Finish"
+    mile: 100.0
+    cutoff: "2:00 PM"
+    cutoff_clock: "2:00 PM"
+    cutoff_elapsed_minutes: 1800
+    pacer_notes: "A pacer running the sunset-to-sunrise window may accompany their runner while it lasts; the finish itself has no pickup."
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Overall cutoff: 2:00 PM Sunday, 30 hours from the 8:00 AM Saturday start (32 hours from the 6:00 AM early start). Verified on is the retrieval date. Pass miles use the certified 2.3094-mile loop with the final short loop closing at 100."

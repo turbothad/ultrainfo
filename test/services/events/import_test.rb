@@ -7,7 +7,8 @@ module Events
       published_races = Import.new(Rails.root.join("db/events/active.yml")).call
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
-                     "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100" ], published_races.map(&:name)
+                     "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100" ],
+                   published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -244,6 +245,27 @@ module Events
       assert_equal Time.find_zone("America/Chicago").parse("2027-02-07 2:00 PM"), rocky.final_cutoff_at
       assert_includes rocky.source_metadata.fetch("sources").pluck("url"),
                       "https://www.tejastrails.com/rocky100/"
+
+      jackpot = published_races.find { |published| published.slug == "jackpot-100" }
+      assert_equal 2027, jackpot.year
+      assert_equal Date.new(2027, 2, 20), jackpot.start_date
+      assert jackpot.open?
+      assert_equal 30, jackpot.cutoff_hours
+      assert_equal 45, jackpot.aid_stations.count,
+                   "a Start pass, 43 certified-loop passes, and the short-loop Finish"
+      assert_equal 1, jackpot.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "every loop crosses the single Main Strip Aid Station"
+      assert jackpot.aid_stations.all?(&:crew_accessible?), "crew sees their runner every lap"
+      assert jackpot.aid_stations.none?(&:pacer_access?),
+             "the sunset-to-sunrise pacer allowance is time-based, so no pass guarantees pickup"
+      assert_equal 1, jackpot.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "only the overall 30-hour cutoff is published"
+      assert_equal "30h", jackpot.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal 231.0, (jackpot.aid_stations.find_by!(mile: 2.31).mile * 100).to_f,
+                   "pass miles use the USATF-certified 2.3094-mile loop"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-02-21 2:00 PM"), jackpot.final_cutoff_at
+      assert_includes jackpot.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.aravaiparunning.com/avr/wp-content/uploads/2023/03/NV23003MWC-Jackpot-Ultras-Long-Course.pdf"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

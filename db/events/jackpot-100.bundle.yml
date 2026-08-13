@@ -1,0 +1,9 @@
+version: 1
+slug: jackpot-100
+files:
+  race:
+    path: jackpot-100.yml
+    sha256: fb5adfaabe3284d14d7c69863f79ff6883816fdbeddb68dc293ac8f2bc5787fe
+  course:
+    path: jackpot-100.gpx
+    sha256: b5b40d2413c8c8590d3c8b1d9c58d20fb4c49c96a1e4a3e6ebe06fd2aeccae80
