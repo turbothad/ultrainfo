@@ -14,7 +14,7 @@ race:
   state: PA
   distance_mi: 100 # Eight 12.5-mile loops; the organizer plotaroute route GPS-measures 100.25.
   elevation_gain_ft: 15079 # The plotaroute route's 4,596 m of ascent converted; the only published total (run100s' 16,900 has no counterpart).
-  elevation_loss_ft: 15076 # The route's 4,595 m of descent converted.
+  elevation_loss_ft: 15075 # The route's 4,595 m of descent converted.
   start_date: 2027-06-05
   end_date: 2027-06-06
   start_time: 4:00 AM

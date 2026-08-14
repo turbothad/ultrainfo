@@ -25,7 +25,7 @@ Recorded discrepancies and decisions:
 
 1. **run100s is stale on climb.** Its 16,900-foot figure has no
    counterpart: the organizer plotaroute route publishes 4,596 m of
-   ascent (15,079 ft; the descent field's 4,595 m converts to 15,076),
+   ascent (15,079 ft; the descent field's 4,595 m converts to 15,075),
    the only totals on any surface, recorded with the conversions
    documented.
 2. **Frame.** 100 miles over eight 12.5-mile loops (the FAQs'
