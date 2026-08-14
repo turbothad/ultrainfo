@@ -13,7 +13,7 @@ module Events
                      "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
                      "Skunk Ape 100", "San Diego 100",
                      "Massanutten Mountain Trails 100", "Coyote Two Moon 100",
-                     "Hell Hole Hundred" ], published_races.map(&:name)
+                     "Hell Hole Hundred", "Rabid Raccoon 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -676,6 +676,29 @@ module Events
                    "33 hours from the Friday 7:00 PM start"
       assert_includes hell_hole.source_metadata.fetch("sources").pluck("url"),
                       "https://ultrasignup.com/register.aspx?did=140267"
+
+      rabid = published_races.find { |published| published.slug == "rabid-raccoon-100" }
+      assert_equal 2027, rabid.year
+      assert_equal Date.new(2027, 6, 5), rabid.start_date
+      assert rabid.open?
+      assert_equal 36, rabid.cutoff_hours
+      assert_equal 100.0, rabid.distance_mi.to_f, "eight 12.5-mile loops"
+      assert_equal 15_080, rabid.elevation_gain_ft, "the route's 4,596 m converted; run100s' 16,900 is unsourced"
+      assert_equal 33, rabid.aid_stations.count, "the Start, thirty-one loop passes, and the Finish"
+      assert_equal 3, rabid.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "the Rec Center, Four Seasons, and the water stop markers"
+      assert_equal 25, rabid.aid_stations.where(crew_accessible: true).count,
+                   "both staffed stations at every pass; never the water stop"
+      assert_equal 0, rabid.aid_stations.count(&:pacer_access?), "no pacer provisions are published"
+      assert_equal 23, rabid.aid_stations.count(&:drop_bag?), "every staffed mid-race pass"
+      assert_equal 2, rabid.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the firm Four Seasons departure clock plus the finish"
+      assert_equal 2040, rabid.aid_stations.find_by!(mile: 95.5).cutoff_elapsed_minutes,
+                   "out of Four Seasons by 2:00 PM Sunday"
+      assert_equal Time.find_zone("America/New_York").parse("2027-06-06 4:00 PM"), rabid.final_cutoff_at,
+                   "36 hours from the Saturday 4:00 AM start"
+      assert_includes rabid.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.plotaroute.com/route/2675516"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

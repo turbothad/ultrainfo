@@ -1,0 +1,913 @@
+# Rabid Raccoon 100 — event data (imported by Events::Import via
+# db/seeds.rb). The 2027-frame RunSignup site carries the race facts
+# (open registration, the June 5 4:00 AM start, the 36-hour window);
+# the FAQs carry the firm leave-by cutoffs; the organizer plotaroute
+# course and its station markers are the geometry authority; USGS 3DEP
+# point elevations supply the profile because the plotaroute data
+# carries no altitudes. Source decisions are documented in
+# docs/research/rabid-raccoon-2027-source-audit.md.
+
+race:
+  name: Rabid Raccoon 100
+  slug: rabid-raccoon-100
+  year: 2027
+  state: PA
+  distance_mi: 100 # Eight 12.5-mile loops; the organizer plotaroute route GPS-measures 100.25.
+  elevation_gain_ft: 15080 # The plotaroute route's 4,596 m of ascent converted; the only published total (run100s' 16,900 has no counterpart).
+  elevation_loss_ft: 15077 # The route's 4,595 m of descent converted.
+  start_date: 2027-06-05
+  end_date: 2027-06-06
+  start_time: 4:00 AM
+  time_zone: America/New_York
+  cutoff_hours: 36 # "The 100 mile has 36 hours" — the finish closes 4:00 PM Sunday.
+  official_url: https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100
+  registration_url: https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100
+  results_url: https://runsignup.com/Race/Results/116636 # RunSignup hosts the results.
+  registration_status: open # The 2027 100-mile card sells at $250 (strikethrough $350).
+  lottery: false # Direct RunSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "The 6th annual Rabid Raccoon 100 at Brady's Run Park, Beaver County, PA (Wolf Creek Race Management): eight 12.5-mile loops of single track, gravel, pavement, and grass with a creek crossing, from The Rec Center with Four Seasons hit twice per loop and one unmanned water stop. The home and Race Info cards are 2027-frame (June 4-6, 2027; the 100 from 4:00 AM June 5 to 4:00 PM June 6) while the FAQs still print 2026 clocks - the cards govern dates and the FAQs supply the standing rules. No chart of within-loop miles exists: in-loop station miles are the organizer route's scaled crossings (Four Seasons 1.96 and 8.64, the water stop 6.19, The Rec Center 12.5), and the organizer's only printed mid-course mile - Four Seasons at MILE 95.5 in the cutoff schedule - sits 0.64 below the line's scaled crossing for that pass, so the printed 95.5 governs it with a note. Cutoffs are firm and leave-by: departure times, not arrival times. No pacer provisions are published anywhere. run100s' 16,900-foot climb has no counterpart (the route publishes 4,596 m / 15,080 ft)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_home
+        label: "Rabid Raccoon 100 RunSignup site (2027 dates, the 100-mile card, open registration)"
+        url: "https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100"
+        verified_on: "2026-08-14"
+      - &source_aid
+        label: "Aid Stations page (three stations per loop, 23 staffed passes, stocking, the water stop)"
+        url: "https://runsignup.com/Race/RabidRaccoon100/Page/Aid-Stations"
+        verified_on: "2026-08-14"
+      - &source_crew
+        label: "Crew Access page (both stations crew-accessible, pins, the Bradys Run Road closure)"
+        url: "https://runsignup.com/Race/RabidRaccoon100/Page/Crew-Access"
+        verified_on: "2026-08-14"
+      - &source_faq
+        label: "FAQs page (36 hours, the firm leave-by cutoffs at 95.5 and the finish, drop bags, the loop)"
+        url: "https://runsignup.com/Race/RabidRaccoon100/Page/FA-Qs"
+        verified_on: "2026-08-14"
+      - &source_plotaroute
+        label: "Organizer plotaroute 100-mile course (line, station markers, ascent)"
+        url: "https://www.plotaroute.com/route/2675516"
+        verified_on: "2026-08-14"
+      - &source_epqs
+        label: "USGS 3DEP point elevation service (series and station spots; the route carries no altitudes)"
+        url: "https://epqs.nationalmap.gov/v1/json"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. A Western States qualifier (all 100-mile finishers qualify). Packet pickup runs Friday 11:00 AM - 8:00 PM at the Brady's Run Park Recreation Facility (121 Brady's Run Road, Beaver Falls, PA) during the Visit Beaver County Rabid Raccoon Expo, with a $100 charge for race-day pickup. Stations stock first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy, with the detailed menu emailed closer to race day. The course is marked with reflective neon-yellow markers, arrows, and caution tape on wrong turns; trail shoes are recommended for the creek crossing and mud. No refunds (FanShield insurance offered); transfers until one month out; deferrals to other Wolf Creek races with an administrative fee. The 100k and shorter distances share the loop; dropping down after the transfer deadline scores a DNF. Finishers take a custom belt buckle, and the site offers live text notifications for followers."
+    overall_cutoff_label: "4:00 PM June 6, 2027"
+    overall_cutoff_notes: "36 hours from the Saturday 4:00 AM start. Cutoffs are firm and leave-by - departure times, not arrival times; if you are not out of the station by the cutoff, your race is over. Two clocks: Four Seasons at mile 95.5 by 2:00 PM Sunday, and The Rec Center finish at 4:00 PM Sunday."
+    pacer_rule_summary: "No pacer provisions are published on any race surface."
+    drop_bag_summary: "Drop bags may wait at each staffed station - the Four Seasons Pavilion and The Rec Center - labeled with race number and name (duct tape and markers at registration). Bags return to the start after the stations shut down; runners or crew may also drive to the stations to retrieve them early."
+    tracking_note: "Live text notifications are offered through the site's Live Text Notifications page; results post on RunSignup."
+  blurb: Eight 12.5-mile loops at Brady's Run Park with a creek crossing, two crewable stations, and 36 firm hours from the 4:00 AM start.
+  about: >-
+    The Rabid Raccoon 100 runs eight 12.5-mile loops through Brady's
+    Run Park in Beaver County, Pennsylvania - mostly single track
+    with gravel, pavement, grass, a creek crossing, and about 15,000
+    feet of climbing. The Rec Center anchors every loop with Four
+    Seasons hit twice and an unmanned water stop between, crews camp
+    at both staffed stations, drop bags wait at each, and the
+    cutoffs are firm departure times: out of Four Seasons at 95.5 by
+    2:00 PM Sunday and across the line by 4:00 PM for the custom
+    buckle.
+  start_venue: Brady's Run Park Recreation Facility (The Rec Center), 121 Brady's Run Road, Beaver Falls, PA
+  finish_venue: Brady's Run Park Recreation Facility (The Rec Center), 121 Brady's Run Road, Beaver Falls, PA
+
+# Profile from USGS 3DEP point elevations (epqs.nationalmap.gov)
+# sampled per nominal mile along the organizer plotaroute line; GPS
+# miles (100.25) are scaled to the eight-loop 100-mile frame.
+elevation_series:
+  - [0, 768]
+  - [1, 803]
+  - [2, 855]
+  - [3, 875]
+  - [4, 895]
+  - [5, 972]
+  - [6, 1102]
+  - [7, 1104]
+  - [8, 1055]
+  - [9, 918]
+  - [10, 947]
+  - [11, 1143]
+  - [12, 1073]
+  - [13, 784]
+  - [14, 848]
+  - [15, 987]
+  - [16, 890]
+  - [17, 873]
+  - [18, 1080]
+  - [19, 1069]
+  - [20, 1076]
+  - [21, 941]
+  - [22, 1079]
+  - [23, 935]
+  - [24, 1149]
+  - [25, 768]
+  - [26, 801]
+  - [27, 843]
+  - [28, 873]
+  - [29, 885]
+  - [30, 941]
+  - [31, 1091]
+  - [32, 1102]
+  - [33, 1036]
+  - [34, 894]
+  - [35, 944]
+  - [36, 1131]
+  - [37, 1113]
+  - [38, 782]
+  - [39, 835]
+  - [40, 987]
+  - [41, 889]
+  - [42, 874]
+  - [43, 1082]
+  - [44, 1094]
+  - [45, 1076]
+  - [46, 985]
+  - [47, 1107]
+  - [48, 921]
+  - [49, 1133]
+  - [50, 769]
+  - [51, 799]
+  - [52, 838]
+  - [53, 866]
+  - [54, 878]
+  - [55, 919]
+  - [56, 1082]
+  - [57, 1113]
+  - [58, 1012]
+  - [59, 870]
+  - [60, 955]
+  - [61, 1125]
+  - [62, 1124]
+  - [63, 783]
+  - [64, 832]
+  - [65, 983]
+  - [66, 892]
+  - [67, 869]
+  - [68, 1075]
+  - [69, 1123]
+  - [70, 1051]
+  - [71, 1038]
+  - [72, 1115]
+  - [73, 900]
+  - [74, 1108]
+  - [75, 769]
+  - [76, 797]
+  - [77, 832]
+  - [78, 866]
+  - [79, 883]
+  - [80, 906]
+  - [81, 1064]
+  - [82, 1117]
+  - [83, 1027]
+  - [84, 868]
+  - [85, 935]
+  - [86, 1120]
+  - [87, 1127]
+  - [88, 783]
+  - [89, 831]
+  - [90, 987]
+  - [91, 892]
+  - [92, 875]
+  - [93, 1075]
+  - [94, 1136]
+  - [95, 1031]
+  - [96, 1040]
+  - [97, 1108]
+  - [98, 895]
+  - [99, 1134]
+  - [100, 768]
+
+# Station passes: eight 12.5-mile loops from The Rec Center - the
+# Start, thirty-one mid-race passes over three locations (per loop:
+# Four Seasons at base+1.96, the water stop at base+6.19, Four Seasons
+# at base+8.64, The Rec Center at each loop end; loop eight's second
+# Four Seasons pass carries the printed 95.5), and the Finish. In-loop
+# miles are the organizer route's scaled crossings because no
+# within-loop chart exists (the loops have no Turnaround rows, so mid
+# passes are unlabeled per the domain vocabulary). Coordinates copy the
+# route's station markers (`match` = waypoint-name substring);
+# elevations are USGS 3DEP values at the markers.
+aid_stations:
+  - match: "Rec Center"
+    name: "Start — The Rec Center"
+    direction: "Start"
+    mile: 0.0
+    elev: 769
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The 4:00 AM start at the Rec Center; drop bags are labeled here (duct tape and markers available) and the first staffed aid is Four Seasons at 1.96."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Rabid Raccoon 100 RunSignup pages and the organizer plotaroute course"
+      source_url: "https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. The Aid Stations, Crew Access, and FAQs pages carry the station structure, crew rules, drop bags, and the two firm leave-by cutoffs; no within-loop mile chart exists, so in-loop miles are the organizer plotaroute line's scaled crossings (Four Seasons 1.96 and 8.64, the water stop 6.19, The Rec Center 12.5), and the one printed mid-course mile (Four Seasons at 95.5) governs its pass against the line's 96.14. Station coordinates copy the route's markers; elevations are USGS 3DEP values at those markers."
+      sources:
+        - *source_home
+        - *source_aid
+        - *source_crew
+        - *source_faq
+        - *source_plotaroute
+        - *source_epqs
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 1.96
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 6.19
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 8.64
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 12.5
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 14.46
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 18.69
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 21.14
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 25.0
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 26.96
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 31.19
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 33.64
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 37.5
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 39.46
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 43.69
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 46.14
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 50.0
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 51.96
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 56.19
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 58.64
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 62.5
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 64.46
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 68.69
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 71.14
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 75.0
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 76.96
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 81.19
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 83.64
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. Second Four Seasons pass of the loop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rec Center"
+    name: "The Rec Center"
+    direction: null
+    mile: 87.5
+    elev: 769
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The main station at the loop end."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 89.46
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Water Station"
+    name: "Water stop"
+    direction: null
+    mile: 93.69
+    elev: 1139
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water stop per the Aid Stations page and the route's Water Station Only marker."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - crews use the two staffed stations."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Four Seasons"
+    name: "Four Seasons"
+    direction: null
+    mile: 95.5
+    elev: 843
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "2:00 PM"
+    cutoff_clock: "2:00 PM"
+    cutoff_elapsed_minutes: 2040
+    aid: "Staffed station: first aid kits, water, Gatorade, soda, pizza, PB&J, bagels, cookies, bananas, granola bars, and candy per the Aid Stations page. The final staffed station before the finish; the firm leave-by cutoff lands here."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible with plenty of parking (the lot beside the Four Seasons Pavilion is staff-only); Bradys Run Road closes during the race, so crews drive around from The Rec Center."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The cutoff schedule prints this pass at MILE 95.5; the route's scaled crossing sits at 96.14 - the printed mile governs, and the 2:00 PM Sunday clock is a departure time."
+  - match: "Rec Center"
+    name: "Finish — The Rec Center"
+    direction: "Finish"
+    mile: 100.0
+    elev: 769
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "4:00 PM"
+    cutoff_clock: "4:00 PM"
+    cutoff_elapsed_minutes: 2160
+    aid: "The finish at the Rec Center: the custom belt buckle on completion, with the 36-hour cutoff landing at 4:00 PM Sunday. Drop bags return here after the stations shut down."
+    bathroom: null
+    park: null
+    crew_notes: "The Rec Center is the main station and crew base: reserved indoor spots go first come, and the parking lot is open for crew camps."
+    pacer_notes: "No pacer provisions are published on any race surface."
+    road: null
+    source_metadata: *official_station_source
