@@ -1,0 +1,590 @@
+# Coyote Two Moon 100 — event data (imported by Events::Import via
+# db/seeds.rb). The 2027 UltraSignup listing carries the current dates,
+# start, cutoff, cap, and qualifier; the 100-miler page's turn-by-turn
+# carries the pass miles and station elevations (with paired
+# header/body mile conflicts arbitrated by the organizer CalTopo line);
+# the Runners page carries aid, pacer, and drop-bag rules; USGS 3DEP
+# point elevations supply the profile because the CalTopo line is
+# two-dimensional. Source decisions are documented in
+# docs/research/coyote-two-moon-2027-source-audit.md.
+
+race:
+  name: Coyote Two Moon 100
+  slug: coyote-two-moon-100
+  year: 2027
+  state: CA
+  distance_mi: 100.23 # The turn-by-turn's finish print ("Rock Tree Sky School 100.23mi"); the CalTopo line GPS-measures 100.52.
+  elevation_gain_ft: 26000 # The 2027 listing: "100 milers: 26,000 ft. of climbing"; the 100-page prints 26,393. No loss figure is published.
+  elevation_loss_ft: null
+  start_date: 2027-04-30
+  end_date: 2027-05-02
+  start_time: 5:00 PM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 42 # "100 mi and 100k have 42 hours" — the finish closes 11:00 AM Sunday, May 2.
+  official_url: https://www.coyote2moon.com/turn-by-turn-directions
+  registration_url: https://ultrasignup.com/register.aspx?did=139136
+  results_url: https://ultrasignup.com/register.aspx?did=127423 # The 2026 listing carries the results tabs.
+  registration_status: open # The 2027 listing sells all six distances (closes April 28, 2027; 200 spots across the weekend).
+  lottery: false # Direct registration with a qualifier (a trail 100K with 10,000 feet of gain within one year for the 100M).
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "A moonlit out-and-back web over Ojai's front country from the Rock Tree Sky school on Sisar Road: five TopaTopa passes with four summit bracelets (TopaTopa Bluff twice, Chief Peak, the Nordhoff fire tower), Rose Valley, Thacher Creek, the Gridley trail, and Cozy Dell. The 2027 UltraSignup listing is fully 2027-frame (Friday, April 30, 2027 at 1700; 42 hours; 200 spots; open) while run100s' May 21-22 dates and 40-hour cutoff have no counterpart and the Runners page's start-times table still prints 2025/2026 frames. The turn-by-turn's section headers and body prints disagree on six pass miles by 0.16-0.45; the organizer CalTopo line arbitrates each pair (10.76, 23.77, 52.24, 63.36, 71.54, 93.20 govern) and its own header refutes the stray Gridley Bottom 63.44 print (57.91 governs, line crossing 57.80). Aid-station numbering is chaotic on the page (Cozy Dell is both eight and six); the CalTopo markers' numbering governs naming. No crew provisions are published anywhere — crew is recorded false with notes. The listing's Sunday header prints May 3rd against its own April 30 - May 2 title."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_us_2027
+        label: "UltraSignup 2027 listing (April 30 - May 2, 2027; 1700 start; 42 hours; qualifier; 200-spot cap; open)"
+        url: "https://ultrasignup.com/register.aspx?did=139136"
+        verified_on: "2026-08-14"
+      - &source_turnbyturn
+        label: "100-miler page (turn-by-turn pass miles, station elevations, summit bracelets)"
+        url: "https://www.coyote2moon.com/turn-by-turn-directions"
+        verified_on: "2026-08-14"
+      - &source_runners
+        label: "Runners page (aid stocking, pacer and drop-bag rules, the 100M Topo map link)"
+        url: "https://www.coyote2moon.com/general-1"
+        verified_on: "2026-08-14"
+      - &source_caltopo
+        label: "Organizer CalTopo course map (the 100M line and station markers)"
+        url: "https://caltopo.com/m/2D1CJ"
+        verified_on: "2026-08-14"
+      - &source_epqs
+        label: "USGS 3DEP point elevation service (profile series; the CalTopo line carries no elevations)"
+        url: "https://epqs.nationalmap.gov/v1/json"
+        verified_on: "2026-08-14"
+      - &source_us_2026
+        label: "UltraSignup 2026 listing (results; the Runners page's SIGN UP target)"
+        url: "https://ultrasignup.com/register.aspx?did=127423"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. Runners collect four summit bracelets: TopaTopa Bluff (8.2 and 90.73), Chief Peak (42.5), and the Nordhoff Peak fire tower (about 64.8, climbed once). Manned stations stock Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies; the unmanned Chief Peak stop is water only. The 100M qualifier is a trail 100K with at least 10,000 feet of gain completed within one year (proof emailed to the organizers). No refunds or transfers; deferral only at the Race Director's discretion. The Strava and HelloDrifter maps are login-walled and the 100-page's CalTopo button has an empty href — the Runners page's 100M Topo map link is the open geometry surface. Ojai's Sisar Canyon Run Club hosts Sunday runs from the same school."
+    overall_cutoff_label: "11:00 AM May 2, 2027"
+    overall_cutoff_notes: "42 hours from the Friday 5:00 PM start — 11:00 AM Sunday. No station-level cutoff ladder is published for the 100M."
+    pacer_rule_summary: "One pacer total — 'One pacer. Uno. Singular.' — joining at the Gridley trailhead (Gridley Bottom, 57.91) or the Cozy Dell trailhead (71.54). Email the pacer's name, join point, phone number, and an emergency contact in advance; the pacer signs a waiver."
+    drop_bag_summary: "Four 100M drop-bag locations: Rose Valley (passed at 17.56 and 46.86), Horn Canyon (serving the Thacher Creek Trailhead station at 34.90), Gridley Bottom (57.91), and Cozy Dell (71.54). Bags to runner check-in before 4:00 PM Friday, labeled with bib number and station; no valuables; returns Sunday afternoon."
+    tracking_note: "No live tracking is published; results post on UltraSignup."
+  blurb: A moonlit Ojai front-country 100 with five TopaTopa passes, four summit bracelets, and 42 hours from the Friday 5:00 PM start.
+  about: >-
+    Coyote Two Moon starts at 5:00 PM on Friday so runners catch
+    sunset from the TopaTopa bluffs — then spend the night and the
+    next day collecting summit bracelets across Ojai's front country:
+    TopaTopa Bluff twice, Chief Peak, and the Nordhoff fire tower,
+    with long fire-road climbs, technical single track, and 26,000
+    feet of gain over 100.23 miles. Full-service stations at seven
+    spots (the Chief Peak stop is water only), one pacer from Gridley
+    or Cozy Dell, drop bags at four stations, and 42 hours to the
+    buckle back at the Rock Tree Sky school.
+  start_venue: Rock Tree Sky school, Sisar Road, upper Ojai, CA
+  finish_venue: Rock Tree Sky school, Sisar Road, upper Ojai, CA
+
+# Profile from USGS 3DEP point elevations (epqs.nationalmap.gov) sampled
+# per nominal mile along the organizer CalTopo line; GPS miles (100.52)
+# are scaled to the turn-by-turn's 100.23-mile frame.
+elevation_series:
+  - [0, 1574]
+  - [1, 1828]
+  - [2, 2239]
+  - [3, 2705]
+  - [4, 3193]
+  - [5, 3656]
+  - [6, 4444]
+  - [7, 5250]
+  - [8, 6053]
+  - [9, 6289]
+  - [10, 5668]
+  - [11, 5266]
+  - [12, 4817]
+  - [13, 4526]
+  - [14, 4045]
+  - [15, 3436]
+  - [16, 3416]
+  - [17, 3423]
+  - [18, 3547]
+  - [19, 3382]
+  - [20, 3634]
+  - [21, 4140]
+  - [22, 4588]
+  - [23, 4939]
+  - [24, 5270]
+  - [25, 4590]
+  - [26, 3764]
+  - [27, 3303]
+  - [28, 3706]
+  - [29, 4091]
+  - [30, 4455]
+  - [31, 4478]
+  - [32, 3613]
+  - [33, 2756]
+  - [34, 1887]
+  - [35, 1410]
+  - [36, 1585]
+  - [37, 2193]
+  - [38, 3077]
+  - [39, 3949]
+  - [40, 4712]
+  - [41, 4886]
+  - [42, 4771]
+  - [43, 5450]
+  - [44, 4999]
+  - [45, 4985]
+  - [46, 4132]
+  - [47, 3442]
+  - [48, 3955]
+  - [49, 4749]
+  - [50, 4751]
+  - [51, 4408]
+  - [52, 3812]
+  - [53, 3461]
+  - [54, 2950]
+  - [55, 2519]
+  - [56, 2145]
+  - [57, 1709]
+  - [58, 1303]
+  - [59, 1915]
+  - [60, 2320]
+  - [61, 2631]
+  - [62, 3160]
+  - [63, 3628]
+  - [64, 4031]
+  - [65, 4362]
+  - [66, 3897]
+  - [67, 3111]
+  - [68, 2429]
+  - [69, 1678]
+  - [70, 1494]
+  - [71, 1165]
+  - [72, 1156]
+  - [73, 1506]
+  - [74, 1659]
+  - [75, 2409]
+  - [76, 3094]
+  - [77, 3869]
+  - [78, 4348]
+  - [79, 3865]
+  - [80, 4257]
+  - [81, 4661]
+  - [82, 5039]
+  - [83, 5065]
+  - [84, 5024]
+  - [85, 4809]
+  - [86, 4798]
+  - [87, 4989]
+  - [88, 5262]
+  - [89, 5220]
+  - [90, 5664]
+  - [91, 6390]
+  - [92, 5842]
+  - [93, 5279]
+  - [94, 4636]
+  - [95, 3778]
+  - [96, 3291]
+  - [97, 2811]
+  - [98, 2312]
+  - [99, 1896]
+  - [100, 1577]
+  - [100.23, 1574]
+
+# Station passes: the turn-by-turn's pass sequence — the Start, fifteen
+# mid-race passes over seven locations (TopaTopa x5, Rose Valley x2,
+# Thacher Creek, the water stop x2, Gridley Top x3, Gridley Bottom, Cozy
+# Dell), and the Finish. Where the page's section headers and body
+# prints disagree, the CalTopo line's crossing picks the governing
+# figure (conflicted passes carry notes). No Turnaround rows are
+# published, so mid passes are unlabeled per the domain vocabulary.
+# Coordinates copy the organizer CalTopo markers (`match` =
+# waypoint-name substring); elevations are the turn-by-turn's printed
+# station values.
+aid_stations:
+  - match: "Start & Finish"
+    name: "Start — Rock Tree Sky school"
+    direction: "Start"
+    mile: 0.0
+    elev: 1574
+    crew: false
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No mile-zero aid row is published; drop bags go to check-in before 4:00 PM Friday and the first station is TopaTopa at 7.09 after the Sisar Canyon climb."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Coyote Two Moon 100-miler turn-by-turn directions"
+      source_url: "https://www.coyote2moon.com/turn-by-turn-directions"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles and station elevations come from the turn-by-turn; where its section headers and body prints disagree, the organizer CalTopo line's crossing picks the governing figure (conflicted passes carry notes). Aid stocking, pacer, and drop-bag rules come from the Runners page; no crew provisions are published anywhere, so crew is false with notes. Station coordinates copy the organizer CalTopo markers."
+      sources:
+        - *source_turnbyturn
+        - *source_runners
+        - *source_caltopo
+        - *source_us_2027
+        - *source_epqs
+  - match: "TopaTopa"
+    name: "TopaTopa"
+    direction: null
+    mile: 7.09
+    elev: 5273
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. First of five passes; the TopaTopa Bluff bracelet climb leaves from here."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "TopaTopa"
+    name: "TopaTopa"
+    direction: null
+    mile: 10.76
+    elev: 5273
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Back from the first TopaTopa Bluff summit (bracelet one at 8.2)."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The section header says Mile 7.09 to Mile 10.76 while the body prints an arrival at 10.60; the CalTopo line crosses the marker at scaled 10.75, so the header's 10.76 governs."
+  - match: "Rose Vally"
+    name: "Rose Valley"
+    direction: null
+    mile: 17.56
+    elev: 3416
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Drop-bag station in the Rose Valley campground."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "TopaTopa"
+    name: "TopaTopa"
+    direction: null
+    mile: 23.77
+    elev: 5273
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Back up Lion Canyon from Rose Valley."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The section header says Mile 17.56 to Mile 23.65 while the body prints an arrival at 23.77; the CalTopo line crosses the marker at scaled 24.03, so the body's 23.77 governs."
+  - match: "Thacher Creek"
+    name: "Thacher Creek Trailhead"
+    direction: null
+    mile: 34.9
+    elev: 1370
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. The Horn Canyon drop bag serves this station, reached down Horn Canyon Trail past The Pines campground."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Unmanned Water"
+    name: "Chief Peak water stop"
+    direction: null
+    mile: 42.0
+    elev: 4837
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water-only stop on the Chief Peak climb — 'It's water. Just water.' per the Runners page. The Chief Peak bracelet summit (42.5) follows."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rose Vally"
+    name: "Rose Valley"
+    direction: null
+    mile: 46.86
+    elev: 3416
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Second Rose Valley pass, down from the Chief Peak ridge."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Top Gridlry"
+    name: "Gridley Top"
+    direction: null
+    mile: 52.24
+    elev: 3807
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "No pacer yet: the single allowed pacer joins at Gridley Bottom (57.91) or Cozy Dell (71.54)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The section header says Mile 46.86 to Mile 52.24 while the next section's body prints 52.65; the CalTopo line crosses the marker at scaled 52.06, so 52.24 governs."
+  - match: "Bottom Gridley"
+    name: "Gridley Bottom"
+    direction: null
+    mile: 57.91
+    elev: 1253
+    crew: false
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Ojai Pixie tangerines at the fruit stand near the bottom per the turn-by-turn."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacer join point: the single allowed pacer may join here (the Gridley trailhead)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The section body prints an arrival at 63.44 against its own Mile 52.24 to Mile 57.91 header; the CalTopo line crosses the marker at scaled 57.80, so 57.91 governs."
+  - match: "Top Gridlry"
+    name: "Gridley Top"
+    direction: null
+    mile: 63.36
+    elev: 3807
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Fill up: Nordhoff Peak's fire-tower bracelet comes next."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacers who joined at Gridley Bottom continue; Cozy Dell (71.54) is the other join point."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The body prints an arrival at 63.36 while the section header says Mile 57.91 to Mile 63.83; the CalTopo line crosses the marker at scaled 63.54, so the body's 63.36 governs."
+  - match: "Cozy Dell"
+    name: "Cozy Dell"
+    direction: null
+    mile: 71.54
+    elev: 881
+    crew: false
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. The far, low turn of the course down Pratt Trail."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacer join point: the single allowed pacer may join here (the Cozy Dell trailhead)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The body prints an arrival at 71.54 while the section header says Mile 63.83 to Mile 71.76 (and the page labels this station both number eight and number six; the CalTopo marker says #6); the line crosses the marker at scaled 71.48, so 71.54 governs."
+  - match: "Top Gridlry"
+    name: "Gridley Top"
+    direction: null
+    mile: 79.6
+    elev: 3807
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. 'Fill up hear as you have close to 10 mi to arrive to the TopaTopa Aid station.'"
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacers continue with their runner."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Unmanned Water"
+    name: "Chief Peak water stop"
+    direction: null
+    mile: 85.36
+    elev: 4837
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Unmanned water-only stop on the Chief Peak climb — 'It's water. Just water.' per the Runners page. Second pass along the ridge road east."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacers continue with their runner."
+    road: null
+    source_metadata: *official_station_source
+  - match: "TopaTopa"
+    name: "TopaTopa"
+    direction: null
+    mile: 89.59
+    elev: 5273
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Fourth pass; the second TopaTopa Bluff bracelet climb (summit 90.73) leaves from here."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacers continue with their runner."
+    road: null
+    source_metadata: *official_station_source
+  - match: "TopaTopa"
+    name: "TopaTopa"
+    direction: null
+    mile: 93.2
+    elev: 5273
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. Final pass — fill up for the long Sisar Canyon descent to the finish."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "Pacers continue with their runner."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The body prints an arrival at 93.20 while the header says Mile 89.59 to Mile 93.45; the CalTopo line crosses the marker at scaled 93.11, so the body's 93.20 governs."
+  - match: "Start & Finish"
+    name: "Finish — Rock Tree Sky school"
+    direction: "Finish"
+    mile: 100.23
+    elev: 1574
+    crew: false
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "11:00 AM"
+    cutoff_clock: "11:00 AM"
+    cutoff_elapsed_minutes: 2520
+    aid: "The finish at the school — don't forget your buckle. The 42-hour cutoff lands here at 11:00 AM Sunday."
+    bathroom: null
+    park: null
+    crew_notes: "No crew provisions are published for this race."
+    pacer_notes: "The race ends here; the single allowed pacer joins at Gridley Bottom or Cozy Dell."
+    road: null
+    source_metadata: *official_station_source
