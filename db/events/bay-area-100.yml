@@ -1,0 +1,773 @@
+# Bay Area 100 — event data (imported by Events::Import via
+# db/seeds.rb). The bayarea100.com home page banners the June 12, 2027
+# second running and the UltraSignup 2027 listing carries the 5:00 AM
+# start, open enrollment, and the December 8 close; the 2026 Athlete
+# Guide's aid table governs station miles, crew/gear-bag/pacer flags,
+# and the cutoff ladder; the official course GPX (with altitudes and
+# station waypoints) is the geometry and elevation authority. Source
+# decisions are documented in
+# docs/research/bay-area-2027-source-audit.md.
+
+race:
+  name: Bay Area 100
+  slug: bay-area-100
+  year: 2027
+  state: CA
+  distance_mi: 100.7 # The guide table and pace chart end at 100.7; the official GPX GPS-measures 100.28.
+  elevation_gain_ft: 18000 # The home page's "18,000ft of vertical gain"; the pace chart's segments sum to 18,447 (run100s prints 18,263).
+  elevation_loss_ft: 17103 # The pace chart's segment descents summed - the only published loss figures.
+  start_date: 2027-06-12
+  end_date: 2027-06-13
+  start_time: 5:00 AM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 33 # "a 33-hour time limit" per The Race page - the finish closes 2:00 PM Sunday.
+  official_url: https://bayarea100.com
+  registration_url: https://ultrasignup.com/register.aspx?did=141132
+  results_url: https://ultrasignup.com/register.aspx?did=141132 # UltraSignup hosts the results (the 2026 tab).
+  registration_status: open # Open enrollment began August 3 per the 2027 listing's timeline; registration closes December 8, 2026.
+  lottery: false # Rolling registration with entry review, then a first-come waitlist; capped at 300.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "The Bay Area 100 (Scena Performance): 100.7 miles point to point through the East Bay, from the gates of California Memorial Stadium in Berkeley over Bay View, Las Trampas, Lake Chabot, and Redwood territory to Skyline High School in Oakland. The home page banners the second running on June 12, 2027, and the UltraSignup 2027 listing carries the Saturday 5:00 AM start, the 300-runner cap, open enrollment from August 3, and the December 8 close - recorded open. The 2026 Athlete Guide (revised April 27, 2026) is the standing structure until the 2027 guide lands (the listing says mid-August, the home page early September - the Warbird pattern): its aid table governs miles, crew/gear-bag/pacer flags, and the thirteen-clock cutoff ladder, and the same 5:00 AM start and 33-hour window carry the elapsed minutes into 2027. Mile frames disagree in the small: the guide table governs against the pace chart's 25.6/31.4/35.5/68.0/70.8/74.3, the gear-bag prose's Wildcat Canyon 15.95, and the crew prose's Bort Meadow 82.95 - each documented on its pass. Climb prints disagree: the home page's 18,000 governs the gain (the pace chart's segments sum to 18,447; run100s prints 18,263), and the chart's summed descents (17,103) are the only loss figures. The 2027 listing prints two deltas from 2026: no early start this year, and cutoffs starting at 10:00 AM (matching the guide table's first clock against The Race page's stale 11:30 AM). The official GPX carries the full line with altitudes (6,156 points, GPS 100.28 scaled to 100.7) and all twenty station waypoints, each sitting exactly on the line."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_home
+        label: "bayarea100.com home (the June 12, 2027 banner, 18,000-foot climb, 33 hours, the Western States qualifier print)"
+        url: "https://bayarea100.com/"
+        verified_on: "2026-08-14"
+      - &source_race
+        label: "The Race page (the guide, pace chart, Strava, and GPX links; buckles; the stale 11:30 AM cutoff print)"
+        url: "https://bayarea100.com/the-race/"
+        verified_on: "2026-08-14"
+      - &source_plan
+        label: "Planning page (crew rules, the Lake Chabot and Bort Meadow restrictions, pacer registration, gear bags)"
+        url: "https://bayarea100.com/planning/"
+        verified_on: "2026-08-14"
+      - &source_guide
+        label: "2026 Athlete Guide (the governing aid table with miles, flags, and cutoffs; pacer and gear-bag rules)"
+        url: "https://drive.google.com/file/d/1RfYYAK0eQzhM27-z04lMd-BwXUxkL1Ir/view"
+        verified_on: "2026-08-14"
+      - &source_pace
+        label: "Pace chart sheet (segment miles, per-segment gain and loss, the cutoff clocks)"
+        url: "https://docs.google.com/spreadsheets/d/1Rs4X2-qInwaNJ9b4iysUnaQmb5JqJVPI"
+        verified_on: "2026-08-14"
+      - &source_gpx
+        label: "Official course GPX with stations (the full line with altitudes and twenty station waypoints)"
+        url: "https://bayarea100.com/wp-content/uploads/2026/06/Bay_Area_100-with-stations.gpx"
+        verified_on: "2026-08-14"
+      - &source_listing
+        label: "UltraSignup 2027 listing (June 12, 2027 at 5:00 AM; the registration timeline and cap; the 2027 deltas; 2026 results)"
+        url: "https://ultrasignup.com/register.aspx?did=141132"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. The field is capped at 300 (open enrollment to 200, then the waitlist; Waitlist Wednesday lands December 9). A qualifying time is recommended rather than required: a 50-mile race within the year, with an exception request available during pre-registration. The race is a 2028 Western States qualifier and a UTMB Index race; entries defer up to 30 days out as a full rollover to 2028. Bib pickup is mandatory on the Thursday or Friday at Sports Basement Berkeley - no race-day pickup - and gear bags (14 liters, 10 pounds, bib-marked) drop there too. Two buckles: One Day metal under 24 hours and True Grit metal under 33. The course is marked with pink ribbon and directional signs; one pacer at a time, no muling (a disqualification), and pacers register free on UltraSignup and wear a pacer bib. Aid stations pour Skratch and GU. The 2027 listing says there will be no early start this year. Crews camp overnight at the Bort Meadow base camp (75 parking spaces, reserved through the race questionnaire); the Space Center lot is the unlimited-parking alternative a 0.2-mile walk from its station."
+    overall_cutoff_label: "2:00 PM June 13, 2027"
+    overall_cutoff_notes: "33 hours from the Saturday 5:00 AM start. The guide table prints a thirteen-clock ladder: Wildcat Canyon 10:00 AM, Steam Trains 1:00 PM, Valle Vista 4:15 PM, Rancho Laguna 5:15 PM, Las Trampas 7:15 PM, Chabot Staging 11:30 PM Saturday, then Clyde Woolridge 2:00 AM, Bort Meadow 3:00 AM, Space Center 5:20 AM, Bort Meadow 8:15 AM, Marciel 10:00 AM and 12:00 PM, and the finish 2:00 PM Sunday."
+    pacer_rule_summary: "Pacers start at Chabot Staging (56.6) - or early at Las Trampas (46) for runners arriving after 6:00 PM - and can be changed at Lake Chabot Marina, Bort Meadow (all three passes), and Space Center. One pacer at a time, no muling; every pacer registers free on UltraSignup and picks up a pacer bib."
+    drop_bag_summary: "Gear bags (up to 14 liters and 10 pounds, marked with name and bib number) wait at Wildcat Canyon, Rancho Laguna, Las Trampas, Chabot Staging, Lake Chabot Marina, and all three Bort Meadow passes, plus the finish; bags drop at Basecamp on Thursday or Friday and return to the finish as stations close."
+    tracking_note: "Live runner tracking runs along the course with a YouTube live stream; the athlete tracking link posts on bayarea100.com, and results post on UltraSignup."
+  blurb: 100.7 point-to-point miles across the East Bay from Cal Memorial Stadium to Skyline High School, with 18,000 feet of climb and 33 hours from the 5:00 AM start.
+  about: >-
+    The Bay Area 100 crosses the East Bay point to point - from the
+    gates of California Memorial Stadium over Grizzly Peak, through
+    Tilden, Wildcat Canyon, Sibley, and Redwood country, out to Las
+    Trampas, and around Lake Chabot to the Skyline High School finish
+    in Oakland - 100.7 miles with about 18,000 feet of climb. The
+    guide table runs twenty-five passes over twenty stations with a
+    thirteen-clock cutoff ladder inside the 33-hour window, eleven
+    crew points, gear bags at six stations plus the finish, and
+    pacers from Chabot Staging at 56.6 (or Las Trampas after dark).
+    Finishers take the One Day buckle under 24 hours or True Grit
+    under 33.
+  start_venue: California Memorial Stadium, Berkeley, CA
+  finish_venue: Skyline High School, Oakland, CA
+
+# Profile from the official course GPX's own altitudes sampled per
+# nominal mile (GPS 100.28 scaled to the guide table's 100.7-mile
+# frame).
+elevation_series:
+  - [0, 398]
+  - [1, 732]
+  - [2, 1106]
+  - [3, 1214]
+  - [4, 1231]
+  - [5, 1389]
+  - [6, 1552]
+  - [7, 1537]
+  - [8, 1403]
+  - [9, 919]
+  - [10, 699]
+  - [11, 614]
+  - [12, 486]
+  - [13, 489]
+  - [14, 382]
+  - [15, 442]
+  - [16, 499]
+  - [17, 830]
+  - [18, 995]
+  - [19, 958]
+  - [20, 1048]
+  - [21, 998]
+  - [22, 1015]
+  - [23, 1328]
+  - [24, 1584]
+  - [25, 1825]
+  - [26, 1584]
+  - [27, 1225]
+  - [28, 1007]
+  - [29, 1452]
+  - [30, 1373]
+  - [31, 1289]
+  - [32, 953]
+  - [33, 686]
+  - [34, 610]
+  - [35, 588]
+  - [36, 512]
+  - [37, 634]
+  - [38, 712]
+  - [39, 517]
+  - [40, 522]
+  - [41, 761]
+  - [42, 928]
+  - [43, 1213]
+  - [44, 1440]
+  - [45, 1533]
+  - [46, 1121]
+  - [47, 1187]
+  - [48, 1414]
+  - [49, 1653]
+  - [50, 1156]
+  - [51, 1042]
+  - [52, 900]
+  - [53, 1188]
+  - [54, 1088]
+  - [55, 738]
+  - [56, 341]
+  - [57, 249]
+  - [58, 261]
+  - [59, 245]
+  - [60, 280]
+  - [61, 337]
+  - [62, 471]
+  - [63, 501]
+  - [64, 588]
+  - [65, 705]
+  - [66, 828]
+  - [67, 906]
+  - [68, 653]
+  - [69, 594]
+  - [70, 916]
+  - [71, 596]
+  - [72, 802]
+  - [73, 1198]
+  - [74, 1391]
+  - [75, 1550]
+  - [76, 1671]
+  - [77, 1952]
+  - [78, 1873]
+  - [79, 1587]
+  - [80, 1394]
+  - [81, 655]
+  - [82, 574]
+  - [83, 725]
+  - [84, 641]
+  - [85, 774]
+  - [86, 907]
+  - [87, 962]
+  - [88, 830]
+  - [89, 1145]
+  - [90, 1112]
+  - [91, 1155]
+  - [92, 1345]
+  - [93, 878]
+  - [94, 980]
+  - [95, 886]
+  - [96, 723]
+  - [97, 595]
+  - [98, 964]
+  - [99, 1102]
+  - [100, 1124]
+  - [100.7, 1108]
+
+# Station passes: the 2026 Athlete Guide table's twenty-five rows -
+# the Start at Cal Memorial Stadium, twenty-three mid-race passes over
+# eighteen locations (Inspiration Point, Big Bear, and Marciel repeat,
+# and Bort Meadow serves three passes), and the Finish at Skyline High
+# School. Guide-table miles govern (the pace chart, gear-bag prose,
+# and crew prose print small variants, documented per pass).
+# Coordinates copy the official GPX's station waypoints, which sit
+# exactly on the line; elevations are the GPX line's altitudes at each
+# waypoint.
+aid_stations:
+  - match: "Cal Memorial"
+    name: "Start — California Memorial Stadium"
+    direction: "Start"
+    mile: 0.0
+    elev: 398
+    crew: false
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The 5:00 AM start at the gates of California Memorial Stadium; the first aid is Grizzly Peak at 4.3. The 2027 listing says there will be no early start this year."
+    bathroom: null
+    park: null
+    crew_notes: "The guide table marks no crew at the start; the first crew station is Wildcat Canyon at 15.3."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Bay Area 100 Athlete Guide aid table, site pages, and the official course GPX"
+      source_url: "https://drive.google.com/file/d/1RfYYAK0eQzhM27-z04lMd-BwXUxkL1Ir/view"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. The 2026 Athlete Guide's aid table governs miles, crew/gear-bag/pacer flags, and cutoff clocks - the 2027 guide lands mid-August per the listing, and 2027 keeps the same 5:00 AM start and 33-hour window so the elapsed-minute ladder carries over. The pace chart, gear-bag prose, and crew prose print small mile variants, documented on the affected passes. Coordinates copy the official GPX's station waypoints, which sit exactly on the course line with crossings within about 0.4 mile of every table mile; elevations are the GPX line's altitudes at those waypoints."
+      sources:
+        - *source_home
+        - *source_race
+        - *source_plan
+        - *source_guide
+        - *source_pace
+        - *source_gpx
+        - *source_listing
+  - match: "Grizzly"
+    name: "Grizzly Peak"
+    direction: null
+    mile: 4.3
+    elev: 1248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table; stations pour Skratch sports drink and GU gels."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Inspiration"
+    name: "Inspiration Point"
+    direction: null
+    mile: 8.8
+    elev: 1041
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table - the first of two Inspiration Point passes; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Wildcat"
+    name: "Wildcat Canyon"
+    direction: null
+    mile: 15.3
+    elev: 293
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "10:00 AM"
+    cutoff_clock: "10:00 AM"
+    cutoff_elapsed_minutes: 300
+    aid: "Aid station per the guide table - the first cutoff and the first crew and gear-bag station; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 15.3 (governs); the guide's gear-bag prose prints Wildcat Canyon at mile 15.95."
+  - match: "Nimitz"
+    name: "Nimitz"
+    direction: null
+    mile: 18.5
+    elev: 1023
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Inspiration"
+    name: "Inspiration Point"
+    direction: null
+    mile: 22.5
+    elev: 1041
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table - the return through Inspiration Point; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Steam"
+    name: "Steam Trains"
+    direction: null
+    mile: 25.65
+    elev: 1653
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "1:00 PM"
+    cutoff_clock: "1:00 PM"
+    cutoff_elapsed_minutes: 480
+    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 25.65 (governs); the pace chart prints 25.6."
+  - match: "Sibley"
+    name: "Sibley"
+    direction: null
+    mile: 29.1
+    elev: 1384
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Pinehurst"
+    name: "Pinehurst"
+    direction: null
+    mile: 31.45
+    elev: 1233
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only per the guide table."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 31.45 (governs); the pace chart prints 31.4."
+  - match: "Valle Vista"
+    name: "Valle Vista"
+    direction: null
+    mile: 35.55
+    elev: 532
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "4:15 PM"
+    cutoff_clock: "4:15 PM"
+    cutoff_elapsed_minutes: 675
+    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 35.55 (governs); the pace chart prints 35.5."
+  - match: "Rancho"
+    name: "Rancho Laguna"
+    direction: null
+    mile: 40.1
+    elev: 513
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:15 PM"
+    cutoff_clock: "5:15 PM"
+    cutoff_elapsed_minutes: 735
+    aid: "Aid station per the guide table with crew access and gear bags; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the guide table."
+    pacer_notes: "No pacer yet: pacers start at Chabot Staging (56.6), or Las Trampas (46) for runners arriving after 6:00 PM."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Las Trampas"
+    name: "Las Trampas"
+    direction: null
+    mile: 46.0
+    elev: 1084
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "7:15 PM"
+    cutoff_clock: "7:15 PM"
+    cutoff_elapsed_minutes: 855
+    aid: "Aid station per the guide table with crew access and gear bags; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the guide table."
+    pacer_notes: "Conditional pacer start: pacers may enter early at Las Trampas only for runners arriving after 6:00 PM, against darkness on remote trail; everyone else picks up pacers at Chabot Staging (56.6)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table marks pacer entry here with the after-6:00-PM condition - pacers are otherwise Chabot Staging onward; the flag records the table's mark with the condition noted."
+  - match: "Riley"
+    name: "Riley Ridge"
+    direction: null
+    mile: 50.9
+    elev: 1044
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "Pacers who entered early at Las Trampas continue through; the general pacer start is Chabot Staging at 56.6."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Chabot Staging"
+    name: "Chabot Staging"
+    direction: null
+    mile: 56.6
+    elev: 266
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "11:30 PM"
+    cutoff_clock: "11:30 PM"
+    cutoff_elapsed_minutes: 1110
+    aid: "Aid station per the guide table - the general pacer start, with crew access and gear bags; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the guide table."
+    pacer_notes: "The general pacer start: pacers register free on UltraSignup, wear a pacer bib, and join here; one pacer at a time, no muling."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Chabot Marina"
+    name: "Lake Chabot Marina"
+    direction: null
+    mile: 60.75
+    elev: 239
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table with crew access, gear bags, and pacer exchange; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station: the park lot closes to new cars at 10:00 PM - crews arriving later park on Lake Chabot Road and walk in ($5 inner-lot parking before then)."
+    pacer_notes: "Pacer change point per the guide."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table and crew prose print 60.75; the parking lot closes to new cars at 10:00 PM, noted on the pass."
+  - match: "Clyde"
+    name: "Clyde Woolridge"
+    direction: null
+    mile: 64.9
+    elev: 639
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "2:00 AM"
+    cutoff_clock: "2:00 AM"
+    cutoff_elapsed_minutes: 1260
+    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "Pacers continue through; the next change point is Bort Meadow at 68.05."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bort"
+    name: "Bort Meadow"
+    direction: null
+    mile: 68.05
+    elev: 648
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:00 AM"
+    cutoff_clock: "3:00 AM"
+    cutoff_elapsed_minutes: 1320
+    aid: "The Bort Meadow base camp's first of three passes - crew, gear bags, and pacer exchange; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "The base camp: 75 parking spaces reserved through the race questionnaire - crew and pacers can otherwise be dropped off or picked up at any time."
+    pacer_notes: "Pacer change point per the guide."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 68.05 (governs); the pace chart prints 68.0. Bort Meadow parking is reservation-only (75 spaces)."
+  - match: "Big Bear"
+    name: "Big Bear"
+    direction: null
+    mile: 70.85
+    elev: 604
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table - the first of two Big Bear passes; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "Pacers continue through; the next change point is Space Center at 74.35."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 70.85 (governs); the pace chart prints 70.8."
+  - match: "Space Center"
+    name: "Space Center"
+    direction: null
+    mile: 74.35
+    elev: 1516
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "5:20 AM"
+    cutoff_clock: "5:20 AM"
+    cutoff_elapsed_minutes: 1460
+    aid: "Aid station at the Chabot Space and Science Center off Skyline Boulevard - crew access and pacer exchange; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station with ample parking - the guide's unlimited-capacity alternative to Bort Meadow, a 0.2-mile walk from lot to station."
+    pacer_notes: "Pacer change point per the guide."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 74.35 (governs); the pace chart prints 74.3. The GPX names this waypoint Chabot Observatory - the guide's Space Center."
+  - match: "Big Bear"
+    name: "Big Bear"
+    direction: null
+    mile: 80.2
+    elev: 604
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the guide table - the return through Big Bear; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "Pacers continue through; the next change point is Bort Meadow at 83."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bort"
+    name: "Bort Meadow"
+    direction: null
+    mile: 83.0
+    elev: 648
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "8:15 AM"
+    cutoff_clock: "8:15 AM"
+    cutoff_elapsed_minutes: 1635
+    aid: "The Bort Meadow base camp's second pass - crew, gear bags, and pacer exchange; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "The base camp: 75 parking spaces reserved through the race questionnaire - crew and pacers can otherwise be dropped off or picked up at any time."
+    pacer_notes: "Pacer change point per the guide."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table prints 83 (governs); the guide and planning-page crew prose print 82.95."
+  - match: "Marciel"
+    name: "Marciel"
+    direction: null
+    mile: 88.0
+    elev: 837
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "10:00 AM"
+    cutoff_clock: "10:00 AM"
+    cutoff_elapsed_minutes: 1740
+    aid: "Aid station per the guide table - the first of two Marciel passes; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "Pacers continue through; the next change point is Bort Meadow at 97.5."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Marciel"
+    name: "Marciel"
+    direction: null
+    mile: 93.2
+    elev: 837
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "12:00 PM"
+    cutoff_clock: "12:00 PM"
+    cutoff_elapsed_minutes: 1860
+    aid: "Aid station per the guide table - the second Marciel pass after the Red Tail loop; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the guide table."
+    pacer_notes: "Pacers continue through; the next change point is Bort Meadow at 97.5."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bort"
+    name: "Bort Meadow"
+    direction: null
+    mile: 97.5
+    elev: 648
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Bort Meadow base camp's third and final pass - crew, gear bags, and pacer exchange; stations pour Skratch and GU."
+    bathroom: null
+    park: null
+    crew_notes: "The base camp: 75 parking spaces reserved through the race questionnaire - crew and pacers can otherwise be dropped off or picked up at any time."
+    pacer_notes: "Pacer change point per the guide."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Skyline"
+    name: "Finish — Skyline High School"
+    direction: "Finish"
+    mile: 100.7
+    elev: 1108
+    crew: true
+    water: null
+    pacer: true
+    drop: true
+    food: false
+    med: null
+    cutoff: "2:00 PM"
+    cutoff_clock: "2:00 PM"
+    cutoff_elapsed_minutes: 1980
+    aid: "The finish at Skyline High School in Oakland - the 33-hour window closes 2:00 PM Sunday; gear bags return here as stations close, and the finish area opens 4:00 PM Saturday."
+    bathroom: null
+    park: null
+    crew_notes: "Everyone is welcome at the finish - as many people as you like."
+    pacer_notes: "The guide table marks its pacer column at the finish - pacers run in with their runner; no new pacer enters here."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide table's finish row marks crew, gear bag, and pacer columns - the pacer mark records pacers finishing with their runner, noted on the pass."

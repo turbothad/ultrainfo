@@ -14,7 +14,7 @@ module Events
                      "Skunk Ape 100", "San Diego 100",
                      "Massanutten Mountain Trails 100", "Coyote Two Moon 100",
                      "Hell Hole Hundred", "Rabid Raccoon 100", "Scout Mountain 100",
-                     "Huron 100" ], published_races.map(&:name)
+                     "Huron 100", "Bay Area 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -755,6 +755,33 @@ module Events
                    "32 hours from the Saturday 9:00 AM start"
       assert_includes huron.source_metadata.fetch("sources").pluck("url"),
                       "https://www.hellodrifter.com/events/huron-100-2026"
+
+      bay_area = published_races.find { |published| published.slug == "bay-area-100" }
+      assert_equal 2027, bay_area.year
+      assert_equal Date.new(2027, 6, 12), bay_area.start_date
+      assert bay_area.open?, "open enrollment began August 3; registration closes December 8, 2026"
+      assert_equal 33, bay_area.cutoff_hours
+      assert_equal 100.7, bay_area.distance_mi.to_f, "the guide table and pace chart end at 100.7"
+      assert_equal 18_000, bay_area.elevation_gain_ft, "the home page's print; the chart's segments sum to 18,447"
+      assert_equal 17_103, bay_area.elevation_loss_ft, "the chart's summed descents - the only loss figures"
+      assert_equal 25, bay_area.aid_stations.count, "the guide table's twenty-five rows"
+      assert_equal 20, bay_area.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "twenty waypoints - Inspiration Point, Big Bear, and Marciel repeat; Bort Meadow serves three passes"
+      assert_equal 0, bay_area.aid_stations.where(direction: "Turnaround").count
+      assert_equal 11, bay_area.aid_stations.where(crew_accessible: true).count,
+                   "the table's eleven crew marks including the finish"
+      assert_equal 8, bay_area.aid_stations.count(&:pacer_access?),
+                   "the table's pacer marks: Las Trampas through the finish"
+      assert_equal 9, bay_area.aid_stations.count(&:drop_bag?),
+                   "the table's gear-bag marks: six stations, Bort Meadow three times, plus the finish"
+      assert_equal 13, bay_area.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the table's thirteen-clock ladder"
+      assert_equal 1110, bay_area.aid_stations.find_by!(mile: 56.6).cutoff_elapsed_minutes,
+                   "Chabot Staging by 11:30 PM Saturday"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-06-13 2:00 PM"), bay_area.final_cutoff_at,
+                   "33 hours from the Saturday 5:00 AM start"
+      assert_includes bay_area.source_metadata.fetch("sources").pluck("url"),
+                      "https://bayarea100.com/wp-content/uploads/2026/06/Bay_Area_100-with-stations.gpx"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
