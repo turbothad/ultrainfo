@@ -38,11 +38,12 @@ Recorded discrepancies and decisions:
    published figures govern pass miles; the GPX files are the
    geometry and elevation authority (elevations in meters, 13-43
    feet — coastal swamp flat).
-4. **Cutoffs.** The listing publishes the 33-hour total and the
-   guide's Start Times/Cutoffs section the final-loop gates — start the final loop by 12:00
-   AM (the hub at 83.5), Irishtown by 1:45 AM (90.5), Yellowjacket
-   by 2:55 AM (94.94) — all Sunday clocks from the Friday 7:00 PM
-   start (1,740 / 1,845 / 1,915 minutes; the finish 1,980).
+4. **Cutoffs.** The listing publishes the 33-hour total, and the
+   guide's Start Times/Cutoffs section publishes the final-loop
+   gates — start the final loop by 12:00 AM (the hub at 83.5),
+   Irishtown by 1:45 AM (90.5), Yellowjacket by 2:55 AM (94.94) —
+   all Sunday clocks from the Friday 7:00 PM start (1,740 / 1,845 /
+   1,915 minutes; the finish 1,980).
 5. **Guide vintage.** The Runner Guide is a working document still
    carrying 2026 prints (packet-pickup dates of June 5-6, "hats for
    2026"); the 2027 listing carries the 2027 starts and cutoffs,
@@ -59,7 +60,8 @@ Recorded discrepancies and decisions:
    time after loop 3 (the hub at 50.9) at any station, one at a
    time with a shared bib and waiver; no muling. Gear/drop bags at
    the hub only ("There are no drop bags at the 2 aid stations out
-   on the course (irishtown/yellowjacket)"); 100-milers may pitch a staked canopy at the hub.
+   on the course (irishtown/yellowjacket)"); 100-milers may pitch a
+   staked canopy at the hub.
 7. **Climb figures.** The guide's map pages print 125 feet of gain
    for the 16-mile loop and 141 for the 18-mile loop; the 100M
    arithmetic gives 766 feet, recorded with the prints documented.
