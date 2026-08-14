@@ -25,7 +25,7 @@ race:
   registration_url: https://ultrasignup.com/register.aspx?did=139136
   results_url: https://ultrasignup.com/register.aspx?did=127423 # The 2026 listing carries the results tabs.
   registration_status: open # The 2027 listing sells all six distances (closes April 28, 2027; 200 spots across the weekend).
-  lottery: false # Direct registration with a qualifier (a trail 100K with 10,000 feet of gain within one year for the 100M).
+  lottery: false # Direct registration with a qualifier - the listing says a trail 100K with at least 10,000 feet; the Runners page says 60-plus miles with 15,000-plus feet within one year.
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-14"
@@ -68,7 +68,7 @@ race:
         label: "UltraSignup 2026 listing (results; the Runners page's SIGN UP target)"
         url: "https://ultrasignup.com/register.aspx?did=127423"
         verified_on: "2026-08-14"
-    notes: "Checked against first-party sources on August 14, 2026. Runners collect four summit bracelets: TopaTopa Bluff (8.2 and 90.73), Chief Peak (42.5), and the Nordhoff Peak fire tower (about 64.8, climbed once). Manned stations stock Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies; the unmanned Chief Peak stop is water only. The 100M qualifier is a trail 100K with at least 10,000 feet of gain completed within one year (proof emailed to the organizers). No refunds or transfers; deferral only at the Race Director's discretion. The Strava and HelloDrifter maps are login-walled and the 100-page's CalTopo button has an empty href — the Runners page's 100M Topo map link is the open geometry surface. Ojai's Sisar Canyon Run Club hosts Sunday runs from the same school."
+    notes: "Checked against first-party sources on August 14, 2026. Runners collect four summit bracelets: TopaTopa Bluff (8.2 and 90.73), Chief Peak (42.5), and the Nordhoff Peak fire tower (about 64.8, climbed once). Manned stations stock Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies; the unmanned Chief Peak station is water only. The 100M qualifier is printed two ways: the 2027 listing requires a trail 100K with at least 10,000 feet of gain, while the Runners page asks for something of 60-plus miles with 15,000-plus feet of vert completed within one year (proof emailed to the organizers) - meet the stricter reading to be safe. No refunds or transfers; deferral only at the Race Director's discretion. The Strava and HelloDrifter maps are login-walled and the 100-page's CalTopo button has an empty href — the Runners page's 100M Topo map link is the open geometry surface. Ojai's Sisar Canyon Run Club hosts Sunday runs from the same school."
     overall_cutoff_label: "11:00 AM May 2, 2027"
     overall_cutoff_notes: "42 hours from the Friday 5:00 PM start — 11:00 AM Sunday. No station-level cutoff ladder is published for the 100M."
     pacer_rule_summary: "One pacer total — 'One pacer. Uno. Singular.' — joining at the Gridley trailhead (Gridley Bottom, 57.91) or the Cozy Dell trailhead (71.54). Email the pacer's name, join point, phone number, and an emergency contact in advance; the pacer signs a waiver."
@@ -82,7 +82,7 @@ race:
     TopaTopa Bluff twice, Chief Peak, and the Nordhoff fire tower,
     with long fire-road climbs, technical single track, and 26,000
     feet of gain over 100.23 miles. Full-service stations at seven
-    spots (the Chief Peak stop is water only), one pacer from Gridley
+    spots (the Chief Peak station is water only), one pacer from Gridley
     or Cozy Dell, drop bags at four stations, and 42 hours to the
     buckle back at the Rock Tree Sky school.
   start_venue: Rock Tree Sky school, Sisar Road, upper Ojai, CA
@@ -197,7 +197,7 @@ elevation_series:
 
 # Station passes: the turn-by-turn's pass sequence — the Start, fifteen
 # mid-race passes over seven locations (TopaTopa x5, Rose Valley x2,
-# Thacher Creek, the water stop x2, Gridley Top x3, Gridley Bottom, Cozy
+# Thacher Creek, the water station x2, Gridley Top x3, Gridley Bottom, Cozy
 # Dell), and the Finish. Where the page's section headers and body
 # prints disagree, the CalTopo line's crossing picks the governing
 # figure (conflicted passes carry notes). No Turnaround rows are
@@ -325,7 +325,7 @@ aid_stations:
     road: null
     source_metadata:
       <<: *official_station_source
-      source_notes: "Verified on is the retrieval date. The section header says Mile 17.56 to Mile 23.65 while the body prints an arrival at 23.77; the CalTopo line crosses the marker at scaled 24.03, so the body's 23.77 governs."
+      source_notes: "Verified on is the retrieval date. The section header says Mile 17.56 to Mile 23.65 while the body prints an arrival at 23.77; the CalTopo line crosses the marker at scaled 24.03, so the body's 23.77 governs. This arrival also prints the station at 5,271 feet against the first pass's 5,273 - the first print governs the shared spot."
   - match: "Thacher Creek"
     name: "Thacher Creek Trailhead"
     direction: null
@@ -348,7 +348,7 @@ aid_stations:
     road: null
     source_metadata: *official_station_source
   - match: "Unmanned Water"
-    name: "Chief Peak water stop"
+    name: "Chief Peak water station"
     direction: null
     mile: 42.0
     elev: 4837
@@ -361,7 +361,7 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Unmanned water-only stop on the Chief Peak climb — 'It's water. Just water.' per the Runners page. The Chief Peak bracelet summit (42.5) follows."
+    aid: "Unmanned water-only station on the Chief Peak climb — 'It's water. Just water.' per the Runners page. The Chief Peak bracelet summit (42.5) follows."
     bathroom: null
     park: null
     crew_notes: "No crew provisions are published for this race."
@@ -495,7 +495,7 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. 'Fill up hear as you have close to 10 mi to arrive to the TopaTopa Aid station.'"
+    aid: "Manned station: Neversecond gels and C30 drink, GU gels and blocks, PB&J, quesadillas, soups, candy, and cookies per the Runners page. 'Fill up hear as you have close to 10 mi to arrive to the TopaTopa Aid station.' This arrival prints 3,808 feet against the earlier 3,807 - the first print governs the shared spot."
     bathroom: null
     park: null
     crew_notes: "No crew provisions are published for this race."
@@ -503,7 +503,7 @@ aid_stations:
     road: null
     source_metadata: *official_station_source
   - match: "Unmanned Water"
-    name: "Chief Peak water stop"
+    name: "Chief Peak water station"
     direction: null
     mile: 85.36
     elev: 4837
@@ -516,7 +516,7 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Unmanned water-only stop on the Chief Peak climb — 'It's water. Just water.' per the Runners page. Second pass along the ridge road east."
+    aid: "Unmanned water-only station on the Chief Peak climb — 'It's water. Just water.' per the Runners page. Second pass along the ridge road east."
     bathroom: null
     park: null
     crew_notes: "No crew provisions are published for this race."

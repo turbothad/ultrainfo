@@ -17,7 +17,7 @@ listing is fully 2027-frame: the 100M starts Friday, April 30, 2027
 at 1700 (5:00 PM) from the Rock Tree Sky school on Sisar Road in
 upper Ojai, CA, with a 42-hour cutoff (Sunday 11:00 AM), open
 registration closing April 28, 2027, a 200-spot weekend cap, a
-qualifier (a trail 100K with 10,000 feet within one year), and
+qualifier, and
 26,000 feet of climbing. The 100-page's turn-by-turn prints every
 pass with miles and elevations, and the organizer CalTopo map
 (m/2D1CJ) carries the full course line (6,986 points, 100.52 GPS
@@ -47,7 +47,8 @@ Recorded discrepancies and decisions:
    Cozy Dell); the pass rows use the location names.
 5. **Water-only naming.** The two unmanned water passes (42.0,
    85.36) sit at one marker on the Chief Peak climb; the Runners
-   page calls this stop Chief Peak ("It's water. Just water.").
+   page calls it the Chief Peak "stop" ("It's water. Just water.")
+   and the turn-by-turn an unmanned station with only water.
 6. **Climb figures.** The listing says 26,000 feet; the 100-page
    says 26,393. The listing's 26,000 is recorded and the print
    documented. No loss figure is published (the course returns to
@@ -72,9 +73,17 @@ Recorded discrepancies and decisions:
     series uses USGS 3DEP point samples per nominal mile along the
     scaled line; the pass rows carry the turn-by-turn's printed
     station elevations (1,574 start/finish; 5,273 TopaTopa; 3,416
-    Rose Valley; 1,370 Thacher Creek; 4,837 water stop; 3,807
+    Rose Valley; 1,370 Thacher Creek; 4,837 water station; 3,807
     Gridley Top; 1,253 Gridley Bottom; 881 Cozy Dell).
-12. **Frame.** The turn-by-turn's cumulative prints end at the Rock
+12. **Qualifier prints disagree.** The listing requires a trail 100K
+    with at least 10,000 feet (no window stated); the Runners page
+    asks for 60-plus miles with 15,000-plus feet of vert, race or
+    not, completed within one year. Both are documented; the notes
+    advise meeting the stricter reading. The turn-by-turn also
+    re-prints TopaTopa at 5,271 feet (against 5,273) and Gridley Top
+    at 3,808 (against 3,807) on later arrivals - first prints govern
+    the shared spots.
+13. **Frame.** The turn-by-turn's cumulative prints end at the Rock
     Tree Sky school finish, "100.23mi" (governs); the CalTopo line
     GPS-measures 100.52 and crosses the finish marker at scaled
     100.18.
@@ -85,7 +94,7 @@ All URLs below were opened or downloaded on 2026-08-14.
 
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
-| S1 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=139136 | 2027 frame: April 30 - May 2, 2027; the 100M/100K Friday 1700 start and 42-hour cutoffs; per-distance climb figures (100M 26,000 ft); the 200-spot cap; qualifiers (trail 100K with 10,000 ft within a year for the 100M); open registration closing April 28, 2027; no refunds or transfers, deferral at the Race Director's discretion; the "May 3rd" Sunday typo. Reached via the Runners page's SIGN UP link (did=127423, the 2026 listing) and its series chain (eid=1428). |
+| S1 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=139136 | 2027 frame: April 30 - May 2, 2027; the 100M/100K Friday 1700 start and 42-hour cutoffs; per-distance climb figures (100M 26,000 ft); the 200-spot cap; qualifiers (a trail 100K with at least 10,000 ft for the 100M); open registration closing April 28, 2027; no refunds or transfers, deferral at the Race Director's discretion; the "May 3rd" Sunday typo. Reached via the Runners page's SIGN UP link (did=127423, the 2026 listing) and its series chain (eid=1428). |
 | S2 | 100-miler page (turn-by-turn) | https://www.coyote2moon.com/turn-by-turn-directions | The pass-by-pass course: miles, elevations, summits (four bracelets), and the "30 April 27@1700" date line; the paired header/body mile conflicts (decisions 2-3); the 26,393-foot print; the empty CalTopo button (the working link lives on the Runners page). |
 | S3 | Runners page | https://www.coyote2moon.com/general-1 | Aid stocking (Neversecond and GU, PB&J, quesadillas, soups; Chief Peak water-only); pacer rules (one pacer; 100M joins at Gridley TH or Cozy Dell TH); drop-bag rules and locations (Rose Valley, Horn Canyon, Gridley Bottom, Cozy Dell for the 100M; in by 4:00 PM Friday; returns Sunday afternoon); the 100M Topo map (CalTopo) link; a start-times table and prose still carrying 2025/2026 frames (the 42-hour pattern matches the 2027 listing). |
 | S4 | Organizer CalTopo course map (100M Topo map) | https://caltopo.com/m/2D1CJ | Geometry authority: the 100M line (6,986 points, 100.52 GPS miles, two-dimensional) and the Start & Finish, six aid-station, and Unmanned Water Station markers. `db/events/coyote-two-moon-100.gpx` copies the line exactly and the eight station markers. |
@@ -102,7 +111,7 @@ All URLs below were opened or downloaded on 2026-08-14.
 - **Station passes.** 17: the Start, fifteen mid-race passes over
   seven locations (TopaTopa ×5 at 7.09/10.76/23.77/89.59/93.20, Rose
   Valley ×2 at 17.56/46.86, Thacher Creek Trailhead at 34.90, the
-  water stop ×2 at 42.0/85.36, Gridley Top ×3 at 52.24/63.36/79.60,
+  water station ×2 at 42.0/85.36, Gridley Top ×3 at 52.24/63.36/79.60,
   Gridley Bottom at 57.91, Cozy Dell at 71.54), and the Finish at
   100.23. Eight unique coordinates (the Start and Finish share the
   school marker).

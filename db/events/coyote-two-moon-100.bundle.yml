@@ -3,7 +3,7 @@ slug: coyote-two-moon-100
 files:
   race:
     path: coyote-two-moon-100.yml
-    sha256: 8be404baaf0aa988426959b7a47714e99e05297b9eef3b932369ed66fd375563
+    sha256: 751c9537d418571f6b6439ecbc8c9a9b820c9b8fd49bda024fac3ff2072192fd
   course:
     path: coyote-two-moon-100.gpx
     sha256: fe572469bae34f736d401f683e0e0ecef648c5a531912745c6af4e4b39f91343
