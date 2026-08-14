@@ -22,12 +22,12 @@ race:
   official_url: https://www.bivouacracing.com/karissawhyracingeventscom
   registration_url: https://ultrasignup.com/register.aspx?eid=17228
   results_url: https://ultrasignup.com/register.aspx?did=131712 # The 2026 listing carries the 2024-2026 results.
-  registration_status: open # The 2027 listing sells both events ($197 rising after August 31; closes April 23, 2027).
+  registration_status: open # The 2027 listing sells the 100 and the relay ($197 rising after August 31; closes April 23, 2027).
   lottery: false # Direct UltraSignup registration.
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-13"
-    source_notes: "A crew-friendly 100 from the Hilltop Day Use Area at L.L. Stub Stewart State Park in Buxton, OR, with out-and-backs on the Banks-Vernonia trail system to the Hwy 30 and Banks turnarounds. The 2027 UltraSignup listing pins April 24, 2027 with the 12:00 PM start (run100s' 4/3-4 dates, 30-hour cutoff, and 10,000-foot climb are stale; the current pages say 32 hours and just over 7,000 feet). The aid chart's two Vernonia totals print 18 and 58, but the chart's own segment chain (5.1 + 10.9 = 16.0; 49.6 + 11.2 = 60.8), the aid page's drop-bag miles, and the CalTopo line (crossings at 15.8 and 61.0) all give 16.0 and 60.8 — the corrected miles govern those two passes with pass-specific notes. The aid page's Stewarts Gate drop-bag miles (94 and 100.7) also conflict with the chart's 92.3 and 98.2; the line corroborates the chart (crossings at 92.1 and 98.7), so the chart governs there. The Crown Stub page's Register here button still points at the 2025 listing; the current chain runs through the 2026 listing to the 2027 page."
+    source_notes: "A crew-friendly 100 from the Hilltop Day Use Area at L.L. Stub Stewart State Park in Buxton, OR, with out-and-backs on the Banks-Vernonia trail system to the Hwy 30 and Banks turnarounds. The 2027 UltraSignup listing pins April 24, 2027 with the 12:00 PM start (run100s' April 3 dating and the onboarding snapshot's 30-hour and 10,000-foot figures — columns the live table no longer displays — are stale; the current pages say 32 hours and just over 7,000 feet). The aid chart's two Vernonia totals print 18 and 58, but the chart's own segment chain (5.1 + 10.9 = 16.0; 49.6 + 11.2 = 60.8), the aid page's drop-bag miles, and the CalTopo line (crossings at 15.8 and 61.0) all give 16.0 and 60.8 — the corrected miles govern those two passes with pass-specific notes. The aid page's Stewarts Gate drop-bag miles (94 and 100.7) also conflict with the chart's 92.3 and 98.2; the line corroborates the chart (crossings at 92.1 and 98.7), so the chart governs there. The Crown Stub page's Register here button still points at the 2025 listing; the current chain runs through the 2026 listing to the 2027 page."
     section_verifications:
       race_facts:
         verified_on: "2026-08-13"
@@ -70,7 +70,7 @@ race:
         label: "UltraSignup 2026 listing (April 4, 2026; results)"
         url: "https://ultrasignup.com/register.aspx?did=131712"
         verified_on: "2026-08-13"
-    notes: "Checked against first-party sources on August 13, 2026. More than 25 crew access locations (the chart lists crew points between stations — Tophill, Beaver Creek, Floeter, Ruley, and Buxton trailheads among them); crews may meet runners at designated points, but runners may never enter or sit inside a vehicle, moving or parked, on pain of disqualification. Drop bags: each runner checks two bags, available six times (Stewarts Gate and Vernonia passes). A headlamp must be on the runner leaving Vernonia at night per the course tips, which also suggest road shoes from Stewarts Gate onto the rail-trail miles. Official stations carry food, hydration, medical support, and volunteers; Stewarts Gate and Vernonia are full service (burgers, grilled cheese, quesadillas) while the rest carry typical aid with Skratch Labs hydration and chews. The fastest man and woman are crowned King and Queen of Stub and split the Royal Purse (a 10 percent tax on registrations); a two-person relay shares the day."
+    notes: "Checked against first-party sources on August 13, 2026. More than 25 crew access locations (the chart lists crew points between stations — Tophill, Beaver Creek, Floeter, Ruley, and Buxton trailheads among them); crews may meet runners at designated points, but runners may never enter or sit inside a vehicle, moving or parked, on pain of disqualification. Drop bags: each runner checks two bags, available six times (Stewarts Gate and Vernonia passes). A headlamp must be on the runner's person upon leaving the Vernonia station per the course tips, which also suggest road shoes from Stewarts Gate onto the rail-trail miles. Official stations carry food, hydration, medical support, and volunteers; the aid page counts four full-service stations while naming two locations (Stewarts Gate and Vernonia, passed six times between them) with burgers, grilled cheese, and quesadillas, and the rest carry typical aid with Skratch Labs hydration and chews. The fastest man and woman are crowned King and Queen of Stub and split the Royal Purse (a 10 percent tax on registrations); a two-person relay shares the day."
     overall_cutoff_label: "8:00 PM April 25, 2027"
     overall_cutoff_notes: "32 hours from the 12:00 PM Saturday start; the finish closes promptly at 8:00 PM Sunday under the park permit. One intermediate cutoff is published: Stewarts Gate (mile 71.7) at 2:00 PM Sunday."
     pacer_rule_summary: "Pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2). Pacers may help with navigation, pacing strategy, motivation, and encouragement, but may not carry gear, nutrition, or equipment for their runner."
@@ -195,12 +195,14 @@ elevation_series:
   - [99, 920]
   - [100, 1162]
 
-# Station passes: the aid chart's rows — the Start, thirteen aid station
-# stops over seven physical stations, the two race turnaround points, and
+# Station passes: the aid chart's rows — the Start, thirteen station
+# passes over seven physical stations, the two race turnaround points, and
 # the Finish. The Hwy 30 and Banks rows are the Turnarounds; other mid
 # passes are unlabeled per the domain vocabulary. Coordinates copy the
 # organizer CalTopo markers (`match` = waypoint-name substring);
-# elevations are the CalTopo line's values at each pass mile.
+# elevations are the CalTopo line's values at each station's first pass
+# mile (the Finish reuses the Hilltop hub's value because the drawn line
+# ends 1,805 feet short of the start point).
 aid_stations:
   - match: "Hilltop Start/Finish"
     name: "Start — Hilltop Day Use Area"

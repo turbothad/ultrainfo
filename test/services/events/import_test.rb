@@ -494,7 +494,7 @@ module Events
       assert_equal 100.2, crown.distance_mi.to_f, "the aid chart's cumulative frame"
       assert_equal 7000, crown.elevation_gain_ft
       assert_equal 17, crown.aid_stations.count,
-                   "the Start, thirteen aid stops, two turnarounds, and the Finish"
+                   "the Start, thirteen station passes, two turnarounds, and the Finish"
       assert_equal 9, crown.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
                    "seven stations plus the two turnaround markers"
       assert_equal 2, crown.aid_stations.where(direction: "Turnaround").count,
