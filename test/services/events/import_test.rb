@@ -8,7 +8,7 @@ module Events
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
-                     "Orcas Island 100", "LOViT 100", "The Drift 100" ], published_races.map(&:name)
+                     "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -350,6 +350,35 @@ module Events
                    "9:00 AM Friday plus 55 hours lands at 5:00 PM Sunday across the DST change"
       assert_includes drift.source_metadata.fetch("sources").pluck("url"),
                       "https://www.thedrift100.com/100-mile-course/"
+
+      viper = published_races.find { |published| published.slug == "viper-100" }
+      assert_equal 2027, viper.year
+      assert_equal Date.new(2027, 3, 19), viper.start_date
+      assert viper.open?
+      assert_equal 41, viper.cutoff_hours
+      assert_equal 100.2, viper.distance_mi.to_f, "three 33.4-mile loops"
+      assert_equal 19, viper.aid_stations.count,
+                   "a Start pass plus six passes on each of three loops"
+      assert_equal 4, viper.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "four physical stations: Hyde Lake, Bridge, Refuge, and Tour de Wolf"
+      assert_equal 6, viper.aid_stations.where(crew_accessible: false).count,
+                   "no crew at any Bridge pass"
+      assert_equal 8, viper.aid_stations.count(&:pacer_access?),
+                   "pacers join at crew-accessible stations after one full loop"
+      assert_not viper.aid_stations.find_by!(mile: 10.8).pacer_access?,
+                 "no pacers on loop one"
+      assert_not viper.aid_stations.find_by!(mile: 100.2).pacer_access?,
+                 "no pickup at the finish"
+      assert_equal 9, viper.aid_stations.count(&:drop_bag?),
+                   "bags at every Tour de Wolf and Hyde Lake pass"
+      assert_equal 6, viper.aid_stations.where(has_medical: true).count,
+                   "medical support is published at Tour de Wolf"
+      assert_equal 1, viper.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "only the 41-hour finish cutoff is published"
+      assert_equal Time.find_zone("America/Chicago").parse("2027-03-21 12:00 AM"), viper.final_cutoff_at,
+                   "7:00 AM Friday plus 41 hours is midnight entering Sunday"
+      assert_includes viper.source_metadata.fetch("sources").pluck("url"),
+                      "https://ultrasignup.com/register.aspx?did=137755"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

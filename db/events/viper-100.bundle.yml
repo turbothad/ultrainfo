@@ -1,0 +1,9 @@
+version: 1
+slug: viper-100
+files:
+  race:
+    path: viper-100.yml
+    sha256: cacc143b752dc882a3341a424efa834f5353509d55481af5ffc90cbdec52a832
+  course:
+    path: viper-100.gpx
+    sha256: 12d3a8cf07dbb9665385be3d143bd036b1721ac4e629480778b754edbdea9c9d

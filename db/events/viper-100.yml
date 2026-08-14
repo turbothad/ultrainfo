@@ -1,0 +1,596 @@
+# Viper 100 — event data (imported by Events::Import via db/seeds.rb).
+# The 2027 UltraSignup event page is the primary source for every race fact:
+# dates, starts, the 41-hour cutoff, the per-loop aid table, crew, pacer,
+# and drop-bag rules. Course geometry copies the page's embedded plotaroute
+# loop; elevations are USGS 3DEP spot values. Source decisions are
+# documented in docs/research/viper-2027-source-audit.md.
+
+race:
+  name: Viper 100
+  slug: viper-100
+  year: 2027
+  state: TN
+  distance_mi: 100.2 # Three 33.4-mile loops; the 107K is billed as two loops (66.8 miles) on the same frame.
+  elevation_gain_ft: null # No organizer prose figure; the linked plotaroute loop computes 324 m (~1,063 ft) per loop, ~3,190 ft over three.
+  elevation_loss_ft: null
+  start_date: 2027-03-19
+  end_date: 2027-03-20
+  start_time: 7:00 AM
+  time_zone: America/Chicago
+  cutoff_hours: 41 # Friday 7:00 AM to "Midnight on Saturday, March 20, 2027" — daylight saving time is already in effect.
+  official_url: https://www.mambatrailrunners.com/
+  registration_url: https://ultrasignup.com/register.aspx?did=137755
+  results_url: https://ultrasignup.com/results_event.aspx?did=137755
+  registration_status: open # The 2027 UltraSignup page sells all four distances ($250 for the 100).
+  lottery: false # Direct UltraSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "A three-loop race on a 33.4-mile Shelby Farms Park loop in Memphis, TN, sharing race weekend with the 107K (two loops), 53K, and 25K; every distance finishes at Hyde Lake Pavilion. The 2027 UltraSignup event page carries the complete race manual (dates, cutoff, per-loop aid table, crew, pacer, and drop-bag rules) and embeds the course as plotaroute route 3232103 — created by the Race Director, named `Viper 300 Route 2026`, drawn February 18, 2026, and GPS-measuring 33.43 miles against the billed 33.4, which governs pass miles. Four physical stations produce six passes per loop: Bridge is visited at loop miles 7.4 and 14.4 (the two track passes run 61 feet apart) and Tour de Wolf at 20.8 and 27.0 (the two passes cross about 0.18 mile apart across the pavilion area; the waypoint sits at the first pass). No intermediate cutoffs are published — only the 41-hour finish. run100s' row is stale twice: its 3/12-13/27 dates and 38-hour cutoff have no counterpart on the 2027 listing (March 19-20, 41 hours)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_ultrasignup
+        label: "UltraSignup 2027 registration page (the organizer's full race manual)"
+        url: "https://ultrasignup.com/register.aspx?did=137755"
+        verified_on: "2026-08-14"
+      - &source_mamba
+        label: "Mamba Trail Runners site home"
+        url: "https://www.mambatrailrunners.com/"
+        verified_on: "2026-08-14"
+      - &source_plotaroute
+        label: "Course loop on plotaroute (route 3232103, embedded on the 2027 page)"
+        url: "https://www.plotaroute.com/route/3232103"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. Rules from the 2027 listing: no dropping down in distance (register for the 100, finish 100 miles or DNF); no muling; crew may assist only at fully manned aid stations and no outside assistance is allowed anywhere else; stay on the marked course; drop bags only at designated stations and no caching supplies; the course must be completed on foot; an IV, oxygen, or serious injury ends the race; trekking poles and headphones allowed with courtesy rules. Race parking is at the Tour de Wolf Pavilion parking area, where runners pass their vehicles twice each loop. Packet pickup is Thursday, March 18, 3:00-7:00 PM at Hyde Lake Pavilion and reopens at 9:00 AM Friday. Deferral credits run 50% at 60 days out and 25% at 30 days out, with none after March 1, 2027."
+    overall_cutoff_label: "12:00 AM March 21, 2027"
+    overall_cutoff_notes: "41 hours from the Friday 7:00 AM start — the listing words it as all race distances concluding at Midnight on Saturday, March 20, 2027, and notes daylight saving time is already in effect. No intermediate cutoffs are published."
+    pacer_rule_summary: "Pacers are permitted for the 100 Mile and 107K only, one on course at a time, after the runner completes one full loop (33.4 miles). Once eligible, a pacer may join at any crew-accessible station during the second loop — Refuge, Tour de Wolf, or Hyde Lake Pavilion — and pacer swaps happen at crew-accessible stations. Pacers sign a waiver, wear a pacer bib, may not carry any supplies for their runner, and must enter and leave stations with their runner."
+    drop_bag_summary: "Drop bags are permitted at Hyde Lake Pavilion (start/finish) and the Tour de Wolf Aid Station only, clearly labeled with name and race distance. No caching of food, water, or gear anywhere on the course."
+    tracking_note: "The 2027 listing says 100 mile and 100k runners will be live tracked; no tracking service or public link is published yet."
+  blurb: Three 33.4-mile loops of greenway and dirt trail through Shelby Farms Park, one of the country's largest urban parks.
+  about: >-
+    The Viper 100 runs three 33.4-mile loops inside Shelby Farms Park in
+    Memphis, TN, mixing smooth paved greenways with winding dirt trails
+    past lakes, forests, and the park's famous buffalo pasture. Start
+    7:00 AM Friday with a 41-hour cutoff — every distance on race
+    weekend finishes at Hyde Lake Pavilion by midnight Saturday. Four
+    stations serve six aid passes per loop, crews meet runners at three
+    of them plus the start/finish hub, and race parking at the Tour de
+    Wolf Pavilion puts runners past their own vehicles twice a loop.
+  start_venue: Hyde Lake Pavilion, Shelby Farms Park, Memphis, TN
+  finish_venue: Hyde Lake Pavilion, Shelby Farms Park, Memphis, TN
+
+# Profile from USGS 3DEP spot elevations sampled at each nominal mile along
+# the plotaroute loop (which carries no elevations), repeated per loop; GPS
+# miles are scaled to the billed 33.4-mile loop frame.
+elevation_series:
+  - [0, 270]
+  - [1, 302]
+  - [2, 286]
+  - [3, 265]
+  - [4, 244]
+  - [5, 242]
+  - [6, 257]
+  - [7, 249]
+  - [8, 256]
+  - [9, 256]
+  - [10, 251]
+  - [11, 255]
+  - [12, 253]
+  - [13, 259]
+  - [14, 249]
+  - [15, 247]
+  - [16, 243]
+  - [17, 255]
+  - [18, 298]
+  - [19, 323]
+  - [20, 330]
+  - [21, 303]
+  - [22, 322]
+  - [23, 311]
+  - [24, 321]
+  - [25, 294]
+  - [26, 288]
+  - [27, 317]
+  - [28, 335]
+  - [29, 301]
+  - [30, 301]
+  - [31, 274]
+  - [32, 260]
+  - [33, 263]
+  - [34, 302]
+  - [35, 301]
+  - [36, 282]
+  - [37, 251]
+  - [38, 244]
+  - [39, 246]
+  - [40, 248]
+  - [41, 248]
+  - [42, 253]
+  - [43, 256]
+  - [44, 258]
+  - [45, 251]
+  - [46, 260]
+  - [47, 249]
+  - [48, 248]
+  - [49, 246]
+  - [50, 243]
+  - [51, 277]
+  - [52, 285]
+  - [53, 321]
+  - [54, 308]
+  - [55, 298]
+  - [56, 326]
+  - [57, 306]
+  - [58, 314]
+  - [59, 318]
+  - [60, 278]
+  - [61, 307]
+  - [62, 326]
+  - [63, 302]
+  - [64, 302]
+  - [65, 263]
+  - [66, 267]
+  - [67, 274]
+  - [68, 302]
+  - [69, 302]
+  - [70, 258]
+  - [71, 245]
+  - [72, 245]
+  - [73, 246]
+  - [74, 255]
+  - [75, 249]
+  - [76, 253]
+  - [77, 257]
+  - [78, 252]
+  - [79, 263]
+  - [80, 260]
+  - [81, 247]
+  - [82, 247]
+  - [83, 245]
+  - [84, 262]
+  - [85, 298]
+  - [86, 330]
+  - [87, 321]
+  - [88, 306]
+  - [89, 333]
+  - [90, 316]
+  - [91, 317]
+  - [92, 300]
+  - [93, 305]
+  - [94, 320]
+  - [95, 336]
+  - [96, 303]
+  - [97, 301]
+  - [98, 264]
+  - [99, 263]
+  - [100, 263]
+
+# Station passes: four physical stations produce six passes per loop
+# (Bridge twice, Refuge once, Tour de Wolf twice, Hyde Lake at the loop
+# end); the 100 runs three loops. Coordinates sit on the plotaroute loop
+# at each station's first published loop mile (`match` = waypoint-name
+# substring); elevations are USGS 3DEP spot values. Crew, pacer, and
+# drop-bag flags follow the 2027 listing's aid station, crew, and pacer
+# sections; only the finish carries a published cutoff.
+aid_stations:
+  - match: "Hyde Lake Pavilion Start/Finish"
+    name: "Start — Hyde Lake Pavilion"
+    direction: "Start"
+    mile: 0.0
+    elev: 270
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No mile-zero aid row is published; Hyde Lake Pavilion serves as the final aid station of each loop (miles 33.4, 66.8, and 100.2)."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; follow posted signage and volunteer directions."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "No pacer yet at this pass: pacers for the 100 join only after one full loop (33.4 miles), at any crew-accessible station during the second loop."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Viper 2027 UltraSignup event page aid station information"
+      source_url: "https://ultrasignup.com/register.aspx?did=137755"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Every pass mile and crew/pacer/drop-bag flag comes from the aid station, crew access, and pacer sections of the 2027 UltraSignup event page; no intermediate cutoffs are published, so only the finish pass carries the 41-hour clock. Station coordinates sit on the embedded plotaroute loop at each station's first published loop mile; elevations are USGS 3DEP spot values at those coordinates. Stations are stocked with hydration and nutrition (hot food at Hyde Lake, medical support at Tour de Wolf); potability is never certified."
+      sources:
+        - *source_ultrasignup
+        - *source_plotaroute
+        - *source_mamba
+  - match: "Bridge Aid Station"
+    name: "Bridge Aid Station"
+    direction: "Loop 1"
+    mile: 7.4
+    elev: 248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration, nutrition, and volunteer support, located beneath the Walnut Grove Road Bridge."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not permitted at this station; crew may assist only at the fully manned crew stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    pacer_notes: "No pacer yet at this pass: pacers for the 100 join only after one full loop (33.4 miles), at any crew-accessible station during the second loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Refuge Aid Station"
+    name: "Refuge Aid Station"
+    direction: "Loop 1"
+    mile: 10.8
+    elev: 258
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration and nutrition at the Wolf River Refuge Trailhead."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "No pacer yet at this pass: pacers for the 100 join only after one full loop (33.4 miles), at any crew-accessible station during the second loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bridge Aid Station"
+    name: "Bridge Aid Station"
+    direction: "Loop 1"
+    mile: 14.4
+    elev: 248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration, nutrition, and volunteer support, located beneath the Walnut Grove Road Bridge."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not permitted at this station; crew may assist only at the fully manned crew stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    pacer_notes: "No pacer yet at this pass: pacers for the 100 join only after one full loop (33.4 miles), at any crew-accessible station during the second loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tour de Wolf Aid Station"
+    name: "Tour de Wolf (TDW) Aid Station"
+    direction: "Loop 1"
+    mile: 20.8
+    elev: 294
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "One of the primary hubs on the course: fully stocked with food, hydration, and medical support."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; runners pass their vehicles twice each loop."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "No pacer yet at this pass: pacers for the 100 join only after one full loop (33.4 miles), at any crew-accessible station during the second loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tour de Wolf Aid Station"
+    name: "Tour de Wolf (TDW) Aid Station"
+    direction: "Loop 1"
+    mile: 27.0
+    elev: 294
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "One of the primary hubs on the course: fully stocked with food, hydration, and medical support."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; runners pass their vehicles twice each loop."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "No pacer yet at this pass: pacers for the 100 join only after one full loop (33.4 miles), at any crew-accessible station during the second loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hyde Lake Pavilion Start/Finish"
+    name: "Hyde Lake Pavilion"
+    direction: "Loop 1"
+    mile: 33.4
+    elev: 270
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Race headquarters and the final aid station on each loop: fully stocked with hydration, hot food, and race support, plus a sleep station with cots, pillows, and blankets for the longer distances."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bridge Aid Station"
+    name: "Bridge Aid Station"
+    direction: "Loop 2"
+    mile: 40.8
+    elev: 248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration, nutrition, and volunteer support, located beneath the Walnut Grove Road Bridge."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not permitted at this station; crew may assist only at the fully manned crew stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    pacer_notes: "No pacer pickup here: pacers join or swap only at the crew-accessible stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Refuge Aid Station"
+    name: "Refuge Aid Station"
+    direction: "Loop 2"
+    mile: 44.2
+    elev: 258
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration and nutrition at the Wolf River Refuge Trailhead."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bridge Aid Station"
+    name: "Bridge Aid Station"
+    direction: "Loop 2"
+    mile: 47.8
+    elev: 248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration, nutrition, and volunteer support, located beneath the Walnut Grove Road Bridge."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not permitted at this station; crew may assist only at the fully manned crew stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    pacer_notes: "No pacer pickup here: pacers join or swap only at the crew-accessible stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tour de Wolf Aid Station"
+    name: "Tour de Wolf (TDW) Aid Station"
+    direction: "Loop 2"
+    mile: 54.2
+    elev: 294
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "One of the primary hubs on the course: fully stocked with food, hydration, and medical support."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; runners pass their vehicles twice each loop."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tour de Wolf Aid Station"
+    name: "Tour de Wolf (TDW) Aid Station"
+    direction: "Loop 2"
+    mile: 60.4
+    elev: 294
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "One of the primary hubs on the course: fully stocked with food, hydration, and medical support."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; runners pass their vehicles twice each loop."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hyde Lake Pavilion Start/Finish"
+    name: "Hyde Lake Pavilion"
+    direction: "Loop 2"
+    mile: 66.8
+    elev: 270
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Race headquarters and the final aid station on each loop: fully stocked with hydration, hot food, and race support, plus a sleep station with cots, pillows, and blankets for the longer distances."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bridge Aid Station"
+    name: "Bridge Aid Station"
+    direction: "Loop 3"
+    mile: 74.2
+    elev: 248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration, nutrition, and volunteer support, located beneath the Walnut Grove Road Bridge."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not permitted at this station; crew may assist only at the fully manned crew stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    pacer_notes: "No pacer pickup here: pacers join or swap only at the crew-accessible stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Refuge Aid Station"
+    name: "Refuge Aid Station"
+    direction: "Loop 3"
+    mile: 77.6
+    elev: 258
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration and nutrition at the Wolf River Refuge Trailhead."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bridge Aid Station"
+    name: "Bridge Aid Station"
+    direction: "Loop 3"
+    mile: 81.2
+    elev: 248
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked with hydration, nutrition, and volunteer support, located beneath the Walnut Grove Road Bridge."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is not permitted at this station; crew may assist only at the fully manned crew stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    pacer_notes: "No pacer pickup here: pacers join or swap only at the crew-accessible stations (Refuge, Tour de Wolf, and Hyde Lake Pavilion)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tour de Wolf Aid Station"
+    name: "Tour de Wolf (TDW) Aid Station"
+    direction: "Loop 3"
+    mile: 87.6
+    elev: 294
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "One of the primary hubs on the course: fully stocked with food, hydration, and medical support."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; runners pass their vehicles twice each loop."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Tour de Wolf Aid Station"
+    name: "Tour de Wolf (TDW) Aid Station"
+    direction: "Loop 3"
+    mile: 93.8
+    elev: 294
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "One of the primary hubs on the course: fully stocked with food, hydration, and medical support."
+    bathroom: null
+    park: "Race parking is at the Tour de Wolf Pavilion parking area; runners pass their vehicles twice each loop."
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "Eligible pacer pickup or swap: one pacer at a time may join or be replaced at any crew-accessible station once the runner has completed one full loop."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hyde Lake Pavilion Start/Finish"
+    name: "Finish — Hyde Lake Pavilion"
+    direction: "Finish"
+    mile: 100.2
+    elev: 270
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:00 AM"
+    cutoff_clock: "12:00 AM"
+    cutoff_elapsed_minutes: 2460
+    aid: "Race headquarters and the final aid station on each loop: fully stocked with hydration, hot food, and race support, plus a sleep station with cots, pillows, and blankets for the longer distances."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access is permitted at this station; crew may assist only at fully manned aid stations, and no outside assistance is allowed anywhere else on the course."
+    pacer_notes: "No pickup at the finish; an accompanying pacer finishes alongside the runner."
+    road: null
+    source_metadata: *official_station_source
