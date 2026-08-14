@@ -51,7 +51,7 @@ Recorded discrepancies and decisions:
    four stations, the finish, and a Green Creek Safety Shelter (omitted
    from the bundle GPX as a non-station). Elevations come from USGS 3DEP
    spot queries — station spots at the waypoint coordinates and a
-   per-nominal-mile profile along the line (GPS miles scaled 103.08→101).
+   per-nominal-table-mile profile along the line (GPS miles scaled 103.08→101).
 7. **The 48-hour leftovers.** The course page's own Section 1 narrative
    still tells racers "Remember you have 48 hours" — matching run100s'
    stale 48 — but the aid table's leave-by clocks and the timeline's
@@ -64,8 +64,8 @@ All URLs below were opened or downloaded on 2026-08-13.
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
 | S1 | The Drift site home | https://www.thedrift100.com/ | Masthead "Run. Fat bike. Ski. March 12-14, 2027"; race lineup (100/28/13); blurb "103 miles ... over 9,000 ft elevation loss/gain"; self-sufficiency framing ("no drop bags, pacers, or cell service"); stale "REGISTRATION OPENS 11/01/24" block. |
-| S2 | 100-mile course page | https://www.thedrift100.com/100-mile-course/ | Primary source: point-to-point Green River TH → Kendall Valley Lodge; the aid table (miles 0/24.9/50/67.3/83.5/101 with leave-by clocks, elapsed hours, menus, bathroom flags); four manned heated stations near 25/50/67/83, check-in/out required, no sleeping, small stations, shared use of Strawberry and Sheridan; allergy food container to Warm Springs (hot food only); evacuation by snowmachine with the $200 fee (racers turning around at or south of the Strawberry safety shelter inbound may self-return); the Trackleaders tracking-device requirement; qualification requirement; the stale "Gear check ... Thursday March 12th" and 6 pm prerace-meeting sentences; Bridger-Teton and Shoshone National Forest permits; course-file links (CalTopo, map/profile PDFs, KML/GPX Drive downloads); "route is subject to slight modification prior to race day". |
-| S3 | FAQ | https://www.thedrift100.com/faq/ | No dogs, pacers, or personal snow machines ("Nope, nope and nope"); outside assistance banned (racer-to-racer help allowed); an entourage may cheer; strict cutoffs with no exceptions, the first-station miss returning to the start and later misses evacuated for the drop-out fee; largely no cell coverage; conditions and gear rationale; RDs may refuse under-prepared racers without refund. |
+| S2 | 100-mile course page | https://www.thedrift100.com/100-mile-course/ | Primary source: point-to-point Green River TH → Kendall Valley Lodge; the aid table (miles 0/24.9/50/67.3/83.5/101 with leave-by clocks, elapsed hours, menus, bathroom flags); four manned heated stations near 25/50/67/83, check-in/out required, no sleeping, small stations, shared use of Strawberry and Sheridan; allergy food container to Warm Springs (hot food only); evacuation by snowmachine with the $200 fee (racers turning around at or south of the Strawberry safety shelter on the way in may self-return); the Trackleaders tracking-device requirement; qualification requirement; the stale "Gear check ... Thursday March 12th" and 6 pm prerace-meeting sentences; Bridger-Teton and Shoshone National Forest permits; course-file links (CalTopo, map/profile PDFs, KML/GPX Drive downloads); "route is subject to slight modification prior to race day". |
+| S3 | FAQ | https://www.thedrift100.com/faq/ | No dogs, pacers, or personal snow machines ("Nope, nope and nope"); outside assistance banned (racer-to-racer help allowed); an entourage may cheer; strict cutoffs with no exceptions, the first-station miss returning to the start (a racer dropping before or at the first station may leave under their own power) and later misses evacuated for the drop-out fee; largely no cell coverage; conditions and gear rationale; RDs may refuse under-prepared racers without refund. |
 | S4 | Mandatory gear list | https://www.thedrift100.com/the-gear/ | Per-race mandatory gear (blinkie light, 0°F-rated sleeping bag, tent or true bivy, stove with at least 4 oz of fuel, and more); gear checked Thursday; racers must start and finish with all gear. |
 | S5 | Timeline page | https://www.thedrift100.com/schedule/ | Thursday gear check at the Sublette County Library (Lovett Room) and prerace meeting; "9:00 AM: The Drift 100 starts"; Sunday 5:00 PM all courses close; start may move back one hour near zero temperatures; driving directions to the trailhead and lodge. Weekday-date pairs are the 2025 race's (stale). |
 | S6 | Official course GPX download | https://drive.google.com/file/d/15pjbQ-uvs6j8rOZO3dhF-HLRqoIjV-gf/view | Geometry authority (linked "GPX Download" on S2): CalTopo export, 2,510 track points, no elevations, GPS length 103.08 miles; waypoints Start (43.222924,-110.009509), Strawberry (43.461809,-109.972126), Sheridan (43.625906,-110.022268), Warm Springs (43.572048,-109.813274), Green Creek Safety Shelter (omitted), Finish Kendall Valley Lodge (43.223588,-110.021717). `db/events/the-drift-100.gpx` copies the track points exactly and the five station-relevant waypoints. |
@@ -95,10 +95,10 @@ All URLs below were opened or downloaded on 2026-08-13.
 - **Medical.** `null` everywhere — no published medical service;
   snowmachine evacuation for racers who miss cutoffs after the first
   station (a first-station miss returns to the start).
-- **Elevation series.** USGS 3DEP spot elevations per nominal chart mile
+- **Elevation series.** USGS 3DEP spot elevations per nominal table mile
   along the official line (which is 2D); station spots at waypoint
   coordinates. Organizer gain figure "over 9,000 ft" recorded as 9,000.
-- **Follow.** Trackleaders live tracking — every 100-mile racer must
+- **Follow.** Trackleaders tracking — every 100-mile racer must
   carry a tracking device (rentals encouraged; personal SPOT or InReach
   allowed). Results on UltraSignup (S8's chain).
 

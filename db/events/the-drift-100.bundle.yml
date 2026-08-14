@@ -3,7 +3,7 @@ slug: the-drift-100
 files:
   race:
     path: the-drift-100.yml
-    sha256: 14d9fe8e3e198db11a1991e5566e4c7251f8f7413c950f82d43247d429c4307d
+    sha256: 929b4857d8c8ca0d48dda152ee61156d6be097d42f45fb3ea7d7d2ee656796d2
   course:
     path: the-drift-100.gpx
     sha256: 29825679ba437d6dc07302086d301af4078b1c5ec28bfa21f554f8d06cf8d532
