@@ -3,7 +3,7 @@ slug: bootlegger-100
 files:
   race:
     path: bootlegger-100.yml
-    sha256: b98f8d4da8db5d7c810749d356e62f25d00d8e615c98026bf958a52df8978f97
+    sha256: 17dc6528bd1d6fa60c843ded679071741720286ee9ac5189aa4188f32b96c1c4
   course:
     path: bootlegger-100.gpx
     sha256: bb45cf474f3480c56b8fa3ec9a32cff34f5c56ad13fc5124b9bace409f29efc6
