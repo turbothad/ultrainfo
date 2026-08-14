@@ -12,7 +12,7 @@ internally consistent.
 ## Bottom line
 
 The record is publishable with a source warning. The site is
-2027-frame: the 25th annual race starts Friday, April 30, 2027 at 6:00
+2027-frame: the race starts Friday, April 30, 2027 at 6:00
 AM from Lake Cuyamaca (15027 Highway 79, Julian, CA) and ends Saturday,
 May 1 at 2:00 PM under a 32-hour maximum with intermediate leave-by
 cutoffs; the UltraSignup listing confirms the date, the 6:00 AM start,
@@ -43,8 +43,10 @@ Recorded discrepancies and decisions:
    approximately 15,000 each and its FAQ says runners report
    13,000-15,500; the Garmin course from the official GPX shows
    12,607/12,604. The current Event Info figure (13,000/13,000)
-   is recorded and the rest documented. run100s' 13,165/13,180 has
-   no first-party counterpart.
+   is recorded and the rest documented, including a fifth figure: the
+   UltraSignup listing's body text still says approximately 15,600
+   feet of climbing. run100s' 13,165/13,180 has no first-party
+   counterpart.
 4. **Station-count phrasing.** Event Info says "16 well-stocked aid
    stations, with drop bags available at 8"; the chart carries
    fourteen mid-race rows (two of them unmanned water-only) over
@@ -52,7 +54,7 @@ Recorded discrepancies and decisions:
    govern the pass table; the counts are documented.
 5. **Water-only naming.** The chart's second water-only row is "Pine
    Creek Road (water only)" at 49.5; the Racebook's rules and
-   walk-through call the same stop Big Oak ("you hit the water
+   walk-through call the same row Big Oak ("you hit the water
    station at Big Oak followed by a fun 2 downhill miles ... to
    Hammer's Hideaway"). The chart name governs; the alias is noted.
    Runners cannot withdraw from the race at water-only stations.
@@ -78,7 +80,14 @@ Recorded discrepancies and decisions:
     CPR/wilderness-first-aid-trained people "at the various aid
     stations" — no per-station medical column exists, so `med` stays
     null everywhere. No pain relievers at any station.
-11. **Elevation.** The official GPX carries elevations (3,639-6,479
+11. **Ordinal and listing-text conflicts.** The home page calls 2027
+    the 25th annual running; the Event Info page prints "This is the
+    26th Annual Event." The UltraSignup listing's body text also
+    carries a 200-runner first phase to April 15 and a $100 donation
+    against the site's 300-runner cap, April 1 close, and $105 —
+    the site's own pages govern and the ordinal is left out of the
+    record.
+12. **Elevation.** The official GPX carries elevations (3,639-6,479
     ft); the series samples it per nominal chart mile (GPS 100.12
     scaled to the chart's 100.6) and every chart GPS coordinate sits
     within 0.013 mile of the route line.
@@ -95,7 +104,7 @@ All URLs below were opened or downloaded on 2026-08-14.
 | S4 | 2027 aid station chart | https://www.predsci.com/~pete/sd100/2025-sd-100-miles-chart.png | The sixteen-row pass table: miles, GPS coordinates, open times, cutoff clocks, drop/crew/pacer columns; the 10:15 AM misprint (decision 2). The file name says 2025; the course page presents it as the final 2027 table. |
 | S5 | Official course GPX | https://www.predsci.com/~pete/sd100/san-diego-100-mile-endurance-run.gpx | Geometry and elevation authority: a GaiaGPS route of 10,019 points with elevations (3,639-6,479 ft), 100.12 GPS miles. `db/events/san-diego-100.gpx` converts the route points to track points exactly and adds fourteen station waypoints from the chart's GPS column. |
 | S6 | 2026 Racebook PDF | https://www.predsci.com/~pete/sd100/SD100-Participant-Guide-2026.pdf | Served by the 2027 Racebook page while the 2027 book "isn't quite ready": drop-bag rules (16x12x6, 5:30 AM deposit, returns), pacer rules (Sweetwater start, four switch points), crew rules (parking passes, designated stations), Solo Division, cutoff enforcement ("the runner must leave the aid station at or before the mandatory cutoff time"), aid menus, Geo Tracks GPS tracking with ultralive.net times, and its own chart print (10:15 PM at Hammer's). |
-| S7 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=139173 | "San Diego 100 - April 30, 2027"; "Friday, Apr 30, 2027 @ 6:00 AM"; "Registration Opens Fri. Jan 1, 2027 @ 12:00 AM PT". Reached via eid=203, the home page's registration link. |
+| S7 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=139173 | "San Diego 100 - April 30, 2027"; "Friday, Apr 30, 2027 @ 6:00 AM"; "Registration Opens Fri. Jan 1, 2027 @ 12:00 AM PT". Reached via eid=203, the home page's registration link. Its body text lags the site (approximately 15,600 feet, a 200-runner first phase, a $100 donation) — decision 11. |
 | S8 | UltraSignup 2026 listing | https://ultrasignup.com/register.aspx?did=116822 | 2026 results (the home page's results pointer). |
 
 ## Claim-level decisions
@@ -128,7 +137,7 @@ All URLs below were opened or downloaded on 2026-08-14.
   `false` elsewhere.
 - **Medical.** `null` everywhere (decision 10).
 - **Elevation series.** The official GPX's elevations per nominal
-  chart mile (decision 11); station spots at each pass's chart mile.
+  chart mile (decision 12); station spots at each pass's chart mile.
 - **Follow.** Geo Tracks GPS pods (link emailed pre-race) with
   station times on ultralive.net; the live-cast link posts on the
   sandiego100.com home page. Results on UltraSignup.

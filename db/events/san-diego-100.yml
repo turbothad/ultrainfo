@@ -27,7 +27,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-14"
-    source_notes: "The 25th annual San Diego 100 Mile Endurance Run from Lake Cuyamaca (15027 Highway 79, Julian, CA): Friday, April 30, 2027 at 6:00 AM to Saturday, May 1 at 2:00 PM, 32 hours, in the Mt Laguna Recreational Area and along the Pacific Crest, Noble Canyon, and Lake Cuyamaca trails. The course page presents the final 2027 aid table; its Hammer's Hideaway cell prints 10:15 AM, an impossible clock at mile 51.8 (it would postdate the next cutoff), and the chart's own ladder plus the 2026 Racebook's print give 10:15 PM Friday, which governs with a pass-specific note. The home banner says 2027 registration is open, but the Event Info, Registration, and UltraSignup surfaces all say it opens January 1, 2027 — not_open governs. The Event Info page's climb figure (just over 13,000 feet each) governs against the Racebook's ~15,000 and the Garmin course's 12,607/12,604. Registration requires a qualifier (a sub-13-hour 50-mile or a 100k/100-mile finish between January 1, 2025 and April 1, 2027) plus six volunteer hours or a $105 TrailFit donation. run100s' 13,165/13,180 climb figures have no first-party counterpart."
+    source_notes: "The San Diego 100 Mile Endurance Run from Lake Cuyamaca (15027 Highway 79, Julian, CA): Friday, April 30, 2027 at 6:00 AM to Saturday, May 1 at 2:00 PM, 32 hours, in the Mt Laguna Recreational Area and along the Pacific Crest, Noble Canyon, and Lake Cuyamaca trails. The course page presents the final 2027 aid table; its Hammer's Hideaway cell prints 10:15 AM, an impossible clock at mile 51.8 (it would postdate the next cutoff), and the chart's own ladder plus the 2026 Racebook's print give 10:15 PM Friday, which governs with a pass-specific note. The home banner says 2027 registration is open, but the Event Info, Registration, and UltraSignup surfaces all say it opens January 1, 2027 — not_open governs. The Event Info page's climb figure (just over 13,000 feet each) governs against the Racebook's ~15,000 and the Garmin course's 12,607/12,604. Registration requires a qualifier (a sub-13-hour 50-mile or a 100k/100-mile finish between January 1, 2025 and April 1, 2027) plus six volunteer hours or a $105 TrailFit donation. run100s' 13,165/13,180 climb figures have no first-party counterpart. The home page calls 2027 the 25th annual running while the Event Info page prints the 26th; and the UltraSignup listing's own body text still says approximately 15,600 feet of climbing, a 200-runner first phase to April 15, and a $100 donation against the site's 13,000, 300, and $105 — the site governs."
     section_verifications:
       race_facts:
         verified_on: "2026-08-14"
@@ -90,7 +90,7 @@ race:
     85 percent single track with just over 13,000 feet of climbing,
     sixteen chart rows of aid over fourteen stations, crews at seven,
     pacers from Sweetwater, GPS tracking, and 32 hours to earn the
-    buckle at the 25th annual running.
+    buckle.
   start_venue: Lake Cuyamaca, 15027 Highway 79, Julian, CA
   finish_venue: Lake Cuyamaca, 15027 Highway 79, Julian, CA
 
@@ -235,7 +235,7 @@ aid_stations:
       source_label: "2027 aid station chart (course page)"
       source_url: "https://www.predsci.com/~pete/sd100/2025-sd-100-miles-chart.png"
       verified_on: "2026-08-14"
-      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles, GPS coordinates, cutoff clocks, and the drop/crew/pacer columns come from the chart the 2027 Course page presents as the final 2027 table; menus, cutoff semantics, and crew, pacer, drop-bag, and Solo rules come from the 2026 Racebook the 2027 Racebook page serves. The chart's Hammer's Hideaway cutoff prints an impossible 10:15 AM; the chart's own ladder and the Racebook's print give 10:15 PM, which governs. Station coordinates convert the chart's GPS column; elevations are the official GPX's values at each pass's chart mile."
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles, GPS coordinates, cutoff clocks, and the drop/crew/pacer columns come from the chart the 2027 Course page presents as the final 2027 table (the start and finish rows' crew flags come from the Racebook's designated crew list, which names Lake Cuyamaca); menus, cutoff semantics, and crew, pacer, drop-bag, and Solo rules come from the 2026 Racebook the 2027 Racebook page serves. The chart's Hammer's Hideaway cutoff prints an impossible 10:15 AM; the chart's own ladder and the Racebook's print give 10:15 PM, which governs. Station coordinates convert the chart's GPS column; elevations are the official GPX's values at each pass's chart mile."
       sources:
         - *source_chart
         - *source_course_page
@@ -363,7 +363,7 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Unmanned water-only row per the chart — top off fluids. No runner-tracking check here, and runners cannot withdraw from the race at water-only stations. The Racebook's rules and walk-through call this stop Big Oak."
+    aid: "Unmanned water-only row per the chart — top off fluids. No runner-tracking check here, and runners cannot withdraw from the race at water-only stations. The Racebook's rules and walk-through call this row Big Oak."
     bathroom: null
     park: null
     crew_notes: "Not a designated crew station; crews who stop anywhere but the crew stations risk time penalties or disqualification of their runner."
@@ -491,7 +491,7 @@ aid_stations:
     cutoff: "7:45 AM"
     cutoff_clock: "7:45 AM"
     cutoff_elapsed_minutes: 1545
-    aid: "Water, Tailwind, gels, Coke, Mountain Dew, ginger ale, ice, electrolyte pills, fruit, salty food, cookies, PB&J, and candies as a minimum, with hot soup and hot drinks at night stations and at least one vegan option; no pain relievers. Across the street from the mile-59.2 stop."
+    aid: "Water, Tailwind, gels, Coke, Mountain Dew, ginger ale, ice, electrolyte pills, fruit, salty food, cookies, PB&J, and candies as a minimum, with hot soup and hot drinks at night stations and at least one vegan option; no pain relievers. Across the street from the mile-59.2 pass."
     bathroom: null
     park: null
     crew_notes: "No longer a crew-accessible station (access was removed after 2024 crew violations)."
