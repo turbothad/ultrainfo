@@ -10,7 +10,7 @@ module Events
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
                      "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
-                     "Badger Mountain Challenge 100", "Crown Stub 100" ], published_races.map(&:name)
+                     "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -514,6 +514,33 @@ module Events
                    "noon Saturday plus 32 hours"
       assert_includes crown.source_metadata.fetch("sources").pluck("url"),
                       "https://caltopo.com/m/BEDR0FU"
+
+      canyons = published_races.find { |published| published.slug == "canyons-100" }
+      assert_equal 2027, canyons.year
+      assert_equal Date.new(2027, 4, 23), canyons.start_date
+      assert canyons.open?
+      assert_equal 35, canyons.cutoff_hours, "run100s' 32 is stale; the page says 35 hours"
+      assert_equal 100.3, canyons.distance_mi.to_f, "the aid chart's cumulative frame"
+      assert_equal 18_000, canyons.elevation_gain_ft
+      assert_equal 22_000, canyons.elevation_loss_ft
+      assert_equal 20, canyons.aid_stations.count, "the chart's twenty rows"
+      assert_equal 15, canyons.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "the official GPX's fifteen waypoints; five stations repeat"
+      assert_equal 1, canyons.aid_stations.where(direction: "Turnaround").count,
+                   "the Swinging Bridge below Devil's Thumb"
+      assert_equal 5, canyons.aid_stations.where(crew_accessible: true).count,
+                   "Michigan Bluff, Foresthill, Drivers Flat, and both Cool passes"
+      assert_equal 2, canyons.aid_stations.count(&:pacer_access?), "the two Cool passes only"
+      assert_equal 3, canyons.aid_stations.count(&:drop_bag?),
+                   "Foresthill and both Cool passes"
+      assert_equal 9, canyons.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "eight station clocks plus the finish"
+      assert_equal "20h", canyons.aid_stations.find_by!(mile: 61.3).cutoff_elapsed_label,
+                   "Cool closes at 8:00 AM from the noon start"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-04-24 11:00 PM"), canyons.final_cutoff_at,
+                   "noon Friday plus 35 hours"
+      assert_includes canyons.source_metadata.fetch("sources").pluck("url"),
+                      "https://canyons.utmb.world/races/100M"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

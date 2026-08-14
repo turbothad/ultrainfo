@@ -17,3 +17,4 @@ active_event_bundles:
   - bootlegger-100.bundle.yml
   - badger-mountain-100.bundle.yml
   - crown-stub-100.bundle.yml
+  - canyons-100.bundle.yml

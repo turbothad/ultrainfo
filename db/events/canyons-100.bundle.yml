@@ -1,0 +1,9 @@
+version: 1
+slug: canyons-100
+files:
+  race:
+    path: canyons-100.yml
+    sha256: 6c84c7f1ccd3862033b256ecf410b617af7364b9612f88ff53d9c2f2b8526ff2
+  course:
+    path: canyons-100.gpx
+    sha256: aa070a9759372460c0f523b7795f9043432183093cac17b36c29f85dc848e26a

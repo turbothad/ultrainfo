@@ -1,0 +1,631 @@
+# Canyons 100M — event data (imported by Events::Import via db/seeds.rb).
+# The 2027 100M race page and registration page on canyons.utmb.world carry
+# the current dates, noon start, 35-hour cutoff, and open registration; the
+# page's linked 100 Mile Aid Station Chart (revision 4/22/26) carries the
+# pass table; the page's linked official GPX carries geometry, elevations,
+# and station waypoints. Source decisions are documented in
+# docs/research/canyons-2027-source-audit.md.
+
+race:
+  name: Canyons 100M
+  slug: canyons-100
+  year: 2027
+  state: CA
+  distance_mi: 100.3 # The aid chart's cumulative frame; the official GPX GPS-measures 98.60 and the page header says 161 km.
+  elevation_gain_ft: 18000 # The course description's "Approximately 18,000 feet of vert"; the overview line says about 17,000, the header 5,550 m, and the chart's cumulative column reaches 18,043.
+  elevation_loss_ft: 22000 # The course description's "22,000 of descent"; the chart's cumulative column reaches 21,479.
+  start_date: 2027-04-23
+  end_date: 2027-04-24
+  start_time: 12:00 PM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 35 # "Max Allowed Race Time 35 Hours" — the chart's finish row closes 11:00 PM Saturday.
+  official_url: https://canyons.utmb.world/
+  registration_url: https://canyons.utmb.world/runners/registration
+  results_url: https://canyons.utmb.world/runners/results
+  registration_status: open # "2027 REGISTRATION NOW OPEN" — 100M $498.53 plus fees; closes April 18, 2027.
+  lottery: false # Direct registration (Running Stones category 4; a Western States qualifier with Finals Access).
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "A point-to-point Western States Trail race from the China Wall trailhead to downtown Auburn, CA, finishing across Ann Trason's White Bridge, with the Swinging Bridge turnaround below Devil's Thumb at chart mile 13.5. The 2027 100M page gives Friday, April 23, 2027 at 12:00 with a 35-hour maximum (run100s' 32 is stale); the chart's arrive-by clocks map exactly onto that frame (noon start to the 11:00 PM Saturday finish row). The organizer's gain figures disagree across its own surfaces — the page overview says approximately 17,000 feet, the header says 5,550 m, the course description says approximately 18,000 feet of vert and 22,000 of descent, and the chart's cumulative columns reach 18,043 and 21,479 — the description's rounded pair is recorded. The chart and GPX are the 2026-revision documents linked from the 2027 page (the chart is stamped Revision 4/22/26 and the GPX file is named 2026 ... Course Alternate), and the Crew & Spectators page states the 2026 information stands until roughly six to eight weeks before the 2027 race; the chart notes the course is subject to change under permitting."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_race_page
+        label: "Canyons 100M race page (dates, noon start, 35 hours, course description, chart and GPX links)"
+        url: "https://canyons.utmb.world/races/100M"
+        verified_on: "2026-08-14"
+      - &source_registration
+        label: "Registration page (2027 registration open, prices, deferrals, inclusions)"
+        url: "https://canyons.utmb.world/runners/registration"
+        verified_on: "2026-08-14"
+      - &source_chart
+        label: "100 Mile Aid Station Chart PDF (revision 4/22/26, linked from the race page)"
+        url: "https://res.cloudinary.com/utmb-world/image/upload/v1776896940/canyons/2026/Aid%20Station%20Charts/2026_The_Canyons_Endurance_Runs_by_UTMB_100_mile_Aid_Station_Chart_Imperial_8312cc28c5.pdf.pdf"
+        verified_on: "2026-08-14"
+      - &source_gpx
+        label: "Official 100M course GPX download (2026 Course Alternate, linked from the race page)"
+        url: "https://res.cloudinary.com/utmb-world/raw/upload/v1776808245/canyons/2026/GPX%20Files/2026_Canyons_Endurance_Runs_by_UTMB_100_mile_Course_Alternate_3b179d0806.gpx"
+        verified_on: "2026-08-14"
+      - &source_crew_page
+        label: "Crew & Spectators page (2026 info stands until 6-8 weeks out)"
+        url: "https://canyons.utmb.world/crew"
+        verified_on: "2026-08-14"
+      - &source_home
+        label: "Canyons by UTMB site home"
+        url: "https://canyons.utmb.world/"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. Registration includes aid station access, timing, medical assistance, a collapsible cup, post-race food, and the finisher buckle; entries are non-refundable with a one-time any-reason deferral through March 24, 2027. Online registration closes April 18, 2027, and runners must be 18 for the 100M. The route descends Devil's Thumb to the Swinging Bridge and climbs back out, passes Michigan Bluff, Foresthill, and the Cal Street section, follows the American River past Rucky Chucky, and climbs K2 to Cool before the No Hands Bridge finish stretch into Auburn. The chart's mileage and elevation columns are CalTopo-derived per its own footnote. A UTMB World Series race: finishers earn Running Stones (category 4) and the race is a Western States qualifier with Finals Access."
+    overall_cutoff_label: "11:00 PM April 24, 2027"
+    overall_cutoff_notes: "35 hours from the Friday 12:00 PM start; the chart's finish row closes downtown Auburn at 11:00 PM Saturday, with arrive-by cutoffs at eight stations from Deadwood (6:30 PM Friday) through ALT (3:30 PM Saturday)."
+    pacer_rule_summary: "The chart marks pacer access only at the two Cool passes (chart miles 61.3 and 73.5). The Crew & Spectators page still carries the 2026 details and says the 2027 version arrives six to eight weeks before race weekend."
+    drop_bag_summary: "The chart marks drop bags at Foresthill (28.5) and the two Cool passes (61.3 and 73.5)."
+    tracking_note: "UTMB Live carries live tracking for UTMB World Series races; results post on the site's results page."
+  blurb: Western States country point-to-point from China Wall through the canyons to a downtown Auburn finish.
+  about: >-
+    The Canyons 100M runs point-to-point from the China Wall trailhead
+    through the Western States Trail canyons — down Devil's Thumb to
+    the Swinging Bridge and back out, through Michigan Bluff and
+    Foresthill, down Cal Street along the American River past Rucky
+    Chucky, and up K2 to Cool — to finish across Ann Trason's White
+    Bridge in downtown Auburn, CA. Noon start Friday with a 35-hour
+    maximum and arrive-by cutoffs at eight stations. Approximately
+    18,000 feet of climb and 22,000 of descent. A UTMB World Series
+    race and Western States qualifier with Finals Access.
+  start_venue: China Wall Trailhead, Foresthill, CA
+  finish_venue: Downtown Auburn, CA
+
+# Profile from the official GPX download's elevations, sampled per nominal
+# chart mile; GPS miles are scaled to the chart's 100.3-mile frame.
+elevation_series:
+  - [0, 5016]
+  - [1, 4866]
+  - [2, 4744]
+  - [3, 4556]
+  - [4, 4287]
+  - [5, 3762]
+  - [6, 3852]
+  - [7, 3439]
+  - [8, 2804]
+  - [9, 3204]
+  - [10, 3936]
+  - [11, 4316]
+  - [12, 4133]
+  - [13, 3175]
+  - [14, 3446]
+  - [15, 4370]
+  - [16, 4290]
+  - [17, 3836]
+  - [18, 3088]
+  - [19, 2697]
+  - [20, 1806]
+  - [21, 2728]
+  - [22, 3248]
+  - [23, 3491]
+  - [24, 3520]
+  - [25, 3570]
+  - [26, 2925]
+  - [27, 3003]
+  - [28, 3372]
+  - [29, 3224]
+  - [30, 2752]
+  - [31, 2110]
+  - [32, 1884]
+  - [33, 2047]
+  - [34, 1956]
+  - [35, 2032]
+  - [36, 2220]
+  - [37, 1655]
+  - [38, 1059]
+  - [39, 1020]
+  - [40, 1091]
+  - [41, 897]
+  - [42, 804]
+  - [43, 905]
+  - [44, 792]
+  - [45, 1091]
+  - [46, 1584]
+  - [47, 1712]
+  - [48, 1790]
+  - [49, 1751]
+  - [50, 1755]
+  - [51, 1600]
+  - [52, 1706]
+  - [53, 1438]
+  - [54, 711]
+  - [55, 854]
+  - [56, 1172]
+  - [57, 879]
+  - [58, 581]
+  - [59, 660]
+  - [60, 1502]
+  - [61, 1525]
+  - [62, 1525]
+  - [63, 1424]
+  - [64, 1355]
+  - [65, 819]
+  - [66, 551]
+  - [67, 1141]
+  - [68, 1490]
+  - [69, 1372]
+  - [70, 1249]
+  - [71, 1436]
+  - [72, 1524]
+  - [73, 1482]
+  - [74, 1516]
+  - [75, 1573]
+  - [76, 1312]
+  - [77, 813]
+  - [78, 657]
+  - [79, 1001]
+  - [80, 1250]
+  - [81, 1376]
+  - [82, 1395]
+  - [83, 1293]
+  - [84, 1431]
+  - [85, 1521]
+  - [86, 1461]
+  - [87, 1002]
+  - [88, 795]
+  - [89, 724]
+  - [90, 769]
+  - [91, 696]
+  - [92, 774]
+  - [93, 1249]
+  - [94, 1551]
+  - [95, 1345]
+  - [96, 877]
+  - [97, 622]
+  - [98, 741]
+  - [99, 1226]
+  - [100, 1270]
+
+# Station passes: the aid chart's twenty rows — the Start, thirteen aid
+# stations (Deadwood, Cool, Browns Bar, No Hands, and Coffer Dam repeat),
+# the Swinging Bridge Turnaround, and the Finish. Arrive-by cutoffs map to
+# the Friday 12:00 PM start. Coordinates copy the official GPX's fifteen
+# waypoints (`match` = waypoint-name substring); elevations are the GPX
+# values at each chart mile.
+aid_stations:
+  - match: "Start: China Wall"
+    name: "Start — China Wall Trailhead"
+    direction: "Start"
+    mile: 0.0
+    elev: 5016
+    crew: false
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid row at the start; the first station is Deadwood at chart mile 11.2."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Canyons 100 Mile Aid Station Chart (revision 4/22/26)"
+      source_url: "https://res.cloudinary.com/utmb-world/image/upload/v1776896940/canyons/2026/Aid%20Station%20Charts/2026_The_Canyons_Endurance_Runs_by_UTMB_100_mile_Aid_Station_Chart_Imperial_8312cc28c5.pdf.pdf"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year — the chart is the 2026 revision linked from the 2027 race page, whose noon-start and 35-hour frame its clocks match exactly. Every pass mile, arrive-by cutoff, and drop/crew/pacer flag comes from the chart; hydration and water-only rows record food false. Station coordinates copy the official GPX's waypoints (shared waypoints for repeated stations); elevations are the GPX values at each chart mile. No station-level medical column exists — registration includes race-wide medical assistance. The chart warns the course is subject to change under permitting."
+      sources:
+        - *source_chart
+        - *source_race_page
+        - *source_gpx
+        - *source_registration
+        - *source_crew_page
+  - match: "Deadwood: Aid Station"
+    name: "Deadwood"
+    direction: null
+    mile: 11.2
+    elev: 4383
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Swinging Bridge - Turnaround"
+    name: "Swinging Bridge"
+    direction: "Turnaround"
+    mile: 13.5
+    elev: 2825
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The chart labels this row N/A — the turnaround below Devil's Thumb, not an aid station."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Deadwood: Aid Station"
+    name: "Deadwood"
+    direction: null
+    mile: 15.8
+    elev: 4324
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "6:30 PM"
+    cutoff_clock: "6:30 PM"
+    cutoff_elapsed_minutes: 390
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Michigan Bluff: Aid Station"
+    name: "Michigan Bluff"
+    direction: null
+    mile: 22.6
+    elev: 3488
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "7:45 PM"
+    cutoff_clock: "7:45 PM"
+    cutoff_elapsed_minutes: 465
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the chart's crew column; the Crew & Spectators page carries the 2026 details until the 2027 update."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Foresthill: Aid Station"
+    name: "Foresthill"
+    direction: null
+    mile: 28.5
+    elev: 3307
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "9:30 PM"
+    cutoff_clock: "9:30 PM"
+    cutoff_elapsed_minutes: 570
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the chart's crew column; the Crew & Spectators page carries the 2026 details until the 2027 update."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Cal 2: Aid Station"
+    name: "Cal 2"
+    direction: null
+    mile: 36.7
+    elev: 1727
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Drivers Flat: Aid Station"
+    name: "Drivers Flat"
+    direction: null
+    mile: 46.0
+    elev: 1584
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "3:00 AM"
+    cutoff_clock: "3:00 AM"
+    cutoff_elapsed_minutes: 900
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the chart's crew column; the Crew & Spectators page carries the 2026 details until the 2027 update."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Mammoth Bar: Aid Station"
+    name: "Mammoth Bar"
+    direction: null
+    mile: 53.9
+    elev: 763
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "5:30 AM"
+    cutoff_clock: "5:30 AM"
+    cutoff_elapsed_minutes: 1050
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Confluence: Aid Station"
+    name: "Confluence"
+    direction: null
+    mile: 57.6
+    elev: 695
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "No Hands: Hydration Station"
+    name: "No Hands Bridge (hydration)"
+    direction: null
+    mile: 58.3
+    elev: 582
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Hydration station per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Cool: Aid Station"
+    name: "Cool"
+    direction: null
+    mile: 61.3
+    elev: 1539
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "8:00 AM"
+    cutoff_clock: "8:00 AM"
+    cutoff_elapsed_minutes: 1200
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the chart's crew column; the Crew & Spectators page carries the 2026 details until the 2027 update."
+    pacer_notes: "Pacer access per the chart — one of the two Cool passes with crew and drop bags."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Coffer Dam Water Only"
+    name: "Coffer Dam (water only)"
+    direction: null
+    mile: 63.0
+    elev: 1424
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Coffer Dam Water Only"
+    name: "Coffer Dam (water only)"
+    direction: null
+    mile: 67.6
+    elev: 1385
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Cool: Aid Station"
+    name: "Cool"
+    direction: null
+    mile: 73.5
+    elev: 1450
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:00 PM"
+    cutoff_clock: "12:00 PM"
+    cutoff_elapsed_minutes: 1440
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the chart's crew column; the Crew & Spectators page carries the 2026 details until the 2027 update."
+    pacer_notes: "Pacer access per the chart — one of the two Cool passes with crew and drop bags."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Browns Bar: Aid Station"
+    name: "Browns Bar"
+    direction: null
+    mile: 77.7
+    elev: 661
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "ALT: Aid Station"
+    name: "ALT"
+    direction: null
+    mile: 83.1
+    elev: 1302
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "3:30 PM"
+    cutoff_clock: "3:30 PM"
+    cutoff_elapsed_minutes: 1650
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Browns Bar: Aid Station"
+    name: "Browns Bar"
+    direction: null
+    mile: 90.7
+    elev: 710
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full aid station per the chart; registration includes aid station access and medical assistance race-wide."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "No Hands: Hydration Station"
+    name: "No Hands Bridge (hydration)"
+    direction: null
+    mile: 96.8
+    elev: 525
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Hydration station per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at this pass."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Finish: Downtown Auburn"
+    name: "Finish — Downtown Auburn"
+    direction: "Finish"
+    mile: 100.3
+    elev: 1270
+    crew: false
+    water: null
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "11:00 PM"
+    cutoff_clock: "11:00 PM"
+    cutoff_elapsed_minutes: 2100
+    aid: "Post-race food for finishers per the registration inclusions; the chart's finish row carries no aid flags."
+    bathroom: null
+    park: null
+    crew_notes: "The chart's crew column is unmarked at the finish row; the downtown Auburn finish is a public street festival area — see the Crew & Spectators page nearer the race."
+    pacer_notes: "Not a pacer station: the chart marks pacer access only at the two Cool passes (61.3 and 73.5)."
+    road: null
+    source_metadata: *official_station_source
