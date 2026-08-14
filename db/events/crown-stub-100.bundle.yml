@@ -1,0 +1,9 @@
+version: 1
+slug: crown-stub-100
+files:
+  race:
+    path: crown-stub-100.yml
+    sha256: cfc6dd8f1865b38554b5e13045d68979117989fe7de45d4ccef34b1e3fc44dbd
+  course:
+    path: crown-stub-100.gpx
+    sha256: 821db08c9d383b5bba5ec80e05ed2521db1e01a3baf2e198e350c672742f8bba

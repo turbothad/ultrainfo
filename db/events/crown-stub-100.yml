@@ -1,0 +1,577 @@
+# Crown Stub 100 — event data (imported by Events::Import via db/seeds.rb).
+# The Bivouac Racing Crown Stub pages carry the race facts; the aid chart
+# Google Sheet carries the pass table (with two internally conflicted
+# Vernonia totals resolved by the chart's own segment chain, the aid page,
+# and the course line); the organizer's CalTopo map is the geometry and
+# elevation authority. Source decisions are documented in
+# docs/research/crown-stub-2027-source-audit.md.
+
+race:
+  name: Crown Stub 100
+  slug: crown-stub-100
+  year: 2027
+  state: OR
+  distance_mi: 100.2 # The aid chart's cumulative frame; the CalTopo line GPS-measures 98.62.
+  elevation_gain_ft: 7000 # "just over 7,000 feet of elevation gain"; no loss figure is published.
+  elevation_loss_ft: null
+  start_date: 2027-04-24
+  end_date: 2027-04-25
+  start_time: 12:00 PM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 32 # "a unique 12:00 PM Saturday start, giving runners a total of 32 hours" — the finish closes 8:00 PM Sunday.
+  official_url: https://www.bivouacracing.com/karissawhyracingeventscom
+  registration_url: https://ultrasignup.com/register.aspx?eid=17228
+  results_url: https://ultrasignup.com/register.aspx?did=131712 # The 2026 listing carries the 2024-2026 results.
+  registration_status: open # The 2027 listing sells both events ($197 rising after August 31; closes April 23, 2027).
+  lottery: false # Direct UltraSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "A crew-friendly 100 from the Hilltop Day Use Area at L.L. Stub Stewart State Park in Buxton, OR, with out-and-backs on the Banks-Vernonia trail system to the Hwy 30 and Banks turnarounds. The 2027 UltraSignup listing pins April 24, 2027 with the 12:00 PM start (run100s' 4/3-4 dates, 30-hour cutoff, and 10,000-foot climb are stale; the current pages say 32 hours and just over 7,000 feet). The aid chart's two Vernonia totals print 18 and 58, but the chart's own segment chain (5.1 + 10.9 = 16.0; 49.6 + 11.2 = 60.8), the aid page's drop-bag miles, and the CalTopo line (crossings at 15.8 and 61.0) all give 16.0 and 60.8 — the corrected miles govern those two passes with pass-specific notes. The aid page's Stewarts Gate drop-bag miles (94 and 100.7) also conflict with the chart's 92.3 and 98.2; the line corroborates the chart (crossings at 92.1 and 98.7), so the chart governs there. The Crown Stub page's Register here button still points at the 2025 listing; the current chain runs through the 2026 listing to the 2027 page."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_page
+        label: "Crown Stub 100 page on bivouacracing.com"
+        url: "https://www.bivouacracing.com/karissawhyracingeventscom"
+        verified_on: "2026-08-13"
+      - &source_maps_page
+        label: "Course Maps/GPX page (CalTopo link, shoe and headlamp tips)"
+        url: "https://www.bivouacracing.com/new-page-1"
+        verified_on: "2026-08-13"
+      - &source_aid_page
+        label: "Aid Stations & Crew Access page (stations, crew rules, pacers, drop bags, cutoffs)"
+        url: "https://www.bivouacracing.com/new-page-2"
+        verified_on: "2026-08-13"
+      - &source_chart
+        label: "Crown Stub 100 aid stations and crew spreadsheet"
+        url: "https://docs.google.com/spreadsheets/d/1nv_Gb56o1HHzEfubp1HNgr9K4k_l0vFQD7CxZ0gQzlE/edit"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo course map (line and station markers)"
+        url: "https://caltopo.com/m/BEDR0FU"
+        verified_on: "2026-08-13"
+      - &source_us_2027
+        label: "UltraSignup 2027 registration page (April 24, 2027; 12:00 PM start; open)"
+        url: "https://ultrasignup.com/register.aspx?eid=17228"
+        verified_on: "2026-08-13"
+      - &source_us_2026
+        label: "UltraSignup 2026 listing (April 4, 2026; results)"
+        url: "https://ultrasignup.com/register.aspx?did=131712"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. More than 25 crew access locations (the chart lists crew points between stations — Tophill, Beaver Creek, Floeter, Ruley, and Buxton trailheads among them); crews may meet runners at designated points, but runners may never enter or sit inside a vehicle, moving or parked, on pain of disqualification. Drop bags: each runner checks two bags, available six times (Stewarts Gate and Vernonia passes). A headlamp must be on the runner leaving Vernonia at night per the course tips, which also suggest road shoes from Stewarts Gate onto the rail-trail miles. Official stations carry food, hydration, medical support, and volunteers; Stewarts Gate and Vernonia are full service (burgers, grilled cheese, quesadillas) while the rest carry typical aid with Skratch Labs hydration and chews. The fastest man and woman are crowned King and Queen of Stub and split the Royal Purse (a 10 percent tax on registrations); a two-person relay shares the day."
+    overall_cutoff_label: "8:00 PM April 25, 2027"
+    overall_cutoff_notes: "32 hours from the 12:00 PM Saturday start; the finish closes promptly at 8:00 PM Sunday under the park permit. One intermediate cutoff is published: Stewarts Gate (mile 71.7) at 2:00 PM Sunday."
+    pacer_rule_summary: "Pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2). Pacers may help with navigation, pacing strategy, motivation, and encouragement, but may not carry gear, nutrition, or equipment for their runner."
+    drop_bag_summary: "Each runner may check two drop bags, available a total of six times: the Stewarts Gate passes (5.1, 71.7, 92.3, and 98.2 — the aid page quotes 94 and 100.7 for the last two against the chart and course line) and the Vernonia passes (16.0 and 60.8). Stewarts Gate is the recommended spot for a shoe change; pack a headlamp in the Vernonia bag."
+    tracking_note: "No live tracking is published; results post on UltraSignup."
+  blurb: A crew-friendly Banks-Vernonia rail-trail 100 from Stub Stewart State Park with out-and-backs to Hwy 30 and Banks.
+  about: >-
+    The Crown Stub 100 starts at high noon at the Hilltop Day Use Area
+    in L.L. Stub Stewart State Park, Buxton, OR, and runs towering
+    forest single track and the Banks-Vernonia rail trails with
+    out-and-backs to the Hwy 30 and Banks turnarounds. Just over 7,000
+    feet of gain, more than 25 crew access points, drop bags six times,
+    pacers from mile 40.2, and 32 hours to earn the buckle — with the
+    fastest man and woman crowned King and Queen of Stub. The finish
+    closes 8:00 PM Sunday, with one hard gate at Stewarts Gate (71.7)
+    at 2:00 PM.
+  start_venue: Hilltop Day Use Area, L.L. Stub Stewart State Park, Buxton, OR
+  finish_venue: Hilltop Day Use Area, L.L. Stub Stewart State Park, Buxton, OR
+
+# Profile from the CalTopo line's elevations, sampled per nominal chart
+# mile; GPS miles are scaled to the aid chart's 100.2-mile frame.
+elevation_series:
+  - [0, 1214]
+  - [1, 1398]
+  - [2, 1291]
+  - [3, 1135]
+  - [4, 745]
+  - [5, 897]
+  - [6, 961]
+  - [7, 860]
+  - [8, 858]
+  - [9, 778]
+  - [10, 729]
+  - [11, 689]
+  - [12, 671]
+  - [13, 657]
+  - [14, 623]
+  - [15, 623]
+  - [16, 604]
+  - [17, 604]
+  - [18, 604]
+  - [19, 814]
+  - [20, 1105]
+  - [21, 715]
+  - [22, 638]
+  - [23, 646]
+  - [24, 674]
+  - [25, 789]
+  - [26, 938]
+  - [27, 1188]
+  - [28, 871]
+  - [29, 756]
+  - [30, 671]
+  - [31, 623]
+  - [32, 623]
+  - [33, 530]
+  - [34, 417]
+  - [35, 294]
+  - [36, 187]
+  - [37, 110]
+  - [38, 66]
+  - [39, 63]
+  - [40, 115]
+  - [41, 200]
+  - [42, 318]
+  - [43, 413]
+  - [44, 551]
+  - [45, 623]
+  - [46, 627]
+  - [47, 674]
+  - [48, 784]
+  - [49, 909]
+  - [50, 1155]
+  - [51, 896]
+  - [52, 788]
+  - [53, 675]
+  - [54, 673]
+  - [55, 630]
+  - [56, 788]
+  - [57, 1051]
+  - [58, 732]
+  - [59, 604]
+  - [60, 604]
+  - [61, 607]
+  - [62, 627]
+  - [63, 628]
+  - [64, 659]
+  - [65, 673]
+  - [66, 711]
+  - [67, 732]
+  - [68, 774]
+  - [69, 871]
+  - [70, 906]
+  - [71, 954]
+  - [72, 838]
+  - [73, 715]
+  - [74, 576]
+  - [75, 493]
+  - [76, 381]
+  - [77, 275]
+  - [78, 241]
+  - [79, 226]
+  - [80, 210]
+  - [81, 202]
+  - [82, 202]
+  - [83, 200]
+  - [84, 210]
+  - [85, 226]
+  - [86, 235]
+  - [87, 260]
+  - [88, 370]
+  - [89, 495]
+  - [90, 594]
+  - [91, 680]
+  - [92, 832]
+  - [93, 1056]
+  - [94, 1186]
+  - [95, 1437]
+  - [96, 1289]
+  - [97, 1036]
+  - [98, 761]
+  - [99, 920]
+  - [100, 1162]
+
+# Station passes: the aid chart's rows — the Start, thirteen aid station
+# stops over seven physical stations, the two race turnaround points, and
+# the Finish. The Hwy 30 and Banks rows are the Turnarounds; other mid
+# passes are unlabeled per the domain vocabulary. Coordinates copy the
+# organizer CalTopo markers (`match` = waypoint-name substring);
+# elevations are the CalTopo line's values at each pass mile.
+aid_stations:
+  - match: "Hilltop Start/Finish"
+    name: "Start — Hilltop Day Use Area"
+    direction: "Start"
+    mile: 0.0
+    elev: 1214
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No mile-zero aid row is published; the first station is Stewarts Gate at 5.1. The first four-plus miles are mostly single track that weather can make technical and slick."
+    bathroom: null
+    park: null
+    crew_notes: "The Hilltop Day Use Area is the start/finish hub and a chart crew location (its mid-race aid row lists crew access and bathrooms)."
+    pacer_notes: "No pacer yet: pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2)."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Crown Stub 100 aid stations and crew spreadsheet"
+      source_url: "https://docs.google.com/spreadsheets/d/1nv_Gb56o1HHzEfubp1HNgr9K4k_l0vFQD7CxZ0gQzlE/edit"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles, drop bags, crew flags, bathroom notes, and the single intermediate cutoff come from the aid spreadsheet; menus, medical support, pacer and drop-bag rules come from the Aid Stations & Crew Access page. The chart's two Vernonia totals (18 and 58) are corrected to 16.0 and 60.8 by its own segment chain, the aid page, and the course line — those passes carry their own notes. Station coordinates copy the organizer CalTopo markers; elevations are the CalTopo line's values at each pass mile."
+      sources:
+        - *source_chart
+        - *source_aid_page
+        - *source_maps_page
+        - *source_caltopo
+        - *source_us_2027
+        - *source_page
+  - match: "Stewarts Gate Aid Station"
+    name: "Stewarts Gate"
+    direction: null
+    mile: 5.1
+    elev: 929
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full service with a wide range of food — burgers, grilled cheese, quesadillas, and more — plus Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "No pacer yet: pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Vernonia Aid Station"
+    name: "Vernonia"
+    direction: null
+    mile: 16.0
+    elev: 604
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full service with a wide range of food — burgers, grilled cheese, quesadillas, and more — plus Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "No pacer yet: pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The chart prints this pass's total as 18, but its own segment chain says 5.1 + 10.9 = 16.0, the aid page's drop-bag list says 16.0, and the course line crosses the Vernonia marker at scaled mile 15.8 — the corrected 16.0 governs."
+  - match: "Nehalem TH Aid Station"
+    name: "Nehalem TH"
+    direction: null
+    mile: 27.1
+    elev: 1173
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "No pacer yet: pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Pisgah Aid Station"
+    name: "Pisgah TH"
+    direction: null
+    mile: 36.5
+    elev: 140
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "No pacer yet: pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hwy 30 Turnaround"
+    name: "Hwy 30 Turnaround"
+    direction: "Turnaround"
+    mile: 38.3
+    elev: 46
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid — a race turnaround point per the chart."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "No pacer yet: pacers may join their runner beginning at the Pisgah Aid Station (mile 40.2)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Pisgah Aid Station"
+    name: "Pisgah TH"
+    direction: null
+    mile: 40.2
+    elev: 140
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "Pacer join point: pacers may join their runner beginning here, helping with navigation, pacing, and encouragement but carrying nothing for the runner."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Nehalem TH Aid Station"
+    name: "Nehalem TH"
+    direction: null
+    mile: 49.6
+    elev: 1173
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Vernonia Aid Station"
+    name: "Vernonia"
+    direction: null
+    mile: 60.8
+    elev: 604
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full service with a wide range of food — burgers, grilled cheese, quesadillas, and more — plus Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The chart prints this pass's total as 58, but its own segment chain says 49.6 + 11.2 = 60.8, the aid page's drop-bag list says 60.8, and the course line crosses the Vernonia marker at scaled mile 61.0 — the corrected 60.8 governs."
+  - match: "Stewarts Gate Aid Station"
+    name: "Stewarts Gate"
+    direction: null
+    mile: 71.7
+    elev: 929
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: "2:00 PM"
+    cutoff_clock: "2:00 PM"
+    cutoff_elapsed_minutes: 1560
+    aid: "Full service with a wide range of food — burgers, grilled cheese, quesadillas, and more — plus Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Manning Aid Station"
+    name: "Manning"
+    direction: null
+    mile: 77.8
+    elev: 259
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Banks Turnaround"
+    name: "Banks Turnaround"
+    direction: "Turnaround"
+    mile: 81.7
+    elev: 200
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid — a race turnaround point per the chart."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Manning Aid Station"
+    name: "Manning"
+    direction: null
+    mile: 85.5
+    elev: 259
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Stewarts Gate Aid Station"
+    name: "Stewarts Gate"
+    direction: null
+    mile: 92.3
+    elev: 929
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full service with a wide range of food — burgers, grilled cheese, quesadillas, and more — plus Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hill Top Day Use Aid Station"
+    name: "Hill Top Day Use"
+    direction: null
+    mile: 93.6
+    elev: 1173
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Typical aid: chips, pickles, PB&J, trail mix, and more, with Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "Bathrooms at this station per the chart."
+    park: null
+    crew_notes: "Crew access at this station per the chart; runners may never enter or sit inside a vehicle, moving or parked."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Stewarts Gate Aid Station"
+    name: "Stewarts Gate"
+    direction: null
+    mile: 98.2
+    elev: 929
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: true
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Full service with a wide range of food — burgers, grilled cheese, quesadillas, and more — plus Skratch Labs hydration and chews, gels, and medical support."
+    bathroom: "No bathrooms at this station per the chart."
+    park: null
+    crew_notes: "No crew access at this station per the chart; crews use the designated crew access points between stations."
+    pacer_notes: "Pacers who joined at Pisgah (mile 40.2) continue with their runner; no other join point is published."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hilltop Start/Finish"
+    name: "Finish — Hilltop Day Use Area"
+    direction: "Finish"
+    mile: 100.2
+    elev: 1214
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "8:00 PM"
+    cutoff_clock: "8:00 PM"
+    cutoff_elapsed_minutes: 1920
+    aid: "The chart's finish row lists no aid; the finish closes promptly at 8:00 PM Sunday under the park permit."
+    bathroom: null
+    park: null
+    crew_notes: "The Hilltop Day Use Area is the start/finish hub and a chart crew location."
+    pacer_notes: "The race ends here; pacers join only at Pisgah (mile 40.2)."
+    road: null
+    source_metadata: *official_station_source

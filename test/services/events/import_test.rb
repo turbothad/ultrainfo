@@ -10,7 +10,7 @@ module Events
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
                      "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
-                     "Badger Mountain Challenge 100" ], published_races.map(&:name)
+                     "Badger Mountain Challenge 100", "Crown Stub 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -485,6 +485,35 @@ module Events
                    "7:00 AM Friday plus 32.5 hours"
       assert_includes badger.source_metadata.fetch("sources").pluck("url"),
                       "https://docs.google.com/spreadsheets/d/1aHQPNF9a4MOfIDb6mwB_3mLBb10kPbOP/edit"
+
+      crown = published_races.find { |published| published.slug == "crown-stub-100" }
+      assert_equal 2027, crown.year
+      assert_equal Date.new(2027, 4, 24), crown.start_date
+      assert crown.open?
+      assert_equal 32, crown.cutoff_hours, "run100s' 30 is stale; the aid page says 32"
+      assert_equal 100.2, crown.distance_mi.to_f, "the aid chart's cumulative frame"
+      assert_equal 7000, crown.elevation_gain_ft
+      assert_equal 17, crown.aid_stations.count,
+                   "the Start, thirteen aid stops, two turnarounds, and the Finish"
+      assert_equal 9, crown.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "seven stations plus the two turnaround markers"
+      assert_equal 2, crown.aid_stations.where(direction: "Turnaround").count,
+                   "Hwy 30 and Banks"
+      assert_equal 16.0, crown.aid_stations.where("name LIKE 'Vernonia%'").minimum(:mile).to_f,
+                   "the chart's printed 18 is corrected by its own segment chain"
+      assert_equal 1, crown.aid_stations.count(&:pacer_access?),
+                   "Pisgah mile 40.2 is the only published pacer join point"
+      assert_equal 6, crown.aid_stations.count(&:drop_bag?),
+                   "two bags, six accesses: Stewarts Gate four times and Vernonia twice"
+      assert_equal 13, crown.aid_stations.where(has_medical: true).count,
+                   "official stations carry medical support"
+      assert_equal 2, crown.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? }
+      assert_equal "26h", crown.aid_stations.find_by!(mile: 71.7).cutoff_elapsed_label,
+                   "Stewarts Gate closes at 2:00 PM Sunday from the noon start"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-04-25 8:00 PM"), crown.final_cutoff_at,
+                   "noon Saturday plus 32 hours"
+      assert_includes crown.source_metadata.fetch("sources").pluck("url"),
+                      "https://caltopo.com/m/BEDR0FU"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
