@@ -38,7 +38,7 @@ Recorded discrepancies and decisions:
    neighboring row. 10:15 PM / 975 minutes governs with a
    pass-specific note (the Sugar Creek pattern: a chart's own
    internal evidence outranks its typo).
-3. **Four climb figures.** The 2027 Event Info page says "just over
+3. **Five climb figures.** The 2027 Event Info page says "just over
    13,000 feet of climbing/descent each"; the 2026 Racebook says
    approximately 15,000 each and its FAQ says runners report
    13,000-15,500; the Garmin course from the official GPX shows
