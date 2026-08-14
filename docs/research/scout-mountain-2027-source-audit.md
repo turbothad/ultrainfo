@@ -112,6 +112,16 @@ Recorded discrepancies and decisions:
     altitudes because the source waypoints have none. At 4.3 MB
     (46,134 track points copied exactly), this is the repository's
     largest course file.
+14. **Qualifier and service requirement.** The home page prints
+    "Scout Mountain Ultras 100M is a Hardrock Endurance Run
+    qualifier", and General Info gives the 100M an eight-hour
+    service requirement. Both are recorded in the notes. The home
+    page also carries the field hold: at least fifty percent of the
+    field is held for women, femme, and non-binary runners.
+15. **A Scout Mountain lot-label nit.** The crew page's GPS list
+    labels the Scout Mountain lot "for 100M and 50M runners ONLY"
+    while the aid table's crew cell there prints "100M ONLY"; the
+    table governs the flag, with the print noted on the pass.
 
 ## Source register
 
@@ -119,10 +129,10 @@ All URLs below were opened or downloaded on 2026-08-14.
 
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
-| S1 | scoutmountainultras.com home | https://scoutmountainultras.com | The 2027 banner ("See you again on the first weekend in june 2027!"); tracking information posts here when available. |
+| S1 | scoutmountainultras.com home | https://scoutmountainultras.com | The 2027 banner ("See you again on the first weekend in june 2027!"); the Hardrock Endurance Run qualifier print; the women/femme/non-binary field hold; tracking information posts here when available. |
 | S2 | Event Info page | https://scoutmountainultras.com/event-info | Start lines (100M: 10:00 AM Friday at Lead Draw Trailhead; crews shuttle to the finish area), the Aid Station Info sheet link, planned foods per station, pacer rules (six join stations, waiver and bib, the Big Fir exchange), drop-bag rules, mandatory kit, course markings; its prose mile frame loses to the table (decision 2). |
 | S3 | Aid Station Info sheet (Google Sheets) | https://docs.google.com/spreadsheets/d/1yVTdR4Rsr1NqwwZUic_BHCWTNbocpIxI | The governing table: 18 100M rows with miles, crew/drop-bag/pacer columns, the ten cutoff clocks, and per-segment low/high and gain/loss figures. |
-| S4 | General Info page | https://scoutmountainultras.com/general-info | The Race's "~22,000 feet of vertical gain (and loss)" print; runner tracking (chip timing at every aid station except Cusick Creek and at the finish; $100 unreturned-chip fee); the drop-out rule; the women/femme/non-binary field hold; swag. |
+| S4 | General Info page | https://scoutmountainultras.com/general-info | The Race's "~22,000 feet of vertical gain (and loss)" print; runner tracking (chip timing at every aid station except Cusick Creek and at the finish; $100 unreturned-chip fee); the drop-out rule; the eight-hour service requirement; the cell-service blackout list (the finish area, West Fork, Big Fir, South Fork Rd); swag. |
 | S5 | Crew page | https://scoutmountainultras.com/crew | Vehicle tags, the six-station 100M crew list with per-station instructions, the Crystal Summit and Day shuttles, lot coordinates; its "mile 47.8" Gibson Jack print and the South Fork pacer boilerplate lose to the table (decisions 2, 7). |
 | S6 | Official 100M GPX (from GPX Overview) | https://scoutmountainultras.com/s/SMU-100M.gpx | Geometry and elevation authority: 46,134 track points with altitudes (102.37 GPS miles) and 17 station waypoints including the Old Tom out-and-back apex. `db/events/scout-mountain-100.gpx` copies the line exactly. |
 | S7 | RunSignup race page | https://runsignup.com/Race/ID/Pocatello/ScoutMountainUltras | Registration home and results host; still on the June 5-6, 2026 frame — the `not_open` evidence (decision 1). |
@@ -132,8 +142,10 @@ All URLs below were opened or downloaded on 2026-08-14.
 - **Name.** "Scout Mountain 100" — the 100M of the Scout Mountain
   Ultras weekend (run100s lists it as Scout Mountain).
 - **Registration status.** `not_open` (decision 1). **Lottery.**
-  `false` — direct RunSignup registration; half the field is held
-  for women/femme/non-binary runners.
+  `false` — direct RunSignup registration; at least half the field
+  is held for women, femme, and non-binary runners (the home page).
+- **Qualifier.** A Hardrock Endurance Run qualifier, with an
+  eight-hour service requirement on the 100M (decision 14).
 - **Dates.** June 4-5, 2027: the banner's first weekend in June plus
   the standing Friday 10:00 AM start (June 4, 2027 is that Friday).
   America/Boise.

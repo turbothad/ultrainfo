@@ -45,7 +45,7 @@ race:
         verified_on: "2026-08-14"
     sources:
       - &source_home
-        label: "scoutmountainultras.com home (the 2027 first-weekend-in-June banner; tracking posts land here)"
+        label: "scoutmountainultras.com home (the 2027 first-weekend-in-June banner, the Hardrock qualifier and field-hold prints; tracking posts land here)"
         url: "https://scoutmountainultras.com"
         verified_on: "2026-08-14"
       - &source_event
@@ -57,7 +57,7 @@ race:
         url: "https://docs.google.com/spreadsheets/d/1yVTdR4Rsr1NqwwZUic_BHCWTNbocpIxI"
         verified_on: "2026-08-14"
       - &source_general
-        label: "General Info page (The Race's ~22,000-foot print, runner tracking, the drop-out rule)"
+        label: "General Info page (The Race's ~22,000-foot print, runner tracking, the drop-out rule, the eight-hour service requirement)"
         url: "https://scoutmountainultras.com/general-info"
         verified_on: "2026-08-14"
       - &source_crew
@@ -72,7 +72,7 @@ race:
         label: "RunSignup race page (registration home and results host; still on the June 5-6, 2026 frame)"
         url: "https://runsignup.com/Race/ID/Pocatello/ScoutMountainUltras"
         verified_on: "2026-08-14"
-    notes: "Checked against first-party sources on August 14, 2026. Half the field is held for women/femme/non-binary runners. Mandatory kit: a mylar blanket and whistle for everyone, and 100M runners must carry the course map on a phone or watch (shown at bib pickup); poles are allowed. The course is marked with pink webbing, pin flags, directional signs, and reflective markers at night. Dropping out is only allowed at an aid station with the captain's confirmation - leaving the course otherwise triggers search and rescue. Every aid station stocks ice and GU Energy products; caffeinated and non-caffeinated Roctane flow from West Fork onward, and only non-caffeinated Roctane sits at Walker Creek, Goodenough, and South Fork. Timing chips must come back at the finish ($100 otherwise). Cell service is unlikely at the finish area and West Fork; Starlink at aid stations is limited to runsignup.com and scoutmountainultras.com. Swag is a custom item such as buffs, sleeves, or hats rather than a shirt."
+    notes: "Checked against first-party sources on August 14, 2026. The 100M is a Hardrock Endurance Run qualifier per the home page, and General Info gives it an eight-hour service requirement. At least half the field is held for women, femme, and non-binary runners (the home page). Mandatory kit: a mylar blanket and whistle for everyone, and 100M runners must carry the course map on a phone or watch (shown at bib pickup); poles are allowed. The course is marked with pink webbing, pin flags, directional signs, and reflective markers at night. Dropping out is only allowed at an aid station with the captain's confirmation - leaving the course otherwise triggers search and rescue. Every aid station stocks ice and GU Energy products; caffeinated and non-caffeinated Roctane flow from West Fork onward, and only non-caffeinated Roctane sits at Walker Creek, Goodenough, and South Fork. Timing chips must come back at the finish ($100 otherwise). Cell service is unlikely at several points including the Mink Creek Group Campground finish area and the West Fork, Big Fir, and South Fork Rd aid stations; Starlink at aid stations is limited to runsignup.com and scoutmountainultras.com. Swag is a custom item such as buffs, sleeves, or hats rather than a shirt."
     overall_cutoff_label: "10:00 PM June 5, 2027"
     overall_cutoff_notes: "36 hours from the Friday 10:00 AM start. The aid table prints a ten-clock ladder: Walker Creek 12:00 PM and Goodenough 3:00 PM Friday, South Fork 7:15 PM, West Fork 9:00 PM, then Gibson Jack 12:45 AM, City Creek 5:45 AM, West Fork 12:45 PM, Scout Mountain 3:30 PM, Big Fir 8:00 PM, and the finish 10:00 PM Saturday."
     pacer_rule_summary: "Pacers are for 100-milers only and may start or finish at the aid table's six marked stations: West Fork (both passes), Gibson Jack, City Creek, Scout Mountain, and Big Fir. Each pacer signs a waiver and wears a pacer bib; the Big Fir pacer exchange sits a quarter mile from the aid station on the dirt road."
@@ -575,7 +575,7 @@ aid_stations:
     road: null
     source_metadata:
       <<: *official_station_source
-      source_notes: "Verified on is the retrieval date. The aid table prints 85.2 (governs); the Event Info prose prints 85.40."
+      source_notes: "Verified on is the retrieval date. The aid table prints 85.2 (governs); the Event Info prose prints 85.40. The crew page's GPS lot label reads for 100M and 50M runners ONLY against the table's 100M ONLY crew cell - the table governs the flag."
   - match: "Big Fir"
     name: "Big Fir"
     direction: null
