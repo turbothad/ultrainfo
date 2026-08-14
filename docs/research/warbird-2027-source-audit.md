@@ -36,7 +36,7 @@ Recorded discrepancies and decisions:
    quotes miles 17/32.40/38.70/48.49/52.79/61.11/71.94/81.48/92.56 while
    its own aid table says 17.0/32.6/39.2/48.9/53.4/60.7/71.4/80.9/91.8;
    the stations named are identical and the table governs.
-5. **Stale schedule dates.** The PDFs still carry the 2026 edition's
+5. **Stale schedule dates.** The PDFs still carry the 2026 race's
    schedule (Thursday March 12 check-in, Friday March 13 start, Saturday
    March 14 cutoff — 2026 dates); the 2027 listing gives Friday March 19
    at 7:00 AM ("Start Times: 100M Fri 7:00 AM") and the same 35-hour /
@@ -52,8 +52,8 @@ Recorded discrepancies and decisions:
    range and the course description names the 2,062-foot high point near
    mile 44.
 8. **Station coordinates.** The table publishes coordinates only for
-   Bowens Creek, Bear Creek, Peabody, Sugar Creek, and the finish; those
-   sit 17–178 feet from the GPX line (parking/trailhead spots — up to
+   Bowens Creek, Bear Creek, Peabody, Sugar Creek, and the finish; the
+   four aid stations sit 17–178 feet from the GPX line (parking/trailhead spots — up to
    about 650 feet from the point at the exact table mile) and are used
    as published. Other stations sit on the GPX at their table mile.
 9. **Medical.** No station-level service is guaranteed: volunteers
@@ -100,7 +100,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 
 ## Stale-source traps
 
-- The PDFs' schedule pages carry the 2026 edition's dates; the 2027
+- The PDFs' schedule pages carry the 2026 race's dates; the 2027
   listing governs (March 19–20, 7:00 AM). Re-check for re-issued 2027
   PDFs closer to race day.
 - The GPX is named "Warbird 100 Final" without a year; the course
