@@ -62,9 +62,14 @@ module ApplicationHelper
     safe_join [ status, link ], " · "
   end
 
+  def cutoff_hours_number(race)
+    value = race.cutoff_hours.to_f
+    (value % 1).zero? ? value.to_i : value
+  end
+
   def overall_cutoff_display(race)
     parts = []
-    parts << "#{race.cutoff_hours.to_i}h" if race.cutoff_hours.present?
+    parts << "#{cutoff_hours_number(race)}h" if race.cutoff_hours.present?
     parts << race.source_metadata["overall_cutoff_label"] if race.source_metadata["overall_cutoff_label"].present?
     value = parts.presence&.join(" / ") || "Not listed"
     overall_cutoff_warning(race) ? "#{value} · disputed" : value
@@ -90,7 +95,7 @@ module ApplicationHelper
       [ "Medical", stations.count(&:has_medical?) ],
       [ "Crew access", stations.count(&:crew_accessible?) ],
       [ "Pacer pickup", stations.count(&:pacer_access?) ],
-      [ "Overall cutoff", race.cutoff_hours ? "#{race.cutoff_hours.to_i} hours" : nil ]
+      [ "Overall cutoff", race.cutoff_hours ? "#{cutoff_hours_number(race)} hours" : nil ]
     ]
   end
 

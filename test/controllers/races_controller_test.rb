@@ -93,6 +93,16 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "#follow", /No public tracking link has been verified for this race/
   end
 
+  test "fractional cutoff hours render without truncation" do
+    @race.update!(cutoff_hours: 32.5)
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "#facts", /32\.5h/
+    assert_select "#facts", { text: /\b32h\b/, count: 0 }
+  end
+
   test "legacy role pages permanently redirect to canonical sections" do
     get runner_race_path(@race)
     assert_redirected_to race_path(@race, anchor: "aid-stations")

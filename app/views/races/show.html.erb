@@ -74,7 +74,7 @@
         [ "Drop bags", @race.aid_stations.count(&:drop_bag?) ],
         [ "Medical", @race.aid_stations.count(&:has_medical?) ],
         [ "Pacer pickup", @race.aid_stations.count(&:pacer_access?) ],
-        [ "Cutoff", @race.cutoff_hours ? "#{@race.cutoff_hours.to_i} h#{' · disputed' if overall_cutoff_warning(@race)}" : "—" ]
+        [ "Cutoff", @race.cutoff_hours ? "#{cutoff_hours_number(@race)} h#{' · disputed' if overall_cutoff_warning(@race)}" : "—" ]
       ].each do |label, value| %>
         <div class="border-b border-ink/10 py-3 even:border-l even:pl-4 sm:border-l sm:px-4 sm:first:border-l-0 sm:first:pl-0 lg:border-b-0">
           <dt class="data-label"><%= label %></dt>
