@@ -70,7 +70,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 ## Claim-level decisions
 
 - **Name.** "Crown Stub 100" (S1/S6).
-- **Registration status.** `open` — S6 sells both events.
+- **Registration status.** `open` — S6 sells the 100 and the relay.
 - **Lottery.** `false` — direct registration.
 - **Cutoffs.** Two: Stewarts Gate 71.7 = 2:00 PM (1,560) and the finish
   100.2 = 8:00 PM (1,920). `cutoff_hours` 32 from the noon start.
