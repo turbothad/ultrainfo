@@ -1,0 +1,739 @@
+# Badger Mountain Challenge 100 — event data (imported by Events::Import via
+# db/seeds.rb). The 100-miler page on badgermountainchallenge.com and its
+# linked aid station chart carry the station facts; the 2027 UltraSignup
+# listing carries the current dates, start time, and registration opening;
+# the page's linked GPX download is the geometry and elevation authority.
+# Source decisions are documented in
+# docs/research/badger-mountain-2027-source-audit.md.
+
+race:
+  name: Badger Mountain Challenge 100
+  slug: badger-mountain-100
+  year: 2027
+  state: WA
+  distance_mi: 100 # Two trips on the 50-mile out-and-back; the official GPX GPS-measures 99.00.
+  elevation_gain_ft: 18431 # "There is 18,431' of climbing for the 100 miler" with matching loss on the out-and-back.
+  elevation_loss_ft: 18431
+  start_date: 2027-03-26
+  end_date: 2027-03-27
+  start_time: 7:00 AM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 32.5 # "Course closes at 3:30 PM Saturday (32.5 hours)"; run100s' 32 has no counterpart.
+  official_url: http://www.badgermountainchallenge.com/
+  registration_url: https://ultrasignup.com/register.aspx?eid=2609
+  results_url: https://ultrasignup.com/register.aspx?did=127508 # The 2026 listing carries the results tabs back to 2011.
+  registration_status: not_open # The 2027 UltraSignup listing: "Registration Opens Mon. Nov 30, 2026 @ 12:00 AM PT".
+  lottery: false # Direct registration when it opens; no qualifier ("There is no qualifying race for BMC so please be prepared").
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "Two trips on a 50-mile out-and-back from Badger Mountain Trailhead Park in Richland, WA over Badger and Candy Mountains and the Horse Heaven Hills to the Chandler Butte turnaround, hosted by the volunteer Nomad Trail Runners. The 2027 UltraSignup listing pins March 26-27, 2027 with the Friday 7:00 AM start and the November 30, 2026 registration opening, while the race site's pages and aid chart still carry the 2026 frame (the 100-miler page dates, the rules page's Rules (2026 race) heading, and the chart's 2026 sunset note); the chart's station miles, flags, and cutoff clocks match the 32.5-hour pattern the 2027 listing preserves. The chart prints Candy Mtn at loop-two mile 55 against the 50 + 4.6 arithmetic of every other row (its inbound twin sits at 95.4); the printed 55 governs that pass and the conflict is recorded. The official GPX is a route file (converted to a track in the bundle) that GPS-measures 99.00 miles against the chart's 100-mile frame. The two directional-only McBee Ridge rows sit about 0.9 mile apart on the line, so they carry separate outbound and inbound waypoints. run100s' 32-hour cutoff and 14,000-foot climb have no counterpart (32.5 hours; 18,431 feet)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_home
+        label: "Badger Mountain Challenge site home"
+        url: "http://www.badgermountainchallenge.com/"
+        verified_on: "2026-08-13"
+      - &source_100_page
+        label: "100-miler page (course, schedule pattern, drop bags, pacers, crews, GPX link)"
+        url: "http://www.badgermountainchallenge.com/p/100-miler.html"
+        verified_on: "2026-08-13"
+      - &source_chart
+        label: "100-mile aid station chart (Google Sheet linked from the 100-miler page)"
+        url: "https://docs.google.com/spreadsheets/d/1aHQPNF9a4MOfIDb6mwB_3mLBb10kPbOP/edit"
+        verified_on: "2026-08-13"
+      - &source_gpx
+        label: "Official 100-mile course GPX download (THE BMC 100MILER)"
+        url: "https://drive.google.com/file/d/192WL02uAJCglSKFhpW7RqZAbVETtAkgU/view"
+        verified_on: "2026-08-13"
+      - &source_us_2027
+        label: "UltraSignup 2027 registration page (March 26-27, 2027; opens November 30, 2026)"
+        url: "https://ultrasignup.com/register.aspx?eid=2609"
+        verified_on: "2026-08-13"
+      - &source_us_2026
+        label: "UltraSignup 2026 listing (results back to 2011)"
+        url: "https://ultrasignup.com/register.aspx?did=127508"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. A 100% volunteer race benefiting the Badger Mountain Preserve open spaces. Check-in and drop-bag drop-off 5:30-6:30 AM at the Trailhead Park lower lot (1294 White Bluffs St., Richland) with a 6:40 AM briefing; an early 6:00 AM start is available by advance arrangement. The course mixes single track, rocky jeep trails, dirt roads, and about 15 total miles of pavement between 500 and 2,000 feet, with several steep 800-1,000-foot climbs; weather drives the high DNF rate (34 percent in three years) and hypothermia is a real risk on McBee ridge. Dogs may accompany 100-mile runners (leashed on Badger Mountain). Runners who drop must tell the aid captain or Race Director. All finishers earn a custom buckle, with sub-24 and five-year buckles."
+    overall_cutoff_label: "3:30 PM March 27, 2027"
+    overall_cutoff_notes: "The 100 closes at 3:30 PM Saturday, 32.5 hours from the Friday 7:00 AM start. Chart cutoffs: the 50-mile turnaround at 10:00 PM Friday, McBee parking at 3:00 AM and 7:30 AM, Jacobs Road at 12:00 PM, Candy Mtn at 1:30 PM, and the finish at 3:30 PM Saturday. Cut-off times will be adhered to."
+    pacer_rule_summary: "One pacer at a time, joining only after the runner reaches the 50-mile turnaround at Trailhead Park; pacers may also join at the crew-accessible stations after 50 miles (Candy Mtn or McBee Parking). Pacers do not register — they pick up a bib at packet pickup or the start/finish — and should tell station volunteers where they join and leave. Station food is for entrants; pacers may eat but should bring their own."
+    drop_bag_summary: "Two drop-bag locations: the start/finish and McBee Parking (passed at miles 18.5, 31.5, 68.5, and 81.5), dropped off race morning and transported for the runner; label with name, bib number, and station. Returns to the finish are best-effort."
+    tracking_note: "No live tracking is published; results post on UltraSignup."
+  blurb: Two trips on a 50-mile out-and-back over Badger and Candy Mountains and the Horse Heaven Hills above Richland.
+  about: >-
+    The Badger Mountain Challenge 100 runs two trips on a 50-mile
+    out-and-back from Badger Mountain Trailhead Park in Richland, WA —
+    over Badger and Candy Mountains, along the windswept Horse Heaven
+    Hills and McBee ridge to the Chandler Butte turnaround and back,
+    twice. Start 7:00 AM Friday with a 32.5-hour cutoff (3:30 PM
+    Saturday) and chart cutoffs from the 50-mile turnaround on. About
+    18,431 feet of climb on rocky jeep trails and single track where
+    the weather, not the terrain, causes most DNFs. A 100% volunteer,
+    home-grown race by the Nomad Trail Runners of Eastern Washington.
+  start_venue: Badger Mountain Trailhead Park, 1294 White Bluffs St., Richland, WA
+  finish_venue: Badger Mountain Trailhead Park, 1294 White Bluffs St., Richland, WA
+
+# Profile from the official GPX download's elevations (a route file,
+# converted to a track), sampled per nominal chart mile; GPS miles are
+# scaled to the chart's 100-mile frame.
+elevation_series:
+  - [0, 788]
+  - [1, 1198]
+  - [2, 1547]
+  - [3, 1278]
+  - [4, 832]
+  - [5, 875]
+  - [6, 1278]
+  - [7, 917]
+  - [8, 795]
+  - [9, 827]
+  - [10, 822]
+  - [11, 859]
+  - [12, 828]
+  - [13, 836]
+  - [14, 956]
+  - [15, 897]
+  - [16, 890]
+  - [17, 700]
+  - [18, 506]
+  - [19, 792]
+  - [20, 1888]
+  - [21, 1672]
+  - [22, 1840]
+  - [23, 1808]
+  - [24, 1827]
+  - [25, 1848]
+  - [26, 1627]
+  - [27, 1794]
+  - [28, 1719]
+  - [29, 1246]
+  - [30, 927]
+  - [31, 794]
+  - [32, 507]
+  - [33, 699]
+  - [34, 889]
+  - [35, 893]
+  - [36, 957]
+  - [37, 837]
+  - [38, 829]
+  - [39, 862]
+  - [40, 823]
+  - [41, 824]
+  - [42, 786]
+  - [43, 933]
+  - [44, 1263]
+  - [45, 866]
+  - [46, 832]
+  - [47, 1292]
+  - [48, 1543]
+  - [49, 1186]
+  - [50, 803]
+  - [51, 1217]
+  - [52, 1541]
+  - [53, 1256]
+  - [54, 828]
+  - [55, 879]
+  - [56, 1297]
+  - [57, 897]
+  - [58, 802]
+  - [59, 831]
+  - [60, 822]
+  - [61, 862]
+  - [62, 821]
+  - [63, 838]
+  - [64, 967]
+  - [65, 837]
+  - [66, 863]
+  - [67, 709]
+  - [68, 505]
+  - [69, 822]
+  - [70, 1861]
+  - [71, 1670]
+  - [72, 1864]
+  - [73, 1804]
+  - [74, 1822]
+  - [75, 1850]
+  - [76, 1641]
+  - [77, 1798]
+  - [78, 1708]
+  - [79, 1210]
+  - [80, 939]
+  - [81, 770]
+  - [82, 505]
+  - [83, 726]
+  - [84, 901]
+  - [85, 961]
+  - [86, 944]
+  - [87, 835]
+  - [88, 828]
+  - [89, 864]
+  - [90, 827]
+  - [91, 812]
+  - [92, 783]
+  - [93, 952]
+  - [94, 1243]
+  - [95, 859]
+  - [96, 845]
+  - [97, 1308]
+  - [98, 1526]
+  - [99, 1171]
+  - [100, 782]
+
+# Station passes: the aid chart's thirteen rows per 50-mile trip, done
+# twice (25 passes over seven physical locations plus the two McBee Ridge
+# directional markers). The two Chandler Butte passes are the Turnarounds;
+# other mid passes are unlabeled per the domain vocabulary. Coordinates
+# and elevations sit on the official GPX at each station's first chart
+# mile (`match` = waypoint-name substring).
+aid_stations:
+  - match: "Trailhead Park Start/Finish"
+    name: "Start — Badger Mountain Trailhead Park"
+    direction: "Start"
+    mile: 0.0
+    elev: 788
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The chart's loop-one food cell for the start is empty — runners have just set off; the loop-two arrival serves water, electrolyte drink, fruit, soup, grilled cheese, PBJ, hot chocolate, and coffee."
+    bathroom: null
+    park: "Check-in and drop-bag drop-off 5:30-6:30 AM at the Trailhead Park lower parking lot at Queensgate Drive and White Bluffs St."
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "BMC 100-mile aid station chart"
+      source_url: "https://docs.google.com/spreadsheets/d/1aHQPNF9a4MOfIDb6mwB_3mLBb10kPbOP/edit"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year — the chart still carries the 2026 frame (its sunset note) while the 2027 listing preserves the same start and 32.5-hour pattern. Every pass mile, menu, drop, crew flag, and cutoff clock comes from the 100-mile aid station chart; pacer and crew rules come from the 100-miler page. The two McBee Ridge rows are directional-only markers with no aid. Station coordinates and elevations sit on the official GPX at each station's first chart mile, with separate outbound and inbound waypoints for the ridge markers. No medical service is published."
+      sources:
+        - *source_chart
+        - *source_100_page
+        - *source_us_2027
+        - *source_gpx
+        - *source_home
+  - match: "Candy Mtn Aid Station"
+    name: "Candy Mtn"
+    direction: null
+    mile: 4.6
+    elev: 846
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, chips, snacks, water, and electrolyte drink."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Jacobs Road Aid Station"
+    name: "Jacobs Road"
+    direction: null
+    mile: 10.0
+    elev: 822
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fruit, electrolyte drink, pop, PBJ, chips, snacks, and water on loop one; burgers (veggie too) join the menu inbound."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Orchard Aid Station"
+    name: "Orchard"
+    direction: null
+    mile: 15.0
+    elev: 897
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, pop, chips, fruit, pretzels, PBJ, electrolyte drink, and water."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Parking Aid Station"
+    name: "McBee Parking"
+    direction: null
+    mile: 18.5
+    elev: 612
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, PBJ, turkey avocado wraps, chips, electrolyte drink, water, fruit, and pop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Ridge Outbound"
+    name: "McBee Ridge (directional marker)"
+    direction: null
+    mile: 19.3
+    elev: 1017
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid — a directional-only marker on the ridge per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Chandler Butte Turnaround"
+    name: "Chandler Butte"
+    direction: "Turnaround"
+    mile: 23.3
+    elev: 1826
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, grilled cheese, chips, PBJ, electrolyte drink, coffee, and hot cocoa at the turnaround."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Ridge Inbound"
+    name: "McBee Ridge (directional marker)"
+    direction: null
+    mile: 27.0
+    elev: 1794
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid — a directional-only marker on the ridge per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Parking Aid Station"
+    name: "McBee Parking"
+    direction: null
+    mile: 31.5
+    elev: 612
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, PBJ, turkey avocado wraps, chips, electrolyte drink, water, fruit, and pop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Orchard Aid Station"
+    name: "Orchard"
+    direction: null
+    mile: 35.0
+    elev: 897
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, pop, chips, fruit, pretzels, PBJ, electrolyte drink, and water."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Jacobs Road Aid Station"
+    name: "Jacobs Road"
+    direction: null
+    mile: 40.0
+    elev: 822
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fruit, electrolyte drink, pop, PBJ, chips, snacks, and water on loop one; burgers (veggie too) join the menu inbound."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Candy Mtn Aid Station"
+    name: "Candy Mtn"
+    direction: null
+    mile: 45.4
+    elev: 846
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, chips, snacks, water, and electrolyte drink."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "No pacer yet: one pacer at a time may join only after the runner reaches the 50-mile turnaround at Trailhead Park."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Trailhead Park Start/Finish"
+    name: "Trailhead Park (50-mile turnaround)"
+    direction: null
+    mile: 50.0
+    elev: 788
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "10:00 PM"
+    cutoff_clock: "10:00 PM"
+    cutoff_elapsed_minutes: 900
+    aid: "Water, electrolyte drink, fruit, soup, grilled cheese, PBJ, hot chocolate, and coffee at the Trailhead Park start/finish."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "Pacer join point after 50 miles: one at a time, with a bib from packet pickup or the start/finish; tell the station volunteers where the pacer joins and leaves."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Candy Mtn Aid Station"
+    name: "Candy Mtn"
+    direction: null
+    mile: 55.0
+    elev: 846
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, chips, snacks, water, and electrolyte drink."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "Pacer join point after 50 miles: one at a time, with a bib from packet pickup or the start/finish; tell the station volunteers where the pacer joins and leaves."
+    road: null
+    source_metadata: 
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The chart prints this pass at loop-two mile 55, though every other loop-two row is its loop-one mile plus 50 exactly (4.6 + 50 = 54.6) and the inbound twin sits at 95.4; the printed 55 governs and the arithmetic conflict is recorded."
+  - match: "Jacobs Road Aid Station"
+    name: "Jacobs Road"
+    direction: null
+    mile: 60.0
+    elev: 822
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fruit, electrolyte drink, soup, quesadillas, burgers (veggie too), and breakfast burritos on loop two."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Orchard Aid Station"
+    name: "Orchard"
+    direction: null
+    mile: 65.0
+    elev: 897
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, pop, chips, fruit, pretzels, grilled cheese, PBJ, electrolyte drink, and water."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Parking Aid Station"
+    name: "McBee Parking"
+    direction: null
+    mile: 68.5
+    elev: 612
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:00 AM"
+    cutoff_clock: "3:00 AM"
+    cutoff_elapsed_minutes: 1200
+    aid: "Gels, PBJ, turkey avocado wraps, chips, soup, electrolyte drink, coffee, water, fruit, and pop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "Pacer join point after 50 miles: one at a time, with a bib from packet pickup or the start/finish; tell the station volunteers where the pacer joins and leaves."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Ridge Outbound"
+    name: "McBee Ridge (directional marker)"
+    direction: null
+    mile: 69.3
+    elev: 1017
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid — a directional-only marker on the ridge per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Chandler Butte Turnaround"
+    name: "Chandler Butte"
+    direction: "Turnaround"
+    mile: 73.3
+    elev: 1826
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, grilled cheese, eggs, pancakes, PBJ, coffee, and hot cocoa at the turnaround."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Ridge Inbound"
+    name: "McBee Ridge (directional marker)"
+    direction: null
+    mile: 77.0
+    elev: 1794
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No aid — a directional-only marker on the ridge per the chart."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "McBee Parking Aid Station"
+    name: "McBee Parking"
+    direction: null
+    mile: 81.5
+    elev: 612
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "7:30 AM"
+    cutoff_clock: "7:30 AM"
+    cutoff_elapsed_minutes: 1470
+    aid: "Gels, PBJ, turkey avocado wraps, chips, soup, electrolyte drink, coffee, water, fruit, and pop."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "Pacer join point after 50 miles: one at a time, with a bib from packet pickup or the start/finish; tell the station volunteers where the pacer joins and leaves."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Orchard Aid Station"
+    name: "Orchard"
+    direction: null
+    mile: 85.0
+    elev: 897
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Gels, pop, chips, fruit, pretzels, grilled cheese, PBJ, electrolyte drink, and water."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Jacobs Road Aid Station"
+    name: "Jacobs Road"
+    direction: null
+    mile: 90.0
+    elev: 822
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "12:00 PM"
+    cutoff_clock: "12:00 PM"
+    cutoff_elapsed_minutes: 1740
+    aid: "Fruit, electrolyte drink, soup, quesadillas, burgers (veggie too), and breakfast burritos on loop two."
+    bathroom: null
+    park: null
+    crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
+    pacer_notes: "Not a pacer join point: after 50 miles pacers join at Trailhead Park, Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Candy Mtn Aid Station"
+    name: "Candy Mtn"
+    direction: null
+    mile: 95.4
+    elev: 846
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "1:30 PM"
+    cutoff_clock: "1:30 PM"
+    cutoff_elapsed_minutes: 1830
+    aid: "Gels, chips, snacks, water, and electrolyte drink."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "Pacer join point after 50 miles: one at a time, with a bib from packet pickup or the start/finish; tell the station volunteers where the pacer joins and leaves."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Trailhead Park Start/Finish"
+    name: "Finish — Badger Mountain Trailhead Park"
+    direction: "Finish"
+    mile: 100.0
+    elev: 788
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:30 PM"
+    cutoff_clock: "3:30 PM"
+    cutoff_elapsed_minutes: 1950
+    aid: "The chart's loop-two finish cell reads PARTY! — post-race grub at Trailhead Park."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
+    pacer_notes: "The race ends here; pacers join at Trailhead Park (mile 50), Candy Mtn, or McBee Parking."
+    road: null
+    source_metadata: *official_station_source

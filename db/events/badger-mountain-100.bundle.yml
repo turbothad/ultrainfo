@@ -1,0 +1,9 @@
+version: 1
+slug: badger-mountain-100
+files:
+  race:
+    path: badger-mountain-100.yml
+    sha256: 9ca36b91728745de9cf9e06d49688e2e23937aacfe1aa86acc908b6acd47e1ff
+  course:
+    path: badger-mountain-100.gpx
+    sha256: ff42fad4ab0a40b77d954932a2e3e21f58539b11c0178021a35bd701dd7630cd

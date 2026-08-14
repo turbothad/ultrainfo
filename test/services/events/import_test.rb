@@ -9,7 +9,8 @@ module Events
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
-                     "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100" ], published_races.map(&:name)
+                     "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
+                     "Badger Mountain Challenge 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -457,6 +458,33 @@ module Events
                    "6:00 AM Saturday plus 35 hours, no DST crossing after March 14"
       assert_includes bootlegger.source_metadata.fetch("sources").pluck("url"),
                       "https://www.bootlegger100.com/"
+
+      badger = published_races.find { |published| published.slug == "badger-mountain-100" }
+      assert_equal 2027, badger.year
+      assert_equal Date.new(2027, 3, 26), badger.start_date
+      assert badger.not_open?, "UltraSignup registration opens November 30, 2026"
+      assert_equal 32.5, badger.cutoff_hours.to_f, "the course closes at 3:30 PM Saturday"
+      assert_equal 18_431, badger.elevation_gain_ft
+      assert_equal 25, badger.aid_stations.count,
+                   "the chart's thirteen rows per 50-mile trip, done twice"
+      assert_equal 8, badger.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "seven stations plus separate outbound and inbound ridge markers"
+      assert_equal 2, badger.aid_stations.where(direction: "Turnaround").count,
+                   "Chandler Butte on each trip"
+      assert_equal 4, badger.aid_stations.where(has_water: false).count,
+                   "the directional-only McBee Ridge markers carry no aid"
+      assert_equal 5, badger.aid_stations.count(&:pacer_access?),
+                   "pacers join at the 50-mile turnaround or crew stations after it"
+      assert_not badger.aid_stations.find_by!(mile: 45.4).pacer_access?,
+                 "Candy Mtn is a pacer point only after 50 miles"
+      assert_equal 6, badger.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the chart's six cutoff clocks"
+      assert_equal "15h", badger.aid_stations.find_by!(mile: 50).cutoff_elapsed_label,
+                   "the 50-mile turnaround closes at 10:00 PM Friday"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-03-27 3:30 PM"), badger.final_cutoff_at,
+                   "7:00 AM Friday plus 32.5 hours"
+      assert_includes badger.source_metadata.fetch("sources").pluck("url"),
+                      "https://docs.google.com/spreadsheets/d/1aHQPNF9a4MOfIDb6mwB_3mLBb10kPbOP/edit"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
