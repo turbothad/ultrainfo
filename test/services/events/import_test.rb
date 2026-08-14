@@ -8,7 +8,8 @@ module Events
 
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
-                     "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100" ], published_races.map(&:name)
+                     "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
+                     "The Pistol Ultra 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -379,6 +380,30 @@ module Events
                    "7:00 AM Friday plus 41 hours is midnight entering Sunday"
       assert_includes viper.source_metadata.fetch("sources").pluck("url"),
                       "https://ultrasignup.com/register.aspx?did=137755"
+
+      pistol = published_races.find { |published| published.slug == "pistol-ultra-100" }
+      assert_equal 2027, pistol.year
+      assert_equal Date.new(2027, 3, 13), pistol.start_date
+      assert pistol.open?
+      assert_equal 32, pistol.cutoff_hours
+      assert_equal 100, pistol.distance_mi, "ten 10-mile Imperial loops"
+      assert_equal 51, pistol.aid_stations.count,
+                   "a Start pass plus five passes on each of ten loops"
+      assert_equal 3, pistol.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "three physical stations: Long Run Store, Woody's, and Lucky's"
+      assert_equal 11, pistol.aid_stations.where(crew_accessible: true).count,
+                   "crew only at the Springbrook start/finish hub"
+      assert pistol.aid_stations.all?(&:pacer_access?),
+             "foot pacing is permitted from the start"
+      assert pistol.aid_stations.all? { |station| station.drop_bag.nil? },
+             "no drop-bag service is published; runners self-support from the canopy area"
+      assert_equal 1, pistol.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "only the 32-hour finish cutoff is published"
+      assert_equal "32h", pistol.aid_stations.find_by!(mile: 100).cutoff_elapsed_label
+      assert_equal Time.find_zone("America/New_York").parse("2027-03-14 5:00 PM"), pistol.final_cutoff_at,
+                   "8:00 AM EST Saturday plus 32 hours is 5:00 PM EDT Sunday across the DST change"
+      assert_includes pistol.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Course-Route"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

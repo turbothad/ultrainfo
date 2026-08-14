@@ -12,3 +12,4 @@ active_event_bundles:
   - lovit-100.bundle.yml
   - the-drift-100.bundle.yml
   - viper-100.bundle.yml
+  - pistol-ultra-100.bundle.yml

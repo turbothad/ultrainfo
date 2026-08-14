@@ -1,0 +1,1291 @@
+# The Pistol Ultra 100 — event data (imported by Events::Import via db/seeds.rb).
+# The race's RunSignup-hosted site (pistolultra.com) is the primary source:
+# the Events listing for dates, starts, and registration; the Course Route
+# page for the Imperial loop, its stations, and the official GPX; the FAQ
+# for time limits and the self-support canopy area; the Pacers page for
+# pacer rules. Source decisions are documented in
+# docs/research/pistol-ultra-2027-source-audit.md.
+
+race:
+  name: The Pistol Ultra 100
+  slug: pistol-ultra-100
+  year: 2027
+  state: TN
+  distance_mi: 100 # Ten 10-mile Imperial loops; the official GPX GPS-measures the loop at 10.17.
+  elevation_gain_ft: null # No organizer figure; run100s' 1,350 was not copied.
+  elevation_loss_ft: null
+  start_date: 2027-03-13
+  end_date: 2027-03-14
+  start_time: 8:00 AM
+  time_zone: America/New_York
+  cutoff_hours: 32 # 8:00 AM EST Saturday to 5:00 PM EDT Sunday is 32 elapsed hours — the race crosses the March 14, 2027 spring-forward.
+  official_url: https://www.pistolultra.com/
+  registration_url: https://www.pistolultra.com/Race/Events/TN/Alcoa/ThePistolCreekRun
+  results_url: https://www.pistolultra.com/Race/Results/Overview/55312
+  registration_status: open # The 100 Mile listing sells with 67 spots left; registration opened July 11, 2026.
+  lottery: false # Direct RunSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "Year 14 of a loop race at Springbrook Pool in Alcoa, TN: the 100 Mile runs ten 10-mile Imperial loops on the lit, paved Pistol Creek greenway (the Metric 10.35-mile loop serves the 100K/50K). Three surfaces state the finish differently: the FAQ's time-limit table says 32 hours for the 50K/100K/100 Mile and that the course officially closes at 32 hours, the Events listing ends the 100 Mile at 5:00 PM EDT Sunday (32 true elapsed hours from the 8:00 AM EST Saturday start across the March 14 spring-forward), and the Schedule page's 4:00 PM Course Closes line matches the Sunday 10/20-mile races' 8-hour window; the FAQ and listing govern and 32 is recorded. Aid stations and warming areas are exclusively for registered runners, active pacers, and race volunteers, so the two mid-loop stations record crew false while the start/finish hub (with the runner canopy area) records crew true. The course page gives Woody's no stocking descriptor; food and water there rest on the Runners-Info page's blanket Fully-Stocked Aid Stations claim. run100s' 30-hour cutoff has no counterpart on the current site (the FAQ says 32)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_home
+        label: "The Pistol site home (pistolultra.com)"
+        url: "https://www.pistolultra.com/"
+        verified_on: "2026-08-13"
+      - &source_events
+        label: "Events listing (dates, start and end times, registration windows)"
+        url: "https://www.pistolultra.com/Race/Events/TN/Alcoa/ThePistolCreekRun"
+        verified_on: "2026-08-13"
+      - &source_course
+        label: "Course Route page (Imperial loop, stations, official GPX links)"
+        url: "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Course-Route"
+        verified_on: "2026-08-13"
+      - &source_runners_info
+        label: "Runners Info page (32-hour prose, course overview, crew area)"
+        url: "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Runners-Info"
+        verified_on: "2026-08-13"
+      - &source_schedule
+        label: "Schedule and packet pickup page"
+        url: "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Schedule-Packet-Pickup"
+        verified_on: "2026-08-13"
+      - &source_faq
+        label: "FAQ (time limits, venue, restrooms, canopy area, parking)"
+        url: "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/FAQ"
+        verified_on: "2026-08-13"
+      - &source_pacers
+        label: "Pacers page (personal, bicycle, and volunteer pacer rules)"
+        url: "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Pacers"
+        verified_on: "2026-08-13"
+      - &source_gpx
+        label: "Official Imperial course GPX download (Google Drive, linked from the course page)"
+        url: "https://drive.google.com/file/d/16ONPOuUtiPtydGeoc-NZzjH_yP481cvR/view"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. A USATF-certified, flat, lit greenway course with restrooms at Springbrook Pool and porta-potties near the start/finish and on the course. Race staff or medical personnel may remove a runner judged unable to complete the current or final lap in time. A designated runner self-support area near the start/finish takes one 10-by-10-foot canopy per registered runner (setup from noon Friday; no generators, outlets, ground stakes, or camping tents). Parking for the 100 Mile is at Springbrook Pool. Packet pickup is Friday 2:00-6:00 PM at the Hilton Knoxville Airport with late pickup 6:30-7:30 AM Saturday; the 100K and 100 Mile start together at 8:00 AM after the 7:55 AM 50K start. No alcohol anywhere on the grounds or course; no dogs or pets. Finishers earn a custom belt buckle, with sub-24-hour and other awards listed on the site."
+    overall_cutoff_label: "5:00 PM March 14, 2027"
+    overall_cutoff_notes: "The FAQ's time-limit table gives the 100 Mile 32 hours and says the course officially closes at 32 hours; the Events listing ends the race at 5:00 PM EDT Sunday, which is 32 true elapsed hours from the 8:00 AM EST Saturday start across the March 14, 2027 spring-forward. The Schedule page's Sunday 4:00 PM Course Closes line matches the 10/20-mile races' 8-hour window instead. No intermediate cutoffs are published, but staff may pull a runner who cannot finish the current or final lap in time."
+    pacer_rule_summary: "Three pacer types: personal pacers (free registration, waiver, and a numbered pacer bib from packet pickup; one bib per runner, transferred between pacers; no limit on how many pacers a runner uses), bicycle pacers (not permitted during daylight hours on Saturday, when only one foot pacer is allowed per runner; one bicycle pacer per runner Saturday night and throughout Sunday, with lights), and official volunteer pacers staged at the main aid station in hourly shifts from 9:00 PM Saturday to 10:00 AM Sunday. Pacers provide encouragement only — no muling."
+    drop_bag_summary: "No drop-bag service is published. Runners self-support from the designated canopy area near the start/finish: one 10-by-10-foot canopy per registered runner, setup from noon Friday, no generators, outlets, ground stakes, or camping tents."
+    tracking_note: "No live tracking is published; results post on the site's RunSignup results page."
+  blurb: Ten laps of a lit, paved 10-mile greenway loop along Pistol Creek from Springbrook Pool in Alcoa.
+  about: >-
+    The Pistol Ultra runs year 14 at Springbrook Pool in Alcoa, TN, where
+    the 100 Mile covers ten laps of the 10-mile Imperial loop on the
+    paved, night-lit Pistol Creek greenway. Start 8:00 AM Saturday with
+    a 32-hour limit (5:00 PM Sunday across the daylight-saving change).
+    Three stations serve five aid passes per lap, runners self-support
+    from a canopy area at the start/finish hub, and pacers — on foot by
+    day, foot or bicycle overnight — may join throughout. Flat, fast,
+    USATF-certified, and famously festive.
+  start_venue: Springbrook Pool, 636 Vose Road, Alcoa, TN
+  finish_venue: Springbrook Pool, 636 Vose Road, Alcoa, TN
+
+# Profile from the official Imperial GPX download's elevations, sampled per
+# nominal mile along the loop and repeated per lap; GPS miles are scaled to
+# the billed 10-mile loop frame.
+elevation_series:
+  - [0, 850]
+  - [1, 839]
+  - [2, 837]
+  - [3, 840]
+  - [4, 850]
+  - [5, 874]
+  - [6, 850]
+  - [7, 840]
+  - [8, 833]
+  - [9, 839]
+  - [10, 850]
+  - [11, 839]
+  - [12, 837]
+  - [13, 840]
+  - [14, 850]
+  - [15, 874]
+  - [16, 850]
+  - [17, 840]
+  - [18, 833]
+  - [19, 839]
+  - [20, 850]
+  - [21, 839]
+  - [22, 837]
+  - [23, 840]
+  - [24, 850]
+  - [25, 874]
+  - [26, 850]
+  - [27, 840]
+  - [28, 833]
+  - [29, 839]
+  - [30, 850]
+  - [31, 839]
+  - [32, 837]
+  - [33, 840]
+  - [34, 850]
+  - [35, 874]
+  - [36, 850]
+  - [37, 840]
+  - [38, 833]
+  - [39, 839]
+  - [40, 850]
+  - [41, 839]
+  - [42, 837]
+  - [43, 840]
+  - [44, 850]
+  - [45, 874]
+  - [46, 850]
+  - [47, 840]
+  - [48, 833]
+  - [49, 839]
+  - [50, 850]
+  - [51, 839]
+  - [52, 837]
+  - [53, 840]
+  - [54, 850]
+  - [55, 874]
+  - [56, 850]
+  - [57, 840]
+  - [58, 833]
+  - [59, 839]
+  - [60, 850]
+  - [61, 839]
+  - [62, 837]
+  - [63, 840]
+  - [64, 850]
+  - [65, 874]
+  - [66, 850]
+  - [67, 840]
+  - [68, 833]
+  - [69, 839]
+  - [70, 850]
+  - [71, 839]
+  - [72, 837]
+  - [73, 840]
+  - [74, 850]
+  - [75, 874]
+  - [76, 850]
+  - [77, 840]
+  - [78, 833]
+  - [79, 839]
+  - [80, 850]
+  - [81, 839]
+  - [82, 837]
+  - [83, 840]
+  - [84, 850]
+  - [85, 874]
+  - [86, 850]
+  - [87, 840]
+  - [88, 833]
+  - [89, 839]
+  - [90, 850]
+  - [91, 839]
+  - [92, 837]
+  - [93, 840]
+  - [94, 850]
+  - [95, 874]
+  - [96, 850]
+  - [97, 840]
+  - [98, 833]
+  - [99, 839]
+  - [100, 850]
+
+# Station passes: three physical stations produce five passes per 10-mile
+# loop (Woody's at ~1.9 and ~8.1, Lucky's at ~4 and ~6.1, the Long Run
+# Store station at the loop start/finish); the 100 runs ten loops.
+# Coordinates and elevations sit on the official Imperial GPX at each
+# station's first loop mile (`match` = waypoint-name substring). Only the
+# finish carries a published cutoff.
+aid_stations:
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Start — Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Start"
+    mile: 0.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "100 Mile runners park at Springbrook Pool; others are assigned to nearby school and church lots."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed from the start: one foot pacer per runner during daylight hours on Saturday; bicycle pacers wait for Saturday night."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "The Pistol Course Route page aid stations"
+      source_url: "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Course-Route"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Station names and approximate loop miles (1.9, 4, 6.1, 8.1 and the start/finish) come from the Course Route page; crew exclusions, the canopy area, restrooms, and pacer rules come from the Course Route, FAQ, Runners-Info, and Pacers pages. No intermediate cutoffs are published — only the finish carries the 32-hour clock, and staff may pull a runner who cannot finish the current or final lap in time. Woody's carries no stocking descriptor of its own; its food and water rest on the Runners-Info page's blanket Fully-Stocked Aid Stations claim. Station coordinates and elevations sit on the official Imperial GPX at each station's first loop mile; Woody's second pass (8.1) runs 317 feet from the first and Lucky's second pass (6.1) runs 525 feet from the first across the greenway. No drop-bag service or medical service is published."
+      sources:
+        - *source_course
+        - *source_faq
+        - *source_runners_info
+        - *source_pacers
+        - *source_events
+        - *source_gpx
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 1"
+    mile: 1.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 1"
+    mile: 4.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 1"
+    mile: 6.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 1"
+    mile: 8.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 1"
+    mile: 10.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 2"
+    mile: 11.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 2"
+    mile: 14.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 2"
+    mile: 16.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 2"
+    mile: 18.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 2"
+    mile: 20.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 3"
+    mile: 21.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 3"
+    mile: 24.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 3"
+    mile: 26.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 3"
+    mile: 28.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 3"
+    mile: 30.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 4"
+    mile: 31.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 4"
+    mile: 34.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 4"
+    mile: 36.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 4"
+    mile: 38.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 4"
+    mile: 40.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 5"
+    mile: 41.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 5"
+    mile: 44.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 5"
+    mile: 46.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 5"
+    mile: 48.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 5"
+    mile: 50.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 6"
+    mile: 51.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 6"
+    mile: 54.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 6"
+    mile: 56.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 6"
+    mile: 58.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 6"
+    mile: 60.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 7"
+    mile: 61.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 7"
+    mile: 64.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 7"
+    mile: 66.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 7"
+    mile: 68.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 7"
+    mile: 70.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 8"
+    mile: 71.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 8"
+    mile: 74.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 8"
+    mile: 76.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 8"
+    mile: 78.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 8"
+    mile: 80.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 9"
+    mile: 81.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 9"
+    mile: 84.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 9"
+    mile: 86.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 9"
+    mile: 88.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Springbrook Pool (Long Run Store Aid Station)"
+    direction: "Loop 9"
+    mile: 90.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 10"
+    mile: 91.9
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 10"
+    mile: 94.0
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Luckys Aid Station"
+    name: "Lucky's Aid Station"
+    direction: "Loop 10"
+    mile: 96.1
+    elev: 850
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Lucky's Aid Station: fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodys Near Famous Aid Station"
+    name: "Woody's Near Famous Aid Station"
+    direction: "Loop 10"
+    mile: 98.1
+    elev: 837
+    crew: false
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Woody's Near Famous Aid Station; the Runners-Info page describes all aid stations as fully stocked."
+    bathroom: "Porta-potties are placed on the course per the FAQ."
+    park: null
+    crew_notes: "Aid stations and warming areas are exclusively for registered runners, their active pacers, and race volunteers; spectators and non-participating individuals must avoid them."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Long Run Store Aid Station Start/Finish"
+    name: "Finish — Springbrook Pool"
+    direction: "Finish"
+    mile: 100.0
+    elev: 850
+    crew: true
+    water: true
+    pacer: true
+    drop: null
+    food: true
+    med: null
+    cutoff: "5:00 PM"
+    cutoff_clock: "5:00 PM"
+    cutoff_elapsed_minutes: 1920
+    aid: "The Long Run Store Aid Station at the Springbrook Pool start/finish: fully stocked, with warming areas for runners."
+    bathroom: "Restrooms at Springbrook Pool and porta-potties near the start/finish."
+    park: "Race parking for the 100 Mile is at Springbrook Pool."
+    crew_notes: "The runner self-support canopy area sits near the start/finish, and runners may set up their own support crew area along the course; aid stations themselves are exclusively for registered runners, active pacers, and race volunteers."
+    pacer_notes: "Pacing is allowed throughout: one foot pacer per runner during daylight hours on Saturday, with bicycle pacers permitted Saturday night and all day Sunday; registered pacers with a visible bib get the same station access as runners."
+    road: null
+    source_metadata: *official_station_source
