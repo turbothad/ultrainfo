@@ -99,9 +99,15 @@ Recorded discrepancies and decisions:
     stable UltraSignup results page supplies 2026 results and links 2025; no
     2027 follow URL exists yet.
 13. **run100s is stale.** Its discovery row describes the 2026 Race as 38
-    hours and 7,500/7,500 feet. The organizer page and guide publish 40 hours,
-    and the current first-party elevation prints are 14,000 or 15,000 feet of
-    gain. Neither run100s figure should enter the Race record.
+   hours and 7,500/7,500 feet. The organizer page and guide publish 40 hours,
+   and the current first-party elevation prints are 14,000 or 15,000 feet of
+   gain. Neither run100s figure should enter the Race record.
+14. **2027 service requirement and gear.** The 2027 listing requires either
+    eight hours of trail work or twelve hours of race volunteering. The
+    current mixed-vintage guide does not yet contain the promised submission
+    details. Its required-gear list is a headlamp with backup, one-liter water
+    capacity, and a cell phone; a foil blanket and calories are recommended,
+    not required.
 
 ## Source register
 
@@ -225,6 +231,6 @@ waypoints.
 
 ## Audit boundary
 
-No application, event-data, queue, GPX, generated-asset, database, test, or
+No application, race-data, queue, GPX, generated-asset, database, test, or
 git-state files were changed as part of this audit. This Markdown file is the
 sole durable artifact.

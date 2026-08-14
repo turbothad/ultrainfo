@@ -3,7 +3,7 @@ slug: burney-mountain-100
 files:
   race:
     path: burney-mountain-100.yml
-    sha256: f665b7110e8b02267468168ab4e4192a802e04b675d5a0e4660092f146162182
+    sha256: a3640e8c1693feab0911288ffe5256501d5b3071111d5cd0f291ecfdef1b60d7
   course:
     path: burney-mountain-100.gpx
     sha256: 0ef37f63a581b3d55a7433775a068ca7558e57a6c77b629aec202a667010c234

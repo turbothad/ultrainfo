@@ -817,8 +817,12 @@ module Events
                    "Cassel Road is a water drop and Rail Trail is water only"
       assert_equal 2, burney.aid_stations.where(has_food: nil).count,
                    "Start and Finish do not publish pass-level food availability"
+      assert_equal [ 7.0, 95.0 ], burney.aid_stations.where(has_water: true).pluck(:mile).map(&:to_f),
+                   "only the Cassel Road water drop and Rail Trail water-only pass establish water"
+      assert_equal 11, burney.aid_stations.where(has_water: nil).count,
+                   "the general aid menu does not establish water at the other passes"
       assert burney.aid_stations.all? { |station| station.potable_water.nil? },
-             "the guide lists water but never certifies potability"
+             "the two published water provisions do not establish potability"
       assert burney.aid_stations.none? { |station| station.name.include?("Magee") },
              "conditional Magee has no confirmed 2027 mile or table row"
       assert_equal 1440, burney.aid_stations.find_by!(mile: 55).cutoff_elapsed_minutes,

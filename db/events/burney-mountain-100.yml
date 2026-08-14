@@ -74,7 +74,7 @@ race:
         label: "UltraSignup results (the completed 2026 running and earlier results)"
         url: "https://ultrasignup.com/results_event.aspx?did=128016"
         verified_on: "2026-08-14"
-    notes: "Checked against first-party and organizer-linked sources on August 14, 2026. Registration is open at $350 before fees and closes June 11, 2027 at 11:59 PM PT; no capacity or lottery is published. The guide supplies snacks, Hammer gels, and electrolytes at aid stations, with hot food at Tamarack, Cypress, both Base passes, Goose Valley, and Black Ranch. Bags are staged at the Guest Ranch Thursday from 4:00-7:00 PM. Required gear includes a headlamp, backup light, emergency blanket, whistle, warm layer, gloves, beanie, water capacity, and calories. No live-tracking surface is published. Recheck the whole course bundle in race week when the organizer selects Course A, B, C, or D and confirms whether the conditional Magee operation exists."
+    notes: "Checked against first-party and organizer-linked sources on August 14, 2026. Registration is open at $350 before fees and closes June 11, 2027 at 11:59 PM PT; no capacity or lottery is published. The 2027 listing requires either eight hours of trail work or twelve hours of race volunteering; submission details are not yet present in the mixed-vintage guide. The guide supplies snacks, Hammer gels, and electrolytes at aid stations, with hot food at Tamarack, Cypress, both Base passes, Goose Valley, and Black Ranch; it identifies water only at the Cassel Road water drop and Rail Trail water-only pass. Bags are staged at the Guest Ranch Thursday from 4:00-7:00 PM. Required gear is a headlamp with backup, one-liter water capacity, and a cell phone; a foil blanket and calories are recommended. No live-tracking surface is published. Recheck the whole course bundle in race week when the organizer selects Course A, B, C, or D and confirms whether the conditional Magee operation exists."
     overall_cutoff_label: "8:30 PM June 19, 2027"
     overall_cutoff_notes: "40 hours from the Friday 4:30 AM start. The guide prints eight clocks: Tamarack 7:00 PM Friday; Cypress 2:00 AM, Base first pass 4:30 AM, Summit 9:00 AM, Base second pass 11:30 AM, Goose Valley 3:00 PM, Black Ranch 5:00 PM, and the finish 8:30 PM Saturday. Arrival-versus-departure semantics are not published."
     pacer_rule_summary: "Up to four pacers are allowed, one at a time. The first may join at Base of Burney Mountain at mile 55; pickup or exchange is available there on both passes, at Goose Valley, and at Black Ranch. Pacers check in, sign a waiver, carry their own required gear, stay with the runner to a designated handoff, and may not mule."
@@ -226,10 +226,10 @@ aid_stations:
     aid: "Friday 4:30 AM start at the Guest Ranch; bags are staged here Thursday evening, but this is not an on-course bag pass."
     bathroom: null
     park: null
-    crew_notes: "Shared start venue; the guide's table marks crew at the Start."
+    crew_notes: "Shared start venue; crew access is a venue inference because the guide's operational table begins at Cassel Road."
     pacer_notes: "No pacer yet; the first pacer may join at Base of Burney Mountain at mile 55."
     road: null
-    source_metadata: &official_station_source
+    source_metadata: &provisional_station_source
       verification_status: warning
       source_label: "Current organizer guide, crew guide, and provisional organizer-linked course line"
       source_url: "https://docs.google.com/document/d/1bx0CV_oRxGoTrrdYb3CfoTwC2W2Bf9-OOetM5G_l1l4/edit?usp=sharing"
@@ -264,14 +264,14 @@ aid_stations:
     crew_notes: "No crew access in the guide table."
     pacer_notes: "No pacer yet."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Cache 22"
     name: "Cache 22"
     direction: null
     mile: 16.0
     elev: 4659
     crew: false
-    water: true
+    water: null
     pacer: false
     drop: false
     food: true
@@ -279,20 +279,20 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station with snacks, Hammer gels, electrolytes, and water per the guide's general aid menu."
+    aid: "Aid station with snacks, Hammer gels, and electrolytes per the guide's general aid menu; water availability is not specified."
     bathroom: null
     park: null
     crew_notes: "No crew access in the guide table."
     pacer_notes: "No pacer yet."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Highway 89"
     name: "Highway 89 — Hat Creek Fire Station"
     direction: null
     mile: 23.0
     elev: 3330
     crew: true
-    water: true
+    water: null
     pacer: false
     drop: true
     food: true
@@ -300,20 +300,20 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station with snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Aid station with snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "Crew-access pass; the waypoint uses the exact crew-guide coordinate at the Hat Creek Fire Station."
     pacer_notes: "No pacer pickup here."
     road: "Highway 89 / Doty Road"
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Tamarack Trailhead"
     name: "Tamarack Trailhead"
     direction: null
     mile: 37.0
     elev: 5883
     crew: false
-    water: true
+    water: null
     pacer: false
     drop: true
     food: true
@@ -321,20 +321,20 @@ aid_stations:
     cutoff: "7:00 PM Friday"
     cutoff_clock: "7:00 PM"
     cutoff_elapsed_minutes: 870
-    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Hot food, snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "No crew access in the guide table."
     pacer_notes: "No pacer yet."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Cypress Trailhead"
     name: "Cypress Trailhead"
     direction: null
     mile: 50.0
     elev: 5535
     crew: false
-    water: true
+    water: null
     pacer: false
     drop: true
     food: true
@@ -342,20 +342,20 @@ aid_stations:
     cutoff: "2:00 AM Saturday"
     cutoff_clock: "2:00 AM"
     cutoff_elapsed_minutes: 1290
-    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Hot food, snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "No crew access in the guide table."
     pacer_notes: "No pacer yet."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Base of Burney Mountain"
     name: "Base of Burney Mountain — first pass"
     direction: "Outbound"
     mile: 55.0
     elev: 4970
     crew: true
-    water: true
+    water: null
     pacer: true
     drop: true
     food: true
@@ -363,20 +363,20 @@ aid_stations:
     cutoff: "4:30 AM Saturday"
     cutoff_clock: "4:30 AM"
     cutoff_elapsed_minutes: 1440
-    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Hot food, snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "Crew-access pass at the exact crew-guide coordinate."
     pacer_notes: "First pacer pickup; pacers check in, sign a waiver, carry their own gear, and may not mule."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Burney Mountain Summit"
     name: "Burney Mountain Summit"
     direction: null
     mile: 63.5
     elev: 7638
     crew: false
-    water: true
+    water: null
     pacer: false
     drop: true
     food: true
@@ -384,20 +384,20 @@ aid_stations:
     cutoff: "9:00 AM Saturday"
     cutoff_clock: "9:00 AM"
     cutoff_elapsed_minutes: 1710
-    aid: "Aid station with snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Aid station with snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "No crew access in the guide table."
     pacer_notes: "No pacer pickup or exchange at the Summit."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Base of Burney Mountain"
     name: "Base of Burney Mountain — second pass"
     direction: "Inbound"
     mile: 72.0
     elev: 4970
     crew: true
-    water: true
+    water: null
     pacer: true
     drop: true
     food: true
@@ -405,20 +405,20 @@ aid_stations:
     cutoff: "11:30 AM Saturday"
     cutoff_clock: "11:30 AM"
     cutoff_elapsed_minutes: 1860
-    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Hot food, snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "Second crew-access pass at the same published coordinate."
     pacer_notes: "Pacer pickup or exchange; one pacer at a time and no muling."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Goose Valley Road"
     name: "Goose Valley Road"
     direction: null
     mile: 83.0
     elev: 3248
     crew: true
-    water: true
+    water: null
     pacer: true
     drop: true
     food: true
@@ -426,20 +426,20 @@ aid_stations:
     cutoff: "3:00 PM Saturday"
     cutoff_clock: "3:00 PM"
     cutoff_elapsed_minutes: 2070
-    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Hot food, snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "Crew-access pass at the exact crew-guide coordinate."
     pacer_notes: "Pacer pickup or exchange; one pacer at a time and no muling."
     road: "Goose Valley Road"
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Black Ranch"
     name: "Black Ranch"
     direction: null
     mile: 89.0
     elev: 3100
     crew: true
-    water: true
+    water: null
     pacer: true
     drop: true
     food: true
@@ -447,13 +447,13 @@ aid_stations:
     cutoff: "5:00 PM Saturday"
     cutoff_clock: "5:00 PM"
     cutoff_elapsed_minutes: 2190
-    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    aid: "Hot food, snacks, Hammer gels, and electrolytes; water availability is not specified; on-course drop bag."
     bathroom: null
     park: null
     crew_notes: "Crew-access pass at the exact crew-guide coordinate."
     pacer_notes: "Final published pacer pickup or exchange."
     road: "Black Ranch Road"
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Rail Trail"
     name: "Rail Trail"
     direction: null
@@ -474,7 +474,7 @@ aid_stations:
     crew_notes: "No crew access in the guide table."
     pacer_notes: "No pacer pickup or exchange."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
   - match: "Guest Ranch Finish"
     name: "Finish — Burney Mountain Guest Ranch"
     direction: "Finish"
@@ -495,4 +495,4 @@ aid_stations:
     crew_notes: "The guide table leaves the crew field blank at the Finish."
     pacer_notes: "No pickup or exchange at the Finish."
     road: null
-    source_metadata: *official_station_source
+    source_metadata: *provisional_station_source
