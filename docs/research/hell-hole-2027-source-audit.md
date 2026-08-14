@@ -13,8 +13,9 @@ consistent.
 The record is publishable with a source warning. The 2027 UltraSignup
 listing is fully 2027-frame: the 100 starts Friday, June 4, 2027 at
 7:00 PM from the Jericho Horse Trail trailhead in the Francis Marion
-National Forest (Bethera, SC), under a 33-hour cutoff with published
-final-loop gates, open registration closing May 31, 2027. The Runner
+National Forest (Bethera, SC), under a 33-hour cutoff, open
+registration closing May 31, 2027, with the final-loop gates
+published in the Runner Guide. The Runner
 Guide's loop table composes the 100 as one 18.3-mile loop followed by
 five 16.3-mile loops (99.8 miles), names the three stations with full
 coordinates, and links loop GPX files whose lengths and station
@@ -37,8 +38,8 @@ Recorded discrepancies and decisions:
    published figures govern pass miles; the GPX files are the
    geometry and elevation authority (elevations in meters, 13-43
    feet — coastal swamp flat).
-4. **Cutoffs.** The 2027 listing itself publishes the ladder: 33
-   hours total plus final-loop gates — start the final loop by 12:00
+4. **Cutoffs.** The listing publishes the 33-hour total and the
+   guide's Start Times/Cutoffs section the final-loop gates — start the final loop by 12:00
    AM (the hub at 83.5), Irishtown by 1:45 AM (90.5), Yellowjacket
    by 2:55 AM (94.94) — all Sunday clocks from the Friday 7:00 PM
    start (1,740 / 1,845 / 1,915 minutes; the finish 1,980).
@@ -57,8 +58,8 @@ Recorded discrepancies and decisions:
    Irishtown crewing unless necessary). Pacers join 100-milers any
    time after loop 3 (the hub at 50.9) at any station, one at a
    time with a shared bib and waiver; no muling. Gear/drop bags at
-   the hub only ("There are no drop bags at Irishtown and
-   Yellowjacket"); 100-milers may pitch a staked canopy at the hub.
+   the hub only ("There are no drop bags at the 2 aid stations out
+   on the course (irishtown/yellowjacket)"); 100-milers may pitch a staked canopy at the hub.
 7. **Climb figures.** The guide's map pages print 125 feet of gain
    for the 16-mile loop and 141 for the 18-mile loop; the 100M
    arithmetic gives 766 feet, recorded with the prints documented.
@@ -74,8 +75,8 @@ All URLs below were opened or downloaded on 2026-08-14.
 
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
-| S1 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=140267 | 2027 frame: June 4-6, 2027; the 100 at 7:00 PM Friday; 33 hours with the final-loop gates (12:00 AM / 1:45 AM / 2:55 AM); three stations described; pacer and crew rules; trailhead coordinates; open, closes May 31, 2027; no refunds, pregnancy/postpartum deferral; results tabs 2020-2026. Reached from the palmettoultras.com race card. |
-| S2 | Hell Hole Runner Guide (Canva working document) | https://www.canva.com/design/DAGAQjh7Kbs/qav6EeuSSOQXNeylU4c8vg/view | The loop-count table (100M: 18.3 + 16.3 ×5); per-loop aid positions (~7/13 and ~7/11.44); station coordinates; gear-drop, canopy, pacer, crew, and safety rules; the loop GPX links; 2026-vintage prints (decision 5). |
+| S1 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=140267 | 2027 frame: June 4-6, 2027; the 100 at 7:00 PM Friday; 33 hours; three stations described; pacer and crew rules; trailhead coordinates; open, closes May 31, 2027; no refunds, pregnancy/postpartum deferral; results tabs back to 2014. Reached from the palmettoultras.com race card. |
+| S2 | Hell Hole Runner Guide (Canva working document) | https://www.canva.com/design/DAGAQjh7Kbs/qav6EeuSSOQXNeylU4c8vg/view | The final-loop cutoff gates (start the final loop by 12:00 AM; Irishtown 1:45 AM; Yellowjacket 2:55 AM); the loop-count table (100M: 18.3 + 16.3 ×5); per-loop aid positions (~7/13 and ~7/11.44); station coordinates; gear-drop, canopy, pacer, crew, and safety rules; the loop GPX links; 2026-vintage prints (decision 5). |
 | S3 | 16-mile loop GPX (guide link, Google Drive) | https://drive.google.com/file/d/1n1ocoH4nQvtSAnYX5YPaTx_y8ts5t35s/view | Geometry and elevation authority for loops 2-6: 612 track points with elevations, 16.36 GPS miles, hub-to-hub. |
 | S4 | 18-mile loop GPX (guide link, Google Drive) | https://drive.google.com/file/d/1z29EsKsmIIs8EGlMyrH-SieB5h3pFPqy/view | Geometry and elevation authority for loop 1: 643 track points with elevations, 17.91 GPS miles, hub-to-hub. `db/events/hell-hole-100.gpx` concatenates S4 once and S3 five times. |
 | S5 | palmettoultras.com home | https://www.palmettoultras.com/ | The Hell Hole race card (JUNE 4-6, linked to the 2027 listing) and the HELL HOLE RUNNER GUIDE link; club background (Palmetto Ultras took over Eagle Endurance's races in 2024). |

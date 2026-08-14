@@ -1,7 +1,7 @@
 # Hell Hole Hundred — event data (imported by Events::Import via
 # db/seeds.rb). The 2027 UltraSignup listing carries the current frame
-# (dates, the Friday 7:00 PM start, the 33-hour cutoff with final-loop
-# gates, station and support rules); the Runner Guide's loop table
+# (dates, the Friday 7:00 PM start, the 33-hour cutoff, station and
+# support rules); the Runner Guide's loop table
 # composes the 100 (one 18.3-mile loop, then five 16.3-mile loops) and
 # carries station coordinates and per-loop aid positions; the guide's
 # loop GPX files are the geometry and elevation authority. Source
@@ -22,13 +22,13 @@ race:
   cutoff_hours: 33 # "100 miler: 33 hour cutoff with FRIDAY 7pm START TIME" — the finish closes 4:00 AM Sunday; run100s' 30 has no counterpart.
   official_url: https://www.palmettoultras.com/
   registration_url: https://ultrasignup.com/register.aspx?did=140267
-  results_url: https://ultrasignup.com/register.aspx?did=140267 # The 2027 listing carries the results tabs back to 2020.
+  results_url: https://ultrasignup.com/register.aspx?did=140267 # The 2027 listing carries the results tabs back to 2014.
   registration_status: open # The 2027 listing sells all six distances (closes May 31, 2027).
   lottery: false # Direct UltraSignup registration.
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-14"
-    source_notes: "A flat, hot swamp 100 on the Jericho Horse Trail in the Francis Marion National Forest outside Charleston: one 18.3-mile loop then five 16.3-mile loops from the trailhead hub, starting 7:00 PM Friday to race through the night before the June heat peaks. The 2027 UltraSignup listing is fully 2027-frame (June 4-6, 2027; open; the 33-hour cutoff and the final-loop gates printed on the listing itself), while the Runner Guide is a 2026-vintage working document whose loop table, station coordinates, and GPX links carry the standing structure (its packet-pickup dates and swag notes are 2026's). The guide's loop GPX files corroborate the frame: the 16-mile loop GPS-measures 16.36 with station crossings at 6.74 and 11.25 against the published ~7 and 11.44, and the 18-mile loop measures 17.91 against 18.3 - published figures govern pass miles. run100s' 30-hour cutoff has no counterpart."
+    source_notes: "A flat, hot swamp 100 on the Jericho Horse Trail in the Francis Marion National Forest outside Charleston: one 18.3-mile loop then five 16.3-mile loops from the trailhead hub, starting 7:00 PM Friday to race through the night before the June heat peaks. The 2027 UltraSignup listing is fully 2027-frame (June 4-6, 2027; open; the 33-hour cutoff), with the final-loop gates printed in the guide's Start Times/Cutoffs section, while the Runner Guide is a 2026-vintage working document whose loop table, station coordinates, and GPX links carry the standing structure (its packet-pickup dates and swag notes are 2026's). The guide's loop GPX files corroborate the frame: the 16-mile loop GPS-measures 16.36 with station crossings at 6.74 and 11.25 against the published ~7 and 11.44, and the 18-mile loop measures 17.91 against 18.3 - published figures govern pass miles. run100s' 30-hour cutoff has no counterpart."
     section_verifications:
       race_facts:
         verified_on: "2026-08-14"
@@ -65,7 +65,7 @@ race:
         verified_on: "2026-08-14"
     notes: "Checked against first-party sources on August 14, 2026. Palmetto Ultras (which took over Eagle Endurance's races in 2024) runs Hell Hole under a Forest Service permit with The Foot Store as title sponsor. The course is dirt trail, boardwalks over the wet spots (watch for loose boards), a few road crossings, and exposed fire-road miles between the two course stations; heat and humidity cause most DNFs, and around mile 9.5 of the 18-mile loop the course turns left off the Jericho Horse Trail onto the Swamp Fox Passage. Cupless (Skratch Lemon Lime and water at every station); meals at the hub with $5 tickets for crew; porta potties at all stations. A light source is required at night - no light, no continuing. 100-milers may stake a canopy at the hub (room for about 8-12) and arrive from noon Friday. No dogs on course per the insurance policy. Part of the Swamp Series with Frozen H3 and Swamp Fox. No refunds; bib transfers and distance changes via UltraSignup until the Tuesday of race week; pregnancy and postpartum deferrals offered."
     overall_cutoff_label: "4:00 AM June 6, 2027"
-    overall_cutoff_notes: "33 hours from the Friday 7:00 PM start. The listing's final-loop gates: start the final loop by 12:00 AM (the hub at 83.5), Irishtown Road by 1:45 AM (90.5), Yellowjacket Road by 2:55 AM (94.94) - all Sunday clocks - and the finish at 4:00 AM."
+    overall_cutoff_notes: "33 hours from the Friday 7:00 PM start. The guide's final-loop gates: start the final loop by 12:00 AM (the hub at 83.5), Irishtown Road by 1:45 AM (90.5), Yellowjacket Road by 2:55 AM (94.94) - all Sunday clocks - and the finish at 4:00 AM."
     pacer_rule_summary: "Pacers may join 100-milers any time after the completion of loop three (the hub at 50.9), hopping in at the hub or either course station. One pacer at a time on a shared pacer bib; each pacer signs a waiver where they join; pacers eat from the stations while actively pacing, may not mule, and must be on foot."
     drop_bag_summary: "Gear drop at the start/finish hub only - a tarp-and-canopy bag-drop area left of the start arch, accessible every loop. There are no drop bags at Irishtown or Yellowjacket. 100-milers may also stake a personal canopy at the hub."
     tracking_note: "No live tracking is published; results post on UltraSignup."
@@ -221,7 +221,7 @@ aid_stations:
       source_label: "UltraSignup 2027 listing and the Hell Hole Runner Guide"
       source_url: "https://ultrasignup.com/register.aspx?did=140267"
       verified_on: "2026-08-14"
-      source_notes: "Verified on is the retrieval date, not the material's effective year. The 2027 listing carries the start, cutoff ladder, station descriptions, and crew and pacer rules; the Runner Guide (a 2026-vintage working document) carries the loop table that composes the 100 (18.3 + 16.3 x 5), the per-loop aid positions (~7 and 13 on the 18-mile loop; ~7 and 11.44 on the 16-mile loop), the station coordinates, and the loop GPX links. Pass miles chain the guide's positions onto the loop table; the GPX crossings (6.74 and 11.25 on the 16.36-mile drawn loop) corroborate the published figures, which govern."
+      source_notes: "Verified on is the retrieval date, not the material's effective year. The 2027 listing carries the start, the 33-hour cutoff, station descriptions, and crew and pacer rules; the Runner Guide (a 2026-vintage working document) carries the final-loop cutoff gates, the loop table that composes the 100 (18.3 + 16.3 x 5), the per-loop aid positions (~7 and 13 on the 18-mile loop; ~7 and 11.44 on the 16-mile loop), the station coordinates, and the loop GPX links. Pass miles chain the guide's positions onto the loop table; the GPX crossings (6.74 and 11.25 on the 16.36-mile drawn loop) corroborate the published figures, which govern."
       sources:
         - *source_us_2027
         - *source_guide
@@ -557,7 +557,7 @@ aid_stations:
     cutoff: "1:45 AM"
     cutoff_clock: "1:45 AM"
     cutoff_elapsed_minutes: 1845
-    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. Final-loop gate per the listing."
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. Final-loop gate per the guide."
     bathroom: null
     park: null
     crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
@@ -578,7 +578,7 @@ aid_stations:
     cutoff: "2:55 AM"
     cutoff_clock: "2:55 AM"
     cutoff_elapsed_minutes: 1915
-    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. Final-loop gate per the listing."
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. Final-loop gate per the guide."
     bathroom: null
     park: null
     crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
