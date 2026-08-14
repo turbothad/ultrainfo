@@ -26,7 +26,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-13"
-    source_notes: "A point-to-point winter race (run, fat bike, or ski divisions on one course) from the Green River Trailhead to Kendall Valley Lodge near Cora, WY. Three distance frames disagree: the aid table's cumulative column ends at 101 (governs pass miles), the course page blurb bills 103 miles, and the official GPX GPS-measures 103.1. The aid table's elapsed-hours sub-column conflicts with its own leave-by clocks at two rows: Warm Springs says Saturday 8 pm / 33 hours (the clock is 35 elapsed hours from the Friday 9 am start) and the second Strawberry pass says Sunday 4 am / 41 hours (the clock is 42 true elapsed hours across the March 14 spring-forward); the posted clocks govern and the pass rows record clock-derived elapsed minutes. The finish row's Sunday 5 pm / 55 hours pair is self-consistent because of the DST change. The site's TIMELINE page still carries the 2025 edition's weekday-date pairs (Friday March 14th) and the home page still says registration opens 11/01/24; the 2027 masthead and the UltraSignup 2027 page (March 12, 2027) govern the date. run100s' 48-hour figure has no organizer counterpart and was not copied."
+    source_notes: "A point-to-point winter race (run, fat bike, or ski divisions on one course) from the Green River Trailhead to Kendall Valley Lodge near Cora, WY. Three distance frames disagree: the aid table's cumulative column ends at 101 (governs pass miles), the course page blurb bills 103 miles, and the official GPX GPS-measures 103.1. The aid table's elapsed-hours sub-column conflicts with its own leave-by clocks at two rows: Warm Springs says Saturday 8 pm / 33 hours (the clock is 35 elapsed hours from the Friday 9 am start) and the second Strawberry pass says Sunday 4 am / 41 hours (the clock is 42 true elapsed hours across the March 14 spring-forward); the posted clocks govern and the pass rows record clock-derived elapsed minutes. The finish row's Sunday 5 pm / 55 hours pair is self-consistent because of the DST change. The site's TIMELINE page still carries the 2025 race's weekday-date pairs (Friday March 14th) and the home page still says registration opens 11/01/24; the 2027 masthead and the UltraSignup 2027 page (March 12, 2027) govern the date. The course page's own Section 1 narrative still tells racers 'Remember you have 48 hours' — matching run100s' stale 48 — but the aid table's leave-by clocks and the timeline's Sunday 5:00 PM close say 55; the table governs and 48 was not copied."
     section_verifications:
       race_facts:
         verified_on: "2026-08-13"
@@ -70,13 +70,13 @@ race:
         url: "https://caltopo.com/m/N564"
         verified_on: "2026-08-13"
       - &source_ultrasignup
-        label: "UltraSignup 2027 event page (March 12, 2027; registration opens October 1, 2026)"
+        label: "UltraSignup 2027 registration page (March 12, 2027; opens October 1, 2026)"
         url: "https://ultrasignup.com/register.aspx?eid=15694"
         verified_on: "2026-08-13"
     notes: "Checked against first-party sources on August 13, 2026. A remote winter wilderness race under Bridger-Teton and Shoshone National Forest permits: qualification is required (list winter, expedition, and race experience on the registration form; Race Directors approve entries and may refuse under-prepared racers on race day without refund). The mandatory gear list (0°F sleeping bag, tent or true bivy, stove with fuel, and more) is required in full, and racers must start and finish with all gear. Racers must check in and out of every aid station; sleeping in aid stations is not allowed, and stations are small (no bikes, skis, or sleds inside). A racer who misses a leave-by cutoff is snowmachined off the course and pays a $200 evacuation fee; evacuation may take hours. Start times may be moved back one hour if temperatures are around zero. The course is subject to slight modification before race day."
     overall_cutoff_label: "5:00 PM March 14, 2027"
     overall_cutoff_notes: "The aid table's finish row: Kendall Valley Lodge, Sunday 5 pm, 55 hours. That is 55 true elapsed hours from the Friday 9:00 AM start because the race weekend crosses the March 14, 2027 spring-forward. Leave-by cutoffs at every station are strictly enforced; missing one means snowmachine evacuation and a $200 fee."
-    pacer_rule_summary: "No pacers anywhere — the FAQ answers dog, pacer, and personal snow machine with 'Nope, nope and nope.' This is an individual, human-powered race: spectators may cheer on course, but non-racers pacing, following, or otherwise assisting a racer is disqualification. Racers may help each other."
+    pacer_rule_summary: "No pacers anywhere — the FAQ answers dog, pacer, and personal snow machine with 'Nope, nope and nope.' This is an individual, human-powered race: an entourage 'may cheer you on out on the course,' but non-racers pacing, following, or otherwise assisting a racer is disqualification. Racers may help each other."
     drop_bag_summary: "No drop bags, gear drops, or outside assistance; racers start and finish with all gear. One exception: racers with food allergies or restrictions may leave the organizer a small container of food for the Warm Springs Aid Station (hot food only)."
   blurb: A winter wilderness point-to-point up the Upper Green — run, fat bike, or ski — from the Green River Trailhead to Kendall Valley Lodge.
   about: >-
@@ -89,8 +89,8 @@ race:
     stations near miles 25, 50, 67, and 83. Qualification, mandatory
     winter gear, and full self-sufficiency are required — no drop bags,
     no pacers, no outside assistance, and little cell coverage.
-  start_venue: Green River Trailhead, Cora, WY
-  finish_venue: Kendall Valley Lodge, Cora, WY
+  start_venue: Green River Trailhead, near Cora, WY
+  finish_venue: Kendall Valley Lodge, near Cora, WY
 
 # Profile from USGS 3DEP spot elevations sampled at each nominal chart mile
 # along the official GPX line (the official download carries no elevations);
@@ -223,7 +223,7 @@ aid_stations:
     aid: "No aid at the start — the aid table's menu column reads NA. The four manned, heated aid stations are near miles 25, 50, 67, and 83."
     bathroom: null
     park: "Cross the cattle guard, go through the first parking lot, and park in the second parking lot; the organizer asks racers to park efficiently."
-    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; an entourage 'may cheer you on out on the course,' but non-racers assisting a racer is disqualification."
     pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
     road: "From Pinedale: north on US 191 about 5.5 miles, then right on Highway 352 toward Cora for about 25 miles."
     source_metadata: &official_station_source
@@ -256,7 +256,7 @@ aid_stations:
     aid: "Mashed potatoes and ramen, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it."
     bathroom: "Bathroom available per the aid table."
     park: null
-    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; an entourage 'may cheer you on out on the course,' but non-racers assisting a racer is disqualification."
     pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
     road: null
     source_metadata: *official_station_source
@@ -277,7 +277,7 @@ aid_stations:
     aid: "Soup, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it. The race does not have exclusive use of the Strawberry or Sheridan stations."
     bathroom: null
     park: null
-    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; an entourage 'may cheer you on out on the course,' but non-racers assisting a racer is disqualification."
     pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
     road: null
     source_metadata: *official_station_source
@@ -298,10 +298,12 @@ aid_stations:
     aid: "Cheese and peanut butter quesadillas and ramen, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it. Racers with food allergies or restrictions may leave the organizer a small container of food for this station (hot food only)."
     bathroom: "Bathroom available per the aid table."
     park: null
-    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; an entourage 'may cheer you on out on the course,' but non-racers assisting a racer is disqualification."
     pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
     road: null
-    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints Saturday 8 pm / 33 hours for this leave-by cutoff, but 8:00 PM Saturday is 35 elapsed hours from the Friday 9:00 AM start; the posted clock governs and this pass records 2,100 clock-derived minutes."
   - match: "Strawberry Aid Station"
     name: "Strawberry Aid Station"
     direction: null
@@ -319,10 +321,12 @@ aid_stations:
     aid: "Pita pizza, plus the every-station staples: sweet and salty snacks, coffee, tea, and water with the ability to heat it."
     bathroom: "Bathroom available per the aid table."
     park: null
-    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; an entourage 'may cheer you on out on the course,' but non-racers assisting a racer is disqualification."
     pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
     road: null
-    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints Sunday 4 am / 41 hours for this leave-by cutoff, but 4:00 AM Sunday is 42 true elapsed hours from the Friday 9:00 AM start across the March 14, 2027 spring-forward; the posted clock governs and this pass records 2,520 clock-derived minutes."
   - match: "Finish Kendall Valley Lodge"
     name: "Finish — Kendall Valley Lodge"
     direction: "Finish"
@@ -340,7 +344,7 @@ aid_stations:
     aid: "The aid table's menu column is empty for the finish; the four manned, heated aid stations end at mile 83.5."
     bathroom: null
     park: null
-    crew_notes: "Outside assistance is not allowed anywhere on the course; spectators may cheer but non-racers assisting a racer is disqualification."
+    crew_notes: "Outside assistance is not allowed anywhere on the course; an entourage 'may cheer you on out on the course,' but non-racers assisting a racer is disqualification."
     pacer_notes: "No pacers — an individual, human-powered race; racers may only accept help from other racers."
     road: "To reach Kendall Valley Lodge, turn left just before the cattle guard, cross the Green River, and follow the road to the lodge."
     source_metadata: *official_station_source
