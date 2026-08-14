@@ -189,11 +189,12 @@ elevation_series:
   - [97, 622]
   - [98, 741]
   - [99, 1226]
-  - [100, 1270]
+  - [100, 1317]
 
-# Station passes: the aid chart's twenty rows — the Start, thirteen aid
-# stations (Deadwood, Cool, Browns Bar, No Hands, and Coffer Dam repeat),
-# the Swinging Bridge Turnaround, and the Finish. Arrive-by cutoffs map to
+# Station passes: the aid chart's twenty rows — the Start, seventeen
+# mid-race passes over twelve stations (Deadwood, Cool, Browns Bar, No
+# Hands, and Coffer Dam repeat), the Swinging Bridge Turnaround among
+# them, and the Finish. Arrive-by cutoffs map to
 # the Friday 12:00 PM start. Coordinates copy the official GPX's fifteen
 # waypoints (`match` = waypoint-name substring); elevations are the GPX
 # values at each chart mile.
