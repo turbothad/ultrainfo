@@ -20,8 +20,9 @@ Indian Springs State Park through the Dauset Trails near Flovilla, GA.
 
 Recorded discrepancies and decisions:
 
-1. **run100s is stale twice.** Its 32-hour cutoff and 6,000-foot climb
-   have no counterpart: the site says "The cutoff for the 100 mile race
+1. **run100s is stale twice.** The 32-hour cutoff and 6,000-foot climb
+   captured in the onboarding queue's run100s snapshot (the live table no
+   longer displays those columns for this row) have no counterpart: the site says "The cutoff for the 100 mile race
    is 5pm on Sunday-35 hours" and the gain figures cluster around
    1,000 per loop. Neither run100s figure was copied.
 2. **Three conflicting gain figures.** The listing says "roughly 9000
@@ -39,7 +40,8 @@ Recorded discrepancies and decisions:
    Station #2 6.2 NO — plus a ban on crewing along the gravel Lake
    Clark Road section. Crew true at the Group Shelter passes only.
 6. **Pacers.** "Pacers can start pacing after 5pm at the Start/Finish
-   aid station", one at a time, bib and waiver required. Pacer true at
+   aid station", one at a time, bib and waiver required (no source names
+   the day; the record quotes only the clock). Pacer true at
    the mid-race Group Shelter passes with the 5:00 PM condition noted;
    false at Aid Station 2, the Start, and the Finish.
 7. **Drop bags.** Taken for the mile-6.2 station only (left at packet

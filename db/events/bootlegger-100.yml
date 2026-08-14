@@ -64,8 +64,8 @@ race:
     notes: "Checked against first-party sources on August 13, 2026. A Western States qualifier for 2027: every 2027 finisher who registered by October 1, 2026 enters a raffle for a 2028 WSER entry, drawn at the race. Qualification to enter: a finished 50K (or 50 miles on this course). This is a cupless race — every runner gets a reusable cup in their drop bag, and pacers bring their own. The race starts and finishes at the Group Shelter beside the lake at Indian Springs State Park; crews set up tents, chairs, and supplies around the shelter and picnic areas from 2:00 PM Friday, parking passes are required for non-members, and crewing is banned along the gravel Lake Clark Road section. Packet pickup 3:00-6:00 PM Friday with a 5:00 PM pasta dinner, then race-morning pickup from 5:00 AM. Refunds or deferrals run 100% until three months out, none after."
     overall_cutoff_label: "5:00 PM March 21, 2027"
     overall_cutoff_notes: "35 hours from the 6:00 AM Saturday start — the cutoff schedule says 5:00 PM on Sunday, with the last loop starting by 12:00 PM Sunday (five hours for the final loop). All races end by 5:00 PM Sunday."
-    pacer_rule_summary: "Pacers may start pacing after 5:00 PM Saturday, joining at the Start/Finish aid station only; one pacer per runner at a time; pacer bibs come from packet pickup and every pacer registers and signs the waiver. Pacers may eat and drink from the aid stations but bring their own cup. No pacers in the 12.5-mile or 50-mile races."
-    drop_bag_summary: "Drop bags are taken for the mile-6.2 aid station only, left at packet pickup Friday or Saturday (reasonable size, no coolers), returned after the race Sunday. The start/finish needs no bags — crews and runner supplies set up at the Group Shelter each loop."
+    pacer_rule_summary: "Pacers may start pacing after 5:00 PM, joining at the Start/Finish aid station only; one pacer per runner at a time; pacer bibs come from packet pickup and every pacer registers and signs the waiver. Pacers may eat and drink from the aid stations but bring their own cup. No pacers in the 12.5-mile or 50-mile races."
+    drop_bag_summary: "Drop bags are taken for the mile-6.2 aid station only, left at packet pickup Friday or Saturday (reasonable size, no coolers), returned after the race Sunday. Crews and runner supplies set up at the Group Shelter start/finish each loop."
     tracking_note: "No live tracking is published; results post on UltraSignup."
   blurb: Eight fast 12.5-mile loops from Indian Springs State Park through the Dauset Trails near Flovilla, Georgia.
   about: >-
@@ -211,14 +211,14 @@ aid_stations:
     bathroom: null
     park: "Parking around the Group Shelter and picnic areas, first come first served; a state-park parking pass is required for non-members; no parking at the Idlewilde Event Center or the boat-ramp gravel lot."
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "No pacer from the start: pacers may begin only after 5:00 PM Saturday, joining at the Start/Finish aid station."
+    pacer_notes: "No pacer from the start: pacers may begin only after 5:00 PM, joining at the Start/Finish aid station."
     road: null
     source_metadata: &official_station_source
       verification_status: warning
       source_label: "Bootlegger 100 site and Runners Packet aid details"
       source_url: "https://www.bootlegger100.com/"
       verified_on: "2026-08-13"
-      source_notes: "Verified on is the retrieval date, not the material's effective year. Two stations per loop from the site and the Runners Packet crew table: Aid Station 2 at loop mile 6.2 (no crew; drop bags taken at packet pickup) and the Start/Finish at 12.5 (crew area, pacer pickup after 5:00 PM Saturday). Only two cutoffs are published: the noon Sunday last-loop start (mile 87.5) and the 5:00 PM Sunday finish. Station coordinates and elevations sit on the official GPX at the loop start and at loop mile 6.2. Both stations are stocked with fluids and food (hot food in the evening); potability is never certified and no medical service is published. The race is cupless."
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Two stations per loop from the site and the Runners Packet crew table: Aid Station 2 at loop mile 6.2 (no crew; drop bags taken at packet pickup) and the Start/Finish at 12.5 (crew area, pacer pickup after 5:00 PM). Only two cutoffs are published: the noon Sunday last-loop start (mile 87.5) and the 5:00 PM Sunday finish. Station coordinates and elevations sit on the official GPX at the loop start and at loop mile 6.2. Both stations are stocked with fluids and food (hot food in the evening); potability is never certified and no medical service is published. The race is cupless."
       sources:
         - *source_site
         - *source_packet
@@ -242,7 +242,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -263,7 +263,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
     source_metadata: *official_station_source
   - match: "Aid Station 2"
@@ -284,7 +284,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -305,7 +305,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
     source_metadata: *official_station_source
   - match: "Aid Station 2"
@@ -326,7 +326,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -347,7 +347,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
     source_metadata: *official_station_source
   - match: "Aid Station 2"
@@ -368,7 +368,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -389,7 +389,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
     source_metadata: *official_station_source
   - match: "Aid Station 2"
@@ -410,7 +410,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -431,7 +431,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
     source_metadata: *official_station_source
   - match: "Aid Station 2"
@@ -452,7 +452,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -473,7 +473,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
     source_metadata: *official_station_source
   - match: "Aid Station 2"
@@ -494,7 +494,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -515,9 +515,9 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday, one per runner at a time, with a pacer bib and signed waiver."
+    pacer_notes: "Pacer pickup point: pacers join at the Start/Finish aid station only, after 5:00 PM, one per runner at a time, with a pacer bib and signed waiver."
     road: null
-    source_metadata: 
+    source_metadata:
       <<: *official_station_source
       source_notes: "Verified on is the retrieval date. The last loop must be started by 12:00 PM on Sunday — five hours to complete the final loop before the 5:00 PM close; this pass records that noon gate as its leave-by cutoff."
   - match: "Aid Station 2"
@@ -538,7 +538,7 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew access is not allowed at Aid Station 2, and crewing is banned along the gravel Lake Clark Road section of the course."
-    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM Saturday."
+    pacer_notes: "Not a pacer station: pacers join at the Start/Finish aid station only, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
   - match: "Group Shelter Start/Finish"
@@ -559,6 +559,6 @@ aid_stations:
     bathroom: null
     park: null
     crew_notes: "Crew members may set up tents, chairs, and supplies at the Start/Finish area around the Group Shelter and picnic areas; runners see their crew every loop."
-    pacer_notes: "No pickup at the finish; an accompanying pacer finishes alongside the runner."
+    pacer_notes: "The race ends here; pacer pickups happen at this station only on mid-race loops, after 5:00 PM."
     road: null
     source_metadata: *official_station_source
