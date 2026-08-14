@@ -3,7 +3,7 @@ slug: huron-100
 files:
   race:
     path: huron-100.yml
-    sha256: 6cf4d93e00591707143a4df4a50508b698531f8ebb21de4ae466b7a2399d7621
+    sha256: 1bb425555361b65fc5b11e7cce8115ff568f767c8623bd976627c21a277befeb
   course:
     path: huron-100.gpx
     sha256: 3b6563c68f4634446a4e495aab36790ed35755cffc5c62669a697e740df34fdd

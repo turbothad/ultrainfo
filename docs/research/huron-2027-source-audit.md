@@ -29,8 +29,8 @@ Recorded discrepancies and decisions:
    print 2026 dates, prices, and packet timing — they supply the
    standing rules, and the home page and listing header govern the
    frame.
-3. **The map is the 2026 event's URL but is the current course
-   surface.** Both the 2027-frame site (Interactive Map) and the 2027
+3. **The map lives at the 2026 running's URL but is the current
+   course surface.** Both the 2027-frame site (Interactive Map) and the 2027
    listing (COURSE MAP) link hellodrifter.com/events/huron-100-2026.
    Its cutoff clocks are the 2026 running's; the 2027 frame keeps the
    same Saturday 9:00 AM start and 32-hour window, so the
@@ -67,7 +67,9 @@ Recorded discrepancies and decisions:
    Pond (79.5), Hickory Shelter (87), and Windfall Hill (92); the
    course page's prose calls Chambers Road — just past the Lakeland
    Trail station — the first opportunity to pick up pacers. The map's
-   flags govern.
+   flags govern. The 2027 listing also sells a PACER registration
+   category alongside the two races (its Start Times section prints
+   PACER at 5:00 PM).
 9. **Drop bags.** The map flags bags at Park Lyndon East (24.4),
    Lakeland Trail (47.1), Huron Meadows (69.5), and the finish. The
    start-area "Runner Check-in" marker (Lakeview shelter) also flags
@@ -78,7 +80,7 @@ Recorded discrepancies and decisions:
     and a "Critical Turn" marker plots forty-plus miles off-course
     near Monroe, MI — a stray. Neither is a pass.
 11. **The GPX download is account-gated; the embed data is open.**
-    HelloDrifter's Download GPX requires sign-in, but the event page
+    HelloDrifter's Download GPX requires sign-in, but the map page
     itself publicly serves the route API (distance, gain/loss, the
     full polyline) and the elevation-chart and marker GeoJSON files
     through tokens the page mints for any visitor. The bundle's line
@@ -95,7 +97,7 @@ All URLs below were opened or downloaded on 2026-08-14.
 
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
-| S1 | thehuron100.com home | https://www.thehuron100.com | 2027 frame: "Saturday June 12th, 2027" (100M 9AM, 50M 7AM); 8,200 ft gain; 82% trail; max elevation 1,100 ft; 32 hours; start/finish venues; the shuttle; one stale "Join us in 2026" history paragraph. |
+| S1 | thehuron100.com home | https://www.thehuron100.com | 2027 frame: "Saturday June 12th, 2027" (100M 9AM, 50M 7AM); 8,200 ft gain; 82% trail; max elevation 1,100 ft; 32 hours; the start venue; one stale "Join us in 2026" history paragraph. |
 | S2 | Course page | https://www.thehuron100.com/course | The mile-by-mile narrative (Waterloo-Pinckney, Poto, Lakelands, Brighton, Huron Meadows, Island Lake, Kensington, Proud Lake); the Chambers Road pacer prose; the Spring Mill "Mile 82" print (decision 7). |
 | S3 | FAQ page | https://www.thehuron100.com/faq | 2026-vintage standing rules: 16 aid stations, aid every 6-8 miles, the station menu, no lottery, the 350 cap, 32/15-hour windows, shuttles, packet timing. |
 | S4 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=142357 | The June 12, 2027 header and "Registration Opens Tue. Sep 1, 2026 @ 12:00 AM ET"; the description body is 2026 text (15-station print, decision 4; addresses; shuttles; refund ladder). Reached via the 2024 listing's "See the 2027 event" link (eid=17312). |
@@ -137,7 +139,7 @@ All URLs below were opened or downloaded on 2026-08-14.
   timing, the 15-station print); re-check when 2027 registration
   opens September 1, 2026.
 - The map lives at the huron-100-2026 URL; watch for a huron-100-2027
-  event map and any course revision.
+  map and any course revision.
 - The map's cutoff clocks are 2026's; re-verify the ladder once a
   2027 runner packet publishes (the FAQ says packets publish in late
   April).
