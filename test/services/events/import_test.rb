@@ -11,7 +11,7 @@ module Events
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
                      "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
                      "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
-                     "Skunk Ape 100" ], published_races.map(&:name)
+                     "Skunk Ape 100", "San Diego 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -570,6 +570,35 @@ module Events
                    "36 hours from the Saturday 7:00 AM start (the listing's April 26th print is a date typo)"
       assert_includes skunk_ape.source_metadata.fetch("sources").pluck("url"),
                       "https://ultrasignup.com/register.aspx?did=142072"
+
+      san_diego = published_races.find { |published| published.slug == "san-diego-100" }
+      assert_equal 2027, san_diego.year
+      assert_equal Date.new(2027, 4, 30), san_diego.start_date
+      assert san_diego.not_open?, "opens January 1, 2027; the home banner's OPEN is contradicted everywhere else"
+      assert_equal 32, san_diego.cutoff_hours
+      assert_equal 100.6, san_diego.distance_mi.to_f, "the aid chart's cumulative frame"
+      assert_equal 13_000, san_diego.elevation_gain_ft, "just over 13,000 feet of climbing/descent each"
+      assert_equal 16, san_diego.aid_stations.count, "the chart's sixteen rows"
+      assert_equal 14, san_diego.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "fourteen chart coordinates; Penny Pines and the lake repeat"
+      assert_equal 0, san_diego.aid_stations.where(direction: "Turnaround").count,
+                   "a loop with no published turnaround rows"
+      assert_equal 8, san_diego.aid_stations.where(crew_accessible: true).count,
+                   "the lake twice plus Green Valley, Sweetwater, Meadows, Red Tail Roost, Pioneer Mail, Sunrise"
+      assert_equal 5, san_diego.aid_stations.count(&:pacer_access?),
+                   "Sweetwater join plus the Meadows, Red Tail Roost, Pioneer Mail, and Sunrise switches"
+      assert_equal 9, san_diego.aid_stations.count(&:drop_bag?),
+                   "the chart's eight mid-race drop stations plus the finish-row returns"
+      assert_equal 2, san_diego.aid_stations.where(has_food: false).where.not(mile: [ 0, 100.6 ]).count,
+                   "the two unmanned water-only rows"
+      assert_equal 13, san_diego.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "twelve station clocks plus the finish"
+      assert_equal 975, san_diego.aid_stations.find_by!(mile: 51.8).cutoff_elapsed_minutes,
+                   "Hammer's Hideaway 10:15 PM — the chart's AM print is impossible against its own ladder"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-05-01 2:00 PM"), san_diego.final_cutoff_at,
+                   "32 hours from the Friday 6:00 AM start"
+      assert_includes san_diego.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.predsci.com/~pete/sd100/2025-sd-100-miles-chart.png"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

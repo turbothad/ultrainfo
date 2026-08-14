@@ -1,0 +1,9 @@
+version: 1
+slug: san-diego-100
+files:
+  race:
+    path: san-diego-100.yml
+    sha256: 9462926c581e9c75114902d9efd380abfba0a02080649aa4c3bae6eeea9048cc
+  course:
+    path: san-diego-100.gpx
+    sha256: 1331d3bc43b44acca85fbb4ee39d39f2b85ec5bccb575239f0c1d4b52f75ef15
