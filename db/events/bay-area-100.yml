@@ -220,7 +220,7 @@ aid_stations:
     water: null
     pacer: false
     drop: false
-    food: false
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
@@ -761,7 +761,7 @@ aid_stations:
     water: null
     pacer: true
     drop: true
-    food: false
+    food: null
     med: null
     cutoff: "2:00 PM"
     cutoff_clock: "2:00 PM"

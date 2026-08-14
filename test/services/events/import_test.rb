@@ -775,11 +775,10 @@ module Events
       assert_equal 9, bay_area.aid_stations.count(&:drop_bag?),
                    "the table's gear-bag marks: six stations, Bort Meadow three times, plus the finish"
       assert_equal 1,
-                   bay_area.aid_stations.where.not(mile: [ 0, 100.7 ]).where(has_food: false).count,
+                   bay_area.aid_stations.where(has_food: false).count,
                    "the detailed guide table and pace chart identify Pinehurst as water only"
-      assert_equal 22,
-                   bay_area.aid_stations.where.not(mile: [ 0, 100.7 ]).where(has_food: nil).count,
-                   "the guide names no second water-only point, so all other food flags remain unknown"
+      assert_equal 24, bay_area.aid_stations.where(has_food: nil).count,
+                   "the guide names no second water-only point, and the landmarks are not aid-food passes"
       assert_not bay_area.aid_stations.find_by!(mile: 64.9).crew_accessible,
                  "the governing table leaves Clyde blank despite the Section 4 crew prose"
       assert_nil bay_area.aid_stations.find_by(mile: 95.5),

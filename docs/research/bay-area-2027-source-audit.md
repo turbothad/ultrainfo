@@ -150,9 +150,9 @@ All URLs below were opened or downloaded on 2026-08-14.
   `false` elsewhere including the Start (bags drop at Basecamp
   before the race).
 - **Food.** `false` at Pinehurst, the only water-only point identified
-  by both detailed station lists; `null` at every other mid-course
-  pass because the second water-only location is unresolved (decision
-  13). Start and Finish are not aid-food passes.
+  by both detailed station lists; `null` at every other pass because
+  the second water-only location is unresolved, while Start and Finish
+  are landmarks rather than aid-food passes (decision 13).
 - **Medical.** `null` everywhere (decision 10).
 - **Elevation.** Gain 18,000 (the home print); loss 17,103 (the
   chart's summed descents); the series is the official GPX's own
