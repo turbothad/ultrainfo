@@ -14,7 +14,7 @@ module Events
                      "Skunk Ape 100", "San Diego 100",
                      "Massanutten Mountain Trails 100", "Coyote Two Moon 100",
                      "Hell Hole Hundred", "Rabid Raccoon 100", "Scout Mountain 100",
-                     "Huron 100", "Bay Area 100" ], published_races.map(&:name)
+                     "Huron 100", "Bay Area 100", "Burney Mountain 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -791,6 +791,42 @@ module Events
                    "33 hours from the Saturday 5:00 AM start"
       assert_includes bay_area.source_metadata.fetch("sources").pluck("url"),
                       "https://bayarea100.com/wp-content/uploads/2026/06/Bay_Area_100-with-stations.gpx"
+
+      burney = published_races.find { |published| published.slug == "burney-mountain-100" }
+      assert_equal 2027, burney.year
+      assert_equal Date.new(2027, 6, 18), burney.start_date
+      assert burney.open?, "the 2027 listing offers an actionable paid registration choice"
+      assert_equal "warning", burney.source_metadata.fetch("verification_status"),
+                   "the snow-dependent 2027 variant is not selected and the current line remains 2026-titled"
+      assert_equal 40, burney.cutoff_hours
+      assert_equal 102.0, burney.distance_mi.to_f, "the guide's operational table ends at 102"
+      assert_equal 15_000, burney.elevation_gain_ft, "the 2027 listing's approximate climb"
+      assert_equal 15_000, burney.elevation_loss_ft, "the organizer page's cumulative descent"
+      assert_equal 13, burney.aid_stations.count, "Start, eleven mid-race passes, and Finish"
+      assert_equal 12, burney.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "the two Base of Burney Mountain passes share one published crew coordinate"
+      assert_equal 6, burney.aid_stations.where(crew_accessible: true).count,
+                   "the Start plus five crew-flagged mid-race passes"
+      assert_equal 4, burney.aid_stations.count(&:pacer_access?),
+                   "both Base passes, Goose Valley, and Black Ranch"
+      assert_equal 8, burney.aid_stations.count(&:drop_bag?),
+                   "Highway 89 through Black Ranch per the guide table"
+      assert_equal 8, burney.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? && station.mile.positive? },
+                   "the guide's eight-clock ladder after the start"
+      assert_equal 2, burney.aid_stations.where(has_food: false).count,
+                   "Cassel Road is a water drop and Rail Trail is water only"
+      assert_equal 2, burney.aid_stations.where(has_food: nil).count,
+                   "Start and Finish do not publish pass-level food availability"
+      assert burney.aid_stations.all? { |station| station.potable_water.nil? },
+             "the guide lists water but never certifies potability"
+      assert burney.aid_stations.none? { |station| station.name.include?("Magee") },
+             "conditional Magee has no confirmed 2027 mile or table row"
+      assert_equal 1440, burney.aid_stations.find_by!(mile: 55).cutoff_elapsed_minutes,
+                   "first Base pass by 4:30 AM Saturday"
+      assert_equal Time.find_zone("America/Los_Angeles").parse("2027-06-19 8:30 PM"), burney.final_cutoff_at,
+                   "40 hours from the Friday 4:30 AM start"
+      assert_includes burney.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.gaiagps.com/api/objects/track/b2815b045bafe777549913c3b6483bf9/"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

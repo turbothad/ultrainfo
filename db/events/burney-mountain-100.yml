@@ -1,0 +1,498 @@
+# Burney Mountain 100 — race data imported by Events::Import. The
+# 2027 UltraSignup listing establishes the June 18 running and open
+# registration. The organizer's current runner guide governs the
+# provisional pass table and cutoff ladder; its current Gaia line is
+# still titled 2026 and remains provisional until the snow-dependent
+# 2027 course variant is selected. Decisions and conflicts are in
+# docs/research/burney-mountain-2027-source-audit.md.
+
+race:
+  name: Burney Mountain 100
+  slug: burney-mountain-100
+  year: 2027
+  state: CA
+  distance_mi: 102 # The guide's operational table ends at 102; the current-linked route measures 104.02-104.04 GPS miles.
+  elevation_gain_ft: 15000 # The 2027 listing's approximate climb; the guide says about 14,000 and Gaia reports 11,614 smoothed.
+  elevation_loss_ft: 15000 # The organizer page says the Race climbs and descends a cumulative 15,000 feet.
+  start_date: 2027-06-18
+  end_date: 2027-06-19
+  start_time: 4:30 AM
+  time_zone: America/Los_Angeles
+  cutoff_hours: 40
+  official_url: https://www.intermountainendurance.com/burney-mountain-100
+  registration_url: https://ultrasignup.com/register.aspx?did=140927
+  results_url: https://ultrasignup.com/results_event.aspx?did=128016
+  registration_status: open
+  lottery: false
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "Burney Mountain 100 starts and finishes at Burney Mountain Guest Ranch in Cassel, California. UltraSignup's 2027 listing establishes Friday June 18 at 4:30 AM, a live paid registration choice, and a June 11 close; the organizer page and current guide establish the 40-hour window to 8:30 PM Saturday. The exact 2027 route is not final: the listing publishes four snow-dependent variants, A-D, and the guide says the selection will not be known until race week. The organizer currently links a Gaia/CalTopo line explicitly titled Burney Mountain 100 2026 and a mixed-vintage guide whose meal section retains a June 20 date from 2026. Those current links provisionally govern the pass sequence, line, and elevation profile at verification status warning. The guide's thirteen operational passes end at nominal mile 102, while the linked line measures 104.02-104.04 miles; both frames are preserved without claiming the route was rescaled by the organizer. A conditional bare-bones Magee operation has no published mile or table row and is excluded until confirmed. The registration page's displaced Directions pin and same-day JSON-LD end date lose to the named Guest Ranch venue, course endpoints, and forty-hour guide ladder."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_home
+        label: "Intermountain Endurance Burney Mountain 100 page (the Guest Ranch venue, 4:30 AM start, 40 hours, 15,000-foot climb/descent, and current course links)"
+        url: "https://www.intermountainendurance.com/burney-mountain-100"
+        verified_on: "2026-08-14"
+      - &source_listing
+        label: "UltraSignup 2027 listing (June 18, 2027; open paid registration; June 11 close; four snow-dependent variants)"
+        url: "https://ultrasignup.com/register.aspx?did=140927"
+        verified_on: "2026-08-14"
+      - &source_guide
+        label: "Current organizer-linked runner guide (the thirteen-pass table, eight-clock cutoff ladder, aid, bags, pacers, and conditional Magee note)"
+        url: "https://docs.google.com/document/d/1bx0CV_oRxGoTrrdYb3CfoTwC2W2Bf9-OOetM5G_l1l4/edit?usp=sharing"
+        verified_on: "2026-08-14"
+      - &source_crew
+        label: "Current organizer-linked crew guide (crew directions and coordinates, pacer handoffs, radio and safety rules)"
+        url: "https://docs.google.com/document/d/18c98P7KTyV8mcTXluTR5aqmfT3YpDJVPBl9qsqCfo_s/edit?tab=t.0"
+        verified_on: "2026-08-14"
+      - &source_gaia
+        label: "Organizer-linked Gaia route (the current provisional 2026-titled thirteen-segment line and published elevation metrics)"
+        url: "https://www.gaiagps.com/map/?loc=9.3/-121.5704/40.8452&pubLink=K6miEiOB1sQCQc8ZP95KthcK&trackId=b2815b045bafe777549913c3b6483bf9"
+        verified_on: "2026-08-14"
+      - &source_route_data
+        label: "Gaia public route data (4,583 elevation-bearing points, 104.023 miles, +3,539.8/-3,523.5 meters)"
+        url: "https://www.gaiagps.com/api/objects/track/b2815b045bafe777549913c3b6483bf9/"
+        verified_on: "2026-08-14"
+      - &source_caltopo
+        label: "Organizer-linked CalTopo route (the same current provisional line, titled Burney Mountain entire course 2026)"
+        url: "https://caltopo.com/m/F0KV9AL"
+        verified_on: "2026-08-14"
+      - &source_results
+        label: "UltraSignup results (the completed 2026 running and earlier results)"
+        url: "https://ultrasignup.com/results_event.aspx?did=128016"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party and organizer-linked sources on August 14, 2026. Registration is open at $350 before fees and closes June 11, 2027 at 11:59 PM PT; no capacity or lottery is published. The guide supplies snacks, Hammer gels, and electrolytes at aid stations, with hot food at Tamarack, Cypress, both Base passes, Goose Valley, and Black Ranch. Bags are staged at the Guest Ranch Thursday from 4:00-7:00 PM. Required gear includes a headlamp, backup light, emergency blanket, whistle, warm layer, gloves, beanie, water capacity, and calories. No live-tracking surface is published. Recheck the whole course bundle in race week when the organizer selects Course A, B, C, or D and confirms whether the conditional Magee operation exists."
+    overall_cutoff_label: "8:30 PM June 19, 2027"
+    overall_cutoff_notes: "40 hours from the Friday 4:30 AM start. The guide prints eight clocks: Tamarack 7:00 PM Friday; Cypress 2:00 AM, Base first pass 4:30 AM, Summit 9:00 AM, Base second pass 11:30 AM, Goose Valley 3:00 PM, Black Ranch 5:00 PM, and the finish 8:30 PM Saturday. Arrival-versus-departure semantics are not published."
+    pacer_rule_summary: "Up to four pacers are allowed, one at a time. The first may join at Base of Burney Mountain at mile 55; pickup or exchange is available there on both passes, at Goose Valley, and at Black Ranch. Pacers check in, sign a waiver, carry their own required gear, stay with the runner to a designated handoff, and may not mule."
+    drop_bag_summary: "On-course bags wait at Highway 89, Tamarack, Cypress, both Base passes, Burney Mountain Summit, Goose Valley, and Black Ranch. All bags are staged at the Guest Ranch Thursday from 4:00-7:00 PM; the Start is a staging location, not an on-course bag pass."
+    tracking_note: "No live tracking is published. Results post on UltraSignup; the stable results surface currently shows 2026 and links 2025."
+  blurb: A provisional 102-mile operational frame from Burney Mountain Guest Ranch through Hat Creek and the snow-dependent high country, with about 15,000 feet of climb and 40 hours.
+  about: >-
+    Burney Mountain 100 starts and finishes at Burney Mountain Guest
+    Ranch, crossing the Hat Creek country and climbing into the high
+    country around Burney Mountain. The current guide lays out eleven
+    mid-race passes inside a 40-hour window, with eight cutoff clocks,
+    five crew-accessible mid-race passes, and pacers from the first
+    Base of Burney Mountain pass at mile 55. Snow decides which of
+    four course variants will run in 2027, so the current 102-mile
+    operational table and organizer-linked 104-mile line remain
+    provisional until race week.
+  start_venue: Burney Mountain Guest Ranch, Cassel, CA
+  finish_venue: Burney Mountain Guest Ranch, Cassel, CA
+
+# Elevations from the organizer-linked Gaia line, sampled evenly onto
+# the guide's nominal 102-mile operational frame. The GPX retains all
+# 4,583 original elevation-bearing points across its thirteen segments.
+elevation_series:
+  - [0, 3337]
+  - [1, 3186]
+  - [2, 2992]
+  - [3, 2999]
+  - [4, 3153]
+  - [5, 3304]
+  - [6, 3425]
+  - [7, 3494]
+  - [8, 3661]
+  - [9, 3737]
+  - [10, 3786]
+  - [11, 4029]
+  - [12, 3944]
+  - [13, 4045]
+  - [14, 4144]
+  - [15, 4505]
+  - [16, 4662]
+  - [17, 4209]
+  - [18, 3816]
+  - [19, 3579]
+  - [20, 3323]
+  - [21, 3317]
+  - [22, 3291]
+  - [23, 3320]
+  - [24, 3392]
+  - [25, 3976]
+  - [26, 4596]
+  - [27, 4590]
+  - [28, 4583]
+  - [29, 4626]
+  - [30, 4721]
+  - [31, 5148]
+  - [32, 5591]
+  - [33, 5561]
+  - [34, 5597]
+  - [35, 5879]
+  - [36, 5883]
+  - [37, 6171]
+  - [38, 6427]
+  - [39, 6424]
+  - [40, 6690]
+  - [41, 7031]
+  - [42, 7320]
+  - [43, 8077]
+  - [44, 8100]
+  - [45, 7329]
+  - [46, 7034]
+  - [47, 6699]
+  - [48, 6332]
+  - [49, 5554]
+  - [50, 5233]
+  - [51, 4882]
+  - [52, 4721]
+  - [53, 4701]
+  - [54, 4833]
+  - [55, 4859]
+  - [56, 4741]
+  - [57, 5007]
+  - [58, 5266]
+  - [59, 5823]
+  - [60, 6306]
+  - [61, 6831]
+  - [62, 7329]
+  - [63, 7733]
+  - [64, 7562]
+  - [65, 7067]
+  - [66, 6608]
+  - [67, 6079]
+  - [68, 5502]
+  - [69, 5164]
+  - [70, 4810]
+  - [71, 4774]
+  - [72, 4974]
+  - [73, 5010]
+  - [74, 4941]
+  - [75, 4797]
+  - [76, 4619]
+  - [77, 4272]
+  - [78, 4065]
+  - [79, 4098]
+  - [80, 3907]
+  - [81, 3812]
+  - [82, 3451]
+  - [83, 3245]
+  - [84, 3245]
+  - [85, 3360]
+  - [86, 3330]
+  - [87, 3274]
+  - [88, 3209]
+  - [89, 3163]
+  - [90, 3091]
+  - [91, 3104]
+  - [92, 3114]
+  - [93, 3081]
+  - [94, 3087]
+  - [95, 3107]
+  - [96, 2992]
+  - [97, 3012]
+  - [98, 3120]
+  - [99, 3114]
+  - [100, 3110]
+  - [101, 3304]
+  - [102, 3337]
+
+# The current guide's thirteen operational passes. The four crew
+# locations use coordinates published in the crew guide; other
+# mid-race coordinates are derived from the current line's segment
+# boundaries. Base of Burney Mountain intentionally reuses one
+# waypoint. The extra route boundary between Tamarack and Cypress is
+# not modeled because conditional Magee has no confirmed mile or row.
+aid_stations:
+  - match: "Guest Ranch Start"
+    name: "Start — Burney Mountain Guest Ranch"
+    direction: "Start"
+    mile: 0.0
+    elev: 3337
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: null
+    med: null
+    cutoff: "4:30 AM"
+    cutoff_clock: "4:30 AM"
+    cutoff_elapsed_minutes: 0
+    aid: "Friday 4:30 AM start at the Guest Ranch; bags are staged here Thursday evening, but this is not an on-course bag pass."
+    bathroom: null
+    park: null
+    crew_notes: "Shared start venue; the guide's table marks crew at the Start."
+    pacer_notes: "No pacer yet; the first pacer may join at Base of Burney Mountain at mile 55."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Current organizer guide, crew guide, and provisional organizer-linked course line"
+      source_url: "https://docs.google.com/document/d/1bx0CV_oRxGoTrrdYb3CfoTwC2W2Bf9-OOetM5G_l1l4/edit?usp=sharing"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the guide's effective year. The current guide governs nominal miles, crew/pacer/drop-bag fields, aid descriptions, and cutoff clocks. The organizer-linked 2026-titled Gaia line is provisional pending the 2027 snow-variant choice. Coordinates at Highway 89, Base of Burney Mountain, Goose Valley, and Black Ranch copy the crew guide; other station coordinates are derived from line segment boundaries and are not published station pins. The table ends at 102 while the line measures about 104 miles."
+      sources:
+        - *source_home
+        - *source_listing
+        - *source_guide
+        - *source_crew
+        - *source_gaia
+        - *source_route_data
+        - *source_caltopo
+        - *source_results
+  - match: "Cassel Road"
+    name: "Cassel Road"
+    direction: null
+    mile: 7.0
+    elev: 3465
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water drop; the guide does not publish food or staffing here."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access in the guide table."
+    pacer_notes: "No pacer yet."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Cache 22"
+    name: "Cache 22"
+    direction: null
+    mile: 16.0
+    elev: 4659
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station with snacks, Hammer gels, electrolytes, and water per the guide's general aid menu."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access in the guide table."
+    pacer_notes: "No pacer yet."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Highway 89"
+    name: "Highway 89 — Hat Creek Fire Station"
+    direction: null
+    mile: 23.0
+    elev: 3330
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station with snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access pass; the waypoint uses the exact crew-guide coordinate at the Hat Creek Fire Station."
+    pacer_notes: "No pacer pickup here."
+    road: "Highway 89 / Doty Road"
+    source_metadata: *official_station_source
+  - match: "Tamarack Trailhead"
+    name: "Tamarack Trailhead"
+    direction: null
+    mile: 37.0
+    elev: 5883
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "7:00 PM Friday"
+    cutoff_clock: "7:00 PM"
+    cutoff_elapsed_minutes: 870
+    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access in the guide table."
+    pacer_notes: "No pacer yet."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Cypress Trailhead"
+    name: "Cypress Trailhead"
+    direction: null
+    mile: 50.0
+    elev: 5535
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "2:00 AM Saturday"
+    cutoff_clock: "2:00 AM"
+    cutoff_elapsed_minutes: 1290
+    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access in the guide table."
+    pacer_notes: "No pacer yet."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Base of Burney Mountain"
+    name: "Base of Burney Mountain — first pass"
+    direction: "Outbound"
+    mile: 55.0
+    elev: 4970
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "4:30 AM Saturday"
+    cutoff_clock: "4:30 AM"
+    cutoff_elapsed_minutes: 1440
+    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access pass at the exact crew-guide coordinate."
+    pacer_notes: "First pacer pickup; pacers check in, sign a waiver, carry their own gear, and may not mule."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Burney Mountain Summit"
+    name: "Burney Mountain Summit"
+    direction: null
+    mile: 63.5
+    elev: 7638
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "9:00 AM Saturday"
+    cutoff_clock: "9:00 AM"
+    cutoff_elapsed_minutes: 1710
+    aid: "Aid station with snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access in the guide table."
+    pacer_notes: "No pacer pickup or exchange at the Summit."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Base of Burney Mountain"
+    name: "Base of Burney Mountain — second pass"
+    direction: "Inbound"
+    mile: 72.0
+    elev: 4970
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "11:30 AM Saturday"
+    cutoff_clock: "11:30 AM"
+    cutoff_elapsed_minutes: 1860
+    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "Second crew-access pass at the same published coordinate."
+    pacer_notes: "Pacer pickup or exchange; one pacer at a time and no muling."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Goose Valley Road"
+    name: "Goose Valley Road"
+    direction: null
+    mile: 83.0
+    elev: 3248
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:00 PM Saturday"
+    cutoff_clock: "3:00 PM"
+    cutoff_elapsed_minutes: 2070
+    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access pass at the exact crew-guide coordinate."
+    pacer_notes: "Pacer pickup or exchange; one pacer at a time and no muling."
+    road: "Goose Valley Road"
+    source_metadata: *official_station_source
+  - match: "Black Ranch"
+    name: "Black Ranch"
+    direction: null
+    mile: 89.0
+    elev: 3100
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:00 PM Saturday"
+    cutoff_clock: "5:00 PM"
+    cutoff_elapsed_minutes: 2190
+    aid: "Hot food, snacks, Hammer gels, electrolytes, and water; on-course drop bag."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access pass at the exact crew-guide coordinate."
+    pacer_notes: "Final published pacer pickup or exchange."
+    road: "Black Ranch Road"
+    source_metadata: *official_station_source
+  - match: "Rail Trail"
+    name: "Rail Trail"
+    direction: null
+    mile: 95.0
+    elev: 2992
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only; the guide does not publish food or staffing here."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access in the guide table."
+    pacer_notes: "No pacer pickup or exchange."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Guest Ranch Finish"
+    name: "Finish — Burney Mountain Guest Ranch"
+    direction: "Finish"
+    mile: 102.0
+    elev: 3337
+    crew: false
+    water: null
+    pacer: false
+    drop: false
+    food: null
+    med: null
+    cutoff: "8:30 PM Saturday"
+    cutoff_clock: "8:30 PM"
+    cutoff_elapsed_minutes: 2400
+    aid: "Finish at the Guest Ranch by 8:30 PM Saturday, forty hours after the start."
+    bathroom: null
+    park: null
+    crew_notes: "The guide table leaves the crew field blank at the Finish."
+    pacer_notes: "No pickup or exchange at the Finish."
+    road: null
+    source_metadata: *official_station_source
