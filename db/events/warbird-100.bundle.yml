@@ -1,0 +1,9 @@
+version: 1
+slug: warbird-100
+files:
+  race:
+    path: warbird-100.yml
+    sha256: cf939f77e40459a62eced43c481d27774db39f84bc769cb432baa5d8db7b9ab1
+  course:
+    path: warbird-100.gpx
+    sha256: f3d0ca269cab17f6389edd8207d1983d15af713b8e5a98c5b98d878f900a85d9

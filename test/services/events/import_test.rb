@@ -9,7 +9,7 @@ module Events
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
-                     "The Pistol Ultra 100" ], published_races.map(&:name)
+                     "The Pistol Ultra 100", "Warbird 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -404,6 +404,33 @@ module Events
                    "8:00 AM EST Saturday plus 32 hours is 5:00 PM EDT Sunday across the DST change"
       assert_includes pistol.source_metadata.fetch("sources").pluck("url"),
                       "https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Course-Route"
+
+      warbird = published_races.find { |published| published.slug == "warbird-100" }
+      assert_equal 2027, warbird.year
+      assert_equal Date.new(2027, 3, 19), warbird.start_date
+      assert warbird.open?
+      assert_equal 35, warbird.cutoff_hours
+      assert_equal 102.2, warbird.distance_mi.to_f, "the aid table's cumulative frame"
+      assert_equal 15_676, warbird.elevation_gain_ft, "the race info PDF's CalTopo profile"
+      assert_equal 17, warbird.aid_stations.count, "the Start plus the aid table's sixteen rows"
+      assert_equal 16, warbird.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "one big loop; only the start/finish repeats"
+      assert_equal 5, warbird.aid_stations.where(crew_accessible: true).count,
+                   "Bear Creek, Peabody, Sugar Creek, and the start/finish hub"
+      assert_equal 4, warbird.aid_stations.count(&:pacer_access?),
+                   "pacers join at Bowens Creek and trade at the three crewed stations"
+      assert warbird.aid_stations.find_by!(mile: 32.6).pacer_access?,
+             "Bowens Creek is a pacer drop-off despite having no crew access"
+      assert_not warbird.aid_stations.find_by!(mile: 32.6).crew_accessible?
+      assert_equal 9, warbird.aid_stations.count(&:drop_bag?), "the drop-bag list's nine stations"
+      assert_equal 15, warbird.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "leave-by clocks at every station after Coke Syrup"
+      assert_equal "27h 30m", warbird.aid_stations.find_by!(mile: 80.9).cutoff_elapsed_label,
+                   "Sugar Creek's misprinted 10:30 PM is recorded as 10:30 AM"
+      assert_equal Time.find_zone("America/New_York").parse("2027-03-20 6:00 PM"), warbird.final_cutoff_at,
+                   "7:00 AM Friday plus 35 hours, no DST crossing after March 14"
+      assert_includes warbird.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.trailsick.com/s/Warbird-100-Aid-Station-Details.pdf"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

@@ -13,3 +13,4 @@ active_event_bundles:
   - the-drift-100.bundle.yml
   - viper-100.bundle.yml
   - pistol-ultra-100.bundle.yml
+  - warbird-100.bundle.yml

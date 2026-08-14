@@ -1,0 +1,578 @@
+# Warbird 100 — event data (imported by Events::Import via db/seeds.rb).
+# The Trail Sick Warbird page hosts the authorities: the aid station details
+# PDF (miles, leave-by clocks, drop/crew/pacer flags, coordinates), the race
+# info PDF (schedule pattern, rules, menu, gear, cutoff policy, course
+# description), the crew and pacer guide PDF, and the official course GPX;
+# the 2027 UltraSignup listing carries the current dates and start time.
+# Source decisions are documented in
+# docs/research/warbird-2027-source-audit.md.
+
+race:
+  name: Warbird 100
+  slug: warbird-100
+  year: 2027
+  state: KY
+  distance_mi: 102.2 # The aid table's cumulative frame; the race info PDF bills 103 miles, its CalTopo profile says 102.29, and the official GPX GPS-measures 102.19.
+  elevation_gain_ft: 15676 # The race info PDF's CalTopo elevation profile: +15676' / -15676' over 102.29 miles.
+  elevation_loss_ft: 15676
+  start_date: 2027-03-19
+  end_date: 2027-03-20
+  start_time: 7:00 AM
+  time_zone: America/New_York
+  cutoff_hours: 35 # "The cutoffs for Warbird 100 are based on maximum finishing time of 35 hours" — 7:00 AM Friday to 6:00 PM Saturday.
+  official_url: https://www.trailsick.com/warbird-100
+  registration_url: https://ultrasignup.com/register.aspx?did=139346
+  results_url: https://ultrasignup.com/register.aspx?did=139346 # The listing page carries the results tab; results_event.aspx redirects to entrants until 2027 results load.
+  registration_status: open # The 2027 listing sells all three distances ($325 for the 100, rising after October 30); registration closes March 15, 2027.
+  lottery: false # Direct UltraSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-13"
+    source_notes: "One large backcountry loop from the Leslie County RV Park south of Hyden, KY, almost entirely inside the Daniel Boone National Forest along the Redbird Crest Trail. Distance frames disagree: the aid table's cumulative column ends at 102.2 (governs pass miles), the race info PDF's prose bills 103 miles, its CalTopo profile says 102.29, and the official GPX GPS-measures 102.19. The aid table's Sugar Creek row prints 10:30 PM at mile 80.9 between the 7:00 AM Peabody and 12:55 PM SOGOTP rows — an AM/PM misprint recorded as 10:30 AM — and the finish row's longitude prints -8342894 with a missing decimal point. The race info PDF's drop-bag list quotes a second mile frame (32.40/38.70/48.49/52.79/61.11/71.94/81.48/92.56) against the aid table's rows; the table governs. The PDFs on the current page still carry the 2026 schedule dates (Friday March 13, 2026), while the 2027 listing gives Friday March 19 at 7:00 AM and the same 35-hour, 6:00 PM Saturday pattern. Cutoff policy: clocks at crew-accessible stations are non-negotiable check-out deadlines; at remote stations past cutoff, volunteers may encourage moving to the next crewed station."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-13"
+      course:
+        verified_on: "2026-08-13"
+      station_passes:
+        verified_on: "2026-08-13"
+      crew_pacers:
+        verified_on: "2026-08-13"
+      follow:
+        verified_on: "2026-08-13"
+      sources:
+        verified_on: "2026-08-13"
+    sources:
+      - &source_page
+        label: "Warbird 100 official page on trailsick.com"
+        url: "https://www.trailsick.com/warbird-100"
+        verified_on: "2026-08-13"
+      - &source_ultrasignup
+        label: "UltraSignup 2027 registration page (dates, 7:00 AM start, prices)"
+        url: "https://ultrasignup.com/register.aspx?did=139346"
+        verified_on: "2026-08-13"
+      - &source_aid_pdf
+        label: "Aid station details PDF (miles, leave-by clocks, drop/crew/pacer flags, coordinates)"
+        url: "https://www.trailsick.com/s/Warbird-100-Aid-Station-Details.pdf"
+        verified_on: "2026-08-13"
+      - &source_raceinfo_pdf
+        label: "Race info PDF (schedule pattern, rules, menu, gear, cutoff policy, course description)"
+        url: "https://www.trailsick.com/s/Warbird-100-Race-Info-Final.pdf"
+        verified_on: "2026-08-13"
+      - &source_crew_pdf
+        label: "Crew and pacer guide PDF"
+        url: "https://www.trailsick.com/s/Warbird-100-Crew-and-Pacer-Guide-Final.pdf"
+        verified_on: "2026-08-13"
+      - &source_gpx
+        label: "Official course GPX download (Warbird 100 Final)"
+        url: "https://www.trailsick.com/s/Warbird-100.gpx"
+        verified_on: "2026-08-13"
+      - &source_caltopo
+        label: "Organizer CalTopo course map"
+        url: "https://caltopo.com/m/7GMMGDC"
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Runners must check in and out of every aid station, follow the marked course (wrong turns must be retraced on foot), and may not store supplies along the trail; dogs and strollers are prohibited and all roads and trails stay open to the public. Mandatory gear: capacity for one liter of water, an emergency space blanket, and a headlamp for the night section (which may wait in a Bowens Creek drop bag); pepper spray is recommended for the Deer Lick drop bag against loose dogs on the five-mile road section before Single Track. Menu basics at every station: water, carb mix, Coke, Sprite, beer, and bourbon with hot foods (quesadillas, potatoes, pancakes, bacon) at key stations — remote stations may lack hot items. The medical policy provides care per each volunteer's certification level (first aid through EMT), with aid captains and the Race Director able to stop a runner on medical grounds. Cell coverage is very limited: none at Bowens Creek or Bear Creek, spotty at Peabody and Sugar Creek, strong at the start/finish. A shoe-changing area follows the river crossing after Bear Creek. The Ultrapacer course plan is published for pacing math."
+    overall_cutoff_label: "6:00 PM March 20, 2027"
+    overall_cutoff_notes: "35 hours from the 7:00 AM Friday start. Leave-by clocks at every station from Sawdust Pile on: check-out deadlines are non-negotiable at the crew-accessible stations, while at remote stations volunteers may encourage a runner past cutoff to move to the next crewed station rather than extract them. The aid table's Sugar Creek row prints 10:30 PM — an AM/PM misprint between the 7:00 AM and 12:55 PM rows either side, recorded as 10:30 AM."
+    pacer_rule_summary: "One pacer at a time, joining as early as Bowens Creek (mile 32.6, a drop-off-only location where a crew member may leave a pacer to wait) with trades or joins at the crew-accessible Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9). Pacers must inform an aid captain when joining or leaving, may use station amenities alongside their runner, may not mule, and are recommended to be 18 or older. Runners are not required to stay with their pacer."
+    drop_bag_summary: "One drop bag per runner per location at nine stations — Sawdust Pile, Bowens Creek, Oakley Cave, Bear Creek, Deer Lick, Single Track, Peabody, Sugar Creek, and Rattlesnake — no larger than a small backpack, labeled with name, bib number, and station, turned in by 6:15 PM the night before; bags return to the finish through Saturday and must be picked up by noon Sunday."
+    tracking_note: "No live tracking is published; results post on UltraSignup."
+  blurb: One giant Daniel Boone National Forest loop along the Redbird Crest Trail from the Leslie County RV Park near Hyden.
+  about: >-
+    The Warbird 100 runs one large backcountry loop through the hollers
+    and ridgelines of Leslie and Clay Counties in southeastern Kentucky,
+    almost entirely inside the Daniel Boone National Forest along the
+    Redbird Crest Trail from the Leslie County RV Park south of Hyden.
+    Start 7:00 AM Friday with a 35-hour cutoff (6:00 PM Saturday) and
+    leave-by clocks at fifteen stations along the way. Expect creek and
+    river crossings, long ridge climbs to a 2,062-foot high point, crew
+    access at three highway trailheads, pacers from mile 32.6, and drop
+    bags at nine stations deep in one of the most remote corners of the
+    state.
+  start_venue: Leslie County RV Park, 263639 US-421, Hyden, KY
+  finish_venue: Leslie County RV Park, 263639 US-421, Hyden, KY
+
+# Profile from the official GPX download's elevations, sampled per nominal
+# table mile; GPS miles are scaled to the aid table's 102.2-mile frame.
+elevation_series:
+  - [0, 964]
+  - [1, 1495]
+  - [2, 1566]
+  - [3, 1587]
+  - [4, 1698]
+  - [5, 1475]
+  - [6, 1643]
+  - [7, 1564]
+  - [8, 1586]
+  - [9, 1711]
+  - [10, 1664]
+  - [11, 1563]
+  - [12, 1475]
+  - [13, 1540]
+  - [14, 1439]
+  - [15, 1413]
+  - [16, 1433]
+  - [17, 967]
+  - [18, 1067]
+  - [19, 1446]
+  - [20, 1489]
+  - [21, 1505]
+  - [22, 1566]
+  - [23, 1697]
+  - [24, 1623]
+  - [25, 1343]
+  - [26, 1460]
+  - [27, 1523]
+  - [28, 1596]
+  - [29, 1566]
+  - [30, 1608]
+  - [31, 1592]
+  - [32, 1582]
+  - [33, 1202]
+  - [34, 1254]
+  - [35, 1472]
+  - [36, 1566]
+  - [37, 1625]
+  - [38, 1607]
+  - [39, 1559]
+  - [40, 1948]
+  - [41, 1743]
+  - [42, 1957]
+  - [43, 2010]
+  - [44, 1934]
+  - [45, 1903]
+  - [46, 1826]
+  - [47, 1660]
+  - [48, 1561]
+  - [49, 924]
+  - [50, 1609]
+  - [51, 1594]
+  - [52, 1623]
+  - [53, 1619]
+  - [54, 1658]
+  - [55, 1567]
+  - [56, 1497]
+  - [57, 1505]
+  - [58, 1573]
+  - [59, 1447]
+  - [60, 1248]
+  - [61, 1266]
+  - [62, 1600]
+  - [63, 1339]
+  - [64, 1476]
+  - [65, 1471]
+  - [66, 1568]
+  - [67, 1552]
+  - [68, 1308]
+  - [69, 1504]
+  - [70, 1459]
+  - [71, 914]
+  - [72, 895]
+  - [73, 902]
+  - [74, 1537]
+  - [75, 1539]
+  - [76, 1491]
+  - [77, 1535]
+  - [78, 1474]
+  - [79, 1506]
+  - [80, 1549]
+  - [81, 1525]
+  - [82, 1594]
+  - [83, 1713]
+  - [84, 1595]
+  - [85, 1496]
+  - [86, 1587]
+  - [87, 1322]
+  - [88, 953]
+  - [89, 1121]
+  - [90, 1192]
+  - [91, 1401]
+  - [92, 1635]
+  - [93, 1626]
+  - [94, 1581]
+  - [95, 1576]
+  - [96, 1585]
+  - [97, 1555]
+  - [98, 1647]
+  - [99, 1599]
+  - [100, 1579]
+  - [101, 1565]
+  - [102, 1067]
+
+# Station passes: the Start plus the aid table's sixteen rows around one
+# large loop (`match` = waypoint-name substring). Leave-by clocks map to
+# the 7:00 AM Friday start; only Sugar Creek's misprinted row carries a
+# pass-specific source note. Coordinates use the table's published values
+# where given and otherwise sit on the official GPX at the table mile.
+aid_stations:
+  - match: "Leslie County RV Park Start/Finish"
+    name: "Start — Leslie County RV Park"
+    direction: "Start"
+    mile: 0.0
+    elev: 964
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No mile-zero aid row is published; the first station is Coke Syrup at mile 9.8 and the race opens with a one-mile, 600-foot climb to the John Asher strip mine."
+    bathroom: null
+    park: "Check-in, packet pickup, and the pre-race meeting happen here the day before; drop bags are due by 6:15 PM that evening."
+    crew_notes: "The start/finish area is the crew hub, with tent camping and RV sites at the Leslie County RV Park and strong cell coverage."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Warbird 100 aid station details PDF"
+      source_url: "https://www.trailsick.com/s/Warbird-100-Aid-Station-Details.pdf"
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Every pass mile, leave-by clock, and drop/crew/pacer flag comes from the aid station details PDF's table; pacer and crew rules come from the race info and crew guide PDFs. Clocks map to a 7:00 AM Friday start and the 35-hour frame; they are non-negotiable check-out deadlines at crew-accessible stations, while remote stations past cutoff hand runners toward the next crewed station. Station coordinates use the table's published values where given (the finish longitude -8342894 is missing its decimal) and otherwise sit on the official GPX at the table mile; elevations are the GPX values there. The menu PDF covers every station's basics; hot foods concentrate at key stations. No station-level medical service is published — volunteers provide care per their certification level."
+      sources:
+        - *source_aid_pdf
+        - *source_raceinfo_pdf
+        - *source_crew_pdf
+        - *source_ultrasignup
+        - *source_gpx
+        - *source_page
+  - match: "Coke Syrup Aid Station"
+    name: "Coke Syrup"
+    direction: null
+    mile: 9.8
+    elev: 1621
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Sawdust Pile Aid Station"
+    name: "Sawdust Pile"
+    direction: null
+    mile: 17.0
+    elev: 967
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:05 PM"
+    cutoff_clock: "12:05 PM"
+    cutoff_elapsed_minutes: 305
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Amys Branch Aid Station"
+    name: "Amy's Branch"
+    direction: null
+    mile: 26.8
+    elev: 1553
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "2:55 PM"
+    cutoff_clock: "2:55 PM"
+    cutoff_elapsed_minutes: 475
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bowens Creek Aid Station"
+    name: "Bowens Creek"
+    direction: null
+    mile: 32.6
+    elev: 1257
+    crew: false
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "4:50 PM"
+    cutoff_clock: "4:50 PM"
+    cutoff_elapsed_minutes: 590
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "No crew access (limited parking), with one exception: a crew member may drop a pacer off here to wait for their runner."
+    pacer_notes: "Earliest pacer join point — a drop-off-only location at the mouth of Army Trail on KY-406 where a crew member may leave a pacer to wait; the course description recommends collecting a headlamp from the drop bag here before the long push to Bear Creek."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Oakley Cave Aid Station"
+    name: "Oakley Cave"
+    direction: null
+    mile: 39.2
+    elev: 1641
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "6:55 PM"
+    cutoff_clock: "6:55 PM"
+    cutoff_elapsed_minutes: 715
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; the last aid before a roughly ten-mile remote stretch to Bear Creek with no creeks to filter from."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bear Creek Aid Station"
+    name: "Bear Creek"
+    direction: null
+    mile: 48.9
+    elev: 943
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "10:35 PM"
+    cutoff_clock: "10:35 PM"
+    cutoff_elapsed_minutes: 935
+    aid: "Very well stocked with hot food options for the second half; a river crossing with a shoe-changing area follows the station."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-accessible: crews may meet and assist runners only at the crew-accessible stations, staying within 300 yards, with at most two crew vehicles per runner."
+    pacer_notes: "Pacer join or trade point: one pacer at a time; pacers must inform the aid captain when joining or leaving and may not mule."
+    road: "On KY-66 at the Bear Creek trailhead; runners cross the highway into the station. No cell coverage here."
+    source_metadata: *official_station_source
+  - match: "Deer Lick Aid Station"
+    name: "Deer Lick"
+    direction: null
+    mile: 53.4
+    elev: 1567
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:20 AM"
+    cutoff_clock: "12:20 AM"
+    cutoff_elapsed_minutes: 1040
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; the drop bag here is the recommended spot for pepper spray before the five-mile road section with loose dogs."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Single Track Aid Station"
+    name: "Single Track"
+    direction: null
+    mile: 60.7
+    elev: 1076
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "2:50 AM"
+    cutoff_clock: "2:50 AM"
+    cutoff_elapsed_minutes: 1190
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Big Double Aid Station"
+    name: "Big Double"
+    direction: null
+    mile: 65.5
+    elev: 1481
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "4:45 AM"
+    cutoff_clock: "4:45 AM"
+    cutoff_elapsed_minutes: 1310
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Peabody Aid Station"
+    name: "Peabody"
+    direction: null
+    mile: 71.4
+    elev: 818
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "7:00 AM"
+    cutoff_clock: "7:00 AM"
+    cutoff_elapsed_minutes: 1440
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: "Bathroom house at this station per the course description."
+    park: null
+    crew_notes: "Crew-accessible: crews may meet and assist runners only at the crew-accessible stations, staying within 300 yards, with at most two crew vehicles per runner."
+    pacer_notes: "Pacer join or trade point: one pacer at a time; pacers must inform the aid captain when joining or leaving and may not mule."
+    road: "Off KY-66 via Frank Bowling Road across a low-water bridge; cell coverage is spotty."
+    source_metadata: *official_station_source
+  - match: "Wardaddy Aid Station"
+    name: "Wardaddy"
+    direction: null
+    mile: 76.4
+    elev: 1492
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "8:55 AM"
+    cutoff_clock: "8:55 AM"
+    cutoff_elapsed_minutes: 1555
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Sugar Creek Aid Station"
+    name: "Sugar Creek"
+    direction: null
+    mile: 80.9
+    elev: 1512
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "10:30 AM"
+    cutoff_clock: "10:30 AM"
+    cutoff_elapsed_minutes: 1650
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: "Bathroom house at this station — the last until the finish."
+    park: null
+    crew_notes: "Crew-accessible: crews may meet and assist runners only at the crew-accessible stations, staying within 300 yards, with at most two crew vehicles per runner."
+    pacer_notes: "Pacer join or trade point: one pacer at a time; pacers must inform the aid captain when joining or leaving and may not mule."
+    road: "Reached by a one-lane gravel Forest Service road (Forestry/Game Reserve Road) with limited pullouts; signs on the FS roads direct crews to the Sugar Creek trailhead."
+    source_metadata: 
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 10:30 PM for this leave-by cutoff, but mile 80.9 sits between the 7:00 AM Peabody and 12:55 PM SOGOTP rows and the finish closes at 6:00 PM — an AM/PM misprint recorded as 10:30 AM (1,650 clock-derived minutes)."
+  - match: "SOGOTP Aid Station"
+    name: "SOGOTP"
+    direction: null
+    mile: 87.5
+    elev: 977
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "12:55 PM"
+    cutoff_clock: "12:55 PM"
+    cutoff_elapsed_minutes: 1795
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Rattlesnake Aid Station"
+    name: "Rattlesnake"
+    direction: null
+    mile: 91.8
+    elev: 1527
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "2:30 PM"
+    cutoff_clock: "2:30 PM"
+    cutoff_elapsed_minutes: 1890
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; the course description calls this the last shoe-and-sock change point after the final creek crossings."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Knoblick Aid Station"
+    name: "Knoblick"
+    direction: null
+    mile: 97.3
+    elev: 1461
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "4:25 PM"
+    cutoff_clock: "4:25 PM"
+    cutoff_elapsed_minutes: 2065
+    aid: "Menu basics: water, carb mix, Coke, Sprite, beer, and bourbon with cookies, bananas, oranges, pickles, and chips; hot foods are placed at key stations and may not reach the more remote ones."
+    bathroom: null
+    park: null
+    crew_notes: "Vehicles and crew members are prohibited at this station; crews may assist only at Bear Creek, Peabody, Sugar Creek, and the start/finish."
+    pacer_notes: "Not a pacer station: pacers join at Bowens Creek (32.6) or trade at Bear Creek (48.9), Peabody (71.4), and Sugar Creek (80.9), one at a time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Leslie County RV Park Start/Finish"
+    name: "Finish — Leslie County RV Park"
+    direction: "Finish"
+    mile: 102.2
+    elev: 964
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "6:00 PM"
+    cutoff_clock: "6:00 PM"
+    cutoff_elapsed_minutes: 2100
+    aid: "Post-race meal and refreshments for all finishers at the Leslie County RV Park."
+    bathroom: null
+    park: null
+    crew_notes: "The start/finish area is the crew hub; a post-race meal and refreshments wait for all finishers."
+    pacer_notes: "An accompanying pacer finishes alongside the runner; the aid table marks no pacer pickup at the finish."
+    road: null
+    source_metadata: *official_station_source
