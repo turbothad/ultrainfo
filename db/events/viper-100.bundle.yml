@@ -3,7 +3,7 @@ slug: viper-100
 files:
   race:
     path: viper-100.yml
-    sha256: cacc143b752dc882a3341a424efa834f5353509d55481af5ffc90cbdec52a832
+    sha256: bbd3c7b33efa6dcf5a99614eccb1ef5f2ae9f9f0716a6e09d0b2f8755a961faf
   course:
     path: viper-100.gpx
-    sha256: 12d3a8cf07dbb9665385be3d143bd036b1721ac4e629480778b754edbdea9c9d
+    sha256: 25df4f597a4233feb814dd606df7eb0b6c6791ab7e5a5d08009d44682f73d18f

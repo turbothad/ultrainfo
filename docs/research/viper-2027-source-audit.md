@@ -1,14 +1,14 @@
 # Viper 100 (2027) source audit
 
-Verified on 2026-08-14. This audit uses the organizer's 2027 UltraSignup
-event page (which carries the complete race manual), the Mamba Trail
+Verified on 2026-08-13. This audit uses the organizer's 2027 UltraSignup
+listing (which carries the complete race manual), the Mamba Trail
 Runners site, and the course loop the listing embeds from plotaroute. It
 records what those sources actually establish; it does not treat an
 organizer label as proof that a fact is current or internally consistent.
 
 ## Bottom line
 
-The record is publishable with a source warning. The 2027 UltraSignup page
+The record is publishable with a source warning. The 2027 UltraSignup listing
 is the primary source for everything: March 19–20, 2027; the 100 starts
 Friday 7:00 AM with a 41-hour cutoff (all distances conclude at midnight
 Saturday); a 33.4-mile Shelby Farms Park loop run three times; four
@@ -27,8 +27,8 @@ Recorded discrepancies and decisions:
    plotaroute loop GPS-measures 33.43 miles with a 23-foot closure; the
    billed 33.4 governs pass miles.
 3. **Course artifact vintage.** The embedded route (3232103) is named
-   "Viper 300 Route 2026", was drawn by the Race Director on February 18,
-   2026, and is the map the 2027 page presents as "Viper Course Loop -
+   "Viper 300 Route 2026", was drawn on February 18, 2026 by Mamba Trail
+   Runners founder James Boler, and is the map the 2027 listing presents as "Viper Course Loop -
    33.4 miles". Used for geometry only; re-check before race week.
 4. **Twin passes.** Bridge is visited at loop miles 7.4 and 14.4 — the
    two track passes run 61 feet apart under the Walnut Grove Road Bridge.
@@ -52,13 +52,13 @@ Recorded discrepancies and decisions:
 
 ## Source register
 
-All URLs below were opened or downloaded on 2026-08-14.
+All URLs below were opened or downloaded on 2026-08-13.
 
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
-| S1 | UltraSignup 2027 event page | https://ultrasignup.com/register.aspx?did=137755 | Primary source: "Viper 100 - March 19 - 20, 2027"; Hyde Lake Pavilion, Shelby Farms Park, Memphis/Cordova TN; distances 100 Mile / 107K / 53K / 25K with starts and cutoffs (100: Friday 7:00 AM, 41 hours; all conclude midnight Saturday, DST in effect); the aid station section (Bridge 7.4 & 14.4 no crew; Refuge 10.8 crew; Tour de Wolf 20.8 & 27.0 crew, drop bags, medical; Hyde Lake 33.4 crew, drop bags, hot food, sleep station); crew and drop-bag lists; the pacer section (100/107K only, after one full loop, one at a time, crew-accessible pickups and swaps, waiver and bib, no muling); race rules (no dropping down, no crewing outside aid stations, no caching, on foot only, IV/oxygen ends the race); live tracking sentence; parking at the TDW Pavilion; packet pickup; deferral ladder; open registration $250. |
+| S1 | UltraSignup 2027 registration page | https://ultrasignup.com/register.aspx?did=137755 | Primary source: "Viper 100 - March 19 - 20, 2027"; Hyde Lake Pavilion, Shelby Farms Park, Memphis/Cordova TN; distances 100 Mile / 107K / 53K / 25K with starts and cutoffs (100: Friday 7:00 AM, 41 hours; all conclude midnight Saturday, DST in effect); the aid station section (Bridge 7.4 & 14.4 no crew; Refuge 10.8 crew; Tour de Wolf 20.8 & 27.0 crew, drop bags, medical; Hyde Lake 33.4 crew, drop bags, hot food, sleep station); crew and drop-bag lists; the pacer section (100/107K only, after one full loop, one at a time, crew-accessible pickups and swaps, waiver and bib, no muling); race rules (no dropping down, no crewing outside aid stations, no caching, on foot only, IV/oxygen ends the race); live tracking sentence; parking at the TDW Pavilion; packet pickup; deferral ladder; open registration $250. |
 | S2 | Mamba Trail Runners site | https://www.mambatrailrunners.com/ | Organizer hub; links every race (including this listing) to UltraSignup; no separate Viper page or GPX. |
-| S3 | Course loop on plotaroute | https://www.plotaroute.com/route/3232103 | Geometry authority, embedded on S1 as "Viper Course Loop - 33.4 miles": route "Viper 300 Route 2026" by the Race Director (drawn 2026-02-18), circular, 53,868 m (33.43 GPS miles, 23 ft closure), 2,313 points, no elevations; plotaroute computes 324 m ascent / 325 m descent per loop. `db/events/viper-100.gpx` copies the points exactly and adds waypoints at each station's first loop mile. The page also embeds route 3244380 ("Viper 25k") for the 25K, not used here. |
+| S3 | Course loop on plotaroute | https://www.plotaroute.com/route/3232103 | Geometry authority, embedded on S1 as "Viper Course Loop - 33.4 miles": route "Viper 300 Route 2026" by Mamba founder James Boler (drawn 2026-02-18), circular, 53,868 m per its distance field; the 2,313-point line haversine-measures 33.43 miles with a 23-foot closure and carries no elevations; plotaroute computes 324 m ascent / 325 m descent per loop. `db/events/viper-100.gpx` copies the points exactly and adds waypoints at each station's first loop mile. The page also embeds route 3244380 ("Viper 25k") for the 25K, not used here. |
 
 ## Claim-level decisions
 

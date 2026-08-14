@@ -1,5 +1,5 @@
 # Viper 100 — event data (imported by Events::Import via db/seeds.rb).
-# The 2027 UltraSignup event page is the primary source for every race fact:
+# The 2027 UltraSignup listing is the primary source for every race fact:
 # dates, starts, the 41-hour cutoff, the per-loop aid table, crew, pacer,
 # and drop-bag rules. Course geometry copies the page's embedded plotaroute
 # loop; elevations are USGS 3DEP spot values. Source decisions are
@@ -21,39 +21,39 @@ race:
   official_url: https://www.mambatrailrunners.com/
   registration_url: https://ultrasignup.com/register.aspx?did=137755
   results_url: https://ultrasignup.com/results_event.aspx?did=137755
-  registration_status: open # The 2027 UltraSignup page sells all four distances ($250 for the 100).
+  registration_status: open # The 2027 UltraSignup listing sells all four distances ($250 for the 100).
   lottery: false # Direct UltraSignup registration.
   source_metadata:
     verification_status: warning
-    verified_on: "2026-08-14"
-    source_notes: "A three-loop race on a 33.4-mile Shelby Farms Park loop in Memphis, TN, sharing race weekend with the 107K (two loops), 53K, and 25K; every distance finishes at Hyde Lake Pavilion. The 2027 UltraSignup event page carries the complete race manual (dates, cutoff, per-loop aid table, crew, pacer, and drop-bag rules) and embeds the course as plotaroute route 3232103 — created by the Race Director, named `Viper 300 Route 2026`, drawn February 18, 2026, and GPS-measuring 33.43 miles against the billed 33.4, which governs pass miles. Four physical stations produce six passes per loop: Bridge is visited at loop miles 7.4 and 14.4 (the two track passes run 61 feet apart) and Tour de Wolf at 20.8 and 27.0 (the two passes cross about 0.18 mile apart across the pavilion area; the waypoint sits at the first pass). No intermediate cutoffs are published — only the 41-hour finish. run100s' row is stale twice: its 3/12-13/27 dates and 38-hour cutoff have no counterpart on the 2027 listing (March 19-20, 41 hours)."
+    verified_on: "2026-08-13"
+    source_notes: "A three-loop race on a 33.4-mile Shelby Farms Park loop in Memphis, TN, sharing race weekend with the 107K (two loops), 53K, and 25K; every distance finishes at Hyde Lake Pavilion. The 2027 UltraSignup listing carries the complete race manual (dates, cutoff, per-loop aid table, crew, pacer, and drop-bag rules) and embeds the course as plotaroute route 3232103 — drawn February 18, 2026 by Mamba Trail Runners founder James Boler and named `Viper 300 Route 2026`, and GPS-measuring 33.43 miles against the billed 33.4, which governs pass miles. Four physical stations produce six passes per loop: Bridge is visited at loop miles 7.4 and 14.4 (the two track passes run 61 feet apart) and Tour de Wolf at 20.8 and 27.0 (the two passes cross about 0.18 mile apart across the pavilion area; the waypoint sits at the first pass). No intermediate cutoffs are published — only the 41-hour finish. run100s' row is stale twice: its 3/12-13/27 dates and 38-hour cutoff have no counterpart on the 2027 listing (March 19-20, 41 hours)."
     section_verifications:
       race_facts:
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       course:
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       station_passes:
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       crew_pacers:
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       follow:
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       sources:
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
     sources:
       - &source_ultrasignup
         label: "UltraSignup 2027 registration page (the organizer's full race manual)"
         url: "https://ultrasignup.com/register.aspx?did=137755"
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       - &source_mamba
         label: "Mamba Trail Runners site home"
         url: "https://www.mambatrailrunners.com/"
-        verified_on: "2026-08-14"
+        verified_on: "2026-08-13"
       - &source_plotaroute
-        label: "Course loop on plotaroute (route 3232103, embedded on the 2027 page)"
+        label: "Course loop on plotaroute (route 3232103, embedded on the 2027 listing)"
         url: "https://www.plotaroute.com/route/3232103"
-        verified_on: "2026-08-14"
-    notes: "Checked against first-party sources on August 14, 2026. Rules from the 2027 listing: no dropping down in distance (register for the 100, finish 100 miles or DNF); no muling; crew may assist only at fully manned aid stations and no outside assistance is allowed anywhere else; stay on the marked course; drop bags only at designated stations and no caching supplies; the course must be completed on foot; an IV, oxygen, or serious injury ends the race; trekking poles and headphones allowed with courtesy rules. Race parking is at the Tour de Wolf Pavilion parking area, where runners pass their vehicles twice each loop. Packet pickup is Thursday, March 18, 3:00-7:00 PM at Hyde Lake Pavilion and reopens at 9:00 AM Friday. Deferral credits run 50% at 60 days out and 25% at 30 days out, with none after March 1, 2027."
+        verified_on: "2026-08-13"
+    notes: "Checked against first-party sources on August 13, 2026. Rules from the 2027 listing: no dropping down in distance (register for the 100, finish 100 miles or DNF); no muling; crew may assist only at fully manned aid stations and no outside assistance is allowed anywhere else; stay on the marked course; drop bags only at designated stations and no caching supplies; the course must be completed on foot; an IV, oxygen, or serious injury ends the race; trekking poles and headphones allowed with courtesy rules. Race parking is at the Tour de Wolf Pavilion parking area, where runners pass their vehicles twice each loop. Packet pickup is Thursday, March 18, 3:00-7:00 PM at Hyde Lake Pavilion and reopens at 9:00 AM Friday. Registrations are non-refundable and non-transferable; deferral credits run 50% at 60 days out and 25% at 30 days out, with none after March 1, 2027."
     overall_cutoff_label: "12:00 AM March 21, 2027"
     overall_cutoff_notes: "41 hours from the Friday 7:00 AM start — the listing words it as all race distances concluding at Midnight on Saturday, March 20, 2027, and notes daylight saving time is already in effect. No intermediate cutoffs are published."
     pacer_rule_summary: "Pacers are permitted for the 100 Mile and 107K only, one on course at a time, after the runner completes one full loop (33.4 miles). Once eligible, a pacer may join at any crew-accessible station during the second loop — Refuge, Tour de Wolf, or Hyde Lake Pavilion — and pacer swaps happen at crew-accessible stations. Pacers sign a waiver, wear a pacer bib, may not carry any supplies for their runner, and must enter and leave stations with their runner."
@@ -208,10 +208,10 @@ aid_stations:
     road: null
     source_metadata: &official_station_source
       verification_status: warning
-      source_label: "Viper 2027 UltraSignup event page aid station information"
+      source_label: "Viper 2027 UltraSignup listing aid station information"
       source_url: "https://ultrasignup.com/register.aspx?did=137755"
-      verified_on: "2026-08-14"
-      source_notes: "Verified on is the retrieval date, not the material's effective year. Every pass mile and crew/pacer/drop-bag flag comes from the aid station, crew access, and pacer sections of the 2027 UltraSignup event page; no intermediate cutoffs are published, so only the finish pass carries the 41-hour clock. Station coordinates sit on the embedded plotaroute loop at each station's first published loop mile; elevations are USGS 3DEP spot values at those coordinates. Stations are stocked with hydration and nutrition (hot food at Hyde Lake, medical support at Tour de Wolf); potability is never certified."
+      verified_on: "2026-08-13"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Every pass mile and crew/pacer/drop-bag flag comes from the aid station, crew access, and pacer sections of the 2027 UltraSignup listing; no intermediate cutoffs are published, so only the finish pass carries the 41-hour clock. Station coordinates sit on the embedded plotaroute loop at each station's first published loop mile; elevations are USGS 3DEP spot values at those coordinates. Stations are stocked with hydration and nutrition (hot food at Hyde Lake, medical support at Tour de Wolf); potability is never certified."
       sources:
         - *source_ultrasignup
         - *source_plotaroute
