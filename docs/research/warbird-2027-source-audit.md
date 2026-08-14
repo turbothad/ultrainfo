@@ -53,8 +53,9 @@ Recorded discrepancies and decisions:
    mile 44.
 8. **Station coordinates.** The table publishes coordinates only for
    Bowens Creek, Bear Creek, Peabody, Sugar Creek, and the finish; those
-   land 58–646 feet from the GPX line (parking/trailhead spots) and are
-   used as published. Other stations sit on the GPX at their table mile.
+   sit 17–178 feet from the GPX line (parking/trailhead spots — up to
+   about 650 feet from the point at the exact table mile) and are used
+   as published. Other stations sit on the GPX at their table mile.
 9. **Medical.** No station-level service is guaranteed: volunteers
    "provide care based on their level of certification (first-aid,
    wilderness first-aid, CPR, EMT, etc.)". `med` stays null everywhere.
@@ -107,5 +108,8 @@ All URLs below were opened or downloaded on 2026-08-13.
   re-check geometry before race week.
 - The aid table's Sugar Creek 10:30 PM and finish longitude -8342894
   misprints may be corrected in a future PDF revision.
+- The pepper-spray recommendation is self-conflicting: the gear list
+  says "for the Bear Creek Aid Station drop bags" while the crew guide
+  and course description point to Deer Lick before the dog section.
 - run100s' 35-hour figure matches; its climb column was blank, and the
   organizer profile's +15,676' now fills it.

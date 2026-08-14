@@ -3,7 +3,7 @@ slug: warbird-100
 files:
   race:
     path: warbird-100.yml
-    sha256: cf939f77e40459a62eced43c481d27774db39f84bc769cb432baa5d8db7b9ab1
+    sha256: a06cdd78d3bf81e54b11a63b68d52f33e50382a3e57e8b0c8699e5f55a90d172
   course:
     path: warbird-100.gpx
     sha256: f3d0ca269cab17f6389edd8207d1983d15af713b8e5a98c5b98d878f900a85d9
