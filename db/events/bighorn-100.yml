@@ -111,6 +111,8 @@ race:
     crew_drive_label: "Ultrainfo routing estimate between selected aid-station crew stops; it omits official non-aid crewing points and includes difficult walk/shuttle access."
     pacer_rule_summary: "Pacers are for 100-mile runners only. General pacing begins at Sally's Footbridge outbound and may continue to the finish. Pickup or transfer is listed at Sally's outbound, Jaws, Sally's inbound, and Dry Fork inbound. The pacer page incorrectly calls Jaws mile 52; current course sources place it at mile 48."
     drop_bag_summary: "The organizer asks runners to combine each location's outbound and inbound supplies into one larger bag at Dry Fork and Sally's Footbridge. Jaws is a single turnaround pass."
+    drop_bag_url: "https://bighorntrailrun.com/drop-bags-1"
+    tracking_note: "SPOT tracking was announced for the race, but no durable public 2026 map link was verified."
   terrain_artifacts:
     status: generated
     path: "/terrain/bighorn-100.json"

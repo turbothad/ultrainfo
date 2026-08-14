@@ -89,7 +89,9 @@
     <% if @race.source_metadata["drop_bag_summary"].present? %>
       <p class="mt-3 border-l-2 border-pine bg-card px-3 py-2 text-xs leading-relaxed text-stone">
         <strong class="text-ink">Drop-bag handling:</strong> <%= @race.source_metadata["drop_bag_summary"] %>
-        <%= link_to "Official guidance ↗", "https://bighorntrailrun.com/drop-bags-1", target: "_blank", rel: "noopener", class: "ml-1 font-semibold text-pine hover:text-ink" %>
+        <% if @race.source_metadata["drop_bag_url"].present? %>
+          <%= link_to "Official guidance ↗", @race.source_metadata["drop_bag_url"], target: "_blank", rel: "noopener", class: "ml-1 font-semibold text-pine hover:text-ink" %>
+        <% end %>
       </p>
     <% end %>
 
@@ -155,7 +157,7 @@
         <% if @race.tracking_url.present? %>
           <%= link_to "Open tracking ↗", @race.tracking_url, target: "_blank", rel: "noopener", class: "mt-2 inline-block text-sm font-semibold text-pine hover:text-ink" %>
         <% else %>
-          <p class="mt-2 text-sm text-stone">SPOT tracking was announced for the race, but no durable public 2026 map link was verified.</p>
+          <p class="mt-2 text-sm text-stone"><%= @race.source_metadata["tracking_note"].presence || "No public tracking link has been verified for this race." %></p>
         <% end %>
       </div>
       <div class="border border-ink/10 bg-card p-4">

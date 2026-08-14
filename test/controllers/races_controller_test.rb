@@ -70,6 +70,29 @@ class RacesControllerTest < ActionDispatch::IntegrationTest
     assert_select "#sources a[href='https://example.test/guide']", /Race guide/i
   end
 
+  test "drop-bag guidance link and tracking note come from the Race's own sources" do
+    @race.update!(
+      source_metadata: {
+        "verification_status" => "verified",
+        "drop_bag_summary" => "Bags go to the start only.",
+        "tracking_note" => "Trackleaders tracking is required for every racer."
+      }
+    )
+
+    get race_path(@race)
+
+    assert_response :success
+    assert_select "a[href='https://bighorntrailrun.com/drop-bags-1']", count: 0
+    assert_select "#aid-stations", /Bags go to the start only/
+    assert_select "#follow", /Trackleaders tracking is required/
+
+    @race.update!(source_metadata: { "verification_status" => "verified" })
+
+    get race_path(@race)
+
+    assert_select "#follow", /No public tracking link has been verified for this race/
+  end
+
   test "legacy role pages permanently redirect to canonical sections" do
     get runner_race_path(@race)
     assert_redirected_to race_path(@race, anchor: "aid-stations")

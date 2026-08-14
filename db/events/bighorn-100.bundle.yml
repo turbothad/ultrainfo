@@ -3,7 +3,7 @@ slug: bighorn-100
 files:
   race:
     path: bighorn-100.yml
-    sha256: 45d5ed291fa3406e58e40ccd9418e5ea1a981f8d6765ba7dea9685a2eb12a367
+    sha256: 4758244c9d1e52d5e995cd1e3bafcf1a280b861d352cbfe01f18ee4ca838b57b
   course:
     path: bighorn-100.gpx
     sha256: 23b61f90e7e4931e55cadb9dbc2f781043c0290638a83958b1331a91e0ea2cd5
