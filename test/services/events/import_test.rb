@@ -10,7 +10,8 @@ module Events
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
                      "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
-                     "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M" ], published_races.map(&:name)
+                     "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
+                     "Skunk Ape 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -541,6 +542,34 @@ module Events
                    "noon Friday plus 35 hours"
       assert_includes canyons.source_metadata.fetch("sources").pluck("url"),
                       "https://canyons.utmb.world/races/100M"
+
+      skunk_ape = published_races.find { |published| published.slug == "skunk-ape-100" }
+      assert_equal 2027, skunk_ape.year
+      assert_equal Date.new(2027, 4, 24), skunk_ape.start_date
+      assert skunk_ape.open?
+      assert_equal 36, skunk_ape.cutoff_hours
+      assert_equal 103.5, skunk_ape.distance_mi.to_f,
+                   "the cutoff table's cumulative frame: the 51.76 halfway doubled"
+      assert_equal 3_124, skunk_ape.elevation_gain_ft, "1,562 feet per loop, doubled; run100s' 2,790 is stale"
+      assert_equal 19, skunk_ape.aid_stations.count, "the segment list and cutoff table's nineteen rows"
+      assert_equal 6, skunk_ape.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "the organizer CalTopo map's six station markers"
+      assert_equal 2, skunk_ape.aid_stations.where(direction: "Turnaround").count,
+                   "both Pruitt Trailhead passes"
+      assert_equal 19, skunk_ape.aid_stations.where(crew_accessible: true).count,
+                   "all the aid stations have crew access, and the Santos hub is the crew base"
+      assert_equal 9, skunk_ape.aid_stations.count(&:pacer_access?),
+                   "pacers after 50 miles: the Santos halfway through Land Bridge 96.42"
+      assert_equal 8, skunk_ape.aid_stations.count(&:drop_bag?),
+                   "every 49th Ave and Pruitt pass, plus both Ross Prairie passes for 100-milers"
+      assert_equal 6, skunk_ape.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "five complete-by clocks plus the finish"
+      assert_equal "19h", skunk_ape.aid_stations.find_by!(mile: 51.76).cutoff_elapsed_label,
+                   "the first round of the course by the 19th hour"
+      assert_equal Time.find_zone("America/New_York").parse("2027-04-25 7:00 PM"), skunk_ape.final_cutoff_at,
+                   "36 hours from the Saturday 7:00 AM start (the listing's April 26th print is a date typo)"
+      assert_includes skunk_ape.source_metadata.fetch("sources").pluck("url"),
+                      "https://ultrasignup.com/register.aspx?did=142072"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

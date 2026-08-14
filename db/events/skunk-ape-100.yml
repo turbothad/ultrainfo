@@ -1,0 +1,623 @@
+# Skunk Ape 100 — event data (imported by Events::Import via db/seeds.rb).
+# The UltraSignup 2027 listing is the race's primary public page (dates,
+# start, fees, course, segment distances, cutoff ladder, crew, pacer, and
+# drop-bag rules); the organizer CalTopo map it links is the geometry
+# authority; USGS 3DEP point elevations supply the profile because the
+# CalTopo lines are two-dimensional. Source decisions are documented in
+# docs/research/skunk-ape-2027-source-audit.md.
+
+race:
+  name: Skunk Ape 100
+  slug: skunk-ape-100
+  year: 2027
+  state: FL
+  distance_mi: 103.5 # The cutoff table's cumulative frame: the Santos halfway prints 51.76 (doubled 103.52; the listing's 36-hour pace math implies ~103.4); the segment list sums to 52.39 per loop and the CalTopo loop GPS-measures 51.61.
+  elevation_gain_ft: 3124 # "Elevation Gain: 1,562' (Double that for the 100 Mile)" — outbound +871'/-865', in-bound +691'/-701' per loop.
+  elevation_loss_ft: 3132
+  start_date: 2027-04-24
+  end_date: 2027-04-25
+  start_time: 7:00 AM
+  time_zone: America/New_York
+  cutoff_hours: 36 # "Cut-Off: 36 Hours" — the finish closes 7:00 PM Sunday.
+  official_url: https://ultrasignup.com/register.aspx?did=142072
+  registration_url: https://ultrasignup.com/register.aspx?did=142072
+  results_url: https://ultrasignup.com/register.aspx?did=129761 # The 2026 listing carries the results.
+  registration_status: open # The 2027 listing sells the 100 ($262 plus fees; closes April 20, 2027 at 11:59 PM ET).
+  lottery: false # Direct UltraSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "A flat double loop on the Florida National Scenic Trail and the paved trails of the Marjorie Harris Carr Cross Florida Greenway from the Santos Trailhead in Ocala, FL: out through the Ross Prairie Wildlife Management Area to the Pruitt Trailhead turnaround, back on the Florida Trail bypassing Ross Prairie, done twice. The 2027 UltraSignup listing is fully 2027-frame (April 24-25, 2027; 7:00 AM; 36 hours; open registration closing April 20, 2027) and is the race's primary public page — the listed event website is a login-walled Facebook page. The organizer's own mileage surfaces conflict at the plus-or-minus-one-mile level: the per-segment list sums the loop to 52.39, the cutoff table prints the Santos halfway at 51.76, and the organizer CalTopo loop GPS-measures 51.61; the cutoff table's cumulative frame governs (halfway 51.76, total 103.5), and the loop-two cumulative cutoffs (80.02, 86.52, 92.52, 96.42) govern those passes against the segment chain's 81.05 arithmetic, with pass-specific notes. All cutoff clocks print 'April 26th Sunday', but the race Sunday is April 25, 2027 — the weekday-plus-clock frame is internally consistent with 36 hours from the Saturday 7:00 AM start. run100s' 2,790-foot climb has no counterpart (the listing says 1,562 feet per loop, doubled to 3,124)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_us_2027
+        label: "UltraSignup 2027 listing (the race's primary public page: dates, start, fees, course, cutoffs, crew, pacers, drop bags)"
+        url: "https://ultrasignup.com/register.aspx?did=142072"
+        verified_on: "2026-08-14"
+      - &source_caltopo
+        label: "Organizer CalTopo course map (lines and station markers)"
+        url: "https://caltopo.com/m/GHHF0"
+        verified_on: "2026-08-14"
+      - &source_us_2026
+        label: "UltraSignup 2026 listing (April 25, 2026; results)"
+        url: "https://ultrasignup.com/register.aspx?did=129761"
+        verified_on: "2026-08-14"
+      - &source_epqs
+        label: "USGS 3DEP point elevation service (series and station spots; the CalTopo lines carry no elevations)"
+        url: "https://epqs.nationalmap.gov/v1/json"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. The Skunk Ape 100 Mile Endurance Run by Skunk Ape Events. Pre-race packet pickup and the Central Florida Trail Fest run Friday April 23, 4-9 PM at the Santos Trailhead; camping is available at the 25-site Santos Campground by the start. Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles; band-aid and hygiene boxes sit at every station but no station-level medical staffing is published. Out-bound is marked with pink ribbons in trees, in-bound with pink flags at ground level, both with reflectors. Finishers earn the belt buckle; the top four men and women take wooden trophies. The 2027 Guidebook and Rules are 'Coming Soon' on the listing."
+    overall_cutoff_label: "7:00 PM April 25, 2027"
+    overall_cutoff_notes: "36 hours from the Saturday 7:00 AM start. The ladder: Santos halfway (51.76) by 2:00 AM, Pruitt Trailhead (80.02) by 10:52 AM, St. Rt. 200 (86.52) by 1:07 PM, 49th Ave (92.52) by 3:13 PM, Land Bridge (96.42) by 4:33 PM (printed 4:33:32 PM), finish by 7:00 PM. The listing prints every cutoff as 'April 26th Sunday', but the race Sunday is April 25, 2027; the clocks are internally consistent with the 36-hour frame."
+    pacer_rule_summary: "100-milers may pick up a pacer after 50 miles — from the Santos halfway (51.76) onward. Pacers may, and are encouraged to, help the runner navigate. Runners over the age of 60, or others needing special assistance, may have a pacer at any time. Pacers are not allowed drop bags."
+    drop_bag_summary: "Collected at the start. Two locations for everyone — the 49th Avenue and Pruitt Trailhead stations — plus a third for 100-milers at Ross Prairie. Mark bags with the station name and your name in duck tape; keep them no larger than a standard drawstring bag. Bags return to the start/finish only after their station packs up, though every station is drivable for early pickup."
+    tracking_note: "No live tracking is published; results post on UltraSignup."
+  blurb: A flat Florida Trail and Cross Florida Greenway double loop from the Santos Trailhead in Ocala with 36 hours on the clock.
+  about: >-
+    The Skunk Ape 100 runs the Marjorie Harris Carr Cross Florida
+    Greenway twice from the Santos Trailhead in Ocala — out on the
+    Florida National Scenic Trail through sand pine scrub and the Ross
+    Prairie Wildlife Management Area to the Pruitt Trailhead
+    turnaround, back on the Florida Trail and the paved Greenway path.
+    Single track, sand, roots, and short climbs past the highest most
+    southern switchback in the United States, with about 3,100 feet of
+    gain across 103.5 miles, crew access at every station, pacers from
+    the halfway, and 36 hours to the buckle.
+  start_venue: Santos Trailhead, 3080 S.E. 80th St, Ocala, FL
+  finish_venue: Santos Trailhead, 3080 S.E. 80th St, Ocala, FL
+
+# Profile from USGS 3DEP point elevations (epqs.nationalmap.gov) sampled
+# per nominal mile along the organizer CalTopo loop traversed twice; GPS
+# miles are scaled to the cutoff table's 103.5-mile frame (the drawn loop
+# GPS-measures 51.61 miles against the published 51.76-mile half).
+elevation_series:
+  - [0, 80]
+  - [1, 64]
+  - [2, 64]
+  - [3, 74]
+  - [4, 70]
+  - [5, 69]
+  - [6, 77]
+  - [7, 69]
+  - [8, 97]
+  - [9, 98]
+  - [10, 74]
+  - [11, 69]
+  - [12, 64]
+  - [13, 63]
+  - [14, 90]
+  - [15, 104]
+  - [16, 69]
+  - [17, 51]
+  - [18, 67]
+  - [19, 52]
+  - [20, 51]
+  - [21, 59]
+  - [22, 55]
+  - [23, 55]
+  - [24, 68]
+  - [25, 63]
+  - [26, 58]
+  - [27, 61]
+  - [28, 61]
+  - [29, 63]
+  - [30, 64]
+  - [31, 84]
+  - [32, 90]
+  - [33, 88]
+  - [34, 60]
+  - [35, 53]
+  - [36, 71]
+  - [37, 98]
+  - [38, 83]
+  - [39, 78]
+  - [40, 82]
+  - [41, 59]
+  - [42, 83]
+  - [43, 58]
+  - [44, 57]
+  - [45, 74]
+  - [46, 71]
+  - [47, 64]
+  - [48, 72]
+  - [49, 76]
+  - [50, 71]
+  - [51, 70]
+  - [52, 95]
+  - [53, 62]
+  - [54, 74]
+  - [55, 73]
+  - [56, 68]
+  - [57, 72]
+  - [58, 78]
+  - [59, 80]
+  - [60, 93]
+  - [61, 93]
+  - [62, 68]
+  - [63, 67]
+  - [64, 65]
+  - [65, 71]
+  - [66, 73]
+  - [67, 102]
+  - [68, 64]
+  - [69, 55]
+  - [70, 60]
+  - [71, 55]
+  - [72, 54]
+  - [73, 61]
+  - [74, 51]
+  - [75, 60]
+  - [76, 83]
+  - [77, 82]
+  - [78, 61]
+  - [79, 59]
+  - [80, 63]
+  - [81, 62]
+  - [82, 61]
+  - [83, 61]
+  - [84, 88]
+  - [85, 63]
+  - [86, 73]
+  - [87, 55]
+  - [88, 69]
+  - [89, 81]
+  - [90, 88]
+  - [91, 91]
+  - [92, 68]
+  - [93, 87]
+  - [94, 80]
+  - [95, 59]
+  - [96, 58]
+  - [97, 75]
+  - [98, 73]
+  - [99, 65]
+  - [100, 65]
+  - [101, 72]
+  - [102, 63]
+  - [103, 79]
+  - [103.5, 80]
+
+# Station passes: the listing's segment list and cutoff table — the
+# Start, seventeen mid-race passes over five aid stations plus the Santos
+# halfway (Land Bridge x4, 49th Ave x4, Ross Prairie x2, St. Rt. 200 x4,
+# Pruitt x2, Santos x1), and the Finish. The two Pruitt passes are the
+# Turnarounds; other mid passes are unlabeled per the domain vocabulary.
+# Loop-one miles chain the published segment distances; the Santos
+# halfway and the four loop-two cutoff rows carry the cutoff table's
+# printed cumulative miles (conflicts noted per pass). Coordinates copy
+# the organizer CalTopo markers (`match` = waypoint-name substring);
+# elevations are USGS 3DEP values at the station coordinates.
+aid_stations:
+  - match: "Start/Finish"
+    name: "Start — Santos Trailhead"
+    direction: "Start"
+    mile: 0.0
+    elev: 80
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No mile-zero aid row is published; drop bags are collected here and the first station is Land Bridge at 6.65."
+    bathroom: null
+    park: null
+    crew_notes: "The Santos hub is the crew base, with a crew tent area; camping at the Santos Campground sits by the start."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "UltraSignup 2027 listing (segment distances and cutoff table)"
+      source_url: "https://ultrasignup.com/register.aspx?did=142072"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles chain the listing's segment distances for loop one; the Santos halfway and the four loop-two cutoff rows carry the cutoff table's printed cumulative miles (its frame governs the 52.39 segment-sum arithmetic and the 51.61-mile drawn loop). Crew, pacer, drop-bag, and aid facts come from the same listing. Station coordinates copy the organizer CalTopo markers; elevations are USGS 3DEP values at those coordinates."
+      sources:
+        - *source_us_2027
+        - *source_caltopo
+        - *source_epqs
+        - *source_us_2026
+  - match: "Land Bridge"
+    name: "Land Bridge"
+    direction: null
+    mile: 6.65
+    elev: 76
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "49th Ave"
+    name: "49th Ave"
+    direction: null
+    mile: 10.45
+    elev: 82
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. Drop-bag location for all runners."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Ross Prairie"
+    name: "Ross Prairie"
+    direction: null
+    mile: 17.59
+    elev: 64
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. Drop-bag location for 100-milers. Out-bound only: the in-bound route bypasses Ross Prairie."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "St. Rd. 200"
+    name: "St. Rt. 200"
+    direction: null
+    mile: 23.29
+    elev: 58
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Pruitt Trailhead"
+    name: "Pruitt Trailhead"
+    direction: "Turnaround"
+    mile: 29.29
+    elev: 64
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. The turnaround point and a drop-bag location for all runners."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "St. Rd. 200"
+    name: "St. Rt. 200"
+    direction: null
+    mile: 35.29
+    elev: 58
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata: *official_station_source
+  - match: "49th Ave"
+    name: "49th Ave"
+    direction: null
+    mile: 41.79
+    elev: 82
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. Drop-bag location for all runners."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The listing's in-bound St. Rt. 200-to-49th Ave segment prints 6.5 miles (35.29 + 6.5 = 41.79), but the drawn line measures that leg at 6.03 and crosses the marker at scaled mile 41.20 — the published distance governs the pass mile."
+  - match: "Land Bridge"
+    name: "Land Bridge"
+    direction: null
+    mile: 45.69
+    elev: 76
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "No pacer yet: 100-milers may pick up a pacer after 50 miles, from the Santos halfway (51.76) onward; runners over 60 or needing special assistance may have one at any time."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The published chain puts this pass at 45.69, where the drawn line crosses the marker at scaled mile 44.99 — the published distance governs."
+  - match: "Start/Finish"
+    name: "Santos Trailhead"
+    direction: null
+    mile: 51.76
+    elev: 80
+    crew: true
+    water: null
+    pacer: true
+    drop: false
+    food: false
+    med: null
+    cutoff: "2:00 AM"
+    cutoff_clock: "2:00 AM"
+    cutoff_elapsed_minutes: 1140
+    aid: "No aid row is published for the Santos halfway; drop bags return here after stations pack up, and the next station is Land Bridge at 58.41."
+    bathroom: null
+    park: null
+    crew_notes: "The Santos hub is the crew base, with a crew tent area."
+    pacer_notes: "Pacer pickup: 100-milers may pick up a pacer after 50 miles, from here onward."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The cutoff table prints the halfway at 51.76 ('Runners must complete the first round of the course by the 19th Hour'); the segment list sums the loop to 52.39 and the drawn loop GPS-measures 51.61 — the cutoff table's cumulative frame governs."
+  - match: "Land Bridge"
+    name: "Land Bridge"
+    direction: null
+    mile: 58.41
+    elev: 76
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata: *official_station_source
+  - match: "49th Ave"
+    name: "49th Ave"
+    direction: null
+    mile: 62.21
+    elev: 82
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. Drop-bag location for all runners."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Ross Prairie"
+    name: "Ross Prairie"
+    direction: null
+    mile: 69.35
+    elev: 64
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. Drop-bag location for 100-milers. Out-bound only: the in-bound route bypasses Ross Prairie."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata: *official_station_source
+  - match: "St. Rd. 200"
+    name: "St. Rt. 200"
+    direction: null
+    mile: 75.05
+    elev: 58
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Pruitt Trailhead"
+    name: "Pruitt Trailhead"
+    direction: "Turnaround"
+    mile: 80.02
+    elev: 64
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "10:52 AM"
+    cutoff_clock: "10:52 AM"
+    cutoff_elapsed_minutes: 1672
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. The turnaround point and a drop-bag location for all runners."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The cutoff table prints this pass at 80.02, but the segment chain gives 51.76 + 29.29 = 81.05 — the printed cumulative mile governs and the conflict is recorded."
+  - match: "St. Rd. 200"
+    name: "St. Rt. 200"
+    direction: null
+    mile: 86.52
+    elev: 58
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "1:07 PM"
+    cutoff_clock: "1:07 PM"
+    cutoff_elapsed_minutes: 1807
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The cutoff table's 86.52 implies a 6.5-mile leg from Pruitt where the segment list prints 6.0 (the two in-bound legs appear swapped); the printed cumulative mile governs."
+  - match: "49th Ave"
+    name: "49th Ave"
+    direction: null
+    mile: 92.52
+    elev: 82
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:13 PM"
+    cutoff_clock: "3:13 PM"
+    cutoff_elapsed_minutes: 1933
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles. Drop-bag location for all runners."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Land Bridge"
+    name: "Land Bridge"
+    direction: null
+    mile: 96.42
+    elev: 76
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "4:33 PM"
+    cutoff_clock: "4:33 PM"
+    cutoff_elapsed_minutes: 2013
+    aid: "Aid stations, staffed or unstaffed, stock soda, pickles, pickle pops, gummy worms, mustard packets, gels, chips, cookies, salt tabs, produce, and powdered electrolytes, with some type of hot food or coffee and glow lights for the night miles."
+    bathroom: null
+    park: null
+    crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
+    pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The listing prints this cutoff as 4:33:32 PM — the only clock with seconds; recorded as 4:33 PM / 2,013 minutes."
+  - match: "Start/Finish"
+    name: "Finish — Santos Trailhead"
+    direction: "Finish"
+    mile: 103.5
+    elev: 80
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "7:00 PM"
+    cutoff_clock: "7:00 PM"
+    cutoff_elapsed_minutes: 2160
+    aid: "The finish: buckle and race premium on crossing, with the post-race meal at the hub. The 36-hour course cutoff lands here at 7:00 PM Sunday."
+    bathroom: null
+    park: null
+    crew_notes: "The Santos hub is the crew base, with a crew tent area."
+    pacer_notes: "The race ends here; pacers join from the Santos halfway (51.76)."
+    road: null
+    source_metadata: *official_station_source

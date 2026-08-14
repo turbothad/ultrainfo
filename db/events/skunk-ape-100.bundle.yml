@@ -1,0 +1,9 @@
+version: 1
+slug: skunk-ape-100
+files:
+  race:
+    path: skunk-ape-100.yml
+    sha256: 035ade1722bb9dc574ebf9dcc99376af925ac26e93654ea5387c48d5a3986793
+  course:
+    path: skunk-ape-100.gpx
+    sha256: 65dd220c280441d5f6b91a4a9a6082a8e86c28515819876b761ac44a1e27615a
