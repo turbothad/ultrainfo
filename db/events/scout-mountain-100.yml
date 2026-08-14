@@ -1,0 +1,624 @@
+# Scout Mountain 100 — event data (imported by Events::Import via
+# db/seeds.rb). The scoutmountainultras.com home page banners the 2027
+# return ("See you again on the first weekend in june 2027!"); the
+# Event Info page carries the start lines, the aid-table link, planned
+# foods, and the pacer and drop-bag rules; the linked Google Sheets aid
+# table governs miles, crew/drop/pacer flags, and the cutoff ladder;
+# the official 100M GPX (with altitudes) is the geometry and elevation
+# authority. Source decisions are documented in
+# docs/research/scout-mountain-2027-source-audit.md.
+
+race:
+  name: Scout Mountain 100
+  slug: scout-mountain-100
+  year: 2027
+  state: ID
+  distance_mi: 102.7 # The aid table's 100M column ends at 102.7; the official GPX GPS-measures 102.37.
+  elevation_gain_ft: 22000 # The Race section prints "~22,000 feet of vertical gain (and loss)"; the aid table's segment climbs sum to 21,430 (run100s' 23,800 has no counterpart).
+  elevation_loss_ft: 22000 # The same "~22,000" print; the table's segment descents sum to 21,453.
+  start_date: 2027-06-04
+  end_date: 2027-06-05
+  start_time: 10:00 AM
+  time_zone: America/Boise
+  cutoff_hours: 36 # The 100M starts 10:00 AM Friday and the aid table's finish clock is 10:00 PM Saturday.
+  official_url: https://scoutmountainultras.com
+  registration_url: https://runsignup.com/Race/ID/Pocatello/ScoutMountainUltras
+  results_url: https://runsignup.com/Race/Results/Overview/121614 # RunSignup hosts the results.
+  registration_status: not_open # The RunSignup race page still carries the June 5-6, 2026 frame; 2027 registration is not yet posted.
+  lottery: false # Direct RunSignup registration; half the field is held for women/femme/non-binary runners.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "The Scout Mountain Ultras 100M near Pocatello, ID: point to point from Lead Draw Trailhead to Mink Creek Group Site & Campground, 102.7 miles with an out-and-back over Old Tom Summit (about 8,630 feet). The home page banners the 2027 return on the first weekend in June, and the 100M starts 10:00 AM Friday - June 4, 2027 - with the aid table's finish clock at 10:00 PM Saturday (36 hours). The Google Sheets aid table linked from Event Info governs station miles, the crew/drop-bag/pacer columns, and the ten-clock cutoff ladder. Two other mile frames exist and the table governs both: the Event Info drop-bag and pacer prose prints 15.68/29.4/36.39/48.54/61.33/79.03/85.40/96.25 for the table's 15.7/29.2/36.2/48.4/61.1/78.8/85.2/96.1, and the crew page prints Gibson Jack at mile 47.8. The Race section prints ~22,000 feet of gain and loss (the table's segments sum to 21,430/21,453; run100s' 23,800 has no counterpart). The official 100M GPX carries the full line with altitudes (46,134 points, GPS 102.37 scaled to the table's 102.7) and station waypoints, including the Old Tom out-and-back marker at the summit; its start altitude matches the table's printed 5,179-foot segment floor. The RunSignup race page still shows the June 5-6, 2026 frame, so 2027 registration is recorded not yet open."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_home
+        label: "scoutmountainultras.com home (the 2027 first-weekend-in-June banner; tracking posts land here)"
+        url: "https://scoutmountainultras.com"
+        verified_on: "2026-08-14"
+      - &source_event
+        label: "Event Info page (start lines, the aid-table link, planned foods, pacer and drop-bag rules, mandatory kit)"
+        url: "https://scoutmountainultras.com/event-info"
+        verified_on: "2026-08-14"
+      - &source_sheet
+        label: "Aid Station Info sheet (miles, crew/drop-bag/pacer columns, the cutoff ladder, segment climb figures)"
+        url: "https://docs.google.com/spreadsheets/d/1yVTdR4Rsr1NqwwZUic_BHCWTNbocpIxI"
+        verified_on: "2026-08-14"
+      - &source_general
+        label: "General Info page (The Race's ~22,000-foot print, runner tracking, the drop-out rule)"
+        url: "https://scoutmountainultras.com/general-info"
+        verified_on: "2026-08-14"
+      - &source_crew
+        label: "Crew page (the six crew stations, vehicle tags, shuttles, lot coordinates, the 47.8 Gibson Jack print)"
+        url: "https://scoutmountainultras.com/crew"
+        verified_on: "2026-08-14"
+      - &source_gpx
+        label: "Official 100M GPX (the full line with altitudes and station waypoints, linked from GPX Overview)"
+        url: "https://scoutmountainultras.com/s/SMU-100M.gpx"
+        verified_on: "2026-08-14"
+      - &source_reg
+        label: "RunSignup race page (registration home and results host; still on the June 5-6, 2026 frame)"
+        url: "https://runsignup.com/Race/ID/Pocatello/ScoutMountainUltras"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. Half the field is held for women/femme/non-binary runners. Mandatory kit: a mylar blanket and whistle for everyone, and 100M runners must carry the course map on a phone or watch (shown at bib pickup); poles are allowed. The course is marked with pink webbing, pin flags, directional signs, and reflective markers at night. Dropping out is only allowed at an aid station with the captain's confirmation - leaving the course otherwise triggers search and rescue. Every aid station stocks ice and GU Energy products; caffeinated and non-caffeinated Roctane flow from West Fork onward, and only non-caffeinated Roctane sits at Walker Creek, Goodenough, and South Fork. Timing chips must come back at the finish ($100 otherwise). Cell service is unlikely at the finish area and West Fork; Starlink at aid stations is limited to runsignup.com and scoutmountainultras.com. Swag is a custom item such as buffs, sleeves, or hats rather than a shirt."
+    overall_cutoff_label: "10:00 PM June 5, 2027"
+    overall_cutoff_notes: "36 hours from the Friday 10:00 AM start. The aid table prints a ten-clock ladder: Walker Creek 12:00 PM and Goodenough 3:00 PM Friday, South Fork 7:15 PM, West Fork 9:00 PM, then Gibson Jack 12:45 AM, City Creek 5:45 AM, West Fork 12:45 PM, Scout Mountain 3:30 PM, Big Fir 8:00 PM, and the finish 10:00 PM Saturday."
+    pacer_rule_summary: "Pacers are for 100-milers only and may start or finish at the aid table's six marked stations: West Fork (both passes), Gibson Jack, City Creek, Scout Mountain, and Big Fir. Each pacer signs a waiver and wears a pacer bib; the Big Fir pacer exchange sits a quarter mile from the aid station on the dirt road."
+    drop_bag_summary: "Drop bags check in at the pre-race briefing and should be weatherproof. The aid table marks seven bag stations: Goodenough, South Fork, West Fork (both passes), Gibson Jack, City Creek, and Big Fir. All bags are transported to the finish afterward - Big Fir bags arrive late, after the last shuttle - and unclaimed bags go to Goodwill the following Friday."
+    tracking_note: "Chip timing registers arrival at every aid station except Cusick Creek and at the finish, and tracking information posts on the scoutmountainultras.com homepage when available; results post on RunSignup."
+  blurb: 102.7 point-to-point miles near Pocatello with an out-and-back over Old Tom Summit, about 22,000 feet of climb, and 36 hours from the Friday 10:00 AM start.
+  about: >-
+    The Scout Mountain 100 runs 102.7 miles point to point through the
+    mountains around Pocatello, Idaho - from Lead Draw Trailhead over
+    an out-and-back to Old Tom Summit near 8,630 feet, across Scout
+    Mountain late, and down to the Mink Creek Group Site finish with
+    about 22,000 feet of gain and loss. The aid table prints a
+    ten-clock cutoff ladder inside the 36-hour window, crews work six
+    tag-controlled stations plus the finish shuttles, pacers join at
+    the table's six marked stations, and chip timing registers arrival
+    at nearly every aid station.
+  start_venue: Lead Draw Trailhead, Pocatello, ID
+  finish_venue: Mink Creek Group Site & Campground, Pocatello, ID
+
+# Profile from the official 100M GPX's own altitudes sampled per
+# nominal mile (GPS 102.37 scaled to the aid table's 102.7-mile frame).
+elevation_series:
+  - [0, 5180]
+  - [1, 5554]
+  - [2, 5939]
+  - [3, 6678]
+  - [4, 5974]
+  - [5, 5609]
+  - [6, 5878]
+  - [7, 5554]
+  - [8, 5830]
+  - [9, 5860]
+  - [10, 5705]
+  - [11, 5541]
+  - [12, 5669]
+  - [13, 6068]
+  - [14, 5918]
+  - [15, 5764]
+  - [16, 5830]
+  - [17, 6310]
+  - [18, 7264]
+  - [19, 7671]
+  - [20, 8375]
+  - [21, 8077]
+  - [22, 7537]
+  - [23, 7175]
+  - [24, 6837]
+  - [25, 7110]
+  - [26, 6839]
+  - [27, 6348]
+  - [28, 6232]
+  - [29, 5961]
+  - [30, 5899]
+  - [31, 6134]
+  - [32, 6483]
+  - [33, 6299]
+  - [34, 5894]
+  - [35, 5545]
+  - [36, 5207]
+  - [37, 5459]
+  - [38, 5909]
+  - [39, 6496]
+  - [40, 6309]
+  - [41, 6246]
+  - [42, 5677]
+  - [43, 6064]
+  - [44, 5988]
+  - [45, 6152]
+  - [46, 5666]
+  - [47, 5354]
+  - [48, 5235]
+  - [49, 5377]
+  - [50, 5820]
+  - [51, 5961]
+  - [52, 6119]
+  - [53, 6225]
+  - [54, 6222]
+  - [55, 5987]
+  - [56, 5717]
+  - [57, 6053]
+  - [58, 5827]
+  - [59, 5404]
+  - [60, 5046]
+  - [61, 4823]
+  - [62, 5036]
+  - [63, 5367]
+  - [64, 5768]
+  - [65, 6625]
+  - [66, 7061]
+  - [67, 6749]
+  - [68, 6424]
+  - [69, 6119]
+  - [70, 6532]
+  - [71, 6605]
+  - [72, 6601]
+  - [73, 6778]
+  - [74, 6558]
+  - [75, 6244]
+  - [76, 6121]
+  - [77, 5741]
+  - [78, 5438]
+  - [79, 5268]
+  - [80, 5601]
+  - [81, 5974]
+  - [82, 6499]
+  - [83, 6885]
+  - [84, 6995]
+  - [85, 6711]
+  - [86, 6916]
+  - [87, 7221]
+  - [88, 7317]
+  - [89, 7907]
+  - [90, 8337]
+  - [91, 8524]
+  - [92, 8291]
+  - [93, 7405]
+  - [94, 6880]
+  - [95, 6361]
+  - [96, 5862]
+  - [97, 6174]
+  - [98, 5361]
+  - [99, 5581]
+  - [100, 6070]
+  - [101, 5600]
+  - [102, 5292]
+  - [102.7, 5154]
+
+# Station passes: the aid table's eighteen 100M rows - the Start at
+# Lead Draw, sixteen more over fifteen locations (the Old Tom
+# out-and-back base water is served at 19.0 and 22.1, and West Fork at
+# 36.2 and 78.8), and the Finish at Mink Creek Group Site. Table miles
+# govern (the Event Info prose and crew page print two other frames,
+# documented per pass). Old Tom Summit is the one Turnaround - the
+# official GPX's out-and-back waypoint at the spur apex. Coordinates
+# copy the official GPX's station waypoints (`match` = waypoint-name
+# substring); elevations are the GPX line's own altitudes at each
+# station.
+aid_stations:
+  - match: "Lead Draw"
+    name: "Start — Lead Draw Trailhead"
+    direction: "Start"
+    mile: 0.0
+    elev: 5180
+    crew: false
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The 100M start, 10:00 AM Friday at Lead Draw Trailhead; the aid table marks no crew, drop bags, or pacers here, and the first aid is Walker Creek at 5.3."
+    bathroom: null
+    park: null
+    crew_notes: "No crew at the start per the aid table; the crew page lists the Lead Draw lot (42.737917, -112.383958) among its crew-accessible lots for drop-off, and runners' crews plan around Goodenough at 15.7."
+    pacer_notes: "No pacer yet: pacers may start only at the table's six marked stations, beginning with West Fork at 36.2."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Scout Mountain Ultras aid table, Event Info and crew pages, and the official 100M GPX"
+      source_url: "https://scoutmountainultras.com/event-info"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. The Google Sheets aid table linked from Event Info governs miles, crew/drop-bag/pacer flags, and the cutoff clocks; the Event Info prose and crew page print two other mile frames, documented on the affected passes. Coordinates copy the official 100M GPX's station waypoints, whose scaled line crossings land within about 0.3 mile of every table mile; elevations are the GPX line's altitudes at those waypoints, matching the table's printed segment floors (5,179 at the start, 7,573 at the Old Tom base, 4,821 at City Creek, 5,154 at the finish)."
+      sources:
+        - *source_home
+        - *source_event
+        - *source_sheet
+        - *source_general
+        - *source_crew
+        - *source_gpx
+        - *source_reg
+  - match: "Walker"
+    name: "Walker Creek"
+    direction: null
+    mile: 5.3
+    elev: 5581
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "12:00 PM"
+    cutoff_clock: "12:00 PM"
+    cutoff_elapsed_minutes: 120
+    aid: "First aid station. Planned foods: candy, chips, coke, cookies, ginger ale, grapes, oranges, PBJ, pineapple, and sprite, with ice and GU Energy products everywhere and non-caffeinated Roctane here."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the aid table and the crew page's 100M list."
+    pacer_notes: "No pacer yet: pacers may start only at the table's six marked stations, beginning with West Fork at 36.2."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Goodenough"
+    name: "Goodenough"
+    direction: null
+    mile: 15.7
+    elev: 5509
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:00 PM"
+    cutoff_clock: "3:00 PM"
+    cutoff_elapsed_minutes: 300
+    aid: "Planned foods: bananas, brownies, chips, grapes, homemade monster cookies, oranges, pickles, soda, and tortillas with peanut butter, honey and walnuts, with non-caffeinated Roctane."
+    bathroom: null
+    park: null
+    crew_notes: "100M-only crew station: crews park at the additional parking at the campground entrance and walk in under half a mile. The organizer recommends skipping it - a 1.5-hour drive with your runner only 15 miles in."
+    pacer_notes: "No pacer yet: pacers may start only at the table's six marked stations, beginning with West Fork at 36.2."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 15.7 (governs); the Event Info drop-bag and pacer prose prints 15.68 for this station."
+  - match: "Old Tom Base"
+    name: "Old Tom base water"
+    direction: null
+    mile: 19.0
+    elev: 7575
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only, at the base of the out-and-back to Old Tom Summit - the same table row serves the return at 22.1."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - the table's crew column is blank on the water rows."
+    pacer_notes: "No pacer yet: pacers may start only at the table's six marked stations, beginning with West Fork at 36.2."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Old Tom Summit"
+    name: "Old Tom Summit"
+    direction: "Turnaround"
+    mile: 20.6
+    elev: 8632
+    crew: false
+    water: false
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The out-and-back's high point near 8,630 feet - a table row with no aid; the water at the spur base serves both directions."
+    bathroom: null
+    park: null
+    crew_notes: "No crew - a summit turnaround on the spur, not an aid station."
+    pacer_notes: "No pacer yet: pacers may start only at the table's six marked stations, beginning with West Fork at 36.2."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Old Tom Base"
+    name: "Old Tom base water"
+    direction: null
+    mile: 22.1
+    elev: 7575
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only - the return through the Old Tom out-and-back base, the same location as mile 19.0."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point - the table's crew column is blank on the water rows."
+    pacer_notes: "No pacer yet: pacers may start only at the table's six marked stations, beginning with West Fork at 36.2."
+    road: null
+    source_metadata: *official_station_source
+  - match: "South Fork"
+    name: "South Fork"
+    direction: null
+    mile: 29.2
+    elev: 5956
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "7:15 PM"
+    cutoff_clock: "7:15 PM"
+    cutoff_elapsed_minutes: 555
+    aid: "Planned foods: bananas, vegetable bouillon, chips, cookies, diced potatoes, grapes, hot chocolate, mashed potatoes, oranges, PBJ sandwiches, pickles, pineapple, soda, soup, and watermelon, with non-caffeinated Roctane."
+    bathroom: null
+    park: null
+    crew_notes: "100M-only crew station: vehicle permits are dispensed at check-in, with one vehicle and one crew member per runner."
+    pacer_notes: "No pacer yet per the aid table and the Event Info pacer prose; the crew page's boilerplate about a pacer starting here does not match either and the table governs."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 29.2 (governs); the Event Info prose prints 29.4. The table and the pacer prose mark no pacer here, while the crew page's vehicle-permit line carries a generic 'plus one pacer if a pacer is starting here' - the table governs the pacer flag."
+  - match: "West Fork"
+    name: "West Fork"
+    direction: null
+    mile: 36.2
+    elev: 5210
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "9:00 PM"
+    cutoff_clock: "9:00 PM"
+    cutoff_elapsed_minutes: 660
+    aid: "Planned foods: bacon, bananas, vegetable bouillon, candy, cheese, chips, coffee, cookies, hot chocolate, PBJ sandwiches, pickles, pineapple, potatoes, quesadillas, soda, soup, strawberries, and tortilla wraps with meat and refried bean options; caffeinated and non-caffeinated Roctane from here onward."
+    bathroom: null
+    park: null
+    crew_notes: "Crew station for 50M and 100M: no crew parking at the aid station - crews park at the Crystal Summit Warming Hut lot and ride the dedicated shuttle, which runs 8:00 AM to 2:00 PM Saturday; this first pass closes 9:00 PM Friday, before the shuttle window."
+    pacer_notes: "Pacers may start or finish here per the aid table; each pacer signs a waiver and wears a pacer bib."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 36.2 (governs); the Event Info prose prints 36.39. The table marks crew YES on this pass while the crew page's only published access is the Crystal Summit shuttle running 8:00 AM to 2:00 PM Saturday - after this pass's 9:00 PM Friday clock; the table governs the flag and the shuttle window is noted."
+  - match: "Mile 42"
+    name: "Water only (mile 42.1)"
+    direction: null
+    mile: 42.1
+    elev: 5663
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only, between West Fork and Gibson Jack."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point per the aid table."
+    pacer_notes: "Pacers who started at West Fork continue through; the next pacer exchange is Gibson Jack at 48.4."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Gibson Jack"
+    name: "Gibson Jack"
+    direction: null
+    mile: 48.4
+    elev: 5203
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:45 AM"
+    cutoff_clock: "12:45 AM"
+    cutoff_elapsed_minutes: 885
+    aid: "Planned foods: bananas, vegetable bouillon, chips, cookies, grapes, hot chocolate, oranges, oven-baked pizza bites, PBJ sandwiches, pickles, pineapple, potatoes, soda, soup, and strawberries. The 50M starts here at midnight."
+    bathroom: null
+    park: null
+    crew_notes: "100M-only crew station with a large parking lot: don't block in other runners, use caution on the dirt road, and yield to runners entering and exiting the aid station."
+    pacer_notes: "Pacers may start or finish here per the aid table; each pacer signs a waiver and wears a pacer bib."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. Three frames print for this station: the aid table's 48.4 (governs), the Event Info prose's 48.54, and the crew page's 47.8."
+  - match: "Cusick"
+    name: "Cusick Creek"
+    direction: null
+    mile: 55.8
+    elev: 5692
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Planned foods: bananas, vegetable bouillon, candy, cheese, chips, coffee, cookies, diced potatoes, grapes, mashed potatoes, oranges, pickles, pineapple, soda, soup, and tortillas. The one aid station without chip timing."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the aid table and the crew page's 100M list."
+    pacer_notes: "Pacers who started earlier continue through; this is not one of the table's six pacer stations."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table's pacer cell is blank on this row (its crew and drop-bag cells print NO); with the Event Info pacer prose naming only the six marked stations, the blank is recorded as no pacer exchange."
+  - match: "City Creek"
+    name: "City Creek"
+    direction: null
+    mile: 61.1
+    elev: 4820
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:45 AM"
+    cutoff_clock: "5:45 AM"
+    cutoff_elapsed_minutes: 1185
+    aid: "Planned foods: banana, vegetable bouillon, candy, chips, coffee, cookies, grapes, hash browns, hot chocolate, mashed potatoes, oranges, cinnamon rolls, PBJ sandwiches, peanuts, pickles, soda, soup, strawberries, and watermelon."
+    bathroom: null
+    park: null
+    crew_notes: "100M-only crew station at the Upper City Creek Trailhead (there are two City Creek trailheads): crews park in the lot at the end of the street and walk less than a quarter mile."
+    pacer_notes: "Pacers may start or finish here per the aid table; each pacer signs a waiver and wears a pacer bib."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 61.1 (governs); the Event Info prose prints 61.33."
+  - match: "Mile 65"
+    name: "Water only (mile 65.3)"
+    direction: null
+    mile: 65.3
+    elev: 7057
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Water only, on the climb out of City Creek."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew point per the aid table."
+    pacer_notes: "Pacers who started earlier continue through; the next pacer exchange is West Fork at 78.8."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Elk Meadows"
+    name: "Elk Meadows"
+    direction: null
+    mile: 73.1
+    elev: 6781
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Planned foods: vegetable bouillon, candy, chips, coffee, cookies, diced potatoes, grapes, hot chocolate, mashed potatoes, oranges, PBJ sandwiches, pickles, soda, soup, and wraps with avocado, cheese, refried bean, turkey, bacon, and sausage options."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the aid table and the crew page's 100M list."
+    pacer_notes: "Pacers who started earlier continue through; this is not one of the table's six pacer stations."
+    road: null
+    source_metadata: *official_station_source
+  - match: "West Fork"
+    name: "West Fork"
+    direction: null
+    mile: 78.8
+    elev: 5210
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:45 PM"
+    cutoff_clock: "12:45 PM"
+    cutoff_elapsed_minutes: 1605
+    aid: "Planned foods: bacon, bananas, vegetable bouillon, candy, cheese, chips, coffee, cookies, hot chocolate, PBJ sandwiches, pickles, pineapple, potatoes, quesadillas, soda, soup, strawberries, and tortilla wraps with meat and refried bean options. The 24M starts nearby at 8:00 AM."
+    bathroom: null
+    park: null
+    crew_notes: "Crew station for 50M and 100M: crews park at the Crystal Summit Warming Hut lot and ride the dedicated shuttle (8:00 AM to 2:00 PM Saturday, continuous round trips); after this pass the next crew opportunity is Scout Mountain, then the Day Shuttle from Century High School to the finish."
+    pacer_notes: "Pacers may start or finish here per the aid table; each pacer signs a waiver and wears a pacer bib."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 78.8 (governs); the Event Info prose prints 79.03. The shuttle's 8:00 AM to 2:00 PM Saturday window brackets this pass's 12:45 PM clock."
+  - match: "Scout Mountain Aid"
+    name: "Scout Mountain"
+    direction: null
+    mile: 85.2
+    elev: 6609
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "3:30 PM"
+    cutoff_clock: "3:30 PM"
+    cutoff_elapsed_minutes: 1770
+    aid: "Planned foods: avocado, bacon, bananas, vegetable bouillon, candy, cheese, chips, coffee, cookies, diced potatoes, hot chocolate, mashed potatoes, oranges, PBJ sandwiches, quesadillas, soda, strawberries, and tortilla wraps with meat and refried bean options. No drop bags here per the aid table."
+    bathroom: null
+    park: null
+    crew_notes: "100M-only crew station: vehicle permits are dispensed at check-in, one vehicle and one crew member per runner plus a starting pacer; parking is very limited and the organizer suggests skipping it unless a pacer is joining."
+    pacer_notes: "Pacers may start or finish here per the aid table; each pacer signs a waiver and wears a pacer bib."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 85.2 (governs); the Event Info prose prints 85.40."
+  - match: "Big Fir"
+    name: "Big Fir"
+    direction: null
+    mile: 96.1
+    elev: 5796
+    crew: false
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "8:00 PM"
+    cutoff_clock: "8:00 PM"
+    cutoff_elapsed_minutes: 2040
+    aid: "Planned foods: bananas, vegetable bouillon, candy, chips, coffee, cookies, diced potatoes, grapes, oranges, PBJ, pickles, pierogies, pineapple, soda, soup, and strawberries."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the aid table; the pacer exchange sits a quarter mile away on the dirt road."
+    pacer_notes: "Pacers may start or finish here per the aid table - the exchange is a quarter mile from the aid station on the dirt road; each pacer signs a waiver and wears a pacer bib."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table prints 96.1 (governs); the Event Info prose prints 96.25. Big Fir drop bags reach the finish late, after the last shuttle."
+  - match: "Mink Creek"
+    name: "Finish — Mink Creek Group Site"
+    direction: "Finish"
+    mile: 102.7
+    elev: 5154
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "10:00 PM"
+    cutoff_clock: "10:00 PM"
+    cutoff_elapsed_minutes: 2160
+    aid: "The finish at Mink Creek Group Site & Campground, with the 36-hour cutoff landing at 10:00 PM Saturday. All drop bags are transported here for retrieval (Big Fir bags arrive after the last shuttle)."
+    bathroom: null
+    park: null
+    crew_notes: "Crews reach the finish area on the Day Shuttle from Century High School, running continuously until 10:00 PM; cell service is unlikely at the Mink Creek Group Site."
+    pacer_notes: "The race ends here; the aid table's finish row marks no pacer exchange."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The aid table's finish-row crew cell is blank; the crew flag follows the Event Info start-lines and crew pages, which route crews to the finish area on the Day Shuttle from Century High School until 10:00 PM."

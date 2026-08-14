@@ -1,0 +1,9 @@
+version: 1
+slug: scout-mountain-100
+files:
+  race:
+    path: scout-mountain-100.yml
+    sha256: cc047315c162be111386d34e0a3e6118150f8b9bd58efc5d962718996329c114
+  course:
+    path: scout-mountain-100.gpx
+    sha256: b402b4417d266b248ae566c731d7e37b0a29b1c09911f7cf1a140c2d88cc5d21

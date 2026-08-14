@@ -13,7 +13,7 @@ module Events
                      "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
                      "Skunk Ape 100", "San Diego 100",
                      "Massanutten Mountain Trails 100", "Coyote Two Moon 100",
-                     "Hell Hole Hundred", "Rabid Raccoon 100" ], published_races.map(&:name)
+                     "Hell Hole Hundred", "Rabid Raccoon 100", "Scout Mountain 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -700,6 +700,33 @@ module Events
                    "36 hours from the Saturday 4:00 AM start"
       assert_includes rabid.source_metadata.fetch("sources").pluck("url"),
                       "https://www.plotaroute.com/route/2675516"
+
+      scout = published_races.find { |published| published.slug == "scout-mountain-100" }
+      assert_equal 2027, scout.year
+      assert_equal Date.new(2027, 6, 4), scout.start_date
+      assert scout.not_open?, "the RunSignup page is still on the June 5-6, 2026 frame"
+      assert_equal 36, scout.cutoff_hours
+      assert_equal 102.7, scout.distance_mi.to_f, "the aid table's 100M column"
+      assert_equal 22_000, scout.elevation_gain_ft,
+                   "The Race's ~22,000-foot print; run100s' 23,800 has no counterpart"
+      assert_equal 18, scout.aid_stations.count, "the aid table's eighteen 100M rows"
+      assert_equal 16, scout.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "sixteen waypoints - the Old Tom base water and West Fork each serve two passes"
+      assert_equal 1, scout.aid_stations.where(direction: "Turnaround").count,
+                   "Old Tom Summit, the out-and-back apex"
+      assert_equal 8, scout.aid_stations.where(crew_accessible: true).count,
+                   "the table's crew column - West Fork twice - plus the shuttle-served Finish"
+      assert_equal 6, scout.aid_stations.count(&:pacer_access?),
+                   "the table's pacer column: West Fork twice, Gibson Jack, City Creek, Scout Mountain, Big Fir"
+      assert_equal 7, scout.aid_stations.count(&:drop_bag?), "the table's seven bag stations"
+      assert_equal 10, scout.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the table's ten-clock ladder"
+      assert_equal 1770, scout.aid_stations.find_by!(mile: 85.2).cutoff_elapsed_minutes,
+                   "Scout Mountain by 3:30 PM Saturday"
+      assert_equal Time.find_zone("America/Boise").parse("2027-06-05 10:00 PM"), scout.final_cutoff_at,
+                   "36 hours from the Friday 10:00 AM start"
+      assert_includes scout.source_metadata.fetch("sources").pluck("url"),
+                      "https://scoutmountainultras.com/s/SMU-100M.gpx"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
