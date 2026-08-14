@@ -9,7 +9,7 @@ module Events
       assert_equal [ "Bighorn 100", "Southern Tour Ultra", "HURT 100", "Long Haul 100", "Coldwater Rumble 100",
                      "The Shippey 100", "Forgotten Florida 100", "Rocky Raccoon 100", "Jackpot 100",
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
-                     "The Pistol Ultra 100", "Warbird 100" ], published_races.map(&:name)
+                     "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -431,6 +431,32 @@ module Events
                    "7:00 AM Friday plus 35 hours, no DST crossing after March 14"
       assert_includes warbird.source_metadata.fetch("sources").pluck("url"),
                       "https://www.trailsick.com/s/Warbird-100-Aid-Station-Details.pdf"
+
+      bootlegger = published_races.find { |published| published.slug == "bootlegger-100" }
+      assert_equal 2027, bootlegger.year
+      assert_equal Date.new(2027, 3, 20), bootlegger.start_date
+      assert bootlegger.open?
+      assert_equal 35, bootlegger.cutoff_hours, "run100s' 32 is stale; the site says 35"
+      assert_equal 100, bootlegger.distance_mi, "eight 12.5-mile loops"
+      assert_nil bootlegger.elevation_gain_ft, "the organizer's own gain figures conflict"
+      assert_equal 17, bootlegger.aid_stations.count,
+                   "a Start pass plus two passes on each of eight loops"
+      assert_equal 2, bootlegger.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "two physical stations: the Group Shelter hub and Aid Station 2"
+      assert_equal 9, bootlegger.aid_stations.where(crew_accessible: true).count,
+                   "crew only at the Group Shelter start/finish"
+      assert_equal 7, bootlegger.aid_stations.count(&:pacer_access?),
+                   "pacers join at the hub after 5:00 PM, not at the Start or Finish"
+      assert_equal 8, bootlegger.aid_stations.count(&:drop_bag?),
+                   "drop bags serve the mile-6.2 station only"
+      assert_equal 2, bootlegger.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the noon last-loop gate and the 35-hour finish"
+      assert_equal "30h", bootlegger.aid_stations.find_by!(mile: 87.5).cutoff_elapsed_label,
+                   "the last loop must start by noon Sunday"
+      assert_equal Time.find_zone("America/New_York").parse("2027-03-21 5:00 PM"), bootlegger.final_cutoff_at,
+                   "6:00 AM Saturday plus 35 hours, no DST crossing after March 14"
+      assert_includes bootlegger.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.bootlegger100.com/"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

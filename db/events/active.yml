@@ -14,3 +14,4 @@ active_event_bundles:
   - viper-100.bundle.yml
   - pistol-ultra-100.bundle.yml
   - warbird-100.bundle.yml
+  - bootlegger-100.bundle.yml

@@ -1,0 +1,9 @@
+version: 1
+slug: bootlegger-100
+files:
+  race:
+    path: bootlegger-100.yml
+    sha256: 89dace8c2c0b4fe020a57eb7423312c0c5c78abdb855319a081497eaee0b3392
+  course:
+    path: bootlegger-100.gpx
+    sha256: bb45cf474f3480c56b8fa3ec9a32cff34f5c56ad13fc5124b9bace409f29efc6
