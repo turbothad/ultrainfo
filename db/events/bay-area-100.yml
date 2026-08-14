@@ -254,12 +254,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table; stations pour Skratch sports drink and GU gels."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -275,12 +275,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table - the first of two Inspiration Point passes; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the first of two Inspiration Point passes."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -296,12 +296,12 @@ aid_stations:
     water: true
     pacer: false
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: "10:00 AM"
     cutoff_clock: "10:00 AM"
     cutoff_elapsed_minutes: 300
-    aid: "Aid station per the guide table - the first cutoff and the first crew and gear-bag station; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the first cutoff and the first crew and gear-bag station."
     bathroom: null
     park: null
     crew_notes: "Crew-access station per the guide table."
@@ -319,12 +319,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -340,12 +340,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table - the return through Inspiration Point; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the return through Inspiration Point."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -361,12 +361,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: "1:00 PM"
     cutoff_clock: "1:00 PM"
     cutoff_elapsed_minutes: 480
-    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -384,12 +384,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -418,7 +418,7 @@ aid_stations:
     road: null
     source_metadata:
       <<: *official_station_source
-      source_notes: "Verified on is the retrieval date. The guide table prints 31.45 (governs); the pace chart prints 31.4. The guide overview says there are two water-only stops, but its detailed table and the organizer's pace chart independently identify only Pinehurst as water only. Those station-specific lists govern: Pinehurst records no food, while the guide's Hydration and Nutrition section supports food at the other mid-course stations. The unresolved overview count is documented in the source audit."
+      source_notes: "Verified on is the retrieval date. The guide table prints 31.45 (governs); the pace chart prints 31.4. The guide overview says the twenty-three station passes include two water-only points, but its detailed table and the organizer's pace chart identify only Pinehurst as water only and contain no food matrix that reveals the second point. Pinehurst records no food; food remains unknown at every other mid-course pass. The unresolved location and the guide's conflicting warm-food onset prints are documented in the source audit."
   - match: "Valle Vista"
     name: "Valle Vista"
     direction: null
@@ -428,12 +428,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: "4:15 PM"
     cutoff_clock: "4:15 PM"
     cutoff_elapsed_minutes: 675
-    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Crew-access station per the guide table."
@@ -451,12 +451,12 @@ aid_stations:
     water: true
     pacer: false
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: "5:15 PM"
     cutoff_clock: "5:15 PM"
     cutoff_elapsed_minutes: 735
-    aid: "Aid station per the guide table with crew access and gear bags; stations pour Skratch and GU."
+    aid: "Aid station per the guide table with crew access and gear bags."
     bathroom: null
     park: null
     crew_notes: "Crew-access station per the guide table."
@@ -472,12 +472,12 @@ aid_stations:
     water: true
     pacer: true
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: "7:15 PM"
     cutoff_clock: "7:15 PM"
     cutoff_elapsed_minutes: 855
-    aid: "Aid station per the guide table with crew access and gear bags; stations pour Skratch and GU."
+    aid: "Aid station per the guide table with crew access and gear bags."
     bathroom: null
     park: null
     crew_notes: "Crew-access station per the guide table."
@@ -495,12 +495,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -516,12 +516,12 @@ aid_stations:
     water: true
     pacer: true
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: "11:30 PM"
     cutoff_clock: "11:30 PM"
     cutoff_elapsed_minutes: 1110
-    aid: "Aid station per the guide table - the general pacer start, with crew access and gear bags; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the general pacer start, with crew access and gear bags."
     bathroom: null
     park: null
     crew_notes: "Crew-access station per the guide table."
@@ -537,12 +537,12 @@ aid_stations:
     water: true
     pacer: true
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table with crew access, gear bags, and pacer exchange; stations pour Skratch and GU."
+    aid: "Aid station per the guide table with crew access, gear bags, and pacer exchange."
     bathroom: null
     park: null
     crew_notes: "Crew-access station: the park lot closes to new cars at 10:00 PM - crews arriving later park on Lake Chabot Road and walk in ($5 inner-lot parking before then)."
@@ -560,12 +560,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: "2:00 AM"
     cutoff_clock: "2:00 AM"
     cutoff_elapsed_minutes: 1260
-    aid: "Aid station per the guide table; stations pour Skratch and GU."
+    aid: "Aid station per the guide table."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -583,12 +583,12 @@ aid_stations:
     water: true
     pacer: true
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: "3:00 AM"
     cutoff_clock: "3:00 AM"
     cutoff_elapsed_minutes: 1320
-    aid: "The Bort Meadow base camp's first of three passes - crew, gear bags, and pacer exchange; stations pour Skratch and GU."
+    aid: "The Bort Meadow base camp's first of three passes - crew, gear bags, and pacer exchange."
     bathroom: null
     park: null
     crew_notes: "The base camp: 75 parking spaces reserved through the race questionnaire - crew and pacers can otherwise be dropped off or picked up at any time."
@@ -606,12 +606,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table - the first of two Big Bear passes; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the first of two Big Bear passes."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -629,12 +629,12 @@ aid_stations:
     water: true
     pacer: true
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: "5:20 AM"
     cutoff_clock: "5:20 AM"
     cutoff_elapsed_minutes: 1460
-    aid: "Aid station at the Chabot Space and Science Center off Skyline Boulevard - crew access and pacer exchange; stations pour Skratch and GU."
+    aid: "Aid station at the Chabot Space and Science Center off Skyline Boulevard - crew access and pacer exchange."
     bathroom: null
     park: null
     crew_notes: "Crew-access station with ample parking - the guide's unlimited-capacity alternative to Bort Meadow, a 0.2-mile walk from lot to station."
@@ -652,12 +652,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Aid station per the guide table - the return through Big Bear; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the return through Big Bear."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -673,12 +673,12 @@ aid_stations:
     water: true
     pacer: true
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: "8:15 AM"
     cutoff_clock: "8:15 AM"
     cutoff_elapsed_minutes: 1635
-    aid: "The Bort Meadow base camp's second pass - crew, gear bags, and pacer exchange; stations pour Skratch and GU."
+    aid: "The Bort Meadow base camp's second pass - crew, gear bags, and pacer exchange."
     bathroom: null
     park: null
     crew_notes: "The base camp: 75 parking spaces reserved through the race questionnaire - crew and pacers can otherwise be dropped off or picked up at any time."
@@ -696,12 +696,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: "10:00 AM"
     cutoff_clock: "10:00 AM"
     cutoff_elapsed_minutes: 1740
-    aid: "Aid station per the guide table - the first of two Marciel passes; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the first of two Marciel passes."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -717,12 +717,12 @@ aid_stations:
     water: true
     pacer: false
     drop: false
-    food: true
+    food: null
     med: null
     cutoff: "12:00 PM"
     cutoff_clock: "12:00 PM"
     cutoff_elapsed_minutes: 1860
-    aid: "Aid station per the guide table - the second Marciel pass after the Red Tail loop; stations pour Skratch and GU."
+    aid: "Aid station per the guide table - the second Marciel pass after the Red Tail loop."
     bathroom: null
     park: null
     crew_notes: "Not a crew station per the guide table."
@@ -740,12 +740,12 @@ aid_stations:
     water: true
     pacer: true
     drop: true
-    food: true
+    food: null
     med: null
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "The Bort Meadow base camp's third and final pass - crew, gear bags, and pacer exchange; stations pour Skratch and GU."
+    aid: "The Bort Meadow base camp's third and final pass - crew, gear bags, and pacer exchange."
     bathroom: null
     park: null
     crew_notes: "The base camp: 75 parking spaces reserved through the race questionnaire - crew and pacers can otherwise be dropped off or picked up at any time."

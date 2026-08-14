@@ -93,15 +93,16 @@ Recorded discrepancies and decisions:
     guide are the 2026 running's (June 13, 2026); the structure
     carries over on the same 5:00 AM/33-hour frame, and the 2027
     guide is due mid-August per the listing.
-13. **The unnamed second water-only stop.** The guide overview says
-    the twenty-three aid-station stops include two water-only stops,
-    but its detailed table and the organizer's pace chart independently
-    identify only Pinehurst as water only. Those two station-specific
-    lists govern over the unnamed overview count: Pinehurst records no
-    food, while the guide's Hydration and Nutrition section supports
-    food at the other mid-course stations. The same guide disagrees on
-    the start of warm food (Las Trampas on page 7, Chabot Staging on
-    page 15), so no station pass claims a specific warm-food onset.
+13. **The unnamed second water-only point.** The guide overview says
+    the twenty-three station passes include two water-only points, but
+    its detailed table and the organizer's pace chart identify only
+    Pinehurst as water only. Neither detailed list is a food matrix, so
+    the missing second label cannot establish food at any individual
+    pass. Pinehurst records no food; food remains unknown at every
+    other mid-course pass. The guide's Hydration and Nutrition section
+    supplies only a Race-level menu. The same guide disagrees on the
+    start of warm food (Las Trampas on page 7, Chabot Staging on page
+    15), so no station pass claims a specific warm-food onset.
 14. **Clyde Woolridge crew conflict.** The guide's Section 4 prose on
     page 15 calls Clyde Woolridge crew-accessible, while the governing
     page 11 table leaves Clyde's crew cell blank. The table governs the
@@ -148,9 +149,10 @@ All URLs below were opened or downloaded on 2026-08-14.
 - **Gear bags.** `true` at the table's nine marks (decision 9);
   `false` elsewhere including the Start (bags drop at Basecamp
   before the race).
-- **Food.** `false` at Pinehurst, the only water-only stop identified
-  by both detailed station lists; `true` at the other mid-course
-  passes (decision 13). Start and Finish are not aid-food passes.
+- **Food.** `false` at Pinehurst, the only water-only point identified
+  by both detailed station lists; `null` at every other mid-course
+  pass because the second water-only location is unresolved (decision
+  13). Start and Finish are not aid-food passes.
 - **Medical.** `null` everywhere (decision 10).
 - **Elevation.** Gain 18,000 (the home print); loss 17,103 (the
   chart's summed descents); the series is the official GPX's own
@@ -170,7 +172,7 @@ All URLs below were opened or downloaded on 2026-08-14.
   match the guide table's ladder.
 - The gear-bag prose's Wildcat 15.95 and crew prose's Bort 82.95 are
   losing prints (decision 4).
-- The overview's unnamed second water-only stop, Section 4's Clyde
+- The overview's unnamed second water-only point, Section 4's Clyde
   crew label, the 95.5 Marciel Gate Aid route instruction, and the two
   warm-food onset prints lose to the detailed station lists (decisions
   13-15).

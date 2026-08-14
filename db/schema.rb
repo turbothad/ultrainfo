@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_120400) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_14_164501) do
   create_table "aid_stations", force: :cascade do |t|
     t.text "access_notes"
     t.text "aid_notes"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_120400) do
     t.text "directions_notes"
     t.boolean "drop_bag"
     t.integer "elevation_ft"
-    t.boolean "has_food", default: false, null: false
+    t.boolean "has_food"
     t.boolean "has_medical"
     t.boolean "has_water"
     t.decimal "lat", precision: 10, scale: 6
