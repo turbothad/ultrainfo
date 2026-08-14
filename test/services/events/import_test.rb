@@ -686,9 +686,9 @@ module Events
       assert_equal 15_079, rabid.elevation_gain_ft, "the route's 4,596 m converted; run100s' 16,900 is unsourced"
       assert_equal 33, rabid.aid_stations.count, "the Start, thirty-one loop passes, and the Finish"
       assert_equal 3, rabid.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
-                   "the Rec Center, Four Seasons, and the water stop markers"
+                   "the Rec Center, Four Seasons, and water-only station markers"
       assert_equal 25, rabid.aid_stations.where(crew_accessible: true).count,
-                   "both staffed stations at every pass; never the water stop"
+                   "both staffed stations at every pass; never the water-only station"
       assert_equal 12, rabid.aid_stations.count(&:pacer_access?),
                    "registered pacers join after 50 miles: every staffed pass from 50.0 through 95.5"
       assert_equal 23, rabid.aid_stations.count(&:drop_bag?), "every staffed mid-race pass"
