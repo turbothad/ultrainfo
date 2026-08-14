@@ -3,7 +3,7 @@ slug: rabid-raccoon-100
 files:
   race:
     path: rabid-raccoon-100.yml
-    sha256: c23959d1d214aa2a91a1e24e2337ced23a7bf3dd03df20a1c3e99c2061c5cf3f
+    sha256: 8a609d78e9ddf6951c5255963315535705b648ead1fcd2f1694352ce421873b8
   course:
     path: rabid-raccoon-100.gpx
-    sha256: b65d44fae3ac64ae7562fe9183131af87f1625633b93176f80a9aab83a33d79e
+    sha256: 3802adea83f42f299a1761fa44d0edd2111d380a1aa365caac829c098ac9931a

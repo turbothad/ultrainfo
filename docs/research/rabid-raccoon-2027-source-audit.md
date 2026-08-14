@@ -17,7 +17,7 @@ running June 4-6, 2027 in Beaver County, PA, and the 100-mile
 registration card is open ($250) with the June 5, 4:00 AM - June 6,
 4:00 PM window (36 hours). The course is eight 12.5-mile loops at
 Brady's Run Park from The Rec Center, with Four Seasons hit twice
-per loop, one unmanned water stop, and the organizer plotaroute
+per loop, one unmanned water-only station, and the organizer plotaroute
 route (100.25 GPS miles, circular) carrying markers for all three
 station locations plus the start/finish.
 
@@ -25,27 +25,28 @@ Recorded discrepancies and decisions:
 
 1. **run100s is stale on climb.** Its 16,900-foot figure has no
    counterpart: the organizer plotaroute route publishes 4,596 m of
-   ascent (15,080 ft), the only total on any surface, and it is
-   recorded with the conversion documented.
+   ascent (15,079 ft; the descent field's 4,595 m converts to 15,076),
+   the only totals on any surface, recorded with the conversions
+   documented.
 2. **Frame.** 100 miles over eight 12.5-mile loops (the FAQs'
    "12.5 mile loop" and the loop counts on the registration cards);
    the plotaroute line GPS-measures 100.25 (its published Distance
    field converts to 100.36).
 3. **In-loop station miles are line-derived.** No chart of
    within-loop miles exists; the plotaroute line's scaled crossings
-   place Four Seasons at 1.96 and 8.64, the water stop at 6.19, and
-   The Rec Center at 12.5 per loop, and passes chain those onto the
-   loop bases. The organizer's only printed mid-course mile — Four
-   Seasons at MILE 95.5 in the cutoff schedule — sits 0.64 below
-   the line's scaled 96.14 for that pass; the printed 95.5 governs
-   it, with a pass note.
+   place Four Seasons at 1.96 and 8.64, the water station at 6.19,
+   and The Rec Center at 12.5 per loop, and passes chain those onto
+   the loop bases. The organizer's only printed mid-course mile —
+   Four Seasons at MILE 95.5 in the cutoff schedule — sits 0.75
+   below the line's scaled 96.25 crossing for that pass; the
+   printed 95.5 governs it, with a pass note.
 4. **Cutoffs.** Leave-by and firm: "Cut-off times are departure
    times, NOT arrival times. If you're not out of the station by
    the cut-off, your race is over." Two clocks: Four Seasons 2:00
    PM Sunday at mile 95.5 (2,040 minutes from the 4:00 AM Saturday
    start) and The Rec Center 4:00 PM Sunday at the finish (2,160 —
    the 36-hour total).
-5. **Stations.** Two locations plus a water stop, all marked on the
+5. **Stations.** Two locations plus a water-only station, marked on the
    organizer route: The Rec Center (start/finish/main, marker
    40.7318808, -80.3364301; the venue is Brady's Run Park
    Recreation Facility, 121 Brady's Run Road, Beaver Falls, PA) and
@@ -60,9 +61,11 @@ Recorded discrepancies and decisions:
    (Bradys Run Road closes during the race, so crews drive around
    between them); reserved indoor spots at The Rec Center go first
    come.
-7. **Pacers.** No pacer provisions are published on any surface
-   (the 5K ad's "Pacer? Crew Member?" is marketing); pacer flags
-   are false everywhere with notes.
+7. **Pacers.** The home page sells a Pacer registration (100 mile
+   and 100K only, $15, ages 14 and up): pacers register online,
+   wear a pacer bib, and join the 100 after 50 miles (four loops
+   completed). Pacer flags are true at every staffed pass from The
+   Rec Center at 50.0 through Four Seasons at 95.5.
 8. **Drop bags.** At each staffed station (Four Seasons and The Rec
    Center), labeled with number and name, returned to the start
    after stations shut; runners or crew may drive to retrieve
@@ -86,7 +89,7 @@ All URLs below were opened or downloaded on 2026-08-14.
 | ID | First-party source | Direct URL | Scope and caveat |
 |---|---|---|---|
 | S1 | Rabid Raccoon 100 RunSignup site (home and Race Info) | https://runsignup.com/Race/PA/Hookstown/RabidRaccoon100 | 2027 frame: June 4-6, 2027, 6th annual; the 100-mile card (8 loops, $250, June 5 4:00 AM - June 6 4:00 PM, ages 18+, open registration); the other distances' cards. |
-| S2 | Aid Stations page | https://runsignup.com/Race/RabidRaccoon100/Page/Aid-Stations | Three stations per loop for the 100 (two on loop one), 23 staffed passes total, the unmanned water stop, and the stocking list. |
+| S2 | Aid Stations page | https://runsignup.com/Race/RabidRaccoon100/Page/Aid-Stations | Three stations per loop for the 100 (two on loop one), 23 staffed passes total, the unmanned water-only station, and the stocking list. |
 | S3 | Crew Access page | https://runsignup.com/Race/RabidRaccoon100/Page/Crew-Access | Both stations crew-accessible; the Four Seasons and Rec Center Google pins (Four Season Pavilion 40.7241617, -80.3617523; Brady's Run Park Recreation Facility 40.7314906, -80.3369397); Bradys Run Road closure; reserved indoor spots. |
 | S4 | FAQs page | https://runsignup.com/Race/RabidRaccoon100/Page/FA-Qs | The 36-hour total; the firm leave-by cutoff language with the Four Seasons 2:00 PM (mile 95.5) and Rec Center 4:00 PM clocks; drop-bag rules; the 12.5-mile loop description with the creek crossing; course markings; Western States qualification; 2026-frame prints (decision 10). |
 | S5 | Organizer plotaroute course map (100 Mile) | https://www.plotaroute.com/route/2675516 | Geometry authority: the full eight-loop route (6,936 points, 100.25 GPS miles, circular, ascent 4,596 m) with the Rec Center, Four Seasons, Water Station Only, and Start/Finish markers. `db/events/rabid-raccoon-100.gpx` copies the line exactly and the station markers. |
@@ -102,15 +105,17 @@ All URLs below were opened or downloaded on 2026-08-14.
   (2,160). `cutoff_hours` 36.
 - **Station passes.** 33: the Start at The Rec Center, thirty-one
   mid-race passes over three locations (per loop: Four Seasons at
-  base+1.96, the water stop at base+6.19, Four Seasons at
+  base+1.96, the water station at base+6.19, Four Seasons at
   base+8.64 — loop eight's second pass pinned at the printed 95.5 —
   and The Rec Center at each loop end), and the Finish at 100.0.
 - **Crew.** `true` at every Four Seasons and Rec Center pass
-  including the Start and Finish; `false` at the water stop.
-- **Pacers.** `false` everywhere (decision 7).
+  including the Start and Finish; `false` at the water station.
+- **Pacers.** `true` at every staffed pass from mile 50.0 through
+  95.5 (decision 7); `false` before, at the water station, and at
+  the Finish.
 - **Drop bags.** `true` at every staffed mid-race pass (Four
   Seasons ×16, The Rec Center ×7); `null` at the Start; `false` at
-  the water stop and the Finish (bags return to the start after
+  the water station and the Finish (bags return to the start after
   stations shut).
 - **Medical.** `null` everywhere (decision 9).
 - **Elevation series.** USGS 3DEP per nominal mile; station spots
@@ -120,11 +125,11 @@ All URLs below were opened or downloaded on 2026-08-14.
 
 ## Stale-source traps
 
-- The FAQs' clocks and deadlines are 2026-frame (decision 10);
+- The FAQs' clocks and dates are 2026-frame (decision 10);
   re-check them as 2027 approaches.
 - The aid-station food list is "released in an email closer to the
   race date."
 - The plotaroute route was last updated July 5, 2024; re-check for
   a course revision before the 2027 running.
 - run100s' 16,900-foot climb has no counterpart (the route's
-  4,596 m / 15,080 ft is the only published total).
+  4,596 m / 15,079 ft is the only published total).

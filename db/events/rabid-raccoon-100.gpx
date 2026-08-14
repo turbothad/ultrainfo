@@ -4,6 +4,7 @@
   <wpt lat="40.731881" lon="-80.336430"><ele>234.4</ele><name>Start/Finish - Rec Center Aid Station</name></wpt>
   <wpt lat="40.724123" lon="-80.361832"><ele>256.9</ele><name>Four Seasons Aid Station</name></wpt>
   <wpt lat="40.726751" lon="-80.342654"><ele>347.2</ele><name>Water Station Only</name></wpt>
+  <wpt lat="40.731711" lon="-80.336753"><ele>234.4</ele><name>Start/Finish</name></wpt>
   <trk><name>Rabid Raccoon 100</name><trkseg>
     <trkpt lat="40.731741" lon="-80.336588"></trkpt>
     <trkpt lat="40.731592" lon="-80.336849"></trkpt>
