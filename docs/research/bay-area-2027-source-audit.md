@@ -172,9 +172,10 @@ All URLs below were opened or downloaded on 2026-08-14.
   match the guide table's ladder.
 - The gear-bag prose's Wildcat 15.95 and crew prose's Bort 82.95 are
   losing prints (decision 4).
-- The overview's unnamed second water-only point, Section 4's Clyde
-  crew label, the 95.5 Marciel Gate Aid route instruction, and the two
-  warm-food onset prints lose to the detailed station lists (decisions
-  13-15).
+- The overview establishes but does not locate a second water-only
+  point, so its location remains unresolved (decision 13).
+- Section 4's Clyde crew label and the 95.5 Marciel Gate Aid route
+  instruction lose to the detailed station lists; the two conflicting
+  warm-food onset prints remain unmodeled (decisions 13-15).
 - run100s' 18,263-foot climb sits between the home page's 18,000 and
   the chart's 18,447 sum; the home print governs.
