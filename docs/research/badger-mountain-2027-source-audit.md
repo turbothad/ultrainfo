@@ -96,8 +96,8 @@ All URLs below were opened or downloaded on 2026-08-13.
   when the 2027 update posts (the site historically updates near the
   December registration opening).
 - The chart's sunset/sunrise note (7:15 pm / 6:45 am) is 2026's.
-- The 100-miler page's drop-bag miles (18, 31, 68, 80) round the
-  chart's 18.5/31.5/68.5/81.5.
+- The 100-miler page's drop-bag miles (18, 31, 68, 80) approximate
+  the chart's 18.5/31.5/68.5/81.5.
 - run100s' 32-hour and 14,000-foot figures are superseded (32.5;
   18,431).
 - The registration URL is the eid series page until the 2027 did page

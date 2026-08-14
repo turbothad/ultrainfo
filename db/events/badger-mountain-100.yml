@@ -66,10 +66,10 @@ race:
         label: "UltraSignup 2026 listing (results back to 2011)"
         url: "https://ultrasignup.com/register.aspx?did=127508"
         verified_on: "2026-08-13"
-    notes: "Checked against first-party sources on August 13, 2026. A 100% volunteer race benefiting the Badger Mountain Preserve open spaces. Check-in and drop-bag drop-off 5:30-6:30 AM at the Trailhead Park lower lot (1294 White Bluffs St., Richland) with a 6:40 AM briefing; an early 6:00 AM start is available by advance arrangement. The course mixes single track, rocky jeep trails, dirt roads, and about 15 total miles of pavement between 500 and 2,000 feet, with several steep 800-1,000-foot climbs; weather drives the high DNF rate (34 percent in three years) and hypothermia is a real risk on McBee ridge. Dogs may accompany 100-mile runners (leashed on Badger Mountain). Runners who drop must tell the aid captain or Race Director. All finishers earn a custom buckle, with sub-24 and five-year buckles."
+    notes: "Checked against first-party sources on August 13, 2026. A 100% volunteer race benefiting the Badger Mountain Preserve open spaces. Check-in and drop-bag drop-off 5:30-6:30 AM at the Trailhead Park lower lot (1294 White Bluffs St., Richland) with a 6:40 AM briefing; an early 6:00 AM start is available by advance arrangement. The course mixes single track, rocky jeep trails, dirt roads, and about 15 total miles of pavement between 500 and 2,000 feet, with several steep 800-1,000-foot climbs; weather is the main cause of the high DNF rate (the finish rate was 56 percent in 2014 and just 34 percent in 2015 through 2017) and hypothermia is a real risk on McBee ridge. Dogs may accompany 100-mile runners (leashed on Badger Mountain). Runners who drop must tell the aid captain or Race Director. All finishers earn a custom buckle, with sub-24 and five-year buckles."
     overall_cutoff_label: "3:30 PM March 27, 2027"
     overall_cutoff_notes: "The 100 closes at 3:30 PM Saturday, 32.5 hours from the Friday 7:00 AM start. Chart cutoffs: the 50-mile turnaround at 10:00 PM Friday, McBee parking at 3:00 AM and 7:30 AM, Jacobs Road at 12:00 PM, Candy Mtn at 1:30 PM, and the finish at 3:30 PM Saturday. Cut-off times will be adhered to."
-    pacer_rule_summary: "One pacer at a time, joining only after the runner reaches the 50-mile turnaround at Trailhead Park; pacers may also join at the crew-accessible stations after 50 miles (Candy Mtn or McBee Parking). Pacers do not register — they pick up a bib at packet pickup or the start/finish — and should tell station volunteers where they join and leave. Station food is for entrants; pacers may eat but should bring their own."
+    pacer_rule_summary: "One pacer at a time, joining only after the runner reaches the 50-mile turnaround at Trailhead Park; pacers may also join at the crew-accessible stations after 50 miles (Candy Mtn or McBee Parking). Pacers do not register — they pick up a bib at packet pickup or the start/finish — and should tell station volunteers where they join and leave. Station food is for the runners; pacers may eat but should bring their own."
     drop_bag_summary: "Two drop-bag locations: the start/finish and McBee Parking (passed at miles 18.5, 31.5, 68.5, and 81.5), dropped off race morning and transported for the runner; label with name, bib number, and station. Returns to the finish are best-effort."
     tracking_note: "No live tracking is published; results post on UltraSignup."
   blurb: Two trips on a 50-mile out-and-back over Badger and Candy Mountains and the Horse Heaven Hills above Richland.
@@ -266,7 +266,7 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Fruit, electrolyte drink, pop, PBJ, chips, snacks, and water on loop one; burgers (veggie too) join the menu inbound."
+    aid: "Fruit, electrolyte drink, pop, PBJ, chips, snacks, and water."
     bathroom: null
     park: null
     crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
@@ -434,7 +434,7 @@ aid_stations:
     cutoff: null
     cutoff_clock: null
     cutoff_elapsed_minutes: null
-    aid: "Fruit, electrolyte drink, pop, PBJ, chips, snacks, and water on loop one; burgers (veggie too) join the menu inbound."
+    aid: "Fruit, electrolyte drink, burgers (veggie too), PBJ, chips, and snacks."
     bathroom: null
     park: null
     crew_notes: "Not crew-accessible: crews may meet runners only at the crew-accessible stations, and runners who are met elsewhere are DNF'd."
@@ -503,7 +503,7 @@ aid_stations:
     crew_notes: "Crew-accessible per the aid chart; crews may meet runners only at the crew-accessible stations (driving directions are linked from the 100-miler page) — meeting anywhere else is a DNF."
     pacer_notes: "Pacer join point after 50 miles: one at a time, with a bib from packet pickup or the start/finish; tell the station volunteers where the pacer joins and leaves."
     road: null
-    source_metadata: 
+    source_metadata:
       <<: *official_station_source
       source_notes: "Verified on is the retrieval date. The chart prints this pass at loop-two mile 55, though every other loop-two row is its loop-one mile plus 50 exactly (4.6 + 50 = 54.6) and the inbound twin sits at 95.4; the printed 55 governs and the arithmetic conflict is recorded."
   - match: "Jacobs Road Aid Station"

@@ -3,7 +3,7 @@ slug: badger-mountain-100
 files:
   race:
     path: badger-mountain-100.yml
-    sha256: 9ca36b91728745de9cf9e06d49688e2e23937aacfe1aa86acc908b6acd47e1ff
+    sha256: ee5c6f01a62d457e0af5f49ac0393724127e83a96beeeb1eda85aa502055ccb9
   course:
     path: badger-mountain-100.gpx
     sha256: ff42fad4ab0a40b77d954932a2e3e21f58539b11c0178021a35bd701dd7630cd
