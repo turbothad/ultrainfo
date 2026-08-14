@@ -77,7 +77,7 @@ race:
     overall_cutoff_notes: "33 hours from the Saturday 5:00 AM start. The guide table prints a thirteen-clock ladder: Wildcat Canyon 10:00 AM, Steam Trains 1:00 PM, Valle Vista 4:15 PM, Rancho Laguna 5:15 PM, Las Trampas 7:15 PM, Chabot Staging 11:30 PM Saturday, then Clyde Woolridge 2:00 AM, Bort Meadow 3:00 AM, Space Center 5:20 AM, Bort Meadow 8:15 AM, Marciel 10:00 AM and 12:00 PM, and the finish 2:00 PM Sunday."
     pacer_rule_summary: "Pacers start at Chabot Staging (56.6) - or early at Las Trampas (46) for runners arriving after 6:00 PM - and can be changed at Lake Chabot Marina, Bort Meadow (all three passes), and Space Center. One pacer at a time, no muling; every pacer registers free on UltraSignup and picks up a pacer bib."
     drop_bag_summary: "Gear bags (up to 14 liters and 10 pounds, marked with name and bib number) wait at Wildcat Canyon, Rancho Laguna, Las Trampas, Chabot Staging, Lake Chabot Marina, and all three Bort Meadow passes, plus the finish; bags drop at Basecamp on Thursday or Friday and return to the finish as stations close."
-    tracking_note: "Live runner tracking runs along the course with a YouTube live stream; the athlete tracking link posts on bayarea100.com, and results post on UltraSignup."
+    tracking_note: "Live runner tracking runs along the course with a YouTube live stream; the runner tracking link posts on bayarea100.com, and results post on UltraSignup."
   blurb: 100.7 point-to-point miles across the East Bay from Cal Memorial Stadium to Skyline High School, with 18,000 feet of climb and 33 hours from the 5:00 AM start.
   about: >-
     The Bay Area 100 crosses the East Bay point to point - from the
@@ -418,7 +418,7 @@ aid_stations:
     road: null
     source_metadata:
       <<: *official_station_source
-      source_notes: "Verified on is the retrieval date. The guide table prints 31.45 (governs); the pace chart prints 31.4."
+      source_notes: "Verified on is the retrieval date. The guide table prints 31.45 (governs); the pace chart prints 31.4. The guide overview says there are two water-only stops, but its detailed table and the organizer's pace chart independently identify only Pinehurst as water only. Those station-specific lists govern: Pinehurst records no food, while the guide's Hydration and Nutrition section supports food at the other mid-course stations. The unresolved overview count is documented in the source audit."
   - match: "Valle Vista"
     name: "Valle Vista"
     direction: null
@@ -571,7 +571,9 @@ aid_stations:
     crew_notes: "Not a crew station per the guide table."
     pacer_notes: "Pacers continue through; the next change point is Bort Meadow at 68.05."
     road: null
-    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The guide's Section 4 prose calls Clyde Woolridge crew-accessible, but the governing aid table leaves its crew cell blank. The table governs crew false, with the conflicting prose documented in the source audit."
   - match: "Bort"
     name: "Bort Meadow"
     direction: null
@@ -726,7 +728,9 @@ aid_stations:
     crew_notes: "Not a crew station per the guide table."
     pacer_notes: "Pacers continue through; the next change point is Bort Meadow at 97.5."
     road: null
-    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. After this second Marciel pass, the guide's turn-by-turn page says 'Enter Marciel Gate Aid (95.5)'; the governing aid table, pace chart, and official GPX station waypoints publish no separate 95.5 station. It is treated as a route instruction rather than an additional station pass, with the conflict documented in the source audit."
   - match: "Bort"
     name: "Bort Meadow"
     direction: null

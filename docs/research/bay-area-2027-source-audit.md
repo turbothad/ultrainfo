@@ -93,6 +93,27 @@ Recorded discrepancies and decisions:
     guide are the 2026 running's (June 13, 2026); the structure
     carries over on the same 5:00 AM/33-hour frame, and the 2027
     guide is due mid-August per the listing.
+13. **The unnamed second water-only stop.** The guide overview says
+    the twenty-three aid-station stops include two water-only stops,
+    but its detailed table and the organizer's pace chart independently
+    identify only Pinehurst as water only. Those two station-specific
+    lists govern over the unnamed overview count: Pinehurst records no
+    food, while the guide's Hydration and Nutrition section supports
+    food at the other mid-course stations. The same guide disagrees on
+    the start of warm food (Las Trampas on page 7, Chabot Staging on
+    page 15), so no station pass claims a specific warm-food onset.
+14. **Clyde Woolridge crew conflict.** The guide's Section 4 prose on
+    page 15 calls Clyde Woolridge crew-accessible, while the governing
+    page 11 table leaves Clyde's crew cell blank. The table governs the
+    `false` crew flag, consistently with the Planning page's direction
+    to use the aid table for crew access.
+15. **Marciel Gate at 95.5 is not a published station pass.** The
+    guide's page 22 turn-by-turn directions say "Enter Marciel Gate
+    Aid (95.5)", but the governing aid table and pace chart omit it,
+    and the official GPX has no separate waypoint there. The detailed
+    station lists and geometry govern: the print is retained as a route
+    instruction between Marciel at 93.2 and Bort Meadow at 97.5, not
+    imported as a twenty-sixth pass.
 
 ## Source register
 
@@ -103,8 +124,8 @@ All URLs below were opened or downloaded on 2026-08-14.
 | S1 | bayarea100.com home | https://bayarea100.com/ | The June 12, 2027 second-running banner; 18,000 ft; 33 hours; the 2028 Western States qualifier print; the 2027 guide "early September" note. |
 | S2 | The Race page | https://bayarea100.com/the-race/ | The guide, pace-chart, Strava, and GPX links; the two buckles (One Day sub-24, True Grit sub-33); UTMB Index; live tracking and stream; the stale "cutoffs starting at 11:30 am" print (decision 3). |
 | S3 | Planning page | https://bayarea100.com/planning/ | Crew rules and restrictions (Lake Chabot 10:00 PM lot, Bort Meadow reservations), mandatory free pacer registration, gear bags, the 2026 race-week schedule (bib pickup at Sports Basement Berkeley, no race-day pickup). |
-| S4 | 2026 Athlete Guide (Drive PDF, revised April 27, 2026) | https://drive.google.com/file/d/1RfYYAK0eQzhM27-z04lMd-BwXUxkL1Ir/view | The governing aid table (page 11: miles, cutoff/crew/gear-bag/pacer columns); pacer rules (page 6); gear-bag rules; the Bort Meadow, Lake Chabot, and Space Center diagrams; pink-ribbon markings; the 15.95 and 82.95 prose variants (decision 4). |
-| S5 | Pace chart sheet | https://docs.google.com/spreadsheets/d/1Rs4X2-qInwaNJ9b4iysUnaQmb5JqJVPI | Segment miles, per-segment gain and loss (sums 18,447/17,103), and the cutoff clocks; its mile frame loses to the guide table (decision 4). |
+| S4 | 2026 Athlete Guide (Drive PDF, revised April 27, 2026) | https://drive.google.com/file/d/1RfYYAK0eQzhM27-z04lMd-BwXUxkL1Ir/view | The governing aid table (page 11: miles, cutoff/crew/gear-bag/pacer columns); pacer rules (page 6); gear-bag rules; the Bort Meadow, Lake Chabot, and Space Center diagrams; pink-ribbon markings; the water-only, Clyde crew, Marciel Gate, and warm-food conflicts (decisions 13-15). |
+| S5 | Pace chart sheet | https://docs.google.com/spreadsheets/d/1Rs4X2-qInwaNJ9b4iysUnaQmb5JqJVPI | Segment miles, per-segment gain and loss (sums 18,447/17,103), and the cutoff clocks; its mile frame loses to the guide table (decision 4), while its single Pinehurst water-only label corroborates the detailed guide table (decision 13). |
 | S6 | Official course GPX with stations | https://bayarea100.com/wp-content/uploads/2026/06/Bay_Area_100-with-stations.gpx | Geometry and elevation authority: 6,156 track points with altitudes (GPS 100.28) and twenty station waypoints on the line. `db/events/bay-area-100.gpx` copies the line exactly. |
 | S7 | UltraSignup 2027 listing | https://ultrasignup.com/register.aspx?did=141132 | The June 12, 2027 / 5:00 AM header; the registration timeline, 300 cap, and December 8 close; the qualifying recommendation; the 2027 deltas (no early start; first cutoff 10:00 AM); WSER/UTMB status; deferral rollover to 2028; the 2026 results tab. |
 
@@ -127,6 +148,9 @@ All URLs below were opened or downloaded on 2026-08-14.
 - **Gear bags.** `true` at the table's nine marks (decision 9);
   `false` elsewhere including the Start (bags drop at Basecamp
   before the race).
+- **Food.** `false` at Pinehurst, the only water-only stop identified
+  by both detailed station lists; `true` at the other mid-course
+  passes (decision 13). Start and Finish are not aid-food passes.
 - **Medical.** `null` everywhere (decision 10).
 - **Elevation.** Gain 18,000 (the home print); loss 17,103 (the
   chart's summed descents); the series is the official GPX's own
@@ -146,5 +170,9 @@ All URLs below were opened or downloaded on 2026-08-14.
   match the guide table's ladder.
 - The gear-bag prose's Wildcat 15.95 and crew prose's Bort 82.95 are
   losing prints (decision 4).
+- The overview's unnamed second water-only stop, Section 4's Clyde
+  crew label, the 95.5 Marciel Gate Aid route instruction, and the two
+  warm-food onset prints lose to the detailed station lists (decisions
+  13-15).
 - run100s' 18,263-foot climb sits between the home page's 18,000 and
   the chart's 18,447 sum; the home print governs.

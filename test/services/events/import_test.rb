@@ -774,6 +774,13 @@ module Events
                    "the table's pacer marks: Las Trampas through the finish"
       assert_equal 9, bay_area.aid_stations.count(&:drop_bag?),
                    "the table's gear-bag marks: six stations, Bort Meadow three times, plus the finish"
+      assert_equal 1,
+                   bay_area.aid_stations.where.not(mile: [ 0, 100.7 ]).where(has_food: false).count,
+                   "the detailed guide table and pace chart identify only Pinehurst as water only"
+      assert_not bay_area.aid_stations.find_by!(mile: 64.9).crew_accessible,
+                 "the governing table leaves Clyde blank despite the Section 4 crew prose"
+      assert_nil bay_area.aid_stations.find_by(mile: 95.5),
+                 "Marciel Gate is a route instruction absent from the table, pace chart, and GPX waypoints"
       assert_equal 13, bay_area.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
                    "the table's thirteen-clock ladder"
       assert_equal 1110, bay_area.aid_stations.find_by!(mile: 56.6).cutoff_elapsed_minutes,

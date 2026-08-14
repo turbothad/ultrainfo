@@ -3,7 +3,7 @@ slug: bay-area-100
 files:
   race:
     path: bay-area-100.yml
-    sha256: 7232a6a964ad1aec8512463944ca94980296ecc0d6fb807c4011413384fc7cf2
+    sha256: cf4dc47141d8bc83b10c294a81c6485bec6880963aad0fac25be8de8dd955ce4
   course:
     path: bay-area-100.gpx
     sha256: 0e9775b38bf0607d763048bc3919c2524816146dc11024180334e54140f3d1d4
