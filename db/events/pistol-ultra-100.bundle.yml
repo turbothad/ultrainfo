@@ -3,7 +3,7 @@ slug: pistol-ultra-100
 files:
   race:
     path: pistol-ultra-100.yml
-    sha256: 8143ccb9fbb0b9d6e7bdc68424715d95d4009233bc85725b8bf09a29ccae104b
+    sha256: ffbbb5e722dd836486ba9d54ada7825fd14858a649945536c8866d2e771603c9
   course:
     path: pistol-ultra-100.gpx
     sha256: 66f13af29b84240dd16bf2a451b9cef1b18bf710c6d38bf697ffdbf0744ff5ae

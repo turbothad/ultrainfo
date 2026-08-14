@@ -19,7 +19,7 @@ complete three-type pacer system. The 100 Mile runs ten Imperial loops.
 
 Recorded discrepancies and decisions:
 
-1. **Three finish-time surfaces.** The FAQ's cutoff table (its Time Limits section) gives the
+1. **Three finish-time surfaces.** The FAQ's cutoff table (its "Time Limits" section) gives the
    50K/100K/100 Mile 32 hours and says "The course will officially close
    at 32 hours"; the Events listing ends the 100 Mile at 5:00 PM EDT
    Sunday — exactly 32 true elapsed hours from the 8:00 AM EST Saturday
@@ -68,7 +68,7 @@ All URLs below were opened or downloaded on 2026-08-13.
 | S3 | Course Route page | https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Course-Route | The 10-mile Imperial loop (orange; 100 Mile = 10 loops, 50M/20M/10M shares) and 10.35-mile Metric loop (green; 100K/50K); stations: Long Run Store (start/finish at Springbrook Pool, fully stocked, warming areas), Woody's Near Famous (~1.9 and ~8.1), Lucky's (~4 and ~6.1, fully stocked); the aid-station exclusivity rule; official GPX/plotaroute/Strava links; course markings. |
 | S4 | Runners Info page | https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Runners-Info | Year 14; "up to 32 hours for the big ones"; Fully-Stocked Aid Stations; lit course; Springbrook Pool start/finish along Pistol Creek; "Set up your own support crew area along the course"; no pets. |
 | S5 | Schedule page | https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Schedule-Packet-Pickup | Friday packet pickup 2:00–6:00 PM at the Hilton Knoxville Airport; Saturday late pickup 6:30–7:30 AM; 7:55 AM 50K start; 8:00 AM 100K & 100 Mile start; Sunday "4:00 PM Course Closes – All Races End" (the 10/20-mile window; see decision 1). |
-| S6 | FAQ | https://www.pistolultra.com/Race/ThePistolCreekRun/Page/FAQ | The Time Limits section (100 Mile 32 hours; course closes at 32 hours; staff/medical may pull a runner who cannot finish the current or final lap); Springbrook Pool, 636 Vose Road; restrooms and porta-potties; the canopy area rules; parking by distance (100M at Springbrook); buckles; no alcohol; "registration will open this summer" (already open per S2). |
+| S6 | FAQ | https://www.pistolultra.com/Race/ThePistolCreekRun/Page/FAQ | The "Time Limits" section (100 Mile 32 hours; course closes at 32 hours; staff/medical may pull a runner who cannot finish the current or final lap); Springbrook Pool, 636 Vose Road; restrooms and porta-potties; the canopy area rules; parking by distance (100M at Springbrook); buckles; no alcohol; "registration will open this summer" (already open per S2). |
 | S7 | Pacers page | https://www.pistolultra.com/Race/ThePistolCreekRun/Page/Pacers | Personal pacers (free registration, waiver, one numbered bib per runner, transferable, no limit on count); bicycle pacers (banned Saturday daylight; from Saturday night through Sunday one is permitted per runner without a foot pacer, lights required); official volunteer pacers at the main aid station in hourly shifts 9:00 PM Saturday–10:00 AM Sunday; equal station access for bibbed pacers; no muling. |
 | S8 | Official Imperial GPX download | https://drive.google.com/file/d/16ONPOuUtiPtydGeoc-NZzjH_yP481cvR/view | Geometry and elevation authority ("The Pistol - Imperial 100 M 50M 20M 10M", linked from S3): 722 track points with elevations, loop 10.17 GPS miles, 3-foot closure, start/finish 35.793574,-83.977175. `db/events/pistol-ultra-100.gpx` copies the points exactly and adds three station waypoints. |
 
