@@ -43,7 +43,7 @@ Recorded discrepancies and decisions:
    6:00 PM Saturday pattern. March 19–20, 2027 sits after the March 14
    spring-forward, so no DST crossing.
 6. **Cutoff policy nuance.** "Cut-off times at crewed aid stations are
-   non-negotiable" (check-out deadlines); at remote stations past
+   non-negotiable" — runners must check out before the clock; at remote stations past
    cutoff, volunteers may encourage a runner to move to the next crewed
    station rather than extract them. Recorded in the cutoff notes.
 7. **Elevation figures.** The race info PDF's CalTopo profile shows
