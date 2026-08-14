@@ -1,0 +1,588 @@
+# Massanutten Mountain Trails 100 — event data (imported by Events::Import
+# via db/seeds.rb). The 2027-frame VHTRC race page carries the race facts;
+# the Course page's fifteen-station table carries the passes (with one
+# impossible finish clock corrected by the Crew Instructions table and the
+# 36-hour statement); the official course GPX is the geometry and
+# elevation authority. Source decisions are documented in
+# docs/research/massanutten-2027-source-audit.md.
+
+race:
+  name: Massanutten Mountain Trails 100
+  slug: massanutten-100
+  year: 2027
+  state: VA
+  distance_mi: 100.6 # The course table's cumulative frame; the official GPX GPS-measures 97.82.
+  elevation_gain_ft: 18500 # The Course facts: 18,500 feet of total ascent/descent (the home page says more than 18,000; run100s' 19,000 has no counterpart).
+  elevation_loss_ft: 18500
+  start_date: 2027-05-15
+  end_date: 2027-05-16
+  start_time: 5:00 AM
+  time_zone: America/New_York
+  cutoff_hours: 36 # "There is a 36-hour cutoff" — the finish closes 5:00 PM Sunday (the course table's 3:00 pm print is corrected by the crews table).
+  official_url: https://new.vhtrc.org/races/mmt
+  registration_url: https://new.vhtrc.org/races/mmt/entry
+  results_url: https://new.vhtrc.org/races/mmt/results
+  registration_status: not_open # "Entry opens on Sat Oct 31, 2026 at 8:00 am" ($250, 250-person limit, via UltraSignup).
+  lottery: false # First-come entry with a waitlist once the race fills.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "A rocky figure-8 over the ridges of the Massanutten Mountains in the George Washington National Forest from Caroline Furnace Lutheran Camp, Fort Valley, VA, by the Virginia Happy Trails Running Club. The race page is 2027-frame (Sat May 15, 2027 at 5:00 am; entry opens October 31, 2026). The course table's finish cutoff prints 3:00 pm — impossible against its own Gap Creek II clock (3:55 pm at 96.8) and the page's 36-hour statement — and the Crew Instructions table prints 5:00 pm, exactly 36 hours from the start, which governs; the crews table in turn prints Picnic Area at 12:50 am against the course table's ladder-consistent 12:50 pm, so each table corrects the other's single AM/PM misprint. Crew counts disagree across surfaces (the facts box says 8, the prose 9, the table checks 8, and the Crew Instructions list names 9 mid-race stations plus the finish, adding Gap Creek II — the same ground as crew-accessible Gap Creek I); the Crew Instructions list governs. Woodstock Tower and Powells Fort cutoffs are recommendation-only per the table's footnote. The Schedule page still carries the 2026 weekend; its structure is the standing pattern. run100s' 19,000-foot climb has no counterpart (18,500)."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_race_page
+        label: "MMT 100 race page (2027 date and start, entry opening, venue, 36 hours)"
+        url: "https://new.vhtrc.org/races/mmt"
+        verified_on: "2026-08-14"
+      - &source_course
+        label: "Course page (the fifteen-station table with cutoffs and footnotes, 100.6 miles, 18,500 feet, GPX link)"
+        url: "https://new.vhtrc.org/races/mmt/course"
+        verified_on: "2026-08-14"
+      - &source_gpx
+        label: "Official course GPX (track with elevations and 17 station waypoints)"
+        url: "https://new.vhtrc.org/media/pages/races/mmt/course/c9a263be78-1779210606/vhtrc-mmt-100.gpx"
+        verified_on: "2026-08-14"
+      - &source_entry
+        label: "Entry page ($250, 250-person limit, opens October 31, 2026, refunds, waitlist)"
+        url: "https://new.vhtrc.org/races/mmt/entry"
+        verified_on: "2026-08-14"
+      - &source_crews
+        label: "Crew Instructions page (crew-access station list with the 5:00 pm finish print)"
+        url: "https://new.vhtrc.org/races/mmt/info/crews"
+        verified_on: "2026-08-14"
+      - &source_pacers
+        label: "Pacers page (join points, one at a time, no muling, the 62-plus exception)"
+        url: "https://new.vhtrc.org/races/mmt/info/pacers"
+        verified_on: "2026-08-14"
+      - &source_schedule
+        label: "Schedule page (Friday check-in and drop-bag collection, 5:00 am start pattern; 2026 frame)"
+        url: "https://new.vhtrc.org/races/mmt/info/schedule"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. The 2027 running is the club's 30th-anniversary era MMT with a 3:00 AM early start for runners over 60 on the standing schedule. About 10 climbs of 750 feet or more; the longest (1,550 feet in 2.5 miles) comes at mile 55 after Habron Gap; the high point is Bird Knob (2,835 feet, mile 81) and the low point 540 feet near mile 39. The course is marked with yellow tape (red bars wrong turns) with reflective night markings, and the club recommends PATC maps G and H. Woodstock Tower, Powells Fort, Indian Grave, and Bird Knob are remote stations where runners may not withdraw from the race except in serious medical condition. A Medical Emergency Plan lists directions to the nearest facilities from each station; no station-level medical service is published. Check-in and drop-bag collection run Friday 2:00-8:00 pm at the camp with a 4:00 pm briefing; all runners re-check in race morning. A Solo Division and Participants' Guide exist; the guide serves the prior year's copy until updated."
+    overall_cutoff_label: "5:00 PM May 16, 2027"
+    overall_cutoff_notes: "36 hours from the Saturday 5:00 AM start. The course table's ladder runs Edinburg Gap 8:50 am through Gap Creek II 3:55 pm Sunday; Woodstock Tower (11:30 am) and Powells Fort (1:15 pm) are recommendation-only per the footnote. The table's finish cell prints 3:00 pm — impossible against Gap Creek II's 3:55 pm — and the Crew Instructions table prints 5:00 pm, exactly 36 hours, which governs. Clocks from Camp Roosevelt on are Sunday."
+    pacer_rule_summary: "One pacer at a time, joining at Camp Roosevelt (63.9; the Pacers page prints 63.5) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday. Runners 62 or older may take a pacer from Elizabeth Furnace (33.3). Pacers join only at aid stations, stay with their runner, let the runner lead, and carry nothing for them."
+    drop_bag_summary: "Drop bags at ten stations per the course table: Edinburg Gap, Woodstock Tower, Elizabeth Furnace, Shawl Gap, Habron Gap, Camp Roosevelt, Gap Creek I, Visitor Center, Picnic Area, and Gap Creek II. Bags are collected at the camp Friday 2:00-8:00 pm; none may be submitted after 8:00 pm."
+    tracking_note: "No live tracking link is published; results post on the club's results page."
+  blurb: A rocky figure-8 over the Massanutten ridges from Caroline Furnace with 18,500 feet of climbing and 36 hours to the buckle.
+  about: >-
+    The Massanutten Mountain Trails 100 runs a top-heavy figure-8 over
+    the ridges of the Massanutten Mountains in Virginia's Shenandoah
+    Valley — north up the western ridge to Elizabeth Furnace, south
+    along the eastern ridge to Gap Creek, then a second loop over
+    Kerns Mountain and Bird Knob. The rocks are the point:
+    short, rugged climbs totaling 18,500 feet, ridgelines that
+    resemble piles of rocks in the woods, fifteen aid stations, crews
+    at nine of them plus the camp, pacers from Camp Roosevelt, and 36
+    hours from the 5:00 AM start. Massanutten Rocks!
+  start_venue: Caroline Furnace Lutheran Camp, Fort Valley, VA
+  finish_venue: Caroline Furnace Lutheran Camp, Fort Valley, VA
+
+# Profile from the official course GPX's elevations, sampled per nominal
+# chart mile; GPS miles (97.82) are scaled to the course table's
+# 100.6-mile frame.
+elevation_series:
+  - [0, 1131]
+  - [1, 1172]
+  - [2, 1359]
+  - [3, 1599]
+  - [4, 1844]
+  - [5, 1986]
+  - [6, 2600]
+  - [7, 2668]
+  - [8, 2713]
+  - [9, 2658]
+  - [10, 2555]
+  - [11, 2217]
+  - [12, 1795]
+  - [13, 1965]
+  - [14, 2625]
+  - [15, 2267]
+  - [16, 1978]
+  - [17, 1861]
+  - [18, 1805]
+  - [19, 1764]
+  - [20, 1808]
+  - [21, 1840]
+  - [22, 1795]
+  - [23, 1734]
+  - [24, 1747]
+  - [25, 1654]
+  - [26, 1213]
+  - [27, 1273]
+  - [28, 1402]
+  - [29, 1507]
+  - [30, 1918]
+  - [31, 1587]
+  - [32, 1218]
+  - [33, 1007]
+  - [34, 761]
+  - [35, 1134]
+  - [36, 1637]
+  - [37, 1141]
+  - [38, 912]
+  - [39, 668]
+  - [40, 573]
+  - [41, 782]
+  - [42, 932]
+  - [43, 1544]
+  - [44, 1807]
+  - [45, 1785]
+  - [46, 1823]
+  - [47, 1820]
+  - [48, 1927]
+  - [49, 1206]
+  - [50, 837]
+  - [51, 702]
+  - [52, 641]
+  - [53, 690]
+  - [54, 659]
+  - [55, 747]
+  - [56, 1346]
+  - [57, 2080]
+  - [58, 2183]
+  - [59, 2117]
+  - [60, 1714]
+  - [61, 1327]
+  - [62, 1431]
+  - [63, 1365]
+  - [64, 1349]
+  - [65, 1317]
+  - [66, 1488]
+  - [67, 1773]
+  - [68, 2193]
+  - [69, 2096]
+  - [70, 1651]
+  - [71, 2196]
+  - [72, 2481]
+  - [73, 2414]
+  - [74, 2482]
+  - [75, 2477]
+  - [76, 2307]
+  - [77, 2085]
+  - [78, 1805]
+  - [79, 2087]
+  - [80, 2716]
+  - [81, 2808]
+  - [82, 2519]
+  - [83, 2710]
+  - [84, 2482]
+  - [85, 2013]
+  - [86, 1560]
+  - [87, 1435]
+  - [88, 1544]
+  - [89, 1117]
+  - [90, 1153]
+  - [91, 1471]
+  - [92, 1798]
+  - [93, 2341]
+  - [94, 2341]
+  - [95, 1883]
+  - [96, 1757]
+  - [97, 1572]
+  - [98, 1383]
+  - [99, 1320]
+  - [100, 1165]
+  - [100.6, 1132]
+
+# Station passes: the Course page's fifteen-station table plus the Start
+# and Finish at Caroline Furnace. Gap Creek I and II share one coordinate,
+# as do the Start and Finish; the figure-8 has no Turnaround rows, so mid
+# passes are unlabeled per the domain vocabulary. Coordinates copy the
+# official GPX waypoints (`match` = waypoint-name substring); elevations
+# are the GPX line's values at each pass's chart mile (the source
+# waypoints carry no elevations).
+aid_stations:
+  - match: "Start: Caroline"
+    name: "Start — Caroline Furnace Camp"
+    direction: "Start"
+    mile: 0.0
+    elev: 1131
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "No mile-zero aid row is published; drop bags are collected here Friday evening and the first station is Moreland Gap at 4.1 (fluids only), so the first food is Edinburg Gap at 12.1."
+    bathroom: null
+    park: null
+    crew_notes: "The camp is the crew base; check-in, the briefing, and drop-bag collection happen here Friday, with race-morning check-in from 4:00 am."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "MMT 100 Course page aid-station table"
+      source_url: "https://new.vhtrc.org/races/mmt/course"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. Pass miles, drop-bag flags, cutoff clocks, and footnotes come from the Course page table; crew flags come from the Crew Instructions list (which adds Gap Creek II against the table's checkmarks and prints the correct 5:00 pm finish); pacer rules come from the Pacers page. The table's finish cell prints an impossible 3:00 pm, corrected by the crews table and the 36-hour statement. Station coordinates copy the official GPX waypoints; elevations are the GPX line's values at each pass's chart mile."
+      sources:
+        - *source_course
+        - *source_crews
+        - *source_pacers
+        - *source_gpx
+        - *source_race_page
+        - *source_schedule
+  - match: "Moreland Gap"
+    name: "Moreland Gap"
+    direction: null
+    mile: 4.1
+    elev: 1880
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fluids only per the table's footnote."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew-access station per the Crew Instructions list."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Edinburg Gap"
+    name: "Edinburg Gap"
+    direction: null
+    mile: 12.1
+    elev: 1754
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "8:50 AM"
+    cutoff_clock: "8:50 AM"
+    cutoff_elapsed_minutes: 230
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Woodstock Tower"
+    name: "Woodstock Tower"
+    direction: null
+    mile: 20.3
+    elev: 1839
+    crew: false
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "11:30 AM"
+    cutoff_clock: "11:30 AM"
+    cutoff_elapsed_minutes: 390
+    aid: "Aid station per the course table; menus are published in the Participants' Guide. A remote station: runners may not withdraw here except in serious medical condition."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew-access station per the Crew Instructions list."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. This cutoff carries the table's clock footnote: recommendation only and not enforced, but the club believes you will not finish without achieving it, and the next station may not be intact if you pass it late."
+  - match: "Powells Fort"
+    name: "Powells Fort"
+    direction: null
+    mile: 25.8
+    elev: 1254
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "1:15 PM"
+    cutoff_clock: "1:15 PM"
+    cutoff_elapsed_minutes: 495
+    aid: "Aid station per the course table; menus are published in the Participants' Guide. A remote station: runners may not withdraw here except in serious medical condition."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew-access station per the Crew Instructions list."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. This cutoff carries the table's clock footnote: recommendation only and not enforced, but the club believes you will not finish without achieving it, and the next station may not be intact if you pass it late."
+  - match: "Elizabeth Furnace"
+    name: "Elizabeth Furnace"
+    direction: null
+    mile: 33.3
+    elev: 927
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:40 PM"
+    cutoff_clock: "3:40 PM"
+    cutoff_elapsed_minutes: 640
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "No pacer for most runners yet; runners 62 or older may take a pacer from here."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Shawl Gap"
+    name: "Shawl Gap Parking"
+    direction: null
+    mile: 38.0
+    elev: 912
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:25 PM"
+    cutoff_clock: "5:25 PM"
+    cutoff_elapsed_minutes: 745
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Veach Gap"
+    name: "Veach Gap Parking"
+    direction: null
+    mile: 41.1
+    elev: 741
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "6:25 PM"
+    cutoff_clock: "6:25 PM"
+    cutoff_elapsed_minutes: 805
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew-access station per the Crew Instructions list."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Indian Grave"
+    name: "Indian Grave Trailhead"
+    direction: null
+    mile: 50.1
+    elev: 799
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "9:25 PM"
+    cutoff_clock: "9:25 PM"
+    cutoff_elapsed_minutes: 985
+    aid: "Aid station per the course table; menus are published in the Participants' Guide. A remote station: runners may not withdraw here except in serious medical condition."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew-access station per the Crew Instructions list."
+    pacer_notes: "No pacer yet: pacers join at Camp Roosevelt (63.9) or any crew-access station beyond, or at Habron Gap (54.0) after 6:00 PM Saturday; runners 62 or older may take one from Elizabeth Furnace (33.3)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Habron Gap"
+    name: "Habron Gap Parking"
+    direction: null
+    mile: 54.0
+    elev: 659
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "10:30 PM"
+    cutoff_clock: "10:30 PM"
+    cutoff_elapsed_minutes: 1050
+    aid: "Aid station per the course table; menus are published in the Participants' Guide. The longest climb of the course (1,550 feet in 2.5 miles) starts just past this station."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "Conditional pacer point: pacers may join here only after 6:00 PM Saturday."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Camp Roosevelt"
+    name: "Camp Roosevelt"
+    direction: null
+    mile: 63.9
+    elev: 1362
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "2:50 AM"
+    cutoff_clock: "2:50 AM"
+    cutoff_elapsed_minutes: 1310
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "Pacer join point: pacers may join at any time here (the Pacers page prints mile 63.5 against the table's 63.9)."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The Pacers page prints this station at 63.5 miles against the course table's 63.9 — the table governs."
+  - match: "Gap Creek I ("
+    name: "Gap Creek I"
+    direction: null
+    mile: 69.6
+    elev: 1793
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:25 AM"
+    cutoff_clock: "5:25 AM"
+    cutoff_elapsed_minutes: 1465
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "Pacer join point: one pacer at a time from here onward at crew-access stations."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Visitor Center"
+    name: "Visitor Center"
+    direction: null
+    mile: 78.1
+    elev: 1805
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "9:15 AM"
+    cutoff_clock: "9:15 AM"
+    cutoff_elapsed_minutes: 1695
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "Pacer join point: one pacer at a time from here onward at crew-access stations."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Bird Knob"
+    name: "Bird Knob"
+    direction: null
+    mile: 81.6
+    elev: 2717
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Aid station per the course table; menus are published in the Participants' Guide. The high point of the course (2,835 feet) sits near this station; a remote station where runners may not withdraw except in serious medical condition."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew-access station per the Crew Instructions list."
+    pacer_notes: "Pacer join point: one pacer at a time from here onward at crew-access stations."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Picnic Area"
+    name: "Picnic Area"
+    direction: null
+    mile: 87.9
+    elev: 1576
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:50 PM"
+    cutoff_clock: "12:50 PM"
+    cutoff_elapsed_minutes: 1910
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list; crews follow the posted conduct rules or risk their runner's disqualification."
+    pacer_notes: "Pacer join point: one pacer at a time from here onward at crew-access stations."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The Crew Instructions table prints this cutoff as 12:50 am — impossible before Camp Roosevelt's 2:50 am at 63.9 — and the course table's ladder-consistent 12:50 pm governs."
+  - match: "Gap Creek II"
+    name: "Gap Creek II"
+    direction: null
+    mile: 96.8
+    elev: 1638
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "3:55 PM"
+    cutoff_clock: "3:55 PM"
+    cutoff_elapsed_minutes: 2095
+    aid: "Aid station per the course table; menus are published in the Participants' Guide."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the Crew Instructions list — the course table's crew column misses the checkmark this same ground carries at Gap Creek I."
+    pacer_notes: "Pacer join point: one pacer at a time from here onward at crew-access stations."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The course table checks only drop bags here, but the Crew Instructions page lists Gap Creek II among the crew-access stations (the same physical station as crew-accessible Gap Creek I) — the crew list governs."
+  - match: "Finish: Caroline"
+    name: "Finish — Caroline Furnace Camp"
+    direction: "Finish"
+    mile: 100.6
+    elev: 1132
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "5:00 PM"
+    cutoff_clock: "5:00 PM"
+    cutoff_elapsed_minutes: 2160
+    aid: "The finish at the camp: the 36-hour cutoff lands here at 5:00 PM Sunday, with basic food for finishers from Saturday evening."
+    bathroom: null
+    park: null
+    crew_notes: "The camp is the crew base and the final crew-access point per the Crew Instructions list."
+    pacer_notes: "The race ends here; pacers join from Habron Gap (after 6:00 PM Saturday) or Camp Roosevelt onward."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The course table prints this cutoff as 3:00 pm — impossible against its own Gap Creek II clock of 3:55 pm at mile 96.8 and the page's 36-hour statement — and the Crew Instructions table prints 5:00 pm, exactly 36 hours from the 5:00 AM start, which governs."

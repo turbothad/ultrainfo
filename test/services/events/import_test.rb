@@ -11,7 +11,8 @@ module Events
                      "Orcas Island 100", "LOViT 100", "The Drift 100", "Viper 100",
                      "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
                      "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
-                     "Skunk Ape 100", "San Diego 100" ], published_races.map(&:name)
+                     "Skunk Ape 100", "San Diego 100",
+                     "Massanutten Mountain Trails 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -599,6 +600,32 @@ module Events
                    "32 hours from the Friday 6:00 AM start"
       assert_includes san_diego.source_metadata.fetch("sources").pluck("url"),
                       "https://www.predsci.com/~pete/sd100/2025-sd-100-miles-chart.png"
+
+      massanutten = published_races.find { |published| published.slug == "massanutten-100" }
+      assert_equal 2027, massanutten.year
+      assert_equal Date.new(2027, 5, 15), massanutten.start_date
+      assert massanutten.not_open?, "entry opens October 31, 2026"
+      assert_equal 36, massanutten.cutoff_hours
+      assert_equal 100.6, massanutten.distance_mi.to_f, "the course table's cumulative frame"
+      assert_equal 18_500, massanutten.elevation_gain_ft, "run100s' 19,000 has no counterpart"
+      assert_equal 17, massanutten.aid_stations.count, "fifteen station rows plus the Start and Finish"
+      assert_equal 15, massanutten.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "Gap Creek I and II share ground, as do the Start and Finish"
+      assert_equal 0, massanutten.aid_stations.where(direction: "Turnaround").count,
+                   "a figure-8 with no published turnaround rows"
+      assert_equal 11, massanutten.aid_stations.where(crew_accessible: true).count,
+                   "the Crew Instructions list's nine mid stations plus the camp twice"
+      assert_equal 6, massanutten.aid_stations.count(&:pacer_access?),
+                   "Habron Gap after 6:00 PM Saturday, then Camp Roosevelt through Gap Creek II"
+      assert_equal 10, massanutten.aid_stations.count(&:drop_bag?), "the table's ten checked rows"
+      assert_equal 14, massanutten.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "thirteen station clocks plus the corrected finish"
+      assert_equal 2160, massanutten.aid_stations.find_by!(mile: 100.6).cutoff_elapsed_minutes,
+                   "5:00 PM per the crews table and the 36-hour statement; the course table's 3:00 pm is impossible"
+      assert_equal Time.find_zone("America/New_York").parse("2027-05-16 5:00 PM"), massanutten.final_cutoff_at,
+                   "36 hours from the Saturday 5:00 AM start"
+      assert_includes massanutten.source_metadata.fetch("sources").pluck("url"),
+                      "https://new.vhtrc.org/races/mmt/course"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do

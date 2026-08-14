@@ -1,0 +1,9 @@
+version: 1
+slug: massanutten-100
+files:
+  race:
+    path: massanutten-100.yml
+    sha256: 611d22d2ad2aa39930727e62139d6156bccd85e0c5ace34fc0cd96a5ce8a92c9
+  course:
+    path: massanutten-100.gpx
+    sha256: 13a600ff118741833eefad754dae40004d3b2c74ad8c64d4a4a27b08a589333d
