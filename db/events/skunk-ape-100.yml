@@ -27,7 +27,7 @@ race:
   source_metadata:
     verification_status: warning
     verified_on: "2026-08-14"
-    source_notes: "A flat double loop on the Florida National Scenic Trail and the paved trails of the Marjorie Harris Carr Cross Florida Greenway from the Santos Trailhead in Ocala, FL: out through the Ross Prairie Wildlife Management Area to the Pruitt Trailhead turnaround, back on the Florida Trail bypassing Ross Prairie, done twice. The 2027 UltraSignup listing is fully 2027-frame (April 24-25, 2027; 7:00 AM; 36 hours; open registration closing April 20, 2027) and is the race's primary public page — the listed event website is a login-walled Facebook page. The organizer's own mileage surfaces conflict at the plus-or-minus-one-mile level: the per-segment list sums the loop to 52.39, the cutoff table prints the Santos halfway at 51.76, and the organizer CalTopo loop GPS-measures 51.61; the cutoff table's cumulative frame governs (halfway 51.76, total 103.5), and the loop-two cumulative cutoffs (80.02, 86.52, 92.52, 96.42) govern those passes against the segment chain's 81.05 arithmetic, with pass-specific notes. All cutoff clocks print 'April 26th Sunday', but the race Sunday is April 25, 2027 — the weekday-plus-clock frame is internally consistent with 36 hours from the Saturday 7:00 AM start. run100s' 2,790-foot climb has no counterpart (the listing says 1,562 feet per loop, doubled to 3,124)."
+    source_notes: "A flat double loop on the Florida National Scenic Trail and the paved trails of the Marjorie Harris Carr Cross Florida Greenway from the Santos Trailhead in Ocala, FL: out through the Ross Prairie Wildlife Management Area to the Pruitt Trailhead turnaround, back on the Florida Trail bypassing Ross Prairie, done twice. The 2027 UltraSignup listing is fully 2027-frame (April 24-25, 2027; 7:00 AM; 36 hours; open registration closing April 20, 2027) and is the race's primary public page — the listed \"Event Website\" link is a login-walled Facebook page. The organizer's own mileage surfaces conflict at the plus-or-minus-one-mile level: the per-segment list sums the loop to 52.39, the cutoff table prints the Santos halfway at 51.76, and the organizer CalTopo loop GPS-measures 51.61; the cutoff table's cumulative frame governs (halfway 51.76, total 103.5), and the loop-two cumulative cutoffs (80.02, 86.52, 92.52, 96.42) govern those passes against the segment chain's 81.05 arithmetic, with pass-specific notes. All cutoff clocks print 'April 26th Sunday', but the race Sunday is April 25, 2027 — the weekday-plus-clock frame is internally consistent with 36 hours from the Saturday 7:00 AM start. run100s' 2,790-foot climb has no counterpart (the listing says 1,562 feet per loop, doubled to 3,124)."
     section_verifications:
       race_facts:
         verified_on: "2026-08-14"
@@ -379,7 +379,7 @@ aid_stations:
     road: null
     source_metadata:
       <<: *official_station_source
-      source_notes: "Verified on is the retrieval date. The listing's in-bound St. Rt. 200-to-49th Ave segment prints 6.5 miles (35.29 + 6.5 = 41.79), but the drawn line measures that leg at 6.03 and crosses the marker at scaled mile 41.20 — the published distance governs the pass mile."
+      source_notes: "Verified on is the retrieval date. The listing's in-bound St. Rt. 200-to-49th Ave segment prints 6.5 miles (35.29 + 6.5 = 41.79), but the drawn line measures that leg at 6.03 and crosses the marker at GPS mile 41.20 on the 51.61-mile loop — the published distance governs the pass mile."
   - match: "Land Bridge"
     name: "Land Bridge"
     direction: null
@@ -402,7 +402,7 @@ aid_stations:
     road: null
     source_metadata:
       <<: *official_station_source
-      source_notes: "Verified on is the retrieval date. The published chain puts this pass at 45.69, where the drawn line crosses the marker at scaled mile 44.99 — the published distance governs."
+      source_notes: "Verified on is the retrieval date. The published chain puts this pass at 45.69, where the drawn line crosses the marker at GPS mile 44.99 on the 51.61-mile loop — the published distance governs."
   - match: "Start/Finish"
     name: "Santos Trailhead"
     direction: null
@@ -576,7 +576,9 @@ aid_stations:
     crew_notes: "All the aid stations will have crew access; be courteous to campsites near the stations and to other park users."
     pacer_notes: "Pacers allowed: 100-milers may pick up a pacer after 50 miles; pacers may help the runner navigate."
     road: null
-    source_metadata: *official_station_source
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The cutoff table's 92.52 implies a 6.0-mile leg from St. Rt. 200 where the segment list prints 6.5 (the two in-bound legs appear swapped); the printed cumulative mile governs."
   - match: "Land Bridge"
     name: "Land Bridge"
     direction: null

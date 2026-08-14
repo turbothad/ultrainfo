@@ -2,7 +2,7 @@
 
 Verified on 2026-08-14. This audit uses only Skunk Ape Events material:
 the UltraSignup 2027 listing (the race's primary public page — the
-listed event website is a login-walled Facebook page), the organizer
+listed "Event Website" link is a login-walled Facebook page), the organizer
 CalTopo course map that listing links, and the UltraSignup 2026 listing
 for results. Elevations come from USGS 3DEP point queries because the
 CalTopo lines carry no elevation data. It records what those sources
@@ -46,7 +46,8 @@ Recorded discrepancies and decisions:
 4. **Drawn line vs published segments.** The line measures the
    in-bound 200-to-49th leg at 6.03 (published 6.5) and the Land
    Bridge-to-finish leg at 6.62 (published 6.7); crossings sit at
-   41.20 and 44.99 against the published 41.79 and 45.69. Published
+   GPS miles 41.20 and 44.99 on the 51.61-mile loop against the
+   published 41.79 and 45.69. Published
    distances govern pass miles; the line is the geometry authority.
 5. **Cutoff style and a date typo.** Five complete-by clocks plus the
    finish, all printed as "April 26th Sunday" — but the race Sunday is
@@ -122,8 +123,8 @@ All URLs below were opened or downloaded on 2026-08-14.
 
 - "Guidebook and Rules: Coming Soon" — re-check the 2027 guidebook
   for station-level detail when it posts.
-- The event-website link is a Facebook page (login-walled, not
-  verifiable here).
+- The listing's "Event Website" link is a Facebook page (login-walled,
+  not verifiable here).
 - The listing's segment sums, cumulative cutoffs, and the drawn line
   disagree at the ±1-mile level (decisions 2-4); re-check whether the
   organizer republishes a consistent table.

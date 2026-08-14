@@ -2,11 +2,11 @@
 <gpx version="1.1" creator="ultrainfo" xmlns="http://www.topografix.com/GPX/1/1">
   <metadata><name>Skunk Ape 100 - organizer CalTopo Full Course Data loop, traversed twice</name></metadata>
   <wpt lat="29.105570" lon="-82.093960"><ele>24.4</ele><name>Start/Finish</name></wpt>
-  <wpt lat="29.059090" lon="-82.153150"><ele>23.2</ele><name>Land Bridge Trailhead AS</name></wpt>
-  <wpt lat="29.040930" lon="-82.201050"><ele>25.0</ele><name>49th Ave Trailhead AS</name></wpt>
+  <wpt lat="29.059088" lon="-82.153148"><ele>23.2</ele><name>Land Bridge Trailhead AS</name></wpt>
+  <wpt lat="29.040932" lon="-82.201053"><ele>25.0</ele><name>49th Ave Trailhead AS</name></wpt>
   <wpt lat="29.038160" lon="-82.295950"><ele>19.5</ele><name>Ross Prairie AS</name></wpt>
   <wpt lat="29.048140" lon="-82.288570"><ele>17.7</ele><name>St. Rd. 200 AS</name></wpt>
-  <wpt lat="29.045520" lon="-82.377870"><ele>19.5</ele><name>Pruitt Trailhead AS (turn around point)</name></wpt>
+  <wpt lat="29.045525" lon="-82.377871"><ele>19.5</ele><name>Pruitt Trailhead AS (turn around point)</name></wpt>
   <trk><name>Skunk Ape 100</name><trkseg>
     <trkpt lat="29.105559" lon="-82.093934"></trkpt>
     <trkpt lat="29.105552" lon="-82.094015"></trkpt>
