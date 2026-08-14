@@ -1,0 +1,608 @@
+# Hell Hole Hundred — event data (imported by Events::Import via
+# db/seeds.rb). The 2027 UltraSignup listing carries the current frame
+# (dates, the Friday 7:00 PM start, the 33-hour cutoff with final-loop
+# gates, station and support rules); the Runner Guide's loop table
+# composes the 100 (one 18.3-mile loop, then five 16.3-mile loops) and
+# carries station coordinates and per-loop aid positions; the guide's
+# loop GPX files are the geometry and elevation authority. Source
+# decisions are documented in docs/research/hell-hole-2027-source-audit.md.
+
+race:
+  name: Hell Hole Hundred
+  slug: hell-hole-100
+  year: 2027
+  state: SC
+  distance_mi: 99.8 # The guide's loop table: 18.3 + 16.3 x 5 (billed as 100 miles; the concatenated GPX GPS-measures 99.71).
+  elevation_gain_ft: 766 # The guide's map pages print 141 ft for the 18-mile loop and 125 ft for the 16-mile loop; 141 + 125 x 5 = 766.
+  elevation_loss_ft: null
+  start_date: 2027-06-04
+  end_date: 2027-06-06
+  start_time: 7:00 PM
+  time_zone: America/New_York
+  cutoff_hours: 33 # "100 miler: 33 hour cutoff with FRIDAY 7pm START TIME" — the finish closes 4:00 AM Sunday; run100s' 30 has no counterpart.
+  official_url: https://www.palmettoultras.com/
+  registration_url: https://ultrasignup.com/register.aspx?did=140267
+  results_url: https://ultrasignup.com/register.aspx?did=140267 # The 2027 listing carries the results tabs back to 2020.
+  registration_status: open # The 2027 listing sells all six distances (closes May 31, 2027).
+  lottery: false # Direct UltraSignup registration.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "A flat, hot swamp 100 on the Jericho Horse Trail in the Francis Marion National Forest outside Charleston: one 18.3-mile loop then five 16.3-mile loops from the trailhead hub, starting 7:00 PM Friday to race through the night before the June heat peaks. The 2027 UltraSignup listing is fully 2027-frame (June 4-6, 2027; open; the 33-hour cutoff and the final-loop gates printed on the listing itself), while the Runner Guide is a 2026-vintage working document whose loop table, station coordinates, and GPX links carry the standing structure (its packet-pickup dates and swag notes are 2026's). The guide's loop GPX files corroborate the frame: the 16-mile loop GPS-measures 16.36 with station crossings at 6.74 and 11.25 against the published ~7 and 11.44, and the 18-mile loop measures 17.91 against 18.3 - published figures govern pass miles. run100s' 30-hour cutoff has no counterpart."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_us_2027
+        label: "UltraSignup 2027 listing (June 4-6, 2027; 7:00 PM Friday start; 33 hours with final-loop gates; open)"
+        url: "https://ultrasignup.com/register.aspx?did=140267"
+        verified_on: "2026-08-14"
+      - &source_guide
+        label: "Hell Hole Runner Guide (loop table, station coordinates, aid positions, gear and pacer rules, GPX links)"
+        url: "https://www.canva.com/design/DAGAQjh7Kbs/qav6EeuSSOQXNeylU4c8vg/view"
+        verified_on: "2026-08-14"
+      - &source_gpx16
+        label: "16-mile loop GPX (guide link; loops two through six)"
+        url: "https://drive.google.com/file/d/1n1ocoH4nQvtSAnYX5YPaTx_y8ts5t35s/view"
+        verified_on: "2026-08-14"
+      - &source_gpx18
+        label: "18-mile loop GPX (guide link; loop one)"
+        url: "https://drive.google.com/file/d/1z29EsKsmIIs8EGlMyrH-SieB5h3pFPqy/view"
+        verified_on: "2026-08-14"
+      - &source_home
+        label: "palmettoultras.com home (the Hell Hole race card and Runner Guide link)"
+        url: "https://www.palmettoultras.com/"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. Palmetto Ultras (which took over Eagle Endurance's races in 2024) runs Hell Hole under a Forest Service permit with The Foot Store as title sponsor. The course is dirt trail, boardwalks over the wet spots (watch for loose boards), a few road crossings, and exposed fire-road miles between the two course stations; heat and humidity cause most DNFs, and around mile 9.5 of the 18-mile loop the course turns left off the Jericho Horse Trail onto the Swamp Fox Passage. Cupless (Skratch Lemon Lime and water at every station); meals at the hub with $5 tickets for crew; porta potties at all stations. A light source is required at night - no light, no continuing. 100-milers may stake a canopy at the hub (room for about 8-12) and arrive from noon Friday. No dogs on course per the insurance policy. Part of the Swamp Series with Frozen H3 and Swamp Fox. No refunds; bib transfers and distance changes via UltraSignup until the Tuesday of race week; pregnancy and postpartum deferrals offered."
+    overall_cutoff_label: "4:00 AM June 6, 2027"
+    overall_cutoff_notes: "33 hours from the Friday 7:00 PM start. The listing's final-loop gates: start the final loop by 12:00 AM (the hub at 83.5), Irishtown Road by 1:45 AM (90.5), Yellowjacket Road by 2:55 AM (94.94) - all Sunday clocks - and the finish at 4:00 AM."
+    pacer_rule_summary: "Pacers may join 100-milers any time after the completion of loop three (the hub at 50.9), hopping in at the hub or either course station. One pacer at a time on a shared pacer bib; each pacer signs a waiver where they join; pacers eat from the stations while actively pacing, may not mule, and must be on foot."
+    drop_bag_summary: "Gear drop at the start/finish hub only - a tarp-and-canopy bag-drop area left of the start arch, accessible every loop. There are no drop bags at Irishtown or Yellowjacket. 100-milers may also stake a personal canopy at the hub."
+    tracking_note: "No live tracking is published; results post on UltraSignup."
+  blurb: A flat, hot swamp 100 in the Francis Marion National Forest - one 18.3-mile loop, five 16.3s, and 33 hours from the Friday night start.
+  about: >-
+    The Hell Hole Hundred runs the Jericho Horse Trail's blue blazes
+    through the swamps of the Francis Marion National Forest - an
+    18.3-mile loop at 7:00 PM Friday, then five 16.3-mile loops
+    through the night and the South Carolina heat. Dirt trail,
+    boardwalks, gators and wild hogs in the woods, three fully
+    stocked stations per loop with Skratch and hub meals, crew at
+    every station, pacers after loop three, and 33 hours to the
+    buckle with hard gates on the final loop.
+  start_venue: Jericho Horse Trail trailhead, Francis Marion National Forest, Bethera, SC
+  finish_venue: Jericho Horse Trail trailhead, Francis Marion National Forest, Bethera, SC
+
+# Profile from the guide's loop GPX elevations (the 18-mile loop once,
+# then the 16-mile loop five times), sampled per nominal mile; GPS miles
+# (99.71) are scaled to the loop table's 99.8-mile frame.
+elevation_series:
+  - [0, 42]
+  - [1, 43]
+  - [2, 33]
+  - [3, 29]
+  - [4, 27]
+  - [5, 27]
+  - [6, 18]
+  - [7, 20]
+  - [8, 16]
+  - [9, 26]
+  - [10, 33]
+  - [11, 30]
+  - [12, 30]
+  - [13, 29]
+  - [14, 29]
+  - [15, 32]
+  - [16, 32]
+  - [17, 30]
+  - [18, 42]
+  - [19, 43]
+  - [20, 30]
+  - [21, 30]
+  - [22, 29]
+  - [23, 22]
+  - [24, 20]
+  - [25, 23]
+  - [26, 24]
+  - [27, 30]
+  - [28, 30]
+  - [29, 30]
+  - [30, 30]
+  - [31, 30]
+  - [32, 29]
+  - [33, 32]
+  - [34, 35]
+  - [35, 42]
+  - [36, 33]
+  - [37, 29]
+  - [38, 26]
+  - [39, 30]
+  - [40, 31]
+  - [41, 18]
+  - [42, 23]
+  - [43, 26]
+  - [44, 30]
+  - [45, 30]
+  - [46, 30]
+  - [47, 29]
+  - [48, 31]
+  - [49, 30]
+  - [50, 30]
+  - [51, 36]
+  - [52, 43]
+  - [53, 30]
+  - [54, 18]
+  - [55, 30]
+  - [56, 20]
+  - [57, 25]
+  - [58, 30]
+  - [59, 30]
+  - [60, 30]
+  - [61, 30]
+  - [62, 30]
+  - [63, 26]
+  - [64, 30]
+  - [65, 31]
+  - [66, 30]
+  - [67, 39]
+  - [68, 43]
+  - [69, 33]
+  - [70, 29]
+  - [71, 29]
+  - [72, 27]
+  - [73, 25]
+  - [74, 26]
+  - [75, 23]
+  - [76, 32]
+  - [77, 31]
+  - [78, 29]
+  - [79, 30]
+  - [80, 30]
+  - [81, 30]
+  - [82, 30]
+  - [83, 30]
+  - [84, 39]
+  - [85, 36]
+  - [86, 27]
+  - [87, 26]
+  - [88, 30]
+  - [89, 32]
+  - [90, 22]
+  - [91, 30]
+  - [92, 30]
+  - [93, 30]
+  - [94, 30]
+  - [95, 30]
+  - [96, 30]
+  - [97, 31]
+  - [98, 31]
+  - [99, 30]
+  - [99.8, 39]
+
+# Station passes: the loop table's 100M column (18.3 + 16.3 x 5) with the
+# guide's per-loop aid positions chained onto it - the Start, seventeen
+# mid-race passes over three locations (Irishtown x6, Yellowjacket x6,
+# the hub x5), and the Finish. No Turnaround rows exist on the loops, so
+# mid passes are unlabeled per the domain vocabulary. Coordinates copy
+# the guide's station coordinates (`match` = waypoint-name substring);
+# elevations are the loop GPX values at the stations.
+aid_stations:
+  - match: "Start/Finish"
+    name: "Start — Jericho Horse Trail hub"
+    direction: "Start"
+    mile: 0.0
+    elev: 39
+    crew: true
+    water: null
+    pacer: false
+    drop: null
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The 7:00 PM Friday start under the arch; gear goes to the bag-drop tarp beside it and 100-milers may stake a canopy from noon Friday. Loop one is the 18.3-mile loop."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base; park along the trailhead road as directed and keep the entrance clear."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "UltraSignup 2027 listing and the Hell Hole Runner Guide"
+      source_url: "https://ultrasignup.com/register.aspx?did=140267"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. The 2027 listing carries the start, cutoff ladder, station descriptions, and crew and pacer rules; the Runner Guide (a 2026-vintage working document) carries the loop table that composes the 100 (18.3 + 16.3 x 5), the per-loop aid positions (~7 and 13 on the 18-mile loop; ~7 and 11.44 on the 16-mile loop), the station coordinates, and the loop GPX links. Pass miles chain the guide's positions onto the loop table; the GPX crossings (6.74 and 11.25 on the 16.36-mile drawn loop) corroborate the published figures, which govern."
+      sources:
+        - *source_us_2027
+        - *source_guide
+        - *source_gpx16
+        - *source_gpx18
+        - *source_home
+  - match: "Irishtown"
+    name: "Irishtown Road"
+    direction: null
+    mile: 7.0
+    elev: 23
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Yellowjacket"
+    name: "Yellowjacket Road"
+    direction: null
+    mile: 13.0
+    elev: 30
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Start/Finish"
+    name: "Jericho Horse Trail hub"
+    direction: null
+    mile: 18.3
+    elev: 39
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. The hub adds hot meals through the weekend and the gear-drop area. End of loop one; loops two through six run the 16.3-mile loop."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Irishtown"
+    name: "Irishtown Road"
+    direction: null
+    mile: 25.3
+    elev: 23
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Yellowjacket"
+    name: "Yellowjacket Road"
+    direction: null
+    mile: 29.74
+    elev: 30
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Start/Finish"
+    name: "Jericho Horse Trail hub"
+    direction: null
+    mile: 34.6
+    elev: 39
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. The hub adds hot meals through the weekend and the gear-drop area."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Irishtown"
+    name: "Irishtown Road"
+    direction: null
+    mile: 41.6
+    elev: 23
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Yellowjacket"
+    name: "Yellowjacket Road"
+    direction: null
+    mile: 46.04
+    elev: 30
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
+    pacer_notes: "No pacer yet: pacers join 100-milers any time after loop three (the hub at 50.9)."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Start/Finish"
+    name: "Jericho Horse Trail hub"
+    direction: null
+    mile: 50.9
+    elev: 39
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. The hub adds hot meals through the weekend and the gear-drop area. Loop three ends here - pacers may join from this point."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base."
+    pacer_notes: "Pacer join point: pacers may join any time after loop three completes here."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Irishtown"
+    name: "Irishtown Road"
+    direction: null
+    mile: 57.9
+    elev: 23
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Yellowjacket"
+    name: "Yellowjacket Road"
+    direction: null
+    mile: 62.34
+    elev: 30
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Start/Finish"
+    name: "Jericho Horse Trail hub"
+    direction: null
+    mile: 67.2
+    elev: 39
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. The hub adds hot meals through the weekend and the gear-drop area."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Irishtown"
+    name: "Irishtown Road"
+    direction: null
+    mile: 74.2
+    elev: 23
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Yellowjacket"
+    name: "Yellowjacket Road"
+    direction: null
+    mile: 78.64
+    elev: 30
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Start/Finish"
+    name: "Jericho Horse Trail hub"
+    direction: null
+    mile: 83.5
+    elev: 39
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:00 AM"
+    cutoff_clock: "12:00 AM"
+    cutoff_elapsed_minutes: 1740
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. The hub adds hot meals through the weekend and the gear-drop area. The final-loop gate: runners must start loop six by midnight."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Irishtown"
+    name: "Irishtown Road"
+    direction: null
+    mile: 90.5
+    elev: 23
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "1:45 AM"
+    cutoff_clock: "1:45 AM"
+    cutoff_elapsed_minutes: 1845
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. Final-loop gate per the listing."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here, but the guide asks crews to use this very tight one-lane fire road only if absolutely necessary."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Yellowjacket"
+    name: "Yellowjacket Road"
+    direction: null
+    mile: 94.94
+    elev: 30
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "2:55 AM"
+    cutoff_clock: "2:55 AM"
+    cutoff_elapsed_minutes: 1915
+    aid: "Fully stocked cupless station: Skratch Lemon Lime, water, sodas, fruit snacks, gummy bears, granola bars, cookies, pretzels, chips, pickles, and boiled potatoes, with a porta potty. Final-loop gate per the listing."
+    bathroom: null
+    park: null
+    crew_notes: "Crew may access runners here; pull fully off the fire road - blocking it risks the permit."
+    pacer_notes: "Pacers may accompany their runner (one at a time, shared bib); joins and swaps at any station."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Start/Finish"
+    name: "Finish — Jericho Horse Trail hub"
+    direction: "Finish"
+    mile: 99.8
+    elev: 39
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: "4:00 AM"
+    cutoff_clock: "4:00 AM"
+    cutoff_elapsed_minutes: 1980
+    aid: "The finish under the arch: the buckle and the engraved coaster, with hub food service through the weekend. The 33-hour cutoff lands here at 4:00 AM Sunday."
+    bathroom: null
+    park: null
+    crew_notes: "The hub is the crew base; the gear-drop tarp lives beside the arch."
+    pacer_notes: "The race ends here; pacers join after loop three."
+    road: null
+    source_metadata: *official_station_source

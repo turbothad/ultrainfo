@@ -1,0 +1,9 @@
+version: 1
+slug: hell-hole-100
+files:
+  race:
+    path: hell-hole-100.yml
+    sha256: 1f4f9d372768b20945bc2729a2ef3343751a55ac3baf3357d53c25b2a87e6583
+  course:
+    path: hell-hole-100.gpx
+    sha256: 2156dc7d89aec72618aa0991d95236ba540fa1758e37f9ad71c7de4b6bf4937b

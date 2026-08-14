@@ -12,7 +12,8 @@ module Events
                      "The Pistol Ultra 100", "Warbird 100", "Bootlegger 100",
                      "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
                      "Skunk Ape 100", "San Diego 100",
-                     "Massanutten Mountain Trails 100", "Coyote Two Moon 100" ], published_races.map(&:name)
+                     "Massanutten Mountain Trails 100", "Coyote Two Moon 100",
+                     "Hell Hole Hundred" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -651,6 +652,30 @@ module Events
                    "42 hours from the Friday 5:00 PM start"
       assert_includes coyote.source_metadata.fetch("sources").pluck("url"),
                       "https://caltopo.com/m/2D1CJ"
+
+      hell_hole = published_races.find { |published| published.slug == "hell-hole-100" }
+      assert_equal 2027, hell_hole.year
+      assert_equal Date.new(2027, 6, 4), hell_hole.start_date
+      assert hell_hole.open?
+      assert_equal 33, hell_hole.cutoff_hours, "run100s' 30 is stale"
+      assert_equal 99.8, hell_hole.distance_mi.to_f, "the loop table: 18.3 plus five 16.3s"
+      assert_equal 766, hell_hole.elevation_gain_ft, "the guide's per-loop prints, summed"
+      assert_equal 19, hell_hole.aid_stations.count, "the Start, seventeen loop passes, and the Finish"
+      assert_equal 3, hell_hole.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "the hub, Irishtown Road, and Yellowjacket Road"
+      assert_equal 19, hell_hole.aid_stations.where(crew_accessible: true).count,
+                   "crew may access runners at all three stations"
+      assert_equal 9, hell_hole.aid_stations.count(&:pacer_access?),
+                   "pacers after loop three: the hub at 50.9 through Yellowjacket 94.94"
+      assert_equal 5, hell_hole.aid_stations.count(&:drop_bag?), "the hub's gear drop, passed five times mid-race"
+      assert_equal 4, hell_hole.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the three final-loop gates plus the finish"
+      assert_equal 1740, hell_hole.aid_stations.find_by!(mile: 83.5).cutoff_elapsed_minutes,
+                   "start the final loop by midnight"
+      assert_equal Time.find_zone("America/New_York").parse("2027-06-06 4:00 AM"), hell_hole.final_cutoff_at,
+                   "33 hours from the Friday 7:00 PM start"
+      assert_includes hell_hole.source_metadata.fetch("sources").pluck("url"),
+                      "https://ultrasignup.com/register.aspx?did=140267"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
