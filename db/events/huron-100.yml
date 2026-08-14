@@ -1,0 +1,602 @@
+# Huron 100 — event data (imported by Events::Import via db/seeds.rb).
+# The thehuron100.com home page banners the June 12, 2027 running and
+# the UltraSignup 2027 listing carries the date and the September 1,
+# 2026 registration opening; the organizer's HelloDrifter interactive
+# map — linked from both — publishes the course line, the elevation
+# profile, and the station markers with miles, crew/pacer/drop-bag
+# flags, and the cutoff ladder. Source decisions are documented in
+# docs/research/huron-2027-source-audit.md.
+
+race:
+  name: Huron 100
+  slug: huron-100
+  year: 2027
+  state: MI
+  distance_mi: 100 # The finish marker prints 100 miles; the organizer route GPS-measures 100.07-100.12.
+  elevation_gain_ft: 8200 # The home page's "8200 ft cumulative gain"; the 2027 listing's description says roughly 8,000 and the organizer route publishes 2,420 m (7,940). run100s matches 8,200.
+  elevation_loss_ft: 7950 # The organizer route's 2,423 m of descent converted - the only published loss figure.
+  start_date: 2027-06-12
+  end_date: 2027-06-13
+  start_time: 9:00 AM
+  time_zone: America/Detroit
+  cutoff_hours: 32 # "32 hour time limit for the 100 mile" per the FAQ - the finish closes 5:00 PM Sunday (run100s' 33 has no counterpart).
+  official_url: https://www.thehuron100.com
+  registration_url: https://ultrasignup.com/register.aspx?did=142357
+  results_url: https://ultrasignup.com/results_event.aspx?did=129465 # UltraSignup hosts the results (2026 shown; tabs back to 2024).
+  registration_status: not_open # The 2027 listing prints "Registration Opens Tue. Sep 1, 2026 @ 12:00 AM ET".
+  lottery: false # "No, we are happy to announce there is no formal lottery" - capped at 350 runners.
+  source_metadata:
+    verification_status: warning
+    verified_on: "2026-08-14"
+    source_notes: "The Huron 100 near Whitmore Lake, MI: 100 miles point to point across the Huron River Watershed, from the Portage Lake boat launch at Waterloo State Recreation Area to Proud Lake Recreation Area Headquarters, through nine parks (six state recreation areas, two Metroparks, one county park) in Southeast Michigan. The home page banners Saturday June 12th, 2027 (100M at 9:00 AM, 32 hours) and the UltraSignup 2027 listing carries the same date with registration opening September 1, 2026 - recorded not yet open. The FAQ and the listing's description body are still 2026-vintage and supply the standing rules (the Warbird pattern). The organizer's HelloDrifter interactive map - the site's Interactive Map button and the 2027 listing's course-map link, at the huron-100-2026 event URL - is the geometry, elevation, and station authority: its markers print each station's mile, crew/pacer/drop-bag flags, and cutoff clock, and its route publishes the full line and elevation profile. Station count is 16 (the map's sixteen aid-station markers and the FAQ's sixteen) against the listing description's fifteen - the map governs, and its two markers labeled AS 15 (Hickory Shelter and Windfall Hill) are a numbering typo documented here. Climb prints disagree: the home page's 8,200 governs, with the listing's roughly 8,000 and the route's 2,420 m (7,940) documented; the route's 2,423 m descent (7,950) is the only loss figure. The map's cutoff clocks are the 2026 running's, but the 2027 frame keeps the same Saturday 9:00 AM start and 32-hour window, so the elapsed-minute ladder carries over. The map's GPX download is account-gated; the map's own published embed data (route line, elevation chart, markers) is the open surface, and one stray Critical Turn marker plotted 40 miles off-course near Monroe is excluded."
+    section_verifications:
+      race_facts:
+        verified_on: "2026-08-14"
+      course:
+        verified_on: "2026-08-14"
+      station_passes:
+        verified_on: "2026-08-14"
+      crew_pacers:
+        verified_on: "2026-08-14"
+      follow:
+        verified_on: "2026-08-14"
+      sources:
+        verified_on: "2026-08-14"
+    sources:
+      - &source_home
+        label: "thehuron100.com home (the June 12, 2027 banner, 8,200-foot climb, 82% trail, 32 hours, shuttles)"
+        url: "https://www.thehuron100.com"
+        verified_on: "2026-08-14"
+      - &source_course
+        label: "Course page (the mile-by-mile narrative, park sequence, and pacer prose)"
+        url: "https://www.thehuron100.com/course"
+        verified_on: "2026-08-14"
+      - &source_faq
+        label: "FAQ page (sixteen aid stations, the station menu, the 350 cap, no lottery, the 32-hour window)"
+        url: "https://www.thehuron100.com/faq"
+        verified_on: "2026-08-14"
+      - &source_listing
+        label: "UltraSignup 2027 listing (June 12, 2027; registration opens September 1, 2026; start and finish addresses; shuttles)"
+        url: "https://ultrasignup.com/register.aspx?did=142357"
+        verified_on: "2026-08-14"
+      - &source_map
+        label: "Organizer HelloDrifter interactive map (the course line, elevation profile, and station markers with miles, flags, and cutoffs)"
+        url: "https://www.hellodrifter.com/events/huron-100-2026"
+        verified_on: "2026-08-14"
+      - &source_results
+        label: "UltraSignup results (the 2026 running; tabs back to 2024)"
+        url: "https://ultrasignup.com/results_event.aspx?did=129465"
+        verified_on: "2026-08-14"
+    notes: "Checked against first-party sources on August 14, 2026. Registration opens September 1, 2026 on UltraSignup, capped at 350 runners with no lottery. Aid stations serve warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles; four of the sixteen are hydration-only with no volunteers. The race is a 501(c)(3) public charity benefiting the Huron River Watershed, striving to be cupless and zero waste - finishers inside 32 hours take a belt buckle. Morning shuttles run from both finish locations to the shared start (Proud Lake departs 7:15 AM sharp); packet pickup is the Friday evening before at Proud Lake's River Hawk Annex (2026 pattern). The course is 82% trail per the home page (the listing's surface table says 80% trail, 9% bike path, 7% dirt road) with a maximum elevation around 1,100 feet."
+    overall_cutoff_label: "5:00 PM June 13, 2027"
+    overall_cutoff_notes: "32 hours from the Saturday 9:00 AM start. The organizer map prints a ten-clock ladder: Park Lyndon East 5:15 PM and Silver Lake 8:45 PM Saturday, then Lakeland Trail 12:15 AM, Maple Shelter 3:00 AM, Sandhill Shelter 6:00 AM, Huron Meadows 8:00 AM, Spring Mill Pond 12:00 PM, Hickory Shelter 2:00 PM, Windfall Hill 3:00 PM, and the finish 5:00 PM Sunday."
+    pacer_rule_summary: "Pacer flags follow the organizer map: pacers are available from Lakeland Trail (47.1) onward at Sandhill Shelter, Huron Meadows, Spring Mill Pond, Hickory Shelter, and Windfall Hill - the course page calls Chambers Road, just past the Lakeland Trail station, the first opportunity to pick up pacers, and notes pacers running alongside at Huron Meadows."
+    drop_bag_summary: "Drop bags per the organizer map wait at Park Lyndon East (24.4), Lakeland Trail (47.1), and Huron Meadows (69.5), with bags also at the finish; the start-area Runner Check-in marker at the Lakeview shelter is the bag drop-off point."
+    tracking_note: "Live tracking and streaming are a monumental part of the Huron 100 vision - the 2026 running tracked at live.enabledtracking.com/huron2026; results post on UltraSignup."
+  blurb: 100 point-to-point miles across the Huron River Watershed through nine parks, with sixteen aid stations and 32 hours from the Saturday 9:00 AM start.
+  about: >-
+    The Huron 100 runs 100 miles point to point across Southeast
+    Michigan's Huron River Watershed - from the Waterloo-Pinckney
+    Trail's sandy hills through the Potawatomi, Lakelands, Brighton,
+    Huron Meadows, Island Lake, and Kensington trail systems to the
+    Proud Lake finish - crossing nine parks on a course that is about
+    82% trail with roughly 8,200 feet of climb. Sixteen aid stations
+    include four hydration-only stops' worth of water support - twelve
+    staffed stations with warm food and Tailwind - eight of them
+    crew-accessible, pacers join from Lakeland Trail at 47.1, and the
+    organizer map's cutoff ladder runs to a 5:00 PM Sunday finish
+    inside 32 hours.
+  start_venue: Portage Lake boat launch, Waterloo State Recreation Area, 11500 Seymour Rd, Grass Lake, MI
+  finish_venue: Proud Lake Recreation Area Headquarters, Commerce Charter Township, MI
+
+# Profile from the organizer HelloDrifter route's published elevation
+# chart (4,416 samples with altitudes) sampled per nominal mile along
+# the route line (GPS 100.07 scaled to the printed 100-mile frame).
+elevation_series:
+  - [0, 927]
+  - [1, 928]
+  - [2, 967]
+  - [3, 974]
+  - [4, 963]
+  - [5, 971]
+  - [6, 1087]
+  - [7, 1029]
+  - [8, 1024]
+  - [9, 973]
+  - [10, 959]
+  - [11, 954]
+  - [12, 956]
+  - [13, 982]
+  - [14, 1009]
+  - [15, 1030]
+  - [16, 981]
+  - [17, 999]
+  - [18, 972]
+  - [19, 997]
+  - [20, 986]
+  - [21, 1051]
+  - [22, 970]
+  - [23, 1013]
+  - [24, 998]
+  - [25, 964]
+  - [26, 956]
+  - [27, 960]
+  - [28, 963]
+  - [29, 923]
+  - [30, 978]
+  - [31, 952]
+  - [32, 927]
+  - [33, 915]
+  - [34, 920]
+  - [35, 955]
+  - [36, 890]
+  - [37, 970]
+  - [38, 908]
+  - [39, 892]
+  - [40, 930]
+  - [41, 901]
+  - [42, 927]
+  - [43, 900]
+  - [44, 946]
+  - [45, 983]
+  - [46, 897]
+  - [47, 902]
+  - [48, 889]
+  - [49, 902]
+  - [50, 881]
+  - [51, 897]
+  - [52, 932]
+  - [53, 977]
+  - [54, 1007]
+  - [55, 933]
+  - [56, 923]
+  - [57, 911]
+  - [58, 913]
+  - [59, 911]
+  - [60, 904]
+  - [61, 918]
+  - [62, 907]
+  - [63, 934]
+  - [64, 973]
+  - [65, 992]
+  - [66, 903]
+  - [67, 912]
+  - [68, 888]
+  - [69, 865]
+  - [70, 868]
+  - [71, 894]
+  - [72, 880]
+  - [73, 897]
+  - [74, 868]
+  - [75, 889]
+  - [76, 906]
+  - [77, 888]
+  - [78, 868]
+  - [79, 903]
+  - [80, 890]
+  - [81, 885]
+  - [82, 876]
+  - [83, 895]
+  - [84, 879]
+  - [85, 910]
+  - [86, 894]
+  - [87, 939]
+  - [88, 885]
+  - [89, 949]
+  - [90, 924]
+  - [91, 919]
+  - [92, 913]
+  - [93, 915]
+  - [94, 984]
+  - [95, 1025]
+  - [96, 945]
+  - [97, 909]
+  - [98, 915]
+  - [99, 908]
+  - [100, 912]
+
+# Station passes: the organizer map's eighteen course markers - the
+# Start at the Portage Lake boat launch, sixteen aid stations (four of
+# them hydration-only with no volunteers), and the Finish at Proud
+# Lake. Miles, crew/pacer/drop-bag flags, and cutoffs copy the map's
+# marker popups; the map's two AS 15 labels (Hickory Shelter and
+# Windfall Hill) are a numbering typo. Coordinates copy the markers
+# (`match` = waypoint-name substring); elevations are the route's
+# published elevation chart at each marker.
+aid_stations:
+  - match: "Waterloo"
+    name: "Start — Waterloo State Recreation Area"
+    direction: "Start"
+    mile: 0.0
+    elev: 927
+    crew: true
+    water: null
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "The 9:00 AM start at the Portage Lake boat launch; the first support is the Mount Hope hydration point at 6.7."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access at the start per the map marker; morning shuttles bring runners from both finish areas (Proud Lake departs 7:15 AM sharp)."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: &official_station_source
+      verification_status: warning
+      source_label: "Huron 100 site pages, the UltraSignup 2027 listing, and the organizer HelloDrifter map"
+      source_url: "https://www.hellodrifter.com/events/huron-100-2026"
+      verified_on: "2026-08-14"
+      source_notes: "Verified on is the retrieval date, not the material's effective year. The organizer HelloDrifter map's marker popups govern station miles, crew/pacer/drop-bag flags, and cutoff clocks; the map is the 2026 running's, linked as the current course map by both the 2027-frame site and the 2027 listing, and the 2027 frame keeps the same Saturday 9:00 AM start and 32-hour window so the elapsed-minute ladder carries over. Coordinates copy the map's markers, which sit on the route line within about 100 feet everywhere; elevations are the route's published elevation chart at each marker."
+      sources:
+        - *source_home
+        - *source_course
+        - *source_faq
+        - *source_listing
+        - *source_map
+        - *source_results
+  - match: "Mount Hope"
+    name: "Mount Hope"
+    direction: null
+    mile: 6.7
+    elev: 1069
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Hydration only, no volunteers - the map marks it \"HYDRATION ONLY - NO VOLUNTEERS.\""
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Baldwin"
+    name: "Baldwin Road"
+    direction: null
+    mile: 10.6
+    elev: 946
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Discovery"
+    name: "Discovery Center"
+    direction: null
+    mile: 18.6
+    elev: 994
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Park Lyndon"
+    name: "Park Lyndon East"
+    direction: null
+    mile: 24.4
+    elev: 1003
+    crew: true
+    water: true
+    pacer: false
+    drop: true
+    food: true
+    med: null
+    cutoff: "5:15 PM"
+    cutoff_clock: "5:15 PM"
+    cutoff_elapsed_minutes: 495
+    aid: "Staffed station in the county park; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map - the first of eight on the course."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Hankerd"
+    name: "Hankerd Road"
+    direction: null
+    mile: 31.1
+    elev: 903
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Hydration only, no volunteers - the map marks it \"HYDRATION ONLY - NO VOLUNTEERS.\""
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Silver Lake"
+    name: "Silver Lake"
+    direction: null
+    mile: 35.4
+    elev: 913
+    crew: true
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "8:45 PM"
+    cutoff_clock: "8:45 PM"
+    cutoff_elapsed_minutes: 705
+    aid: "Staffed station near the Waterloo-Pinckney Trail's terminus; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Gosling"
+    name: "Gosling Lake"
+    direction: null
+    mile: 40.7
+    elev: 897
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Staffed station on the Potawatomi Trail; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "No pacer yet: pacers are available from Lakeland Trail at 47.1 onward."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Lakeland"
+    name: "Lakeland Trail"
+    direction: null
+    mile: 47.1
+    elev: 906
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "12:15 AM"
+    cutoff_clock: "12:15 AM"
+    cutoff_elapsed_minutes: 915
+    aid: "Staffed station on the Mike Levine Lakelands Trail; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "First pacer station per the map - the course page calls Chambers Road, just past here, the first opportunity to pick up pacers."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The map's marker prints pacer available here at 47.1; the course page's prose places the first pacer pickup at Chambers Road, the dirt road the course takes just past the Lakelands Trail - the map's flag governs the pass."
+  - match: "Maple"
+    name: "Maple Shelter"
+    direction: null
+    mile: 55.0
+    elev: 944
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: true
+    med: null
+    cutoff: "3:00 AM"
+    cutoff_clock: "3:00 AM"
+    cutoff_elapsed_minutes: 1080
+    aid: "Staffed station in Brighton State Recreation Area; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "Pacers who joined at Lakeland Trail continue through; no pacer exchange is marked here."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Teahen"
+    name: "Teahen Road"
+    direction: null
+    mile: 59.6
+    elev: 896
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Hydration only, no volunteers - the map marks it \"HYDRATION ONLY - NO VOLUNTEERS.\""
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "Pacers who joined at Lakeland Trail continue through; no pacer exchange is marked here."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Sandhill"
+    name: "Sandhill Shelter"
+    direction: null
+    mile: 62.8
+    elev: 920
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "6:00 AM"
+    cutoff_clock: "6:00 AM"
+    cutoff_elapsed_minutes: 1260
+    aid: "Staffed station in Brighton State Recreation Area; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "Pacer station per the map."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Huron Meadows"
+    name: "Huron Meadows"
+    direction: null
+    mile: 69.5
+    elev: 868
+    crew: true
+    water: true
+    pacer: true
+    drop: true
+    food: true
+    med: null
+    cutoff: "8:00 AM"
+    cutoff_clock: "8:00 AM"
+    cutoff_elapsed_minutes: 1380
+    aid: "Staffed station in Huron Meadows Metropark; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "Pacer station per the map - the course page notes racers running side-by-side with their pacers on the Huron Meadows nature trails."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Fire Trail"
+    name: "Fire Trail"
+    direction: null
+    mile: 75.0
+    elev: 899
+    crew: false
+    water: true
+    pacer: false
+    drop: false
+    food: false
+    med: null
+    cutoff: null
+    cutoff_clock: null
+    cutoff_elapsed_minutes: null
+    aid: "Hydration only, no volunteers - the map marks it \"HYDRATION ONLY - NO VOLUNTEERS.\""
+    bathroom: null
+    park: null
+    crew_notes: "Not a crew station per the map."
+    pacer_notes: "Pacers who joined earlier continue through; no pacer exchange is marked here."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Spring Mill"
+    name: "Spring Mill Pond"
+    direction: null
+    mile: 79.5
+    elev: 880
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "12:00 PM"
+    cutoff_clock: "12:00 PM"
+    cutoff_elapsed_minutes: 1620
+    aid: "Staffed station in Island Lake State Recreation Area; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "Pacer station per the map."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The map's marker prints 79.5 miles (governs); the course page's narrative places the Spring Mill Pond aid station at mile 82."
+  - match: "Hickory"
+    name: "Hickory Shelter"
+    direction: null
+    mile: 87.0
+    elev: 913
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "2:00 PM"
+    cutoff_clock: "2:00 PM"
+    cutoff_elapsed_minutes: 1740
+    aid: "Staffed station in Kensington Metropark; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "Pacer station per the map."
+    road: null
+    source_metadata: *official_station_source
+  - match: "Windfall"
+    name: "Windfall Hill"
+    direction: null
+    mile: 92.0
+    elev: 924
+    crew: true
+    water: true
+    pacer: true
+    drop: false
+    food: true
+    med: null
+    cutoff: "3:00 PM"
+    cutoff_clock: "3:00 PM"
+    cutoff_elapsed_minutes: 1800
+    aid: "Staffed station on the Kensington horse trails; the FAQ menu runs warm food, broth, Tailwind, snacks, fruit, potatoes, and pickles."
+    bathroom: null
+    park: null
+    crew_notes: "Crew-access station per the map."
+    pacer_notes: "Pacer station per the map."
+    road: null
+    source_metadata:
+      <<: *official_station_source
+      source_notes: "Verified on is the retrieval date. The map labels both this marker and Hickory Shelter AS 15 - a numbering typo; sixteen aid-station markers exist, matching the FAQ's sixteen against the listing description's fifteen."
+  - match: "Proud Lake"
+    name: "Finish — Proud Lake Recreation Area"
+    direction: "Finish"
+    mile: 100.0
+    elev: 912
+    crew: true
+    water: null
+    pacer: false
+    drop: true
+    food: false
+    med: null
+    cutoff: "5:00 PM"
+    cutoff_clock: "5:00 PM"
+    cutoff_elapsed_minutes: 1920
+    aid: "The finish at Proud Lake Recreation Area Headquarters - the belt buckle inside the 32-hour window, closing 5:00 PM Sunday. Drop bags return here."
+    bathroom: null
+    park: null
+    crew_notes: "Crew access at the finish per the map; the shuttle back to the start departs 7:15 AM."
+    pacer_notes: "The race ends here; no pacer exchange is marked at the finish."
+    road: null
+    source_metadata: *official_station_source

@@ -13,7 +13,8 @@ module Events
                      "Badger Mountain Challenge 100", "Crown Stub 100", "Canyons 100M",
                      "Skunk Ape 100", "San Diego 100",
                      "Massanutten Mountain Trails 100", "Coyote Two Moon 100",
-                     "Hell Hole Hundred", "Rabid Raccoon 100", "Scout Mountain 100" ], published_races.map(&:name)
+                     "Hell Hole Hundred", "Rabid Raccoon 100", "Scout Mountain 100",
+                     "Huron 100" ], published_races.map(&:name)
       race = published_races.find { |published| published.slug == "bighorn-100" }
       assert_equal 20_500, race.elevation_gain_ft
       assert_equal Date.new(2026, 6, 19), race.start_date
@@ -727,6 +728,33 @@ module Events
                    "36 hours from the Friday 10:00 AM start"
       assert_includes scout.source_metadata.fetch("sources").pluck("url"),
                       "https://scoutmountainultras.com/s/SMU-100M.gpx"
+
+      huron = published_races.find { |published| published.slug == "huron-100" }
+      assert_equal 2027, huron.year
+      assert_equal Date.new(2027, 6, 12), huron.start_date
+      assert huron.not_open?, "registration opens September 1, 2026 on UltraSignup"
+      assert_equal 32, huron.cutoff_hours
+      assert_equal 100.0, huron.distance_mi.to_f, "the finish marker prints 100 miles"
+      assert_equal 8_200, huron.elevation_gain_ft, "the home page's print; the route publishes 7,940"
+      assert_equal 7_950, huron.elevation_loss_ft, "the route's 2,423 m - the only published loss"
+      assert_equal 18, huron.aid_stations.count, "the Start, sixteen aid stations, and the Finish"
+      assert_equal 18, huron.aid_stations.map { |station| [ station.lat, station.lng ] }.uniq.size,
+                   "point to point - every marker is its own location"
+      assert_equal 0, huron.aid_stations.where(direction: "Turnaround").count
+      assert_equal 10, huron.aid_stations.where(crew_accessible: true).count,
+                   "the Start, eight crew-flagged mid-course stations, and the Finish"
+      assert_equal 6, huron.aid_stations.count(&:pacer_access?),
+                   "Lakeland Trail through Windfall Hill per the map's pacer flags"
+      assert_equal 4, huron.aid_stations.count(&:drop_bag?),
+                   "Park Lyndon East, Lakeland Trail, Huron Meadows, and the Finish"
+      assert_equal 10, huron.aid_stations.count { |station| station.cutoff_elapsed_minutes.present? },
+                   "the map's ten-clock ladder"
+      assert_equal 1620, huron.aid_stations.find_by!(mile: 79.5).cutoff_elapsed_minutes,
+                   "Spring Mill Pond by 12:00 PM Sunday"
+      assert_equal Time.find_zone("America/Detroit").parse("2027-06-13 5:00 PM"), huron.final_cutoff_at,
+                   "32 hours from the Saturday 9:00 AM start"
+      assert_includes huron.source_metadata.fetch("sources").pluck("url"),
+                      "https://www.hellodrifter.com/events/huron-100-2026"
     end
 
     test "replaces stale Bighorn rows when publishing the Active event catalog" do
